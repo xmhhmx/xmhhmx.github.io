@@ -447,14 +447,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-05-30
+                    2024-06-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.5k
+                    2.4k
                 </div>
                 
 
@@ -472,7 +472,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="封神台高校CTF练习（Misc入门靶场）"><a href="#封神台高校CTF练习（Misc入门靶场）" class="headerlink" title="封神台高校CTF练习（Misc入门靶场）"></a>封神台高校CTF练习（Misc入门靶场）</h1><hr>
-<h3 id="封神台练习平台"><a href="#封神台练习平台" class="headerlink" title="封神台练习平台"></a><a target="_blank" rel="noopener" href="https://hack.zkaq.cn/">封神台练习平台</a></h3><h2 id="用到的工具平台"><a href="#用到的工具平台" class="headerlink" title="==用到的工具平台=="></a>==用到的工具平台==</h2><p>Unicode加解密：<a target="_blank" rel="noopener" href="https://www.toolhelper.cn/EncodeDecode/UnicodeChinese">https://www.toolhelper.cn/EncodeDecode/UnicodeChinese</a><br>RC4加解密：<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/rc4">在线RC4加密解密 (lddgo.net)</a><br>MD5加解密：<a target="_blank" rel="noopener" href="https://www.cmd5.com/default.aspx">md5在线解密破解,md5解密加密 (cmd5.com)</a></p>
+<h3 id="封神台练习平台"><a href="#封神台练习平台" class="headerlink" title="封神台练习平台"></a><a target="_blank" rel="noopener" href="https://hack.zkaq.cn/">封神台练习平台</a></h3><h2 id="用到的工具平台"><a href="#用到的工具平台" class="headerlink" title="==用到的工具平台=="></a>==用到的工具平台==</h2><p>Unicode加解密：<a target="_blank" rel="noopener" href="https://www.toolhelper.cn/EncodeDecode/UnicodeChinese">https://www.toolhelper.cn/EncodeDecode/UnicodeChinese</a><br>RC4加解密：<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/rc4">在线RC4加密解密 (lddgo.net)</a><br>MD5加解密：<a target="_blank" rel="noopener" href="https://www.cmd5.com/default.aspx">md5在线解密破解,md5解密加密 (cmd5.com)</a><br>凯撒密码加解密：<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/caesar-cipher">在线凯撒密码加密解密 (lddgo.net)</a><br>核心价值观加解密平台：<a target="_blank" rel="noopener" href="http://www.hiencode.com/cvencode.html">CTF在线工具-在线核心价值观编码|核心价值观编码算法|Core Values Encoder (hiencode.com)</a></p>
 <h2 id="（1）杂项1：图片隐写"><a href="#（1）杂项1：图片隐写" class="headerlink" title="（1）杂项1：图片隐写"></a>（1）杂项1：图片隐写</h2><p> <img src="https://pic.imgdb.cn/item/665715c4d9c307b7e93f60fd.png"></p>
 <ul>
 <li><p>步骤</p>
@@ -607,7 +607,88 @@
 
 
 <h2 id="（5）杂项5：刚刚截获德军的密电"><a href="#（5）杂项5：刚刚截获德军的密电" class="headerlink" title="（5）杂项5：刚刚截获德军的密电"></a>（5）杂项5：刚刚截获德军的密电</h2><p><img src="https://pic.imgdb.cn/item/66573d4ad9c307b7e9716e07.png"></p>
+<p>==ADFGX古典密码==<br>　　1918年，第一次世界大战将要结束时，法军截获了一份德军电报，电文中的所有单词都由A、D、F、G、X五个字母拼成，因此被称为ADFGX密码。ADFGX密码是1918年3月由德军上校Fritz Nebel发明的，是结合了Polybius密码和置换密码的双重加密方案。<br>　　A、D、F、G、X即Polybius方阵中的前5个字母。 </p>
+<p>　　明文：A T T A C K A T O N C E<br>　　经过Polybius变换：AF AD AD AF GF DX AF AD DF FX GF XF </p>
+<blockquote>
+<p>按照表进行转换：<img src="https://pic.imgdb.cn/item/665ddc6e5e6d1bfa054bb957.png" style="zoom:50%;"></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：FA XX DD AG DD XA FF FF AX DX</span><br></pre></td></tr></tbody></table></figure>
 
+<blockquote>
+<p>第一个字母为行数，第二个字母为列数，转换后</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：flagabxxmo</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（6）杂项6：简单加密"><a href="#（6）杂项6：简单加密" class="headerlink" title="（6）杂项6：简单加密"></a>（6）杂项6：简单加密</h2><p><img src="https://pic.imgdb.cn/item/665dde1e5e6d1bfa054dcabc.png"></p>
+<blockquote>
+<p>synt一看联想到凯撒密码，f与s偏移13位，直接上工具（<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/caesar-cipher">在线凯撒密码加密解密 (lddgo.net)</a>）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：synt{mxnd_pgs_xxxebg13}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><img src="https://pic.imgdb.cn/item/665ddf485e6d1bfa054f841c.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：flag{zkaq_ctf_kkkrot13}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（7）杂项7：社会主义核心价值观"><a href="#（7）杂项7：社会主义核心价值观" class="headerlink" title="（7）杂项7：社会主义核心价值观"></a>（7）杂项7：社会主义核心价值观</h2><p><img src="https://pic.imgdb.cn/item/665de01e5e6d1bfa0550f8e8.png"></p>
+<blockquote>
+<p>核心价值观加解密平台：（<a target="_blank" rel="noopener" href="http://www.hiencode.com/cvencode.html">CTF在线工具-在线核心价值观编码|核心价值观编码算法|Core Values Encoder (hiencode.com)</a>）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：公正公正公正诚信文明公正民主公正法治法治诚信民主法治诚信富强公正友善平等公正民主法治民主平等友善敬业法治和谐公正爱国法治诚信富强法治敬业公正爱国平等友善敬业和谐公正和谐富强和谐公正法治诚信和谐</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/665de7605e6d1bfa0559e813.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：flag{zkaq_shzyh_606}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（8）杂项8：奇怪的短信"><a href="#（8）杂项8：奇怪的短信" class="headerlink" title="（8）杂项8：奇怪的短信"></a>（8）杂项8：奇怪的短信</h2><p><img src="https://pic.imgdb.cn/item/665de7c25e6d1bfa055a4a31.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：33 53 21 41 94 52 21 72 74 42</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>手机上发短信有9键和26键，肯定不是和26键有关，考虑9键，</p>
+</blockquote>
+<p>看一个9键键盘：</p>
+<img src="https://pic.imgdb.cn/item/665de8a65e6d1bfa055c4ced.jpg" style="zoom: 33%;">
+
+<blockquote>
+<p>第一个字母首先考虑f，则看出33，就是“3”的第三个字母，推出密文:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：flagzkaqsh</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（9）杂项9：SOS的求救信息"><a href="#（9）杂项9：SOS的求救信息" class="headerlink" title="（9）杂项9：SOS的求救信息"></a>（9）杂项9：SOS的求救信息</h2><p><img src="https://pic.imgdb.cn/item/665de9b85e6d1bfa055e0252.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">密文：</span><br><span class="line">..-.</span><br><span class="line">....</span><br><span class="line">..-.</span><br><span class="line">.-..</span><br><span class="line">--.-</span><br><span class="line">.-</span><br><span class="line">.-</span><br><span class="line">--.</span><br><span class="line">-.-.</span><br><span class="line">--..</span><br><span class="line">--.</span><br><span class="line">-.-</span><br><span class="line">.-</span><br><span class="line">--..</span><br><span class="line">.-..</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>一眼得摩斯电码，查表解决</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665dea305e6d1bfa055e84cf.png" alt="摩斯电码表"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解密得：fhflqaagczgkazl</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>这个密码具备f、l、a、g，只是顺序有问题，考虑栅栏加密</p>
+</blockquote>
+<p>==栅栏加密：==</p>
+<p>​        所谓的栅栏密码，就是将一段被加密的明文划分成N个组，然后取每个组的第1个字符，根据情况排列成一段话，特点相对简单，字母不会太多。</p>
+<p>1、加密原理：</p>
+<p>例如明文：THIS IS ZHISHITOM<br>去掉空格吧还是：THISISZHISHITOM<br>设置栏数为3加密：TSHHZIIHTSIOISM<br>下面分解一下加密过程（分为3组）:<br>第一组：T H I S I<br>第二组：S Z H I S<br>第三组：H I T O M<br>然后按列取出字母：TSH HZI IHT SIO ISM<br>然后连在一起就形成了加密：TSHHZIIHTSIOISM</p>
+<p>2、解密原理<br>明确了加密的过程，下面逆推就行<br>加密明文：TSHHZIIHTSIOISM<br>先划分：<br>T S H<br>H Z I<br>I H T<br>S I O<br>I S M<br>按列顺序取字母：THISISZHISHITOM<br>完成了解密。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Makboli/article/details/126464442">https://blog.csdn.net/Makboli/article/details/126464442</a></p>
+<p><img src="https://pic.imgdb.cn/item/665df04d5e6d1bfa0564e571.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解出的明文：flagzkzhqacgalf</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>但是仍未通过，查看解析发现flag是需要将他倒置才可以</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">提交flag：flagcaqhzkzgalf</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（10）杂项10：Base"><a href="#（10）杂项10：Base" class="headerlink" title="（10）杂项10：Base"></a>（10）杂项10：Base</h2>
                 
             </div>
             <hr/>
@@ -623,7 +704,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">HMX</a>
+                    <a href="/about" rel="external nofollow noreferrer">xmh</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -646,7 +727,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint polocy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">HMX</a>
+                    <a href="/about" target="_blank">xmh</a>
                     !
                 </span>
             </div>
@@ -1137,7 +1218,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.6k</span>&nbsp;字
+                class="white-color">2.4k</span>&nbsp;字
             
             
             
