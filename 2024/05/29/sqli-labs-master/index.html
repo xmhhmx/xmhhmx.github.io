@@ -450,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    8
+                    303
                 </div>
                 
 
@@ -467,7 +467,48 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SQL注入-sqli-labs-master练习"><a href="#SQL注入-sqli-labs-master练习" class="headerlink" title="SQL注入-sqli-labs-master练习"></a>SQL注入-sqli-labs-master练习</h1>
+                <h1 id="SQL注入-sqli-labs-master练习"><a href="#SQL注入-sqli-labs-master练习" class="headerlink" title="SQL注入-sqli-labs-master练习"></a>SQL注入-sqli-labs-master练习</h1><h2 id="Less-1（基于错误的GET单引号字符型注入）"><a href="#Less-1（基于错误的GET单引号字符型注入）" class="headerlink" title="Less-1（基于错误的GET单引号字符型注入）"></a>Less-1（基于错误的GET单引号字符型注入）</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">联合查询注⼊流程&nbsp;</span><br><span class="line">1、判断原有查询语句字段数数</span><br><span class="line">2、使原来查询语句的查询结果为空</span><br><span class="line">3、判断查询结果输出位置</span><br><span class="line">4、使⽤ union 操作符拼接 payload 语句</span><br><span class="line">5、利⽤ payload 进⾏数据查询</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>显示正常页面</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f1e4a5e6d1bfa059237d2.png"></p>
+<blockquote>
+<p>找注入点，破坏SQL语法结构，发现存在注入点，并且为字符型</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f1e9f5e6d1bfa0592d24e.png" alt="不为数字型"></p>
+<p><img src="https://pic.imgdb.cn/item/665f1dca5e6d1bfa059120fe.png" alt="字符型"></p>
+<blockquote>
+<p>用联合查询，需要知道对应的列数，于是用order by判断列数<br>先用10列来测，回显不对，于是二分继续测试</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f1fd85e6d1bfa05944713.png"></p>
+<blockquote>
+<p>测试出有3列</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f20645e6d1bfa0594e49e.png"></p>
+<blockquote>
+<p>用union查询，判断回显位置，回显位置为2，3</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f210c5e6d1bfa0595a8a2.png"></p>
+<blockquote>
+<p>查数据库名称</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f213e5e6d1bfa0595e6ab.png" alt="查数据库名"></p>
+<blockquote>
+<p>查数据表名</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在 mysql5.0 以上的版本中加⼊了 information_schema 这个系统库，该库内存放该数据库所有的库名，表名，字段名以及它们的从属关系，利⽤ information_schema 库可以查询当前数据所有的表名</span><br><span class="line">用group_concat()函数显示所有表名</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/665f22965e6d1bfa05975f44.png" alt="查数据表名"></p>
+<blockquote>
+<p>用户信息在表“users”里，于是查其字段名</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f23265e6d1bfa0597fc97.png" alt="查字段名"></p>
+<blockquote>
+<p>查用户数据</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665f23ab5e6d1bfa05988597.png" alt="查数据"></p>
+<h2 id="Less-2（基于错误的GET整型注入）"><a href="#Less-2（基于错误的GET整型注入）" class="headerlink" title="Less-2（基于错误的GET整型注入）"></a>Less-2（基于错误的GET整型注入）</h2><h2 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h2><h2 id="Less-4"><a href="#Less-4" class="headerlink" title="Less-4"></a>Less-4</h2><h2 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h2><h2 id="Less-6"><a href="#Less-6" class="headerlink" title="Less-6"></a>Less-6</h2>
                 
             </div>
             <hr/>
@@ -759,13 +800,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/05/29/feng-shen-tai-gao-xiao-zhuan-qu-lian-xi/">
+                <a href="/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="封神台高校专区练习">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="封神台高校CTF练习（Misc入门靶场）">
                         
-                        <span class="card-title">封神台高校专区练习</span>
+                        <span class="card-title">封神台高校CTF练习（Misc入门靶场）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1029,7 +1070,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.8k</span>&nbsp;字
+                class="white-color">3k</span>&nbsp;字
             
             
             
