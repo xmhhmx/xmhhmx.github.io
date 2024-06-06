@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="路由与交换实验, xmhhmx的blog">
+    <meta name="keywords" content="VPN, xmhhmx的blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>路由与交换实验 | xmhhmx的blog</title>
+    <title>VPN | xmhhmx的blog</title>
     <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -290,12 +290,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">路由与交换实验</h1>
+                    <h1 class="description center-align post-title">VPN</h1>
                 </div>
             </div>
         </div>
@@ -409,29 +409,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2/">
-                                <span class="chip bg-color">路由与交换</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E6%80%9D%E7%A7%91/" class="post-category">
-                                思科
-                            </a>
-                        
-                            <a href="/categories/%E6%80%9D%E7%A7%91/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2/" class="post-category">
-                                路由与交换
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -440,21 +423,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-05-29
+                    2024-06-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-04
+                    2024-06-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    0
+                    434
                 </div>
                 
 
@@ -471,7 +454,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="VPN技术"><a href="#VPN技术" class="headerlink" title="VPN技术"></a>VPN技术</h1><h2 id="VPN是干啥的"><a href="#VPN是干啥的" class="headerlink" title="VPN是干啥的"></a>VPN是干啥的</h2><blockquote>
+<p>==官方解释==：</p>
+<p>​		VPN（Virtual Private Network，虚拟专用网络）技术是一种可以在公共网络上建立安全的、加密的连接，使用户可以通过网络访问私有网络资源的技术。VPN技术通过在用户和目标网络之间建立加密隧道来确保数据传输的安全性和私密性，避免了数据在互联网上传输时被非法获取或篡改的风险。<br>​		VPN技术的主要作用包括：提供加密保护的网络连接、绕过地理位置限制、保护隐私和匿名性、保护数据传输的安全性。在实际应用中，VPN技术广泛应用于企业内部网络、远程办公、跨国公司的分支机构连接、绕过地域限制的访问等场景。</p>
+<p>==我的理解==：</p>
+<p>​		首先，先明白ipv4地址是有限的，并且从ipv4过渡到ipv6的过程是漫长的，所以就出现了NAT技术（地址转换），所以也就有了公网地址和私网地址之分，公网地址就是可以在公共的Internet上传数据的IP地址，私网地址就是只能在本地进行数据传输的ip地址。<br>​		但是，当你想要提供安全的传输，数据不被篡改，就可以建立VPN隧道来保障。<br>​		两个公司一个总部，一个分部，他们之间可以建立VPN隧道，这样他们就可以看作在同一个网段通信了</p>
+</blockquote>
+<h2 id="VPN的分类"><a href="#VPN的分类" class="headerlink" title="VPN的分类"></a>VPN的分类</h2><h3 id="GRE"><a href="#GRE" class="headerlink" title="GRE"></a>GRE</h3><blockquote>
+<p>最大的优点：兼容性强，不管是单播、广播都可以打通，第二个优点就是简单，利于学习</p>
+<p>缺点：不安全</p>
+</blockquote>
+<h3 id="IPSec"><a href="#IPSec" class="headerlink" title="IPSec"></a>IPSec</h3><blockquote>
+</blockquote>
+
                 
             </div>
             <hr/>
@@ -487,7 +482,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">hmx</a>
+                    <a href="/about" rel="external nofollow noreferrer">HMX</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -497,7 +492,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/05/29/lu-you-yu-jiao-huan-shi-yan/">http://example.com/2024/05/29/lu-you-yu-jiao-huan-shi-yan/</a>
+                    <a href="http://example.com/2024/06/06/vpn-ji-zhu/">http://example.com/2024/06/06/vpn-ji-zhu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -510,7 +505,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint polocy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">hmx</a>
+                    <a href="/about" target="_blank">HMX</a>
                     !
                 </span>
             </div>
@@ -534,11 +529,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2/">
-                                    <span class="chip bg-color">路由与交换</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -706,9 +697,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2024/06/06/vpn-ji-zhu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="VPN">
+                        
+                        <span class="card-title">VPN</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            HMX
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2024/06/04/feng-shen-tai-gao-xiao-ctf-lian-xi-web-ba-chang/">
                     <div class="card-image">
@@ -726,9 +756,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -750,55 +780,6 @@
                     
                     <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2/">
                         <span class="chip bg-color">路由与交换</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/05/29/sqli-labs-master/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="SQL注入-sqli-labs-master练习">
-                        
-                        <span class="card-title">SQL注入-sqli-labs-master练习</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-29
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" class="post-category">
-                                    SQL注入
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
-                        <span class="chip bg-color">SQL注入</span>
                     </a>
                     
                 </div>
@@ -1029,7 +1010,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3k</span>&nbsp;字
+                class="white-color">3.5k</span>&nbsp;字
             
             
             
