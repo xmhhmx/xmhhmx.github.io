@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>VPN</title>
-      <link href="/2024/06/06/vpn-ji-zhu/"/>
-      <url>/2024/06/06/vpn-ji-zhu/</url>
+      <title>汇编语言</title>
+      <link href="/2024/06/06/hui-bian-yu-yan/"/>
+      <url>/2024/06/06/hui-bian-yu-yan/</url>
       
-        <content type="html"><![CDATA[<h1 id="VPN技术"><a href="#VPN技术" class="headerlink" title="VPN技术"></a>VPN技术</h1><h2 id="VPN是干啥的"><a href="#VPN是干啥的" class="headerlink" title="VPN是干啥的"></a>VPN是干啥的</h2><blockquote><p>==官方解释==：</p><p>​VPN（Virtual Private Network，虚拟专用网络）技术是一种可以在公共网络上建立安全的、加密的连接，使用户可以通过网络访问私有网络资源的技术。VPN技术通过在用户和目标网络之间建立加密隧道来确保数据传输的安全性和私密性，避免了数据在互联网上传输时被非法获取或篡改的风险。<br>​VPN技术的主要作用包括：提供加密保护的网络连接、绕过地理位置限制、保护隐私和匿名性、保护数据传输的安全性。在实际应用中，VPN技术广泛应用于企业内部网络、远程办公、跨国公司的分支机构连接、绕过地域限制的访问等场景。</p><p>==我的理解==：</p><p>​首先，先明白ipv4地址是有限的，并且从ipv4过渡到ipv6的过程是漫长的，所以就出现了NAT技术（地址转换），所以也就有了公网地址和私网地址之分，公网地址就是可以在公共的Internet上传数据的IP地址，私网地址就是只能在本地进行数据传输的ip地址。<br>​但是，当你想要提供安全的传输，数据不被篡改，就可以建立VPN隧道来保障。<br>​两个公司一个总部，一个分部，他们之间可以建立VPN隧道，这样他们就可以看作在同一个网段通信了</p></blockquote><h2 id="VPN的分类"><a href="#VPN的分类" class="headerlink" title="VPN的分类"></a>VPN的分类</h2><h3 id="GRE"><a href="#GRE" class="headerlink" title="GRE"></a>GRE</h3><blockquote><p>最大的优点：兼容性强，不管是单播、广播都可以打通，第二个优点就是简单，利于学习</p><p>缺点：不安全</p></blockquote><h3 id="IPSec"><a href="#IPSec" class="headerlink" title="IPSec"></a>IPSec</h3><blockquote></blockquote>]]></content>
+        <content type="html"><![CDATA[<h1 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h1>]]></content>
       
       
       
@@ -17,7 +17,32 @@
     
     
     <entry>
-      <title>路由与交换实验</title>
+      <title>VPN技术</title>
+      <link href="/2024/06/06/vpn-ji-zhu/"/>
+      <url>/2024/06/06/vpn-ji-zhu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="VPN技术"><a href="#VPN技术" class="headerlink" title="VPN技术"></a>VPN技术</h1><h2 id="VPN是干啥的"><a href="#VPN是干啥的" class="headerlink" title="VPN是干啥的"></a>VPN是干啥的</h2><blockquote><p>==官方解释==：</p><p>​VPN（Virtual Private Network，虚拟专用网络）技术是一种可以在公共网络上建立安全的、加密的连接，使用户可以通过网络访问私有网络资源的技术。VPN技术通过在用户和目标网络之间建立加密隧道来确保数据传输的安全性和私密性，避免了数据在互联网上传输时被非法获取或篡改的风险。<br>​VPN技术的主要作用包括：提供加密保护的网络连接、绕过地理位置限制、保护隐私和匿名性、保护数据传输的安全性。在实际应用中，VPN技术广泛应用于企业内部网络、远程办公、跨国公司的分支机构连接、绕过地域限制的访问等场景。</p><p>==我的理解==：</p><p>​首先，先明白ipv4地址是有限的，并且从ipv4过渡到ipv6的过程是漫长的，所以就出现了NAT技术（地址转换），所以也就有了公网地址和私网地址之分，公网地址就是可以在公共的Internet上传数据的IP地址，私网地址就是只能在本地进行数据传输的ip地址。<br>​但是，当你想要提供安全的传输，数据不被篡改，就可以建立VPN隧道来保障。<br>​两个公司一个总部，一个分部，他们之间可以建立VPN隧道，这样他们就可以看作在同一个网段通信了</p></blockquote><h2 id="VPN的分类"><a href="#VPN的分类" class="headerlink" title="VPN的分类"></a>VPN的分类</h2><h3 id="GRE"><a href="#GRE" class="headerlink" title="GRE"></a>GRE</h3><blockquote><p>最大的优点：兼容性强，不管是单播、广播都可以打通，第二个优点就是简单，利于学习</p><p>缺点：不安全</p></blockquote><h3 id="IPSec"><a href="#IPSec" class="headerlink" title="IPSec"></a>IPSec</h3><blockquote></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> VPN </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VPN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>封神台高校CTF练习（Web靶场）</title>
       <link href="/2024/06/04/feng-shen-tai-gao-xiao-ctf-lian-xi-web-ba-chang/"/>
       <url>/2024/06/04/feng-shen-tai-gao-xiao-ctf-lian-xi-web-ba-chang/</url>
       
@@ -26,16 +51,16 @@
       
       <categories>
           
-          <category> 思科 </category>
+          <category> CTF练习 </category>
           
-          <category> 路由与交换 </category>
+          <category> Web攻防 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 路由与交换 </tag>
+            <tag> Web攻防 </tag>
             
         </tags>
       
@@ -96,11 +121,11 @@
     
     
     <entry>
-      <title>正式开创自己的博客了</title>
-      <link href="/2024/05/20/zheng-shi-kai-chuang-zi-ji-de-bo-ke-liao/"/>
-      <url>/2024/05/20/zheng-shi-kai-chuang-zi-ji-de-bo-ke-liao/</url>
+      <title>开创博客</title>
+      <link href="/2024/05/20/kai-chuang-bo-ke/"/>
+      <url>/2024/05/20/kai-chuang-bo-ke/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to my blog</p>]]></content>
+        <content type="html"><![CDATA[<p>Welcome to xmhhmxblog</p>]]></content>
       
       
       
