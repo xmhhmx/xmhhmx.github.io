@@ -241,7 +241,7 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #11e9c9ea 0%, #0f9d58 100%);
+    background-image: linear-gradient(to right, #11e9c981 0%, #0f9d58 100%);
     opacity: 0.9;
 }
 
@@ -886,6 +886,8 @@ article a:hover {
 }
 
 article .card {
+    height: 400px;
+    width: 330px;
     border-radius: 8px;
     overflow: hidden;
 }
