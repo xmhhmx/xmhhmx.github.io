@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-09
+                    2024-06-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.7k
+                    3.4k
                 </div>
                 
 
@@ -621,6 +621,102 @@
 <p>flag：Chingmy Yau</p>
 </blockquote>
 <h2 id="（12）杂项12：打由诗"><a href="#（12）杂项12：打由诗" class="headerlink" title="（12）杂项12：打由诗"></a>（12）杂项12：打由诗</h2><p><img src="https://pic.imgdb.cn/item/665df82f5e6d1bfa056d600b.png"></p>
+<blockquote>
+<p>在网上查找得知此为当铺密码，将其每个字都转换为数字</p>
+</blockquote>
+<p>==当铺密码==：</p>
+<p>当前汉字有多少笔画出头，就是转化成数字几。例如：</p>
+<p>王：该字外面有 6 个出头的位置，所以该汉字对应的数字就是 6；</p>
+<p>口：该字外面没有出头的位置，那就是0；</p>
+<p>人：该字外面有 3 个出头的位置，所以该汉字对应的数字就是 3；</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：由口中,由口井,圭土,由口人,由中人,由中中,由口主,由中中,圭土,由凹凸,由由中,由目圭,克工</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>将其转换为数字，并用ASCII码解开</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">明文：102 108 97 103 123 122 107 122 95 100 112 109 109 54</span><br><span class="line">flag{zkz_dpm6}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（13）杂项13：佛说"><a href="#（13）杂项13：佛说" class="headerlink" title="（13）杂项13：佛说"></a>（13）杂项13：佛说</h2><p><img src="https://pic.imgdb.cn/item/66681165d9c307b7e9d315a4.png"></p>
+<blockquote>
+<p>网上查看其为与佛论禅，那就寻找工具解密</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：佛曰：諳娑蒙罰世那真耶除梵沙缽能蒙切一怯南缽爍皤若佛涅無侄殿依缽以俱耨皤大缽若道他怯數等侄即喝至能楞怯伊奢阿諳利哆跋遮知智罰悉缽伽即所遠那等多</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>解密工具：<a target="_blank" rel="noopener" href="https://ctf.bugku.com/tool/todousharp">与佛论禅密码 - Bugku CTF</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6668112dd9c307b7e9d27154.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{zkaq_fochan}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（14）杂项14-奇怪的Base加密"><a href="#（14）杂项14-奇怪的Base加密" class="headerlink" title="（14）杂项14:奇怪的Base加密"></a>（14）杂项14:奇怪的Base加密</h2><p><img src="https://pic.imgdb.cn/item/666811c2d9c307b7e9d3e30f.png"></p>
+<blockquote>
+<p>下载文件，这么长的一段Base,还有;base64,这个关键词，这个一定是图片Base64加密，直接解密就可以了</p>
+<p>加解密平台：<a target="_blank" rel="noopener" href="https://tool.chinaz.com/tools/imgtobase/">https://tool.chinaz.com/tools/imgtobase/</a></p>
+<p>记得加一个头部图片的格式：data:image/jpg；</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6668137bd9c307b7e9d86cea.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{base64_tupian_a}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（15）杂项15：跳舞小人"><a href="#（15）杂项15：跳舞小人" class="headerlink" title="（15）杂项15：跳舞小人"></a>（15）杂项15：跳舞小人</h2><p><img src="https://pic.imgdb.cn/item/666813f5d9c307b7e9d9652a.png"></p>
+<blockquote>
+<p>跳舞小人中明显有一个二维码，截图发现少了一块，补上直接扫描</p>
+</blockquote>
+<p>得到flag</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{GC-ACUID}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（16）杂项16：神秘图片"><a href="#（16）杂项16：神秘图片" class="headerlink" title="（16）杂项16：神秘图片"></a>（16）杂项16：神秘图片</h2><p><img src="https://pic.imgdb.cn/item/666815bbd9c307b7e9dbb43c.png"></p>
+<blockquote>
+<p>下载文件，然后右键属性，看到里面的照相机镜头信息</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/66681627d9c307b7e9dc292f.png" style="zoom:67%;">
+
+<p>得到flag</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{ctf_tupian_666}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（17）杂项17-可达鸭"><a href="#（17）杂项17-可达鸭" class="headerlink" title="（17）杂项17:可达鸭"></a>（17）杂项17:可达鸭</h2><p><img src="https://pic.imgdb.cn/item/6668171bd9c307b7e9dd3a34.png"></p>
+<blockquote>
+<p>看到图片明显能感觉到显示不全，下载发现是一个png图片</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66681fbcd9c307b7e9e57207.png"></p>
+<blockquote>
+<p>自然就想到利用16进制编辑器打开图片，到找IHDR调整大小，发现后面的flag，可以使用网上的16进制编辑器，把图片长度更改；工具：<a target="_blank" rel="noopener" href="https://hexed.it/">HexEd.it — 基于浏览器的十六进制编辑器</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66682061d9c307b7e9e74795.png"></p>
+<p>更改为：</p>
+<p><img src="https://pic.imgdb.cn/item/66682085d9c307b7e9e7996d.png"></p>
+<p>得到图片：</p>
+<img src="https://pic.imgdb.cn/item/666820bad9c307b7e9e7d4ea.png" style="zoom:50%;">
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{ke-da-ya!}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（18）杂项18：一组神秘的图片"><a href="#（18）杂项18：一组神秘的图片" class="headerlink" title="（18）杂项18：一组神秘的图片"></a>（18）杂项18：一组神秘的图片</h2><p><img src="https://pic.imgdb.cn/item/66682115d9c307b7e9e85cc0.png"></p>
+<blockquote>
+<p>下载压缩包，解压之后得到一些黑白图，这个图片只有黑和白两种，有点像二进制中的0和1，尝试把白色换成0，黑色换成1，得出一串二进制</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二进制：01100110011011000110000101100111011110110110011100101101011000110110011101111101</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/66682247d9c307b7e9ea346c.png"></p>
+<blockquote>
+<p>将其转换为ASCII码，工具：<a target="_blank" rel="noopener" href="https://coding.tools/cn/binary-to-text">2进制到ASCII字符串在线转换工具 - Coding.Tools</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/666822f5d9c307b7e9eae9a2.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{g-cg}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（19）杂项19：神奇的压缩包加密"><a href="#（19）杂项19：神奇的压缩包加密" class="headerlink" title="（19）杂项19：神奇的压缩包加密"></a>（19）杂项19：神奇的压缩包加密</h2><p><img src="https://pic.imgdb.cn/item/66682384d9c307b7e9eb7a3d.png"></p>
 
                 
             </div>
@@ -1163,7 +1259,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.9k</span>&nbsp;字
             
             
             
