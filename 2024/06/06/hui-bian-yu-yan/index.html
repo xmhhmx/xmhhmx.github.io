@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-19
+                    2024-06-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    938
+                    1.6k
                 </div>
                 
 
@@ -365,7 +365,7 @@
             <div id="articleContent">
                 <h1 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h1><h2 id="学习路径-："><a href="#学习路径-：" class="headerlink" title="==学习路径==："></a>==学习路径==：</h2><p>[汇编语言](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rs411c7HG%EF%BC%89">https://www.bilibili.com/video/BV1Rs411c7HG）</a></p>
 <h2 id="测试点练习路径-："><a href="#测试点练习路径-：" class="headerlink" title="==测试点练习路径==："></a>==测试点练习路径==：</h2><p><a target="_blank" rel="noopener" href="https://hansimov.gitbook.io/asm-lang/solutions/ch01-basics">汇编语言 - 王爽</a></p>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
 <p>汇编语言是机器指令便于记忆的的书写格式</p>
 </blockquote>
 <h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><ol>
@@ -373,7 +373,7 @@
 <li>伪指令（由编译器执行）</li>
 <li>其他符号（由编译器识别）：+-*÷ 由编译器转换为逻辑运算符（与或非）传给计算机执行</li>
 </ol>
-<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><blockquote>
+<h3 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h3><blockquote>
 <p>存储单元的地址（地址信息）<br>器件的选择，读或写命令（控制信息）<br>读或写的数据（数据信息）</p>
 </blockquote>
 <p>==总线==：连接CPU与其他芯片的导线</p>
@@ -423,7 +423,7 @@
 <p>主板逻辑连接：</p>
 <img src="https://pic.imgdb.cn/item/6662f2ef5e6d1bfa053655fe.png" style="zoom: 67%;">
 
-<h2 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h2><h3 id="CPU概述"><a href="#CPU概述" class="headerlink" title="CPU概述"></a>CPU概述</h3><blockquote>
+<h2 id="寄存器（CPU工作原理）"><a href="#寄存器（CPU工作原理）" class="headerlink" title="寄存器（CPU工作原理）"></a>寄存器（CPU工作原理）</h2><h3 id="CPU概述"><a href="#CPU概述" class="headerlink" title="CPU概述"></a>CPU概述</h3><blockquote>
 <p>由运算器、控制器、寄存器等器件组成</p>
 </blockquote>
 <h3 id="寄存器概述"><a href="#寄存器概述" class="headerlink" title="寄存器概述"></a>寄存器概述</h3><blockquote>
@@ -477,9 +477,127 @@
 </ul>
 <p><img src="https://pic.imgdb.cn/item/66729796d9c307b7e9683f92.png"></p>
 <h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><blockquote>
-<p>8086CPU有四个段寄存器：CS、DS、SS、ES</p>
+<p>8086CPU有四个段寄存器：</p>
+<ul>
+<li>CS（代码段寄存器，Code Segment）</li>
+<li>DS（数据段寄存器，Data Segment）</li>
+<li>SS（堆栈段寄存器，Stack Segment）</li>
+<li>ES（附加段寄存器，Extra Segment）</li>
+</ul>
+<p>当8086CPU需要访问内存时，由这4个寄存器提供内存单元的段地址</p>
 </blockquote>
+<p>==CS和IP（指令指针寄存器）==</p>
+<p><img src="https://pic.imgdb.cn/item/6672a236d9c307b7e97b9464.png"></p>
+<p>工作流程：</p>
+<ol>
+<li>从CS:IP指向的内存单元读取指令，读取的指令进入指令缓冲区</li>
+<li>IP=IP+所读取指令的长度，从而指向下一条指令</li>
+<li>执行指令，转到步骤1</li>
+</ol>
+<blockquote>
+<p>在8086CPU加电启动时，CS=FFFFH，IP=0000H，即CPU从内存FFFF0H单元中读取指令执行</p>
+</blockquote>
+<p>==修改CS:IP的指令==</p>
+<ul>
+<li><p>mov不能用于设置CS、IP的值</p>
+</li>
+<li><p>同时修改CS、IP:</p>
+</li>
+</ul>
+<p>​		而是用转移指令：jmp</p>
+<p>​		<u>jmp 段地址:偏移地址</u></p>
+<p>​		jmp 2AE3:3 对应物理地址2AE33</p>
+<p>​		jmp 3:0B16 对应物理地址0003*16=00030，00030+00B16=00B46</p>
+<ul>
+<li>仅修改IP的内容</li>
+</ul>
+<p>​		jmp 某一合法寄存器</p>
+<p>​		jmp ax	（类似于mov IP,ax）//用寄存器的值修改IP</p>
+<p>练习：</p>
+<img src="https://pic.imgdb.cn/item/6672add2d9c307b7e990a2f6.png" style="zoom:67%;">
 
+<p>依次执行：</p>
+<ul>
+<li><p>mov ax,6622H		 ax=6622</p>
+</li>
+<li><p>jmp 1000:3 			</p>
+</li>
+<li><p>mov ax,0000			ax=0000</p>
+</li>
+<li><p>mov bx,ax				bx=0000</p>
+</li>
+<li><p>jmp bx</p>
+</li>
+<li><p>mov ax,0123H         ax=0123</p>
+</li>
+<li><p>执行mov ax,0000 不断循环</p>
+</li>
+</ul>
+<h3 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h3><blockquote>
+<p>对于8086PC机，可以根据需求将一组内存单元定义为一个段</p>
+<p>可以将长度为N的一组代码存在一组地址连续、起始地址为16的倍数的内存单元中，这段内存是用来存放代码的，从而定义了一个代码段</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/6672b19bd9c307b7e997288c.png" style="zoom:67%;">
+
+<p>CS:IP指向代码段，则代码段就被执行，CPU只认CS:IP所指代码段</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><blockquote>
+<p>查看CPU和内存，用机器指令和汇编指令编程</p>
+<p>使用工具：DOSBox</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/6672b712d9c307b7e9a01d33.png" style="zoom:67%;">
+
+<p>​	R:查看、改变CPU寄存器内容</p>
+<p><img src="https://pic.imgdb.cn/item/6673bd69d9c307b7e9544e8c.png"></p>
+<p>T:执行指令</p>
+<p><img src="https://pic.imgdb.cn/item/6673bdfbd9c307b7e9554102.png"></p>
+<p>D:查看内存内容</p>
+<p><img src="https://pic.imgdb.cn/item/6673be4cd9c307b7e955bf8a.png"></p>
+<p>（1）</p>
+<p><img src="https://pic.imgdb.cn/item/6673bf23d9c307b7e9572b6e.png"></p>
+<ol>
+<li>通过-a，将指令输入</li>
+<li>用过-d，来查看内存</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c0f3d9c307b7e95a4cb0.png"></p>
+<ol start="3">
+<li>用u来将指令转换为汇编语言</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c15dd9c307b7e95b0087.png"></p>
+<ol start="4">
+<li>改变CS:IP指向刚刚执行的指令</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c3e9d9c307b7e95f838a.png"></p>
+<ol start="5">
+<li>执行当前指令，发现ax被覆盖，并且IP的值也指向了下一个指令</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c431d9c307b7e95ff75c.png"></p>
+<p>（2）将下面3条指令写入从2000:0开始的内存单元中，利用这3条指令计算2的8次方</p>
+<ul>
+<li>mov ax,1</li>
+<li>add ax,ax</li>
+<li>jmp 2000:0003</li>
+</ul>
+<ol>
+<li>-a写入指令</li>
+<li>-r改变CS:IP指向指令内存地址</li>
+<li>-t依次执行</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c77ed9c307b7e966d310.png"></p>
+<p>（3）</p>
+<p><img src="https://pic.imgdb.cn/item/6673c89fd9c307b7e968c609.png"></p>
+<ol>
+<li>-d查看，其中30（十六进制）对应0（ASCII），2F（十六进制）对应/（ASCII），依次对应</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c9e4d9c307b7e96b591e.png"></p>
+<ol start="2">
+<li>-e更改，发现无法更改，因为写在ROM中的，为只读</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673cc10d9c307b7e972caea.png"></p>
+<p>（4）</p>
+<p><img src="https://pic.imgdb.cn/item/6673cc4dd9c307b7e973d476.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6673cce2d9c307b7e9760560.png"></p>
+<p>观察右上角出现图案，是因为在往显存中写数据，所以出现了图案</p>
+<h2 id="寄存器（内存访问）"><a href="#寄存器（内存访问）" class="headerlink" title="寄存器（内存访问）"></a>寄存器（内存访问）</h2>
                 
             </div>
             <hr/>
@@ -1021,7 +1139,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.1k</span>&nbsp;字
+                class="white-color">9.2k</span>&nbsp;字
             
             
             
@@ -1239,7 +1357,7 @@ $(function () {
     
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
     <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-    <script type="text/javascript" src="/js/fireworks.js"></script>
+    <!-- <script type="text/javascript" src="/js/fireworks.js"></script> -->
 
     <!-- <script type="text/javascript">
         //只在桌面版网页启用特效

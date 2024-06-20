@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-17
+                    2024-06-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    273
+                    1.7k
                 </div>
                 
 
@@ -405,7 +405,114 @@
 <li>可以对服务器的目录进行操作，此处演示删除操作</li>
 </ol>
 <p><img src="https://pic.imgdb.cn/item/666fe642d9c307b7e90b439f.png"></p>
-<h2 id="Pass-02"><a href="#Pass-02" class="headerlink" title="Pass-02"></a>Pass-02</h2>
+<blockquote>
+<p>另一个方法：</p>
+<p>在网页前端设置中禁用JavaScript，就可以正常上传php文件了</p>
+</blockquote>
+<ol>
+<li>鼠标右键-检查-设置-禁用JavaScript</li>
+</ol>
+<p>设置：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d15cd9c307b7e981140b.png"></p>
+<p>禁用：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d1b7d9c307b7e981b7b0.png"></p>
+<h2 id="Pass-02-content-type绕过"><a href="#Pass-02-content-type绕过" class="headerlink" title="Pass-02 content-type绕过"></a>Pass-02 content-type绕过</h2><blockquote>
+<p>基本流程第一步先上传php文件去尝试，回显文件类型错误，猜测通过content-type的内容来拦截不合法的文件格式上传</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6673d7cfd9c307b7e98e0866.png"></p>
+<ol>
+<li>用burpsuite先抓包，拦下数据包，然后将php文件的conten-type内容改为图像对应的内容（image/jpeg）上传，即可绕过</li>
+</ol>
+<p>原始包内容：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d585d9c307b7e989d6f1.png"></p>
+<p>修改后：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d5b1d9c307b7e98a21e9.png"></p>
+<p>然后放行，显示上传成功</p>
+<p>同样可以用蚁剑来连接</p>
+<h2 id="Pass-03-特殊后缀绕过"><a href="#Pass-03-特殊后缀绕过" class="headerlink" title="Pass-03 特殊后缀绕过"></a>Pass-03 特殊后缀绕过</h2><blockquote>
+<p>先上传php文件去尝试，回显不允许上传的文件后缀名，猜测对后缀名写了黑名单，来拦截不合法的文件格式上传</p>
+<p>可以通过上传同样可以被解析为php文件的一些后缀，类似php3、php5、phtml等，是否能成功取决于中间件（apache）的配置文件中是否有设置</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6673d878d9c307b7e98f2e6b.png"></p>
+<blockquote>
+<p>更改apache配置文件：设置什么样的文件后缀可以php的方式来解析</p>
+</blockquote>
+<ul>
+<li>步骤：打开配置文件-（httpd-config）-找到addtype</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6673dc06d9c307b7e995e954.png"></p>
+<ul>
+<li>找到addtype，取消注释，添加类型</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6673dd03d9c307b7e997d319.png"></p>
+<blockquote>
+<p>如果还是不行，那么考虑是php的版本问题，切换到不带nts的低版本，就可以用蚁剑连接成功</p>
+<p>nts（非多线程安全）、ts（多线程安全）</p>
+</blockquote>
+<ol>
+<li><p>上传php文件，在burpsuite中将后缀名改为php5（php3，phtml）然后放行，关闭抓包</p>
+</li>
+<li><p>打开图片链接，并且复制图片链接，在蚁剑上连接</p>
+</li>
+</ol>
+<h2 id="Pass-04-htaccess绕过"><a href="#Pass-04-htaccess绕过" class="headerlink" title="Pass-04 .htaccess绕过"></a>Pass-04 .htaccess绕过</h2><blockquote>
+<p>老样子，先上传php文件，看回显，文件不允许上传</p>
+<p>作为练习，那么看源码来分析</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6673df89d9c307b7e99cce97.png"></p>
+<p>源码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$deny_ext = array(".php",".php5",".php4",".php3",".php2",".php1",".html",".htm",".phtml",".pht",".pHp",".pHp5",".pHp4",".pHp3",".pHp2",".pHp1",".Html",".Htm",".pHtml",".jsp",".jspa",".jspx",".jsw",".jsv",".jspf",".jtml",".jSp",".jSpx",".jSpa",".jSw",".jSv",".jSpf",".jHtml",".asp",".aspx",".asa",".asax",".ascx",".ashx",".asmx",".cer",".aSp",".aSpx",".aSa",".aSax",".aScx",".aShx",".aSmx",".cEr",".sWf",".swf",".ini"); //后缀名黑名单</span><br><span class="line">        $file_name = trim($_FILES['upload_file']['name']); //去除文件名中的前和后空格</span><br><span class="line">        $file_name = deldot($file_name);				   //删除文件名末尾的点</span><br><span class="line">        $file_ext = strrchr($file_name, '.');			   //从文件名中提取文件的扩展名</span><br><span class="line">        $file_ext = strtolower($file_ext); 				   //转换为小写</span><br><span class="line">        $file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA</span><br><span class="line">        $file_ext = trim($file_ext); 					   //收尾去空</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​		.htaccess文件在站点的根目录下面，不是在apache目录下，但它属于apache的一个局部配置文件，它负责相关目录下的网页配置，修改后即生效。而httpd.onf是apache全局主配置文件，影响整个服务器，修改后需重启服务器才生效</p>
+<p>​		通过htaccess文件，可以帮助我们实现：网页301重定向、自定义404错误页面，改变文件扩展名、允许/阻止特定的用户或者目录的访问，禁止目录列表，配置默认文档等功能</p>
+<p>​		其中.htaccess文件中的“SetHandler application/x-http-php”的意思是设置当前目录所有文件都使用php解析，那么无论上传任何文件，只要符合php语言代码规范，就会被当做PHP执行，不符合规则则报错。.htaccess通常用于伪静态的一个转换。           </p>
+<p><strong>前提条件：</strong>目标服务器apache必须开启“mod_rewrite”模块和“AllowOverride ALL”。</p>
+<p><img src="https://pic.imgdb.cn/item/6673e634d9c307b7e9aa5fdf.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6673e649d9c307b7e9aa8720.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6673eef5d9c307b7e9b9fcc0.png"></p>
+<ol>
+<li>写一个.htaccess文件并上传，内容为：</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SetHandler application/x-httpd-php   //将所有文件都解析成PHP文件</span><br><span class="line">或者</span><br><span class="line">AddType application/x-httpd-php .jpg .txt   //将jpg或txt以php来解析</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>将一句话木马的php后缀改为jpg或者txt，然后上传，蚁剑连接的时候后缀就是jpg，可以连接</li>
+</ol>
+<blockquote>
+<p> 也可以将php文件合并到图片文件中一起上传</p>
+</blockquote>
+<p><u>方法1：</u></p>
+<ul>
+<li>在文件当前目录打开cmd，输入命令合并两个文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy shell.php+1.jpg/b 000.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<p>/b:二进制</p>
+<p>000.jpg：合并之后的文件</p>
+<p><u>方法2：</u></p>
+<ul>
+<li>burpsuite抓包，上传一个图片，在图片的内容最后加上一句话木马内容，然后上传</li>
+</ul>
+<blockquote>
+<p>当然，如果只看这道题，还有一个方法绕过</p>
+</blockquote>
+<ul>
+<li><p>抓包之后将文件名改为“shell.php. .”（加了点 空格 点），是根据源码过滤规则来绕过的，过滤之后发往服务器的文件名是“shell.php.”，然后需要知道windows的命名规则中后缀名之后的”空格”和”.”是会被去除的</p>
+</li>
+<li><p>所以服务器中保存到文件名为“shell.php”</p>
+</li>
+</ul>
+<h2 id="Pass-05-user-ini绕过"><a href="#Pass-05-user-ini绕过" class="headerlink" title="Pass-05 .user.ini绕过"></a>Pass-05 .user.ini绕过</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li><p>.htaccess<br>  作用:分布式配置文件，一般用于URL重写、认证、访问控制等<br>  作用范围:特定目录(一般是网站根目录)及其子目录<br>  优先级:<strong>较高</strong>，可覆盖 Apache的主要配置文件(httpd-conf)<br>  生效方式:修改后立刻生效</p>
+</li>
+<li><p>httpd-conf<br>  作用:包含 Apache·HTTP服务器的全局行为和默认设置<br>  作用范围:整个服务器<br>  优先级:较低<br>  生效方式:管理员权限，重启服务器后生效</p>
+</li>
+<li><p>.user.ini<br>  作用:特定于用户或特定目录的配置文件,通常位于Web应用程序的根目录下，它用于覆盖或追加全局配置文件(如php.ini)中的PHP配置选项。<br>  作用范围:存放该文件的目录以及其子目录<br>  优先级:<strong>较高</strong>，可以覆盖 php.ini<br>  生效方式:立即生效</p>
+</li>
+<li><p>php.inie<br>  作用:存储了对整个PHP环境生效的配置选项。它通常位于PHP安装目录中<br>  作用范围:所有运行在该PHP环境中的PHP请求<br>  优先级:·较低<br>  生效方式:重启 php或 web 服务器</p>
+</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -949,7 +1056,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.1k</span>&nbsp;字
+                class="white-color">9.2k</span>&nbsp;字
             
             
             
@@ -1167,7 +1274,7 @@ $(function () {
     
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
     <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-    <script type="text/javascript" src="/js/fireworks.js"></script>
+    <!-- <script type="text/javascript" src="/js/fireworks.js"></script> -->
 
     <!-- <script type="text/javascript">
         //只在桌面版网页启用特效
