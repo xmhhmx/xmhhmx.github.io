@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-20
+                    2024-06-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.7k
+                    2.2k
                 </div>
                 
 
@@ -512,6 +512,60 @@
 <li><p>php.inie<br>  作用:存储了对整个PHP环境生效的配置选项。它通常位于PHP安装目录中<br>  作用范围:所有运行在该PHP环境中的PHP请求<br>  优先级:·较低<br>  生效方式:重启 php或 web 服务器</p>
 </li>
 </ul>
+<blockquote>
+<p>.user.ini可以生效的前提：</p>
+</blockquote>
+<ul>
+<li>php版本最好是7.x的版本</li>
+<li>Server API为CGI/FastCGI（通过phpinfo查看）</li>
+</ul>
+<blockquote>
+<p>.user.ini文件上传漏洞的前提：</p>
+</blockquote>
+<ul>
+<li>.user.ini可以生效</li>
+<li>并且上传目录由php文件</li>
+</ul>
+<p>写法：</p>
+<p>auto_prepend_file=shell.txt（这个文件中包含php内容）</p>
+<p>A：echo“hello”.php </p>
+<p>B：echo“world”.txt</p>
+<p>auto_prepend_file=B.txt………………hello world</p>
+<ol>
+<li>写一个.user.ini文件，此文件的作用是在该目录下上传文件时都会预先加载文件中的内容，此处内容则是预先加载shell.jpg文件去包含一句话木马，这意味着在每个 PHP 脚本执行之前，都会先执行 shell.jpg 文件，然后将其上传</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/667698dcd9c307b7e9882677.png"></p>
+<ol start="2">
+<li>然后再上传shell.jpg文件（包含一句话木马），为了方便查看加一句显示的语句</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66769a87d9c307b7e98aede6.png"></p>
+<ol start="3">
+<li>上传的目录中自己包含一个readme.php文件，在网页上访问此文件，就会首先加载shell.jpg文件，则会输出“上传成功”，此处因为编码方式不同出现乱码，但是其实已经包含成功</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66769b08d9c307b7e98bb61a.png"></p>
+<blockquote>
+<p>同样，根据这道题的源码来看，可以通过点空格点来绕过</p>
+</blockquote>
+<h2 id="Pass-06-大写绕过"><a href="#Pass-06-大写绕过" class="headerlink" title="Pass-06 大写绕过"></a>Pass-06 大写绕过</h2><blockquote>
+<p>查看源码，发现没有将文件扩展名转为小写的代码，可以使用大写绕过</p>
+</blockquote>
+<ol>
+<li>上传文件，burpsuite抓包，然后将文件后缀名任意字母改为大写，然后上传</li>
+</ol>
+<p><strong>注意</strong>：版本要调低，这里我用的是php5.4.45，版本太高无法连接</p>
+<h2 id="Pass-07-空格绕过"><a href="#Pass-07-空格绕过" class="headerlink" title="Pass-07 空格绕过"></a>Pass-07 空格绕过</h2><blockquote>
+<p>查看源码，发现没有将文件扩展名去除首尾空格的代码，可以使用空格绕过</p>
+</blockquote>
+<ol>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上空格，然后上传</li>
+</ol>
+<h2 id="Pass-08-后缀加点绕过"><a href="#Pass-08-后缀加点绕过" class="headerlink" title="Pass-08 后缀加点绕过"></a>Pass-08 后缀加点绕过</h2><blockquote>
+<p>查看源码，发现没有将文件扩展名去除末尾点的代码，可以使用后缀加点绕过</p>
+</blockquote>
+<ol>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上一个点，然后上传</li>
+</ol>
+<p>前面这三种类型为什么能绕过呢？原理就是增加特殊字符，从而绕开黑名单的过滤</p>
 
                 
             </div>
@@ -1056,7 +1110,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.2k</span>&nbsp;字
+                class="white-color">10.2k</span>&nbsp;字
             
             
             

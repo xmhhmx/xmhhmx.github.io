@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-20
+                    2024-06-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.6k
+                    2.1k
                 </div>
                 
 
@@ -597,7 +597,72 @@
 <p><img src="https://pic.imgdb.cn/item/6673cc4dd9c307b7e973d476.png"></p>
 <p><img src="https://pic.imgdb.cn/item/6673cce2d9c307b7e9760560.png"></p>
 <p>观察右上角出现图案，是因为在往显存中写数据，所以出现了图案</p>
-<h2 id="寄存器（内存访问）"><a href="#寄存器（内存访问）" class="headerlink" title="寄存器（内存访问）"></a>寄存器（内存访问）</h2>
+<h2 id="寄存器（内存访问）"><a href="#寄存器（内存访问）" class="headerlink" title="寄存器（内存访问）"></a>寄存器（内存访问）</h2><h3 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h3><ul>
+<li>任何两个地址连续的内存单元，N号单元和N+1号单元可以看成两个内存单元，也可以看成一个地址为N的<strong>字单元</strong>中的<strong>高位</strong>字节单元和<strong>低位</strong>字节单元</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/66765f31d9c307b7e9198672.png" style="zoom: 67%;">
+
+<p>1地址<strong>字单元</strong>的中存放的<strong>字型</strong>数据是<u>124EH</u></p>
+<p>2地址<strong>字单元</strong>的中存放的<strong>字型</strong>数据是<u>0012H</u></p>
+<h3 id="DS和-address"><a href="#DS和-address" class="headerlink" title="DS和[address]"></a>DS和[address]</h3><p>mov指令格式：</p>
+<ul>
+<li>[ ]：表示一个内存单元</li>
+<li>[ ]中的0：表示内存单元中的偏移地址</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/66792c60d9c307b7e9c98c40.png"></p>
+<p><strong>注意</strong>：8086CPU不支持将数据直接送入段寄存器（DS）（硬件设计的问题）<br>所以mov ds,1000H是不合法的</p>
+<p><strong>数据–&gt;通用寄存器–&gt;段寄存器</strong> </p>
+<p>如何将数据从寄存器送入内存单元？也就是从内存单元读数据的逆过程，但是注意通过通用寄存器作为中间人</p>
+<p><img src="https://pic.imgdb.cn/item/6679306bd9c307b7e9d22b21.png"></p>
+<h3 id="字的传送"><a href="#字的传送" class="headerlink" title="字的传送"></a>字的传送</h3><blockquote>
+<p>8086CPU是16位结构，有16根数据线，可以一次性传送16位数据（一个字）</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66794388d9c307b7e9fa7948.png"></p>
+<ol>
+<li>先写入数据</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66794b09d9c307b7e90b27cd.png"></p>
+<ol start="2">
+<li>查看寄存器信息，以及CS:IP所指内存地址的信息</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66794c0cd9c307b7e90d7b88.png"></p>
+<ol start="3">
+<li>写入指令</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6679453fd9c307b7e9ff3aa5.png"></p>
+<ol start="4">
+<li>执行指令，mov ax,[0]:将DS为1000，偏移量[0]，也就是地址为10000H的值，以及高一个的地址的值传入ax，此处也就是10000H以及10001H的值，因此ax=1123，以此类推</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66794831d9c307b7e904e9dc.png"></p>
+<p>add bx,[1]:将bx的值（6622）加上DS为1000，偏移地址为[1]（也就是10001H的值）及高一个的地址（10002H的值），因此bx=6622H+2211H=8833H，以此类推</p>
+<p><img src="https://pic.imgdb.cn/item/66794964d9c307b7e907d00c.png"></p>
+<p><strong>注意</strong>：如何来看是吧[0]、[1]……当作字节（1字节）来看，还是当作字（2字节）来看</p>
+<ul>
+<li><p>如果为ax则当作字来看，则取当前及上一个的地址</p>
+</li>
+<li><p>如果为al或者ah，则当成字节来看，取当前的地址</p>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6679629dd9c307b7e9450f23.png"></p>
+<ol>
+<li><p>写入数据</p>
+</li>
+<li><p>写入指令（11316为十进制，对应十六进制为2C34；sub指令就是相减）</p>
+</li>
+<li><p>执行指令</p>
+</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/667964f1d9c307b7e94b95c7.png"></p>
+<p>sub bx,[2] 就为bx=bx-[2]，所以bx=2c34-1122=1b12，查看内存信息，1b12已经存入内存</p>
+<p><img src="https://pic.imgdb.cn/item/66796671d9c307b7e94fd244.png"></p>
+<h3 id="mov、add、sub指令"><a href="#mov、add、sub指令" class="headerlink" title="mov、add、sub指令"></a>mov、add、sub指令</h3><p>mov:</p>
+<p><img src="https://pic.imgdb.cn/item/66796899d9c307b7e95512ac.png"></p>
+<p>add、sub:</p>
+<img src="https://pic.imgdb.cn/item/66796f40d9c307b7e968dfa4.png" style="zoom: 80%;">
+
+
+
+<h3 id="数据段"><a href="#数据段" class="headerlink" title="数据段"></a>数据段</h3>
                 
             </div>
             <hr/>
@@ -1139,7 +1204,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.2k</span>&nbsp;字
+                class="white-color">10.2k</span>&nbsp;字
             
             
             
