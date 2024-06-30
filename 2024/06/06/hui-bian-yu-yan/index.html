@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.2.0">
+<meta name="generator" content="Hexo 7.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+</head>
 
 
 
@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-27
+                    2024-06-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.4k
+                    3k
                 </div>
                 
 
@@ -711,38 +711,106 @@
 <p>换个角度看：</p>
 <img src="https://pic.imgdb.cn/item/667d1997d9c307b7e950d426.png" style="zoom:67%;">
 
+<img src="https://pic.imgdb.cn/item/667fd8c0d9c307b7e95eca43.png" style="zoom:67%;">
 
 
 
+<h3 id="栈顶越界的问题"><a href="#栈顶越界的问题" class="headerlink" title="栈顶越界的问题"></a>栈顶越界的问题</h3><blockquote>
+<p>要根据可能用到的最大栈空间，来安排栈的大小，防止入栈的数据过多而导致超界</p>
+<p>执行出栈时也要注意，以防栈空的时候出栈导致超界</p>
+</blockquote>
+<h3 id="push、pop指令"><a href="#push、pop指令" class="headerlink" title="push、pop指令"></a>push、pop指令</h3><p>push ds：将一个段寄存器中的数据入栈</p>
+<p>pop ds：出栈，用一个段寄存器接收出栈的数据</p>
+<p><img src="https://pic.imgdb.cn/item/6680fe30d9c307b7e9c40a50.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6680fe7ad9c307b7e9c45fbb.png"></p>
+<p> <img src="https://pic.imgdb.cn/item/6680ffaed9c307b7e9c5e44a.png"></p>
+<ul>
+<li>mov ax,001AH</li>
+<li>mov bx,001BH</li>
+<li>mov cx,1000H</li>
+<li>mov ss,cx</li>
+<li>mov sp,0010H</li>
+<li>push ax</li>
+<li>push bx</li>
+<li>mov ax,0</li>
+<li>mov bx,0</li>
+<li>pop bx</li>
+<li>pop ax</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/668102cad9c307b7e9cac72f.png" style="zoom:67%;">
 
 
 
+<p><img src="https://pic.imgdb.cn/item/66810376d9c307b7e9cb99b6.png"></p>
+<ul>
+<li>mov cx,1000H	//段寄存器过渡</li>
+<li>mov ss,cx</li>
+<li>mov sp,0010H   //栈顶指针</li>
+<li>mov ax,002AH  //赋值</li>
+<li>mov bx,002BH</li>
+<li>push ax               //入栈</li>
+<li>push bx</li>
+<li>mov ax,0             //清零</li>
+<li>mov bx,0</li>
+<li>pop ax                  //用ax来接收刚刚bx的数据</li>
+<li>pop bx</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/668106abd9c307b7e9cf64bb.png"></p>
+<ul>
+<li>mov ax,1000H</li>
+<li>mov ss,ax</li>
+<li>mov sp,2             //因为push之前先执行SP=SP-2，所以将栈顶指针指到10002H</li>
+<li>mov ax,2266H</li>
+<li>push ax</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/66810673d9c307b7e9cf2521.png" style="zoom:67%;">
 
 
 
+<h3 id="栈段"><a href="#栈段" class="headerlink" title="栈段"></a>栈段</h3><blockquote>
+<p>将一段内存当作栈段是我们自己安排的，CPU不会在执行push、pop时自动将我们定义的栈段当作栈空间来使用</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66810feed9c307b7e9da8107.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66810f9fd9c307b7e9da27f6.png"></p>
+<h2 id="汇编语言程序"><a href="#汇编语言程序" class="headerlink" title="汇编语言程序"></a>汇编语言程序</h2><h3 id="源程序"><a href="#源程序" class="headerlink" title="源程序"></a>源程序</h3><blockquote>
+<p>汇编指令：有对应的机器码的指令，可以被编译为机器指令，最终被CPU执行</p>
+<p>伪指令：没有对应的机器码的指令，最终不被CPU所执行，它是由编译器来执行的指令</p>
+</blockquote>
+<ul>
+<li>伪指令：</li>
+</ul>
+<p>segment和ends是一对成对使用的伪指令</p>
+<p>功能是定义一个段，segment说明一个段开始，ends说明一个段结束</p>
+<ul>
+<li>伪指令使用格式：</li>
+</ul>
+<p>​	段名	segment</p>
+<p>​	段名	ends</p>
+<blockquote>
+<p>一个汇编指令由多个段组成，这些段用来存放代码、数据 、当作栈空间来使用</p>
+<p>一个有意义的汇编程序中至少有一个段，这个段用来存放代码</p>
+<p>end是一个汇编程序的结束标记，编译器在编译过程中碰到end就结束对源程序的编译</p>
+</blockquote>
+<ul>
+<li>assume:</li>
+</ul>
+<p>假设某一段寄存器和程序中的某一个segment……ends定义的段相关联</p>
+<blockquote>
+<p>源程序：源程序文件中的所有内容</p>
+<p>程序：源程序中最终由计算机执行处理的指令或数据</p>
+<p>程序最先以汇编指令的形式存在源程序中，经编译连接后变为机器码，存在可执行文件中</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/668124a0d9c307b7e9f50371.png" style="zoom:67%;">
 
+<ul>
+<li>标号：一个标号指代了一个地址</li>
+<li>codesg放在segment前面，作为一个段的名称，他最终会被编译连接程序处理为一个段的段地址</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/6681264cd9c307b7e9f6d51f.png" style="zoom:67%;">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<blockquote>
+<p>DOS是一个单任务操作系统</p>
+</blockquote>
 
                 
             </div>
@@ -1285,7 +1353,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.6k</span>&nbsp;字
+                class="white-color">11.1k</span>&nbsp;字
             
             
             
