@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<meta name="generator" content="Hexo 7.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
 
@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-22
+                    2024-07-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    3.1k
                 </div>
                 
 
@@ -549,23 +549,93 @@
 <h2 id="Pass-06-大写绕过"><a href="#Pass-06-大写绕过" class="headerlink" title="Pass-06 大写绕过"></a>Pass-06 大写绕过</h2><blockquote>
 <p>查看源码，发现没有将文件扩展名转为小写的代码，可以使用大写绕过</p>
 </blockquote>
-<ol>
+<ul>
 <li>上传文件，burpsuite抓包，然后将文件后缀名任意字母改为大写，然后上传</li>
-</ol>
+</ul>
 <p><strong>注意</strong>：版本要调低，这里我用的是php5.4.45，版本太高无法连接</p>
 <h2 id="Pass-07-空格绕过"><a href="#Pass-07-空格绕过" class="headerlink" title="Pass-07 空格绕过"></a>Pass-07 空格绕过</h2><blockquote>
 <p>查看源码，发现没有将文件扩展名去除首尾空格的代码，可以使用空格绕过</p>
 </blockquote>
-<ol>
+<ul>
 <li>上传文件，burpsuite抓包，然后将文件后缀名最后加上空格，然后上传</li>
-</ol>
+</ul>
 <h2 id="Pass-08-后缀加点绕过"><a href="#Pass-08-后缀加点绕过" class="headerlink" title="Pass-08 后缀加点绕过"></a>Pass-08 后缀加点绕过</h2><blockquote>
 <p>查看源码，发现没有将文件扩展名去除末尾点的代码，可以使用后缀加点绕过</p>
 </blockquote>
+<ul>
+<li><p>上传文件，burpsuite抓包，然后将文件后缀名最后加上一个点，然后上传</p>
+</li>
+<li><p>前面这三种类型为什么能绕过呢？原理就是增加特殊字符，从而绕开黑名单的过滤</p>
+</li>
+</ul>
+<h3 id="额外数据流"><a href="#额外数据流" class="headerlink" title="额外数据流"></a>额外数据流</h3><p>​		在Windows操作系统中，当你看到文件名后跟着”::$DATA”时，它表示文件的一个附加数据流(Alternate·DataStream，ADS)。数据流是一种用于在文件内部存储额外数据的机制。<br>​		在普通情况下，我们使用的文件只有一个默认的数据流，可以通过文件名访问。但是WindowS·NT·文件系统(NTFS)支持在文件内部创建额外的数据流，以存储其他信息。这些额外的数据流可以通过在文件名后面添加”::DATA”来访问。<br>​		例如，”1.txt”是一个文件，而”1.txt::$DATA”是这个文件的一个附加数据流。这样的数据流可以用于存储文件的元数据、备份信息、标签等。<br>​		需要注意的是，<strong>大多数常规的文件操作工具不会意识到这些额外的数据流，而只会处理默认</strong><br><strong>的数据流</strong>。要访问或操作这些附加数据流，通常需要使用特定的命令行工具或编程接口。</p>
+<p>写入方法：</p>
+<p>echo 内容 &gt;&gt;文件名:数据流名</p>
+<p>type 文件名 &gt;&gt;文件名:数据流名</p>
+<p>查看方法：</p>
+<p>notepad 文件名:数据流名</p>
+<p>例子：</p>
 <ol>
-<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上一个点，然后上传</li>
+<li>创建一个txt文件，并写入内容</li>
 </ol>
-<p>前面这三种类型为什么能绕过呢？原理就是增加特殊字符，从而绕开黑名单的过滤</p>
+<p><img src="https://pic.imgdb.cn/item/668913c9d9c307b7e90db9f4.png"></p>
+<ol start="2">
+<li>给该文件写一个附加数据流，用notepad查看文件只显示文件内容，不显示附加数据流内容</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6689143cd9c307b7e90e8850.png"></p>
+<p><img src="https://pic.imgdb.cn/item/668913c9d9c307b7e90db9f4.png"></p>
+<ol start="3">
+<li>按此方法查看，就可以查看附加数据流，“你好”</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6689155ed9c307b7e910898f.png"></p>
+<ol start="4">
+<li>type：将2.txt写入1.txt的额外数据流</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6689174ed9c307b7e9157dc2.png"></p>
+<h2 id="Pass-09-DATA绕过"><a href="#Pass-09-DATA绕过" class="headerlink" title="Pass-09 ::$DATA绕过"></a>Pass-09 ::$DATA绕过</h2><blockquote>
+<p>::$DATA结尾的是文件附加数据流，在PHP中文件附加数据流是不会验证文件后缀的，因为他仅表示一个文件流，不是一个文件</p>
+</blockquote>
+<ul>
+<li><p>上传文件，burpsuite抓包，然后将文件后缀名最后加上::$DATA，然后上传，因为他已经是一个文件附加数据流了，所有不是文件，不检查文件后缀名</p>
+</li>
+<li><p>上传之后，Windows操作系统的会将后缀名的::$DATA去除，也就成了文件，而不再是文件数据流了</p>
+</li>
+</ul>
+<h2 id="Pass-10-点空格点绕过"><a href="#Pass-10-点空格点绕过" class="headerlink" title="Pass-10 点空格点绕过"></a>Pass-10 点空格点绕过</h2><blockquote>
+<p>查看源码，根据代码执行顺序，可以看出(php. .)在每一条代码之后过滤，还剩一个点，从而使它不是php文件，从而绕过，而上传之后windows操作系统在处理后缀名时，会删除后缀名中的点，从而得到最终上传上去的php文件</p>
+</blockquote>
+<ul>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上点空格点，然后上传</li>
+</ul>
+<h2 id="Pass-11-后缀双写绕过"><a href="#Pass-11-后缀双写绕过" class="headerlink" title="Pass-11 后缀双写绕过"></a>Pass-11 后缀双写绕过</h2><blockquote>
+<p>查看源码，发现他一旦遇到黑名单里的后缀名，就会将其后缀名替换为空，也就是没有后缀名了，因此双写后缀名，即使去除一个，还有一个后缀名</p>
+</blockquote>
+<ul>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上点空格点，然后上传</li>
+<li>修改文件名为shell.pphphp<ul>
+<li>不能是连续的php，不然都要被去掉</li>
+</ul>
+</li>
+</ul>
+<h2 id="Pass-12-00截断"><a href="#Pass-12-00截断" class="headerlink" title="Pass-12 %00截断"></a>Pass-12 %00截断</h2><h3 id="空字符"><a href="#空字符" class="headerlink" title="空字符"></a>空字符</h3><blockquote>
+<p>（你好 0x00php）php发现了0x00之后就不会读取之后的数据了</p>
+</blockquote>
+<ul>
+<li>0x00：编程语言</li>
+<li>%00：URL编码（ASCII码转化为十六进制，再加上%）</li>
+</ul>
+<blockquote>
+<p>查看源码，这道题是白名单</p>
+</blockquote>
+<ul>
+<li><p>上传jpg文件，burpsuite抓包，然后在文件的保存路径上直接写一个文件，然后%00截断后面的内容，然后上传</p>
+<ul>
+<li><p>jpg是用来通过白名单的</p>
+<p>  <img src="https://pic.imgdb.cn/item/668935e1d9c307b7e95220bc.png"></p>
+</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
@@ -801,18 +871,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2024/06/17/upload-labs/">
+                <a href="/2024/07/05/fang-huo-qiang-ji-zhu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="upload-labs">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="防火墙技术">
                         
-                        <span class="card-title">upload-labs</span>
+                        <span class="card-title">防火墙技术</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -822,29 +891,16 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-05
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/upload%E6%B3%A8%E5%85%A5/" class="post-category">
-                                    upload注入
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            HMX
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/upload%E6%B3%A8%E5%85%A5/">
-                        <span class="chip bg-color">upload注入</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1110,7 +1166,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.1k</span>&nbsp;字
+                class="white-color">13.2k</span>&nbsp;字
             
             
             

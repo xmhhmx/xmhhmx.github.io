@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<meta name="generator" content="Hexo 7.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
 
@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-11
+                    2024-07-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    833
+                    1.4k
                 </div>
                 
 
@@ -385,7 +385,7 @@
 <p>​		URL是URI的子集</p>
 <p>​		简单解释下。 假设”小白”(URI)是⼀种资源，”在迪丽亦巴的怀里”表明了一个位置。如果你想要找到（locate）小白， 那么你可以到”在迪丽亦巴怀里”找到小白，而”在迪丽亦巴怀里的/小白”才是我们常说的URL。而”在迪丽亦巴怀里的/小白”（URL）显然是”小白”（URI）的子集，毕竟，”小白”还可能是”在牛亦菲怀⾥的/小白”（其他URL）</p>
 <h3 id="Request-Method"><a href="#Request-Method" class="headerlink" title="Request Method"></a>Request Method</h3><p>请求方法：Get、POST、HEAD、OPTIONS、PUT、DELETE、TRACE 、CONNECT</p>
-<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>请求指定的⻚⾯信息，并返回消息主体(body)+头信息(header)。</p>
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>请求指定的页面信息，并返回消息主体(body)+头信息(header)。</p>
 <h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><p>HEAD和GET本质是⼀样的，区别在于HEAD只返回头信息(header)，不返回消息主体(body)</p>
 <ul>
 <li><p>HEAD省下拿body的消耗</p>
@@ -393,9 +393,15 @@
 <li><p>如果请求的是⼀个⽐较⼤的资源，使用HEAD请求，返回的headers会带有文件的大小，不需要整个下载下来</p>
 </li>
 </ul>
-<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>POST每次调用都可能会修改数据，是非幂等的，而GET类似于只读，是幂等的。在HTTP规范中POST是非等幂的，多次调用会产生不同的结果</p>
-<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>创建⼀个用户,由于网络原因或是其他原因多创建了几次,那么将会有多个⽤户被创建。而PUT id/xiaobai 则会创建⼀ 个id为 xiaobai 的用户，多次调用还是会创建的结果是⼀样的，所以PUT是等幂的</p>
-<h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>⼀般实战中如果是删除操作，也是使⽤POST来替代</p>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>POST每次调用都可能会修改数据，是非幂等的，而GET类似于只读，是<u>幂等</u>的。在HTTP规范中POST是<u>非等幂</u>的，多次调用会产生不同的结果</p>
+<ul>
+<li><p>幂等（Idempotent）：指一个操作的重复执行不会产生额外的影响。无论对一个操作进行一次或多次的执行，系统状态都会保持一致。换句话说，多次执行幂等操作所产生的结果与执行一次的结果相同。常见的幂等操作包括GET请求、删除某个资源等。</p>
+</li>
+<li><p>非幂等（Non-Idempotent）：指一个操作的重复执行会导致系统状态发生变化。多次执行非幂等操作可能会对系统产生不同的影响，导致状态发生改变。比如POST请求、创建资源等操作通常是非幂等的。</p>
+</li>
+</ul>
+<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>创建⼀个用户,由于网络原因或是其他原因多创建了几次,那么将会有多个用户被创建。而PUT id/xiaobai 则会创建一个id为 xiaobai 的用户，多次调用还是会创建的结果是⼀样的，所以PUT是等幂的</p>
+<h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>⼀般实战中如果是删除操作，也是使用POST来替代</p>
 <h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h4><p>用于获取当前URL所支持的方法，若请求成功，则它会在HTTP响应头部中带上给各种“Allow”的头，表明某个请求在对应的服务器中都支持哪种请求方法</p>
 <p><img src="https://pic.imgdb.cn/item/66631c7e5e6d1bfa056c0e04.png"></p>
 <ul>
@@ -403,15 +409,15 @@
 <p>  <img src="https://pic.imgdb.cn/item/66631cf65e6d1bfa056cba38.png"></p>
 </li>
 </ul>
-<p>跨域的情况下，浏览器发起复杂请求前会自动发起 options 请求</p>
+<p><strong>跨域</strong>的情况下，浏览器发起<u>复杂请求</u>前会<u>自动发起 options 请求</u></p>
 <h5 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h5><ul>
-<li>请求⽅法为 GET、HEAD、POST </li>
+<li>请求方法为 GET、HEAD、POST </li>
 <li>只有以下 Headers 字段 <ul>
 <li>Accept </li>
 <li>Accept-Language</li>
 <li>Content-Language </li>
 <li>Content-Type </li>
-<li>DPR/Downlink/Save-Data/Viewport-Width/Width (这些不常⻅，放在⼀起)</li>
+<li>DPR/Downlink/Save-Data/Viewport-Width/Width (这些不常见，放在⼀起)</li>
 </ul>
 </li>
 <li>Content-Type 只有以下三种 <ul>
@@ -421,9 +427,54 @@
 </ul>
 </li>
 <li>请求中的任意 XMLHttpRequestUpload 对象均没有注册任何事件监听器； </li>
-<li>请求中没有使⽤ ReadableStream 对象。</li>
+<li>请求中没有使用 ReadableStream 对象。</li>
 </ul>
-<h5 id="复杂请求"><a href="#复杂请求" class="headerlink" title="复杂请求"></a>复杂请求</h5>
+<h5 id="复杂请求"><a href="#复杂请求" class="headerlink" title="复杂请求"></a>复杂请求</h5><ul>
+<li><p>不满足简单请求的，都是复杂请求</p>
+</li>
+<li><p>因为上述请求在获取网上资源的请求Headers里带有 Access-Control-Request-Headers:  range , 而 range 正好不在简单请求的条件2中提到的Headers范围里，因此属于复杂请求，于是触发预检options请求</p>
+</li>
+</ul>
+<p><strong>跨域</strong></p>
+<ul>
+<li>同源：域名、协议、端⼝均相同</li>
+</ul>
+<p>例子：</p>
+<p><img src="https://pic.imgdb.cn/item/66821f6bd9c307b7e92be8e7.png"></p>
+<p><strong>注意</strong>：localhost和127.0.0.1虽然都指向本机，但也不属于同源</p>
+<ul>
+<li><strong><u>非同源</u><strong>之间网页调用就是我们所说的</strong><u>跨域</u></strong></li>
+<li>每次复杂请求前都要使用options询问一次</li>
+</ul>
+<h5 id="如何优化options"><a href="#如何优化options" class="headerlink" title="如何优化options"></a>如何优化options</h5><p>​		每次复杂请求前都会调用⼀次options，这其实没有必要。因为大部分时候相同的请求，短时间内获得的结果是不会变的，是否可以通过浏览器缓存省掉这⼀次查询？</p>
+<p>​		Access-Control-Max-Age 就是优化这个流程中使用的⼀个Header。它的作用是当你每次请求 options 方法时，服务端返回调用支持的方法（Access-Control-Allow-Methods ）和 Headers（Access-Control-Allow-Headers）有哪些，同时告诉你，它在接下来 Access-ControlMax-Age 时间（单位是秒）里都支持，则这段时间内，不再需要使用options进行请求。</p>
+<p>​		特别注意的是， 当 Access-Control-Max-Age 的值为-1时，表示禁用缓存，每⼀次请求都需要发送预检请求，即用 OPTIONS请求进行检测。</p>
+<h5 id="Status-Code（状态码）"><a href="#Status-Code（状态码）" class="headerlink" title="Status Code（状态码）"></a>Status Code（状态码）</h5><p>浏览器向服务器发送请求，服务器则会根据请求作出响应，而状态码则是响应的⼀部分，代表着本次请求的结果。</p>
+<img src="https://pic.imgdb.cn/item/66822309d9c307b7e930bd3a.png" style="zoom: 67%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 
             </div>
             <hr/>
@@ -953,7 +1004,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.1k</span>&nbsp;字
+                class="white-color">13.2k</span>&nbsp;字
             
             
             

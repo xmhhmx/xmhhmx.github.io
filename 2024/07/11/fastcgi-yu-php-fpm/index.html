@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="VPN技术, xmhhmx的blog">
+    <meta name="keywords" content="FastCGI与PHP-FPM, xmhhmx的blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>VPN技术 | xmhhmx的blog</title>
+    <title>FastCGI与PHP-FPM | xmhhmx的blog</title>
     <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -183,12 +183,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">VPN技术</h1>
+                    <h1 class="description center-align post-title">FastCGI与PHP-FPM</h1>
                 </div>
             </div>
         </div>
@@ -198,129 +198,22 @@
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        width: 345px;
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        padding: 35px 0 15px 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content {
-        padding-bottom: 30px;
-        overflow: auto;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-
-        position: absolute;
-        right: 23.5vw;
-        display: block;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 15px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
+    <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/VPN/">
-                                <span class="chip bg-color">VPN</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/VPN/" class="post-category">
-                                VPN
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -329,21 +222,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-06-06
+                    2024-07-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-19
+                    2024-07-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    586
                 </div>
                 
 
@@ -363,82 +256,25 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="VPN技术"><a href="#VPN技术" class="headerlink" title="VPN技术"></a>VPN技术</h1><h2 id="VPN是干啥的"><a href="#VPN是干啥的" class="headerlink" title="VPN是干啥的"></a>VPN是干啥的</h2><blockquote>
-<p>==官方解释==：</p>
-<p>​		VPN（Virtual Private Network，虚拟专用网络）技术是一种可以在公共网络上建立安全的、加密的连接，使用户可以通过网络访问私有网络资源的技术。VPN技术通过在用户和目标网络之间建立加密隧道来确保数据传输的安全性和私密性，避免了数据在互联网上传输时被非法获取或篡改的风险。<br>​		VPN技术的主要作用包括：提供加密保护的网络连接、绕过地理位置限制、保护隐私和匿名性、保护数据传输的安全性。在实际应用中，VPN技术广泛应用于企业内部网络、远程办公、跨国公司的分支机构连接、绕过地域限制的访问等场景。</p>
-<p>==我的理解==：</p>
-<p>​		首先，先明白ipv4地址是有限的，并且从ipv4过渡到ipv6的过程是漫长的，所以就出现了NAT技术（地址转换），所以也就有了公网地址和私网地址之分，公网地址就是可以在公共的Internet上传数据的IP地址，私网地址就是只能在本地进行数据传输的ip地址。<br>​		但是，当你想要提供安全的传输，数据不被篡改，就可以建立VPN隧道来保障。<br>​		两个公司一个总部，一个分部，他们之间可以建立VPN隧道，这样他们就可以看作在同一个网段通信了</p>
+                <h1 id="FastCGI与PHP-FPM"><a href="#FastCGI与PHP-FPM" class="headerlink" title="FastCGI与PHP-FPM"></a>FastCGI与PHP-FPM</h1><blockquote>
+<p>CGI:（Common Gateway Interface）是一种 Web 服务器与外部程序进行交互的标准接口，Web服务器接受请求，一个请求对应一个进程，因而<u>可能存在频繁创建和销毁进程</u></p>
 </blockquote>
-<h2 id="VPN的分类"><a href="#VPN的分类" class="headerlink" title="VPN的分类"></a>VPN的分类</h2><h3 id="GRE"><a href="#GRE" class="headerlink" title="GRE"></a>GRE</h3><blockquote>
-<p>最大的优点：兼容性强，不管是单播、广播都可以打通，第二个优点就是简单，利于学习</p>
-<p>缺点：不安全</p>
-</blockquote>
-<p>给数据包加上一个新头部来实现隧道传输</p>
 <blockquote>
-<p>举个例子：</p>
-<p>总部和分公司，源地址192.168.1.x（私网地址），目标地址172.16.1.x（私网地址）</p>
-<p>加一个新头部，源地址64.1.1.1（出口路由器公网地址），目标地址202.1.1.1（出口路由器公网地址）</p>
-<p>数据包送到分公司的出口路由器，路由器将外层报头拆掉，露出真实目标地址</p>
+<p>FastCGI：<strong>引入进程池，减少进程的创建和销毁</strong>，但是仍然一个问题，<u>就是进程池管理不够灵活</u>，假如进程池中预先创建了CGI程序，但是来了5个请求，那么会有2个请求将要等待</p>
 </blockquote>
-<h4 id="配置实战"><a href="#配置实战" class="headerlink" title="配置实战"></a>配置实战</h4><p>实验拓扑图：</p>
-<img src="https://pic.imgdb.cn/item/66728d6ed9c307b7e954a06d.png" style="zoom: 67%;">
-
-<p>出口路由器AR1上作配置:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]int Tunnel 0/0/0		//创建隧道接口</span><br><span class="line">[Huawei-Tunnel-0/0/0]tunnel-protocol gre		//隧道协议为gre</span><br><span class="line">[Huawei-Tunnel-0/0/0]source 64.1.1.1			//隧道源地址(公网ip)</span><br><span class="line">[Huawei-Tunnel-0/0/0]destination 202.1.1.1      //隧道目的地址(公网ip)</span><br><span class="line">[Huawei-Tunnel-0/0/0]ip add 10.1.1.1 24			//创建隧道口的虚拟ip</span><br><span class="line">[Huawei]dis ip int b			//查看接口信息</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://pic.imgdb.cn/item/66728d29d9c307b7e9542d26.png"></p>
-<p>出口路由器AR2上作相对应配置:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]int Tunnel 0/0/0		//创建隧道接口</span><br><span class="line">[Huawei-Tunnel-0/0/0]tunnel-protocol gre		//隧道协议为gre</span><br><span class="line">[Huawei-Tunnel-0/0/0]source 202.1.1.1			//隧道源地址(公网ip)</span><br><span class="line">[Huawei-Tunnel-0/0/0]destination 64.1.1.1       //隧道目的地址(公网ip)</span><br><span class="line">[Huawei-Tunnel-0/0/0]ip add 10.1.1.2 24			//创建隧道口的虚拟ip</span><br></pre></td></tr></tbody></table></figure>
-
-<p>出口路由器配置静态路由：</p>
-<p>AR1:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]ip route-static 172.16.1.0 24 10.1.1.2			//下一跳写隧道对端的虚拟ip</span><br></pre></td></tr></tbody></table></figure>
-
-<p>AR2:</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Huawei]ip route-static 192.168.1.0 24 10.1.1.1			//下一跳写隧道对端的虚拟ip</span><br></pre></td></tr></tbody></table></figure>
-
-<p>抓包分析：</p>
-<img src="https://pic.imgdb.cn/item/66728f18d9c307b7e9579c58.png" style="zoom:200%;">
-
-
-
-<h4 id="安全隐患"><a href="#安全隐患" class="headerlink" title="安全隐患"></a>安全隐患</h4><ol>
-<li>明文传输，数据未加密，容易被窃取</li>
-<li>没有完整性验证，没有防篡改功能</li>
-<li>没有身份验证</li>
-</ol>
-<p>进而可以用IPSec</p>
-<h3 id="IPSec"><a href="#IPSec" class="headerlink" title="IPSec"></a>IPSec</h3><blockquote>
-<p>防火墙有安全域（信任，不信任）</p>
-<p>优点：</p>
+<blockquote>
+<p>PHP-FPM（PHP FastCGI Process Manager）是 PHP 的一个 FastCGI 进程管理器，是在FastCGI之上的优化。它们之间的关系是，PHP-FPM 是 PHP 运行在 FastCGI 模式下的一个进程管理器，<strong>可以提供更灵活的进程管理，动态调整进程数</strong>，用于提供更快的 PHP 程序执行速度和更好的资源利用率。</p>
+</blockquote>
+<blockquote>
+<p>Apache MPM (Multi-Processing Module) 是 Apache HTTP 服务器的一种核心模块，负责处理进程和线程管理。MPM 模块的作用是决定 Apache 服务器如何处理并发请求，从而影响服务器的性能和稳定性。不同的 MPM 模块采用不同的处理方式</p>
 <ul>
-<li><p>数据加密，即使被截胡，也看不懂</p>
-</li>
-<li><p>哈希，防篡改</p>
-</li>
-<li><p>身份验证</p>
-</li>
+<li>Prefork MPM：使用多个独立的<strong>进程</strong>处理请求，每个进程对应一个独立的进程，适用于低并发，堆内存消耗敏感的场景</li>
+<li>Worker MPM：使用多个<strong>线程</strong>处理请求，中等并发，需求资源较少的场景</li>
+<li>Event MPM：与worker大致差不多，多一个利用多路复用技术和事件驱动机制，适合高并发和长连接的场景，优势是线程在非活动状态时可以切换到其他连接，充分利用处理能力</li>
 </ul>
+<p>选择合适的 MPM 模块取决于服务器的配置和需求，不同的 MPM 模块适用于不同的场景。通过配置 Apache 的 MPM 模块，可以优化服务器的性能，提高并发处理能力和稳定性。</p>
 </blockquote>
-<h4 id="配置实战-1"><a href="#配置实战-1" class="headerlink" title="配置实战"></a>配置实战</h4><p>实验拓扑图：</p>
-<img src="https://pic.imgdb.cn/item/66729290d9c307b7e95f29ec.png" style="zoom:67%;">
-
-<blockquote>
-<p>防火墙默认账号：admin，密码：admin@123</p>
-</blockquote>
-<p>配置防火墙接口地址……</p>
-<p>配置FW1默认路由：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[USG6000V1]ip route-static 0.0.0.0 0 64.1.1.2</span><br></pre></td></tr></tbody></table></figure>
-
-<p>配置FW2默认路由：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[USG6000V1]ip route-static 0.0.0.0 0 202.1.1.2</span><br></pre></td></tr></tbody></table></figure>
-
-<p>配置FW1与FW2安全域</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[USG6000V1]firewall zone trust 			//配置信任域</span><br><span class="line">[USG6000V1-zone-trust]add int g0/1/0	//将接口加入信任域</span><br><span class="line">[USG6000V1]firewall zone untrust		//配置非信任域</span><br><span class="line">[USG6000V1-zone-untrust]add int g1/0/0	//将接口加入信任域</span><br></pre></td></tr></tbody></table></figure>
-
-<p>配置FW1与FW2安全策略</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[USG6000V1]security-policy 		//进入安全策略</span><br><span class="line">[USG6000V1-policy-security]rule name 123 		//新建策略名称</span><br><span class="line">[USG6000V1-policy-security-rule-123]action permit		//放行所有</span><br><span class="line">[USG6000V1]int g1/0/0</span><br><span class="line">[USG6000V1-g1/0/0]service-manage ping permit		//允许接口被ping</span><br></pre></td></tr></tbody></table></figure>
-
+<p>通过 CGI 接口，Web 服务器（如 Apache、Nginx 等）可以与外部的 PHP 程序进行通信，实现动态 Web 页面的生成。PHP-FPM 则是一个在此过程中负责管理 PHP 进程的工具，它可以有效地管理 PHP 进程池，并提供更好的性能和稳定性。</p>
 
                 
             </div>
@@ -455,7 +291,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">HMX</a>
+                    <a href="/about" rel="external nofollow noreferrer">XMH</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -465,7 +301,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/06/06/vpn-ji-zhu/">http://example.com/2024/06/06/vpn-ji-zhu/</a>
+                    <a href="http://example.com/2024/07/11/fastcgi-yu-php-fpm/">http://example.com/2024/07/11/fastcgi-yu-php-fpm/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -478,7 +314,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint polocy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">HMX</a>
+                    <a href="/about" target="_blank">XMH</a>
                     !
                 </span>
             </div>
@@ -502,11 +338,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/VPN/">
-                                    <span class="chip bg-color">VPN</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -674,66 +506,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/06/06/hui-bian-yu-yan/">
+                <a href="/2024/07/11/fastcgi-yu-php-fpm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="汇编语言">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="FastCGI与PHP-FPM">
                         
-                        <span class="card-title">汇编语言</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-06
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                    编程语言
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">汇编语言</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/06/04/feng-shen-tai-gao-xiao-ctf-lian-xi-web-ba-chang/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="封神台高校CTF练习（Web靶场）">
-                        
-                        <span class="card-title">封神台高校CTF练习（Web靶场）</span>
+                        <span class="card-title">FastCGI与PHP-FPM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -744,31 +528,53 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-11
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/CTF%E7%BB%83%E4%B9%A0/" class="post-category">
-                                    CTF练习
-                                </a>
-                            
-                            <a href="/categories/CTF%E7%BB%83%E4%B9%A0/Web%E6%94%BB%E9%98%B2/" class="post-category">
-                                    Web攻防
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
                             
                         </span>
                     </div>
                 </div>
+
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Web%E6%94%BB%E9%98%B2/">
-                        <span class="chip bg-color">Web攻防</span>
-                    </a>
-                    
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/07/05/fang-huo-qiang-ji-zhu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="防火墙技术">
+                        
+                        <span class="card-title">防火墙技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            HMX
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
@@ -835,100 +641,6 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
-
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget card" style="background-color: white;">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fas fa-list-ul"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).hide();
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).show();
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
 
     
 
