@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQL注入-sqli-labs-master练习, xmhhmx的blog">
+    <meta name="keywords" content="samba服务器, xmhhmx的blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQL注入-sqli-labs-master练习 | xmhhmx的blog</title>
+    <title>samba服务器 | xmhhmx的blog</title>
     <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -183,12 +183,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQL注入-sqli-labs-master练习</h1>
+                    <h1 class="description center-align post-title">samba服务器</h1>
                 </div>
             </div>
         </div>
@@ -304,8 +304,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
-                                <span class="chip bg-color">SQL注入</span>
+                            <a href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                                <span class="chip bg-color">samba服务器</span>
                             </a>
                         
                     </div>
@@ -316,8 +316,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" class="post-category">
-                                SQL注入
+                            <a href="/categories/Linux-and-Windows/" class="post-category">
+                                Linux and Windows
                             </a>
                         
                     </div>
@@ -329,21 +329,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-05-29
+                    2024-07-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-06-06
+                    2024-07-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    303
+                    1.4k
                 </div>
                 
 
@@ -363,48 +363,72 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SQL注入-sqli-labs-master练习"><a href="#SQL注入-sqli-labs-master练习" class="headerlink" title="SQL注入-sqli-labs-master练习"></a>SQL注入-sqli-labs-master练习</h1><h2 id="Less-1（基于错误的GET单引号字符型注入）"><a href="#Less-1（基于错误的GET单引号字符型注入）" class="headerlink" title="Less-1（基于错误的GET单引号字符型注入）"></a>Less-1（基于错误的GET单引号字符型注入）</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">联合查询注⼊流程&nbsp;</span><br><span class="line">1、判断原有查询语句字段数数</span><br><span class="line">2、使原来查询语句的查询结果为空</span><br><span class="line">3、判断查询结果输出位置</span><br><span class="line">4、使⽤ union 操作符拼接 payload 语句</span><br><span class="line">5、利⽤ payload 进⾏数据查询</span><br></pre></td></tr></tbody></table></figure>
+                <h1 id="samba服务器"><a href="#samba服务器" class="headerlink" title="samba服务器"></a>samba服务器</h1><blockquote>
+<p>Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。</p>
+</blockquote>
+<h2 id="Linux中配置samba服务器"><a href="#Linux中配置samba服务器" class="headerlink" title="Linux中配置samba服务器"></a>Linux中配置samba服务器</h2><h3 id="配置要求"><a href="#配置要求" class="headerlink" title="配置要求"></a>配置要求</h3><p>（1）samba服务器目录</p>
+<p>企业数据目录：/companydata</p>
+<p>公共目录：/companydata/public</p>
+<p>销售部目录：/companydata/sales</p>
+<p>技术部：/companydata/tech</p>
+<p>（2）企业员工情况</p>
+<p>总经理：zjl</p>
+<p>销售部：销售部经理 xsjl 员工 xsy1、员工 xsy2</p>
+<p>技术部：技术部经理 jsjl、员工 jsy1、员工 jsy2</p>
+<p>（3）samba服务要求</p>
+<p>搭建samba文件服务器，建立公共共享目录，允许所有人访问，权限为只读，为销售部和技术部分别建立单独的目录，只可以总经理和相应部门员工访问，并且公司员工禁止访问非本部门的共享目录。</p>
+<h3 id="配置分析"><a href="#配置分析" class="headerlink" title="配置分析"></a>配置分析</h3><p>​        对于建立公共目录public字段就可以实现匿名访问，员工只能访问本部门的共享目录，禁止访问非本部门的共享目录，可以通过设置目录共享字段“browseable = no”及字段“valid users”来实现其隐藏功能和相应的访问权限。这样设置不能很好得解决同一目录多种需求的权限设置，所以需要建立独立配置文件，为每个部门建立一个组后并为每个组建立配置文件来实现隔离用户权限会比较灵活。</p>
+<h3 id="配置实施"><a href="#配置实施" class="headerlink" title="配置实施"></a>配置实施</h3><h4 id="安装samba并启动samba服务"><a href="#安装samba并启动samba服务" class="headerlink" title="安装samba并启动samba服务"></a>安装samba并启动samba服务</h4><p># yum install -y samba samba-client </p>
+<p># systemctl start smb.service nmb.service</p>
+<h4 id="修改防火墙设置"><a href="#修改防火墙设置" class="headerlink" title="修改防火墙设置"></a>修改防火墙设置</h4><p>关闭selinux安全机制：setenforce 0 </p>
+<p>关闭防火墙：systemctl stop firewalld</p>
+<h4 id="建立各部门专用共享目录"><a href="#建立各部门专用共享目录" class="headerlink" title="建立各部门专用共享目录"></a>建立各部门专用共享目录</h4><p>#mkdir -p /companydata/public /companydata/xsb /company/jsb</p>
+<h4 id="添加用户和组"><a href="#添加用户和组" class="headerlink" title="添加用户和组"></a>添加用户和组</h4><p># groupadd xsb		//创建销售部</p>
+<p># groupadd jsb 	    //创建技术部</p>
+<p># useradd zjl				//创建总经理</p>
+<p># useradd  xsjl（xsy1/xsy2） //创建销售经理，销售成员1、2</p>
+<p># useradd  jsjl （jsy1/jsy2）	//创建技术经理，技术成员1、2</p>
+<p># gpasswd -M xsjl,xsy1,xsy2 xsb	//将销售经理，销售成员1、2加入销售部</p>
+<p># gpasswd -M jsjl,jsy1,jsy2 jsb		//技术部同理</p>
+<h4 id="设置samba用户"><a href="#设置samba用户" class="headerlink" title="设置samba用户"></a>设置samba用户</h4><p>使用smbpasswd命令添加samba用户。</p>
+<p># smbpasswd -a zjl</p>
+<p>New SMB password:        输入samba用户密码</p>
+<p>Retype new SMB password:    确认samba用户密码</p>
+<p>Added user zjl.</p>
+<p># smbpasswd -a xsjl</p>
+<p># smbpasswd -a xsy1</p>
+<p># smbpasswd -a xsy2</p>
+<p># smbpasswd -a jsjl</p>
+<p># smbpasswd -a jsy1</p>
+<p># smbpasswd -a jsy2</p>
+<p><strong>查看samba用户：pdbedit -L</strong></p>
+<p><strong>删除samba用户：smbpasswd -x xxx</strong></p>
+<p><strong>修改密码：smbpasswd 用户名</strong>       </p>
+<h4 id="配置smb-conf文件"><a href="#配置smb-conf文件" class="headerlink" title="配置smb.conf文件"></a>配置smb.conf文件</h4><p># vim /etc/samba/smb.conf  具体配置如下：<br>[public]<br>        comment = public<br>        path = /companydata/public<br>        <strong>public = yes</strong>				//是否公开<br>[xsb]<br>        comment = xsb			//注释<br>        path = /companydata/sales<br>        <strong>guest ok = no</strong>				//是否允许用户匿名访问<br>        <strong>writable = yes</strong>			  //是否可写<br>        <strong>valid users = @xsb,zjl</strong>			//允许指定用户访问（@代表一个组）<br>[jsb]<br>        comment=jsb<br>        path = /companydata/tech<br>        <strong>guest ok = no</strong><br>        <strong>writable = yes</strong><br>        <strong>valid users = @jsb,zjl</strong></p>
+<p>配置完成之后，重启服务</p>
+<p><strong># systemctl start smb.service nmb.service（或smb nmb）</strong></p>
+<h4 id="配置文件权限"><a href="#配置文件权限" class="headerlink" title="配置文件权限"></a>配置文件权限</h4><p>（1）公共目录：/companydata/public，允许所有用户读取文件但不能修改，权限保持默认。</p>
+<p>（2）销售部目录：/companydata/xsb和技术部目录：/companydata/tjsb只允许本部门   用户写入数据，但不能删除其他用户的数据，不允其他部门访问，但总经理可以查看   不能修改，权限设置如下：</p>
+<p>#chown xsbjl:xsb /companydata/xsb		//设置文件夹的所有者以及所有组</p>
+<p>#chown jsbjl:jsb /companydata/jsb</p>
+<p>#setfacl -m u:zjl:rwx /companydata/sales	//给总经理一个ACL权限，再不加入部门组的情况下，访问部门文件</p>
+<p>#setfacl -m u:zjl:rwx /companydata/tech</p>
+<h4 id="客户端进行访问测试"><a href="#客户端进行访问测试" class="headerlink" title="客户端进行访问测试"></a>客户端进行访问测试</h4><p>在访问测试之前应该注意权限的设置,影响权限的因素有：<u><strong>共享权限，文件本身的权限，selinux安全机制</strong></u><br>    Windows客户端：\\192.168.10.129\public<br>    Linux客户端：首先安装samba-client客户端工具</p>
+<p># smbclient -L 192.168.149.192     以服务器的root用户查看共享文件有哪些</p>
+<p># smbclient -U xsjl -L 192.168.149.192    以samba用户查看服务器的共享文件有哪些</p>
+<p># smbclient -U zjl //192.168.149.192/public    访问服务器共享文件</p>
+<p>  smb: &gt;<br>  常用命令：ls    mkdir    put   get   rm </p>
+<h2 id="Windows中配置samba服务器"><a href="#Windows中配置samba服务器" class="headerlink" title="Windows中配置samba服务器"></a>Windows中配置samba服务器</h2><p>案例2：Windows作为samba服务器（前提是你的用户必须是英文的）</p>
+<p>（1）在Windows系统中设置一个共享目录：D:\sharefiles ,在属性中找到共享，并共享文件夹<br>（2）在Linux下安装 samba-client 客户端 </p>
+<p>​	# yum install samba-client</p>
+<p>（3）安装 cifs-utils 软件包 </p>
+<p>​	# yum install cifs-utils</p>
+<p>（4）在 Linux 下创建一个挂载点 </p>
+<p>​	# mkdir /mnt/Windows</p>
+<p>（5）挂载 Windows 上的共享目录 D:\sharefiles 到 Linux 下的/mnt/Windows 目录下 </p>
+<p>​	# mount -t cifs -o username=HHHXXX //192.168.0.3/sharefiles /mnt/Windows      Enter password: ********<br>​	192.168.0.3为windows的ip，并输入windows对应用户的登陆密码</p>
+<p>（6）如果挂载成功，则可以进入/mnt/Windows 下进行相应操作。<br>（7）在Linux下/etc/fstab 文件中，加入该共享目录的挂载信息 （永久挂载）<br>       192.168.0.3/sharefiles	 /mnt/Windows	 cifs	 username=HHHXXX,password=**** 	0		 0<br>（8）到此为止，Windows 上的共享目录//192.168.0.3/sharefiles就被成功挂载到了 Linux上面了，并且 Linux 重启后，会自动挂载该目录到/mnt/Windows 目录下</p>
 
-<blockquote>
-<p>显示正常页面</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f1e4a5e6d1bfa059237d2.png"></p>
-<blockquote>
-<p>找注入点，破坏SQL语法结构，发现存在注入点，并且为字符型</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f1e9f5e6d1bfa0592d24e.png" alt="不为数字型"></p>
-<p><img src="https://pic.imgdb.cn/item/665f1dca5e6d1bfa059120fe.png" alt="字符型"></p>
-<blockquote>
-<p>用联合查询，需要知道对应的列数，于是用order by判断列数<br>先用10列来测，回显不对，于是二分继续测试</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f1fd85e6d1bfa05944713.png"></p>
-<blockquote>
-<p>测试出有3列</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f20645e6d1bfa0594e49e.png"></p>
-<blockquote>
-<p>用union查询，判断回显位置，回显位置为2，3</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f210c5e6d1bfa0595a8a2.png"></p>
-<blockquote>
-<p>查数据库名称</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f213e5e6d1bfa0595e6ab.png" alt="查数据库名"></p>
-<blockquote>
-<p>查数据表名</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在 mysql5.0 以上的版本中加⼊了 information_schema 这个系统库，该库内存放该数据库所有的库名，表名，字段名以及它们的从属关系，利⽤ information_schema 库可以查询当前数据所有的表名</span><br><span class="line">用group_concat()函数显示所有表名</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="https://pic.imgdb.cn/item/665f22965e6d1bfa05975f44.png" alt="查数据表名"></p>
-<blockquote>
-<p>用户信息在表“users”里，于是查其字段名</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f23265e6d1bfa0597fc97.png" alt="查字段名"></p>
-<blockquote>
-<p>查用户数据</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/665f23ab5e6d1bfa05988597.png" alt="查数据"></p>
-<h2 id="Less-2（基于错误的GET整型注入）"><a href="#Less-2（基于错误的GET整型注入）" class="headerlink" title="Less-2（基于错误的GET整型注入）"></a>Less-2（基于错误的GET整型注入）</h2><h2 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h2><h2 id="Less-4"><a href="#Less-4" class="headerlink" title="Less-4"></a>Less-4</h2><h2 id="Less-5"><a href="#Less-5" class="headerlink" title="Less-5"></a>Less-5</h2><h2 id="Less-6"><a href="#Less-6" class="headerlink" title="Less-6"></a>Less-6</h2>
                 
             </div>
             <hr/>
@@ -420,7 +444,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">XMH</a>
+                    <a href="/about" rel="external nofollow noreferrer">HMX and XMH</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -430,7 +454,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/05/29/sqli-labs-master/">http://example.com/2024/05/29/sqli-labs-master/</a>
+                    <a href="http://example.com/2024/07/29/samba-fu-wu-qi/">http://example.com/2024/07/29/samba-fu-wu-qi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -443,7 +467,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint polocy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">XMH</a>
+                    <a href="/about" target="_blank">HMX and XMH</a>
                     !
                 </span>
             </div>
@@ -468,8 +492,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
-                                    <span class="chip bg-color">SQL注入</span>
+                                <a href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                                    <span class="chip bg-color">samba服务器</span>
                                 </a>
                             
                         </div>
@@ -639,17 +663,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/06/04/feng-shen-tai-gao-xiao-ctf-lian-xi-web-ba-chang/">
+                <a href="/2024/07/29/samba-fu-wu-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="封神台高校CTF练习（Web靶场）">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="samba服务器">
                         
-                        <span class="card-title">封神台高校CTF练习（Web靶场）</span>
+                        <span class="card-title">samba服务器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -659,30 +684,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF%E7%BB%83%E4%B9%A0/" class="post-category">
-                                    CTF练习
-                                </a>
-                            
-                            <a href="/categories/CTF%E7%BB%83%E4%B9%A0/Web%E6%94%BB%E9%98%B2/" class="post-category">
-                                    Web攻防
+                            <a href="/categories/Linux-and-Windows/" class="post-category">
+                                    Linux and Windows
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Web%E6%94%BB%E9%98%B2/">
-                        <span class="chip bg-color">Web攻防</span>
+                    <a href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="chip bg-color">samba服务器</span>
                     </a>
                     
                 </div>
@@ -696,13 +718,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/">
+                <a href="/2024/07/23/ci-pan-pei-e/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="封神台高校CTF练习（Misc入门靶场）">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="磁盘配额">
                         
-                        <span class="card-title">封神台高校CTF练习（Misc入门靶场）</span>
+                        <span class="card-title">磁盘配额</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,14 +735,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF%E7%BB%83%E4%B9%A0/" class="post-category">
-                                    CTF练习
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -730,8 +752,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9D%82%E9%A1%B9/">
-                        <span class="chip bg-color">杂项</span>
+                    <a href="/tags/%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D/">
+                        <span class="chip bg-color">磁盘配额</span>
                     </a>
                     
                 </div>
