@@ -343,7 +343,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.4k
+                    1.5k
                 </div>
                 
 
@@ -428,6 +428,16 @@
 <p>（5）挂载 Windows 上的共享目录 D:\sharefiles 到 Linux 下的/mnt/Windows 目录下 </p>
 <p>​	# mount -t cifs -o username=HHHXXX //192.168.0.3/sharefiles /mnt/Windows      Enter password: ********<br>​	192.168.0.3为windows的ip，并输入windows对应用户的登陆密码</p>
 <p>（6）如果挂载成功，则可以进入/mnt/Windows 下进行相应操作。<br>（7）在Linux下/etc/fstab 文件中，加入该共享目录的挂载信息 （永久挂载）<br>       192.168.0.3/sharefiles	 /mnt/Windows	 cifs	 username=HHHXXX,password=**** 	0		 0<br>（8）到此为止，Windows 上的共享目录//192.168.0.3/sharefiles就被成功挂载到了 Linux上面了，并且 Linux 重启后，会自动挂载该目录到/mnt/Windows 目录下</p>
+<h2 id="在Windows系统使用samba切换用户解决办法"><a href="#在Windows系统使用samba切换用户解决办法" class="headerlink" title="在Windows系统使用samba切换用户解决办法"></a>在Windows系统使用samba切换用户解决办法</h2><blockquote>
+<p>samba是不允许一台电脑同时连接两个Linux用户的共享文件夹的</p>
+<p>因此需要先断开之前用户的连接，然后再访问其他用户的共享文件夹</p>
+</blockquote>
+<p>断开方法如下：</p>
+<p>1、win+R输入cmd打开命令行工具</p>
+<p>2、输入net use查看当前的连接</p>
+<p>3、可以看到一条正在链接的，地址为对应远程的内容</p>
+<p>输入指令进行删除连接</p>
+<p>#net use \\ip\IPC$ /delete</p>
 
                 
             </div>
@@ -663,18 +673,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2024/07/29/samba-fu-wu-qi/">
+                <a href="/2024/07/31/dns-fu-wu-qi-pei-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="samba服务器">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="DNS服务器配置">
                         
-                        <span class="card-title">samba服务器</span>
+                        <span class="card-title">DNS服务器配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -684,27 +693,26 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-29
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-31
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux-and-Windows/" class="post-category">
-                                    Linux and Windows
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">samba服务器</span>
+                    <a href="/tags/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">DNS服务器配置</span>
                     </a>
                     
                 </div>
@@ -984,7 +992,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">17.6k</span>&nbsp;字
+                class="white-color">18.6k</span>&nbsp;字
             
             
             
