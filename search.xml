@@ -4,6 +4,69 @@
   
     
     <entry>
+      <title>firewalld防火墙</title>
+      <link href="/2024/08/06/firewalld-fang-huo-qiang/"/>
+      <url>/2024/08/06/firewalld-fang-huo-qiang/</url>
+      
+        <content type="html"><![CDATA[<h1 id="firewalld防火墙"><a href="#firewalld防火墙" class="headerlink" title="firewalld防火墙"></a>firewalld防火墙</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> firewalld防火墙 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python爬虫简单应用</title>
+      <link href="/2024/08/05/python-pa-chong-jian-dan-ying-yong/"/>
+      <url>/2024/08/05/python-pa-chong-jian-dan-ying-yong/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Python爬虫简单应用"><a href="#Python爬虫简单应用" class="headerlink" title="Python爬虫简单应用"></a>Python爬虫简单应用</h1><blockquote><p>首先需要Python两个第三方库，一个Requests，一个BeautifulSoup</p><p>下载很简单，前提是有pip，直接在终端输入pip install requests pip install bs4</p></blockquote><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#导入第三方库</span><br><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">#这里的header是在有些网站不允许爬虫的情况下，通过伪造请求头，得到请求的方式，当然，别人不允许的东西，还是要听话，这里因为是我自己的个人博客也就无所谓了，哈哈</span><br><span class="line">header = {</span><br><span class="line">    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0"</span><br><span class="line">}</span><br><span class="line">#用content来接收请求得到的内容,指定的网站是我自己的博客地址</span><br><span class="line">content = requests.get("https://www.xmhhmx.top",headers=header).text</span><br><span class="line">#将content传入BeautifulSoup的构造函数里面，返回一个对象赋值给soup</span><br><span class="line">#html.parser指定html解析器，说明是在解析html语句</span><br><span class="line">soup = BeautifulSoup(content,"html.parser")</span><br><span class="line">#根据元素属性提取：attrs</span><br><span class="line">#提取信息的特点就是都在span标签内并且class值都为card-title</span><br><span class="line">all_title = soup.findAll("span",attrs={"class":"card-title"})</span><br><span class="line">#遍历 .string：获取内容</span><br><span class="line">for title in all_title:</span><br><span class="line">    print(title.string)</span><br></pre></td></tr></tbody></table></figure><blockquote><p>当然以上代码只能读取第一页的文章标题，因为个人在设计网站的原因，资源路径没设计好，第一个页面就是域名访问页面，而第2、3……页的资源路径为/page/2（3、……）</p><p>所以要想实现所有页面爬取就得分开处理</p></blockquote><p>代码实现，略显繁琐，单独处理第一页界面</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">header = {</span><br><span class="line">    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0"</span><br><span class="line">}</span><br><span class="line">#第一页</span><br><span class="line">content = requests.get("https://www.xmhhmx.top",headers=header).text</span><br><span class="line">soup = BeautifulSoup(content,"html.parser")</span><br><span class="line">all_title = soup.findAll("span",attrs={"class":"card-title"})</span><br><span class="line">for title in all_title:</span><br><span class="line">    print(title.string)</span><br><span class="line">#第2页及以后</span><br><span class="line">for start_page in range(2,10):</span><br><span class="line">    content = requests.get(f"https://www.xmhhmx.top/page/{start_page}", headers=header).text</span><br><span class="line">    soup = BeautifulSoup(content, "html.parser")</span><br><span class="line">    all_title = soup.findAll("span", attrs={"class": "card-title"})</span><br><span class="line">    for title in all_title:</span><br><span class="line">        print(title.string)</span><br></pre></td></tr></tbody></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>常见的中间件</title>
+      <link href="/2024/08/03/chang-jian-de-zhong-jian-jian/"/>
+      <url>/2024/08/03/chang-jian-de-zhong-jian-jian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常见的中间件"><a href="#常见的中间件" class="headerlink" title="常见的中间件"></a>常见的中间件</h1><h2 id="常见的中间件分类"><a href="#常见的中间件分类" class="headerlink" title="常见的中间件分类"></a><strong>常见的中间件分类</strong></h2><ol><li>消息队列中间件：用于在应用程序之间进行异步消息传递。消息队列中间件包括<strong>RabbitMQ</strong>、Apache Kafka、ActiveMQ等。</li><li>数据库中间件：用于管理和访问数据库。数据库中间件包括MySQL Proxy、PostgreSQL PgBouncer等。</li><li>缓存中间件：用于加速数据访问，减轻数据库负载。缓存中间件包括<strong>Redis</strong>、Memcached等。</li><li>Web服务器中间件：用于处理HTTP请求和响应。常见的Web服务器中间件包括<strong>Nginx</strong>、<strong>Apache</strong>等。</li><li>应用服务器中间件：用于托管和管理应用程序的执行环境。常见的应用服务器中间件包括<strong>Tomcat</strong>、Jboss等。</li><li>API网关中间件：用于管理和控制API的访问和调用。常见的API网关中间件包括Kong、Apigee等。</li></ol><h2 id="消息队列中间件"><a href="#消息队列中间件" class="headerlink" title="消息队列中间件"></a>消息队列中间件</h2><h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 中间件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 中间件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Nginx的安全加固</title>
       <link href="/2024/08/02/nginx-de-an-quan-jia-gu/"/>
       <url>/2024/08/02/nginx-de-an-quan-jia-gu/</url>
@@ -155,13 +218,25 @@
     
     
     <entry>
-      <title>防火墙技术</title>
-      <link href="/2024/07/05/fang-huo-qiang-ji-zhu/"/>
-      <url>/2024/07/05/fang-huo-qiang-ji-zhu/</url>
+      <title>iptables防火墙</title>
+      <link href="/2024/07/05/iptables-fang-huo-qiang/"/>
+      <url>/2024/07/05/iptables-fang-huo-qiang/</url>
       
-        <content type="html"><![CDATA[<h1 id="防火墙技术"><a href="#防火墙技术" class="headerlink" title="防火墙技术"></a>防火墙技术</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="iptables防火墙"><a href="#iptables防火墙" class="headerlink" title="iptables防火墙"></a>iptables防火墙</h1><h2 id="四表五链"><a href="#四表五链" class="headerlink" title="四表五链"></a>四表五链</h2><p><img src="https://pic.imgdb.cn/item/66b1cdead9c307b7e9792589.png"></p><p><strong>默认的4个规则表</strong></p><p>raw表：确定是否对该数据包进行状态跟踪</p><p>mangle表：为数据包设置标记</p><p>nat表：修改数据包中的源、目标ip地址或端口</p><p>filter表：确定是否放行该数据包（过滤）</p><p><strong>默认的5种规则链：</strong></p><p>INPUT:处理入站数据包</p><p>OUTPUT:处理出站数据包</p><p>FORWARD:处理转发数据包</p><p>POSTROUTING:在进行路由选择后处理数据包</p><p>PREROUTING:在进行路由选择前处理数据包</p><ul><li><p>其中input、output链主要用在“主机型防火墙”中，主要针对服务器本机进行保护；</p></li><li><p>而FORWARD\POSTROUTING\PREROUTING多用在“网络型防火墙”中，如使用Linux防火墙作为网关服务器，在公司内网与Ineternet之间进行安全控制。</p></li></ul><h2 id="匹配顺序"><a href="#匹配顺序" class="headerlink" title="匹配顺序"></a>匹配顺序</h2><p>（1）<strong>规则表之间的顺序</strong>: raw mangle nat filter (从左到右）</p><p>（2）<strong>规则链之间的顺序</strong>：不同链的处理时机比较固定，顺序取决于数据包的流向。</p><p>入站数据流向： 来自外界的数据包到达防火墙后，首选被<strong>PREROUTING链</strong>处理，然后进行路由选择；如果数据包的目的地址是防火墙本机，交给<strong>INPUT链</strong>进行处理，通过以后再交给系统上层应用程序进行响应。</p><p>转发数据流向： 来自外界的数据包到达防火墙后，<strong>首选被PREROUTING</strong>链处理，然后进行路由选择；如果数据包的目标地址是其他外部地址，则交给<strong>FORWARD链</strong>进行处理，最后交<strong>给POSTROUTING链</strong>进行处理。</p><p>出站数据流向：防火墙本机向外部地址发送数据包，首选被OUTPUT链处理，然后进行路由选择，再交给<strong>POSTROUTING</strong>链进行处理。 </p><p><strong>（3）</strong>规则链内部各条防火墙规则之间的顺序：<strong>从上往下，一旦匹配，立即终止。</strong></p><h2 id="常用的管理选项"><a href="#常用的管理选项" class="headerlink" title="常用的管理选项"></a>常用的管理选项</h2><p>-A：在链尾追加一条新的规则</p><p>-I：在指定位置（或链首）插入一条新的规则</p><p>-P：设置指定链的默认策略</p><p>-L：列表查看各条规则信息</p><p>-D：删除指定位置或内容的规则-F:清空规则链内的所有规则</p><p>-h：查看iptables命令的使用帮助</p><h2 id="目标动作"><a href="#目标动作" class="headerlink" title="目标动作"></a>目标动作</h2><p>ACCEPT:放行数据包</p><p>DROP:丢弃数据包</p><p>REJECT:拒绝数据包</p><p>SNAT:修改数据包的源地址信息</p><p>DNAT:修改数据包的目标地址信息</p><h2 id="条件匹配"><a href="#条件匹配" class="headerlink" title="条件匹配"></a>条件匹配</h2><p>（1）通用匹配:</p><p>可直接使用。不依赖于其他的条件或扩展模块；</p><p>包括网络协议、IP地址、网络接口等匹配方式。</p><p>（2）协议匹配</p><p>使用“-p协议名”的形式；</p><p>协议名可使用在“letc/protocols”文件中定义的名称；</p><p>常用的协议包括tcp、 udp、icmp等。</p><p>（3）地址匹配</p><p>使用“-s源地址”、“-d目标地址”的形式；</p><p>地址可以是单个IP地址、网络地址（带掩码长度)。</p><p>（4）接口匹配</p><p>使用“-i网络接口名”、“-o网络接口名”的形式,分别对应接收、发送数据包的网络接口。</p><p>（5）隐含条件匹配 </p><p>一般以特定的协议匹配作为前提，包括端口、TCP标记、ICMP类型等匹配方式。</p><p>• 端口匹配 </p><p>使用“–sport源端口”、“–dport目标端口”的形式；</p><p>采用“端口1:端口2””的形式可以指定一个范围的端口。</p><p>• TCP标记匹配</p><p>使用“–tcp-flags检查范围被设置的标记”的形式；</p><p>如“–tcp-flags sYN,RST,ACK SYN”表示检查SYN、</p><p>RST、ACK这3个标记，只有SYN为1时满足条件。</p><p>• ICMP类型匹配</p><p>使用“–icmp-type ICMP类型”的形式；</p><p>ICMP类型可以使用类型字符串或者对应的数值，例如Echo-Request、Echo-Reply。</p><p>（5）显式条件匹配</p><p>  需要使用“-m扩展模块”的形式明确指定匹配方式。</p><p>• MAC地址匹配</p><p>使用“-m mac”结合“–mac-source MAC地址”的形式</p><p>• 多端口匹配</p><p>使用“-m multiport””结合“–sports源端口列表”或者“–dports目标端口列表”的形式</p><p>多个端口之间使用逗号“,”分隔，连续的端口也可以使用冒号“:”分隔。</p><p>• IP地址范围匹配</p><p>使用“-m iprange”结合“–src-range源IP范围”或者–dst-range目标IP范围”的形式</p><p>以“-”符号连接起始P地址、结束IP地址</p><h2 id="iptables语法格式"><a href="#iptables语法格式" class="headerlink" title="iptables语法格式"></a>iptables语法格式</h2><p><strong>iptables [-t 表名] 管理选项 [链名] [条件匹配] [-j 目标动作]</strong></p><h2 id="iptables基本配置案例"><a href="#iptables基本配置案例" class="headerlink" title="iptables基本配置案例"></a>iptables基本配置案例</h2><p>（1）查看的是fileter表中的信息，并显示行号 </p><p># iptables -L –line-number</p><p># iptables -L INPUT –line-number</p><p>（2） 没有-t 指定表名，默认清空fileter表中的信息</p><p>   # iptables -F</p><p>（3） 在<strong>链首</strong>追加一条规则</p><p>   # iptables -t filter -I INPUT -d 192.168.181.151 -p tcp –dport 80 -j ACCEPT</p><p>（4） 在<strong>第一个位置</strong>插入一条规则</p><p># iptables -I INPUT -s 192.168.10.1 -d 192.168.10.132 -p tcp –dport 22 -j ACCEPT </p><p>（5） 在<strong>第5条规则前</strong>插入一条规则</p><p># iptables -t filter -I INPUT <strong>5</strong> -d 192.168.181.151 -p tcp –dport 22 -j REJECT </p><p>（6） 删除INPUT链中的第一条规则</p><p># iptables -D INPUT 1 </p><p>（7） 设置默认策略为拒绝所有连接</p><p># iptables -P INPUT DROP  </p><p>（8） 设置默认策略为允许已建立的规则进行连接</p><p># iptables -P INPUT ACCEPT </p><p>（9） 查看帮助信息</p><p># iptables -h </p><p>（10）查看iptables手册</p><p># man iptables  </p><p>（11）拒绝192.168.0.1访问web服务</p><p># iptables -A INPUT -s 192.168.0.1 -p tcp –dport 80 -j REJECT</p><p>（12）拒绝192.168.0.0/24ping通服务器</p><p># iptables -A INPUT -s 192.168.0.0/24 -p icmp -j REJECT</p><p>（13）允许192.168.1.0/24访问服务器的21与80端口</p><p># iptables -A INPUT -s 192.168.1.0/24 <strong>-m multiport</strong> -p tcp –dports 21,80 -j ACCEPT</p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul><li><p>不指定表名时，默认表示**<u>filter表</u>**</p></li><li><p>不指定链名时，默认表示该表内所有链</p></li><li><p>除非设置规则链的缺省策略,否则需要指定匹配条件</p></li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> iptables防火墙 </tag>
+            
+        </tags>
       
     </entry>
     
