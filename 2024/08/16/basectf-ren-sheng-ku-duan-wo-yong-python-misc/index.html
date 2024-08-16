@@ -1,0 +1,1341 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="BaseCTF 人生苦短 我用Python（Misc）, xmhhmx的blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>BaseCTF 人生苦短 我用Python（Misc） | xmhhmx的blog</title>
+    <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">xmhhmx的blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">xmhhmx的blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">BaseCTF 人生苦短 我用Python（Misc）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/BaseCTF/">
+                                <span class="chip bg-color">BaseCTF</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Misc/" class="post-category">
+                                Misc
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2024-08-16
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2024-08-16
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    2.3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="BaseCTF-人生苦短-我用Python（Misc）"><a href="#BaseCTF-人生苦短-我用Python（Misc）" class="headerlink" title="BaseCTF 人生苦短 我用Python（Misc）"></a>BaseCTF 人生苦短 我用Python（Misc）</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">abort</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'You failed test %d. Try again!'</span> % <span class="built_in">id</span>)</span><br><span class="line">    exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Hello, Python!'</span>)</span><br><span class="line">flag = <span class="built_in">input</span>(<span class="string">'Enter your flag: '</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(flag) != <span class="number">38</span>:</span><br><span class="line">    abort(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag.startswith(<span class="string">'BaseCTF{'</span>):</span><br><span class="line">    abort(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> flag.find(<span class="string">'Mp'</span>) != <span class="number">10</span>:</span><br><span class="line">    abort(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> flag[-<span class="number">3</span>:] * <span class="number">8</span> != <span class="string">'3x}3x}3x}3x}3x}3x}3x}3x}'</span>:</span><br><span class="line">    abort(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">ord</span>(flag[-<span class="number">1</span>]) != <span class="number">125</span>:</span><br><span class="line">    abort(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> flag.count(<span class="string">'_'</span>) // <span class="number">2</span> != <span class="number">2</span>:</span><br><span class="line">    abort(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">len</span>, flag.split(<span class="string">'_'</span>))) != [<span class="number">14</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>]:</span><br><span class="line">    abort(<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> flag[<span class="number">12</span>:<span class="number">32</span>:<span class="number">4</span>] != <span class="string">'lsT_n'</span>:</span><br><span class="line">    abort(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">'😺'</span>.join([c.upper() <span class="keyword">for</span> c <span class="keyword">in</span> flag[:<span class="number">9</span>]]) != <span class="string">'B😺A😺S😺E😺C😺T😺F😺{😺S'</span>:</span><br><span class="line">    abort(<span class="number">9</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag[-<span class="number">11</span>].isnumeric() <span class="keyword">or</span> <span class="built_in">int</span>(flag[-<span class="number">11</span>]) ** <span class="number">5</span> != <span class="number">1024</span>:</span><br><span class="line">    abort(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> base64.b64encode(flag[-<span class="number">7</span>:-<span class="number">3</span>].encode()) != <span class="string">b'MG1QbA=='</span>:</span><br><span class="line">    abort(<span class="number">11</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> flag[::-<span class="number">7</span>].encode().<span class="built_in">hex</span>() != <span class="string">'7d4372733173'</span>:</span><br><span class="line">    abort(<span class="number">12</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">set</span>(flag[<span class="number">12</span>::<span class="number">11</span>]) != {<span class="string">'l'</span>, <span class="string">'r'</span>}:</span><br><span class="line">    abort(<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> flag[<span class="number">21</span>:<span class="number">27</span>].encode() != <span class="built_in">bytes</span>([<span class="number">116</span>, <span class="number">51</span>, <span class="number">114</span>, <span class="number">95</span>, <span class="number">84</span>, <span class="number">104</span>]):</span><br><span class="line">    abort(<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> <span class="built_in">sum</span>(<span class="built_in">ord</span>(c) * <span class="number">2024_08_15</span> ** idx <span class="keyword">for</span> idx, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(flag[<span class="number">17</span>:<span class="number">20</span>])) != <span class="number">41378751114180610</span>:</span><br><span class="line">     abort(<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">all</span>([flag[<span class="number">0</span>].isalpha(), flag[<span class="number">8</span>].islower(), flag[<span class="number">13</span>].isdigit()]):</span><br><span class="line">    abort(<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">'{whats} {up}'</span>.<span class="built_in">format</span>(whats=flag[<span class="number">13</span>], up=flag[<span class="number">15</span>]).replace(<span class="string">'3'</span>, <span class="string">'bro'</span>) != <span class="string">'bro 1'</span>:</span><br><span class="line">    abort(<span class="number">17</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> hashlib.sha1(flag.encode()).hexdigest() != <span class="string">'e40075055f34f88993f47efb3429bd0e44a7f479'</span>:</span><br><span class="line">    abort(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'🎉 You are right!'</span>)</span><br><span class="line"><span class="keyword">import</span> this</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">abort</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'You failed test %d. Try again!'</span> % <span class="built_in">id</span>)</span><br><span class="line">    exit(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个函数传入一个参数id，一旦传入参数，打印错误，根据函数调用情况来看，所以不能让if语句执行，所以if的条件要为否</p>
+<h3 id="条件1"><a href="#条件1" class="headerlink" title="条件1"></a>条件1</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(flag) != <span class="number">38</span>:</span><br><span class="line">    abort(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>要求flag字符串长度为38，那么构造字符串38</p>
+<h3 id="条件2"><a href="#条件2" class="headerlink" title="条件2"></a>条件2</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag.startswith(<span class="string">'BaseCTF{'</span>):</span><br><span class="line">    abort(<span class="number">2</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>要求flag以’BaseCTF{‘开头，一定记住条件是反着的，如果开头不是这样，调用函数返回错误信息，所以这里一定要是这样，我们先用一种字符来占位</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;}</p>
+</blockquote>
+<h3 id="条件3"><a href="#条件3" class="headerlink" title="条件3"></a>条件3</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> flag.find(<span class="string">'Mp'</span>) != <span class="number">10</span>:</span><br><span class="line">    abort(<span class="number">3</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>要求在字符串flag中搜索子字符串’Mp’，并且其索引值为10，那么就是从索引值10开始为’Mp’</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;Mp&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;}</p>
+</blockquote>
+<h3 id="条件4"><a href="#条件4" class="headerlink" title="条件4"></a>条件4</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> flag[-<span class="number">3</span>:] * <span class="number">8</span> != <span class="string">'3x}3x}3x}3x}3x}3x}3x}3x}'</span>:</span><br><span class="line">    abort(<span class="number">4</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>要求从末尾倒着数3个字符×8之后是这个字符串，也就是最后三个字符是’3x}’</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;Mp&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;3x}</p>
+</blockquote>
+<h3 id="条件5"><a href="#条件5" class="headerlink" title="条件5"></a>条件5</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">ord</span>(flag[-<span class="number">1</span>]) != <span class="number">125</span>:</span><br><span class="line">    abort(<span class="number">5</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><u><code>ord()</code> 函数用于获取单个字符的Unicode码点</u></p>
+<p>flag[-1]获取最后一个字符</p>
+<p>125 是字符 ‘}’ 的Unicode码点</p>
+<p>所以验证了flag最后一个字符</p>
+<h3 id="条件6"><a href="#条件6" class="headerlink" title="条件6"></a>条件6</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> flag.count(<span class="string">'_'</span>) // <span class="number">2</span> != <span class="number">2</span>:</span><br><span class="line">    abort(<span class="number">6</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>要求flag中的’_’的数量整除2等于2，那么就是’_‘的数量是4，但是还不知道位置，先看后面</p>
+<h3 id="条件7"><a href="#条件7" class="headerlink" title="条件7"></a>条件7</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">len</span>, flag.split(<span class="string">'_'</span>))) != [<span class="number">14</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">8</span>]:</span><br><span class="line">    abort(<span class="number">7</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>flag.split('_')</code>：这个调用使用下划线（<code>_</code>）作为分隔符来分割字符串 flag</p>
+<p><code>map</code> 函数接受两个参数，第一个是一个函数（在这个例子中是 <code>len</code> 函数），第二个是一个可迭代对象（在这个例子中是 <code>flag.split('_')</code> 返回的列表）</p>
+<p><code>map</code> 函数会对可迭代对象中的每个元素应用第一个参数指定的函数，并返回一个迭代器，该迭代器包含应用函数后的结果，也就是<code>map(len, ...)</code> 会计算 <code>flag.split('_')</code> 返回的每个子字符串的长度，并返回一个包含这些长度的迭代器。</p>
+<p>所以，相当于’_‘把整个flag分成了五段，且每段的数量就是列表中的数</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;Mp&amp;&amp;_&amp;&amp;_&amp;&amp;&amp;&amp;&amp;&amp;_&amp;&amp;&amp;&amp;_&amp;&amp;&amp;&amp;&amp;3x}</p>
+</blockquote>
+<h3 id="条件8"><a href="#条件8" class="headerlink" title="条件8"></a>条件8</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> flag[<span class="number">12</span>:<span class="number">32</span>:<span class="number">4</span>] != <span class="string">'lsT_n'</span>:</span><br><span class="line">    abort(<span class="number">8</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是一个切片，从索引值12开始到32（不包括）为止，步进为4</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;Mpl&amp;_&amp;s_&amp;&amp;T&amp;&amp;&amp;_&amp;&amp;&amp;n_&amp;&amp;&amp;&amp;&amp;3x}</p>
+</blockquote>
+<h3 id="条件9"><a href="#条件9" class="headerlink" title="条件9"></a>条件9</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="string">'😺'</span>.join([c.upper() <span class="keyword">for</span> c <span class="keyword">in</span> flag[:<span class="number">9</span>]]) != <span class="string">'B😺A😺S😺E😺C😺T😺F😺{😺S'</span>:</span><br><span class="line">    abort(<span class="number">9</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>列表推导式 <code>[c.upper() for c in flag[:9]]</code></strong></p>
+<ul>
+<li>这个列表推导式遍历 <code>flag[:9]</code> 中的每个字符 <code>c</code>，并将它们转换为大写（<code>c.upper()</code>）。</li>
+</ul>
+<p>**<code>'😺'.join(...)</code>**：</p>
+<ul>
+<li>这个方法尝试将列表推导式的结果（即一系列大写字符）使用 ‘😺’ 作为分隔符连接起来，形成一个新的字符串。</li>
+</ul>
+<p>之前的所有过程都可以在pycharm上运行，但是这一步阻断了，之后的操作都不能再显示结果了，因为一旦你做了这一步，就违背了之前的以BaseCTF开头的条件，不做这一步，将会一直返回错误信息，所以这一条件没什么用，不用照着做</p>
+<h3 id="条件10"><a href="#条件10" class="headerlink" title="条件10"></a>条件10</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag[-<span class="number">11</span>].isnumeric() <span class="keyword">or</span> <span class="built_in">int</span>(flag[-<span class="number">11</span>]) ** <span class="number">5</span> != <span class="number">1024</span>:</span><br><span class="line">    abort(<span class="number">10</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>.isnumeric()</code>：这是一个字符串方法，用于检查字符串中的所有字符是否都是数字字符</p>
+<p>条件要求倒数第11个字符是否为数字，或者将其转换为整数的5次方是否为1024，or是任意满足就是true，所以让倒数第11位是数字且5次方为1024，所以为4</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;Mpl&amp;_&amp;s_&amp;&amp;T&amp;&amp;&amp;_&amp;&amp;4n_&amp;&amp;&amp;&amp;&amp;3x}</p>
+</blockquote>
+<h3 id="条件11"><a href="#条件11" class="headerlink" title="条件11"></a>条件11</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> base64.b64encode(flag[-<span class="number">7</span>:-<span class="number">3</span>].encode()) != <span class="string">b'MG1QbA=='</span>:</span><br><span class="line">    abort(<span class="number">11</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>flag[-7:-3]：从倒数第7个字符到倒数第4个字符（不包括）切片</p>
+<p><code>.encode()</code>：这个方法将字符串（子串）编码成字节串（bytes）</p>
+<p><code>base64.b64encode(...)</code>：这是Python标准库中<code>base64</code>模块的一个函数，用于将字节串数据编码成Base64格式的字节串</p>
+<p>所以这个’MG1QbA==’为Base64编码得来，那么直接解码，得到’0mPl’，将他放入flag中</p>
+<blockquote>
+<p>BaseCTF{&amp;&amp;Mpl&amp;_&amp;s_&amp;&amp;T&amp;&amp;&amp;_&amp;&amp;4n_&amp;0mPl3x}</p>
+</blockquote>
+<h3 id="条件12"><a href="#条件12" class="headerlink" title="条件12"></a>条件12</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> flag[::-<span class="number">7</span>].encode().<span class="built_in">hex</span>() != <span class="string">'7d4372733173'</span>:</span><br><span class="line">    abort(<span class="number">12</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>.encode()</code>：将字符串编码成字节串。</p>
+<p><code>.hex()</code>：这是字节串的一个方法，它将字节串中的每个字节转换为其16进制表示形式，并返回一个字符串。</p>
+<p>从末尾以步进为7倒着取数，然后将其转换为16进制</p>
+<p>所以将字符串从16进制转换为字符串就可以，网上有专门的转换工具，转换出来为’}Crs1s’，放入flag</p>
+<blockquote>
+<p>BaseCTF{&amp;1Mpl&amp;_&amp;s_&amp;&amp;T&amp;&amp;r_&amp;&amp;4n_C0mPI3x}</p>
+</blockquote>
+<h3 id="条件13"><a href="#条件13" class="headerlink" title="条件13"></a>条件13</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">set</span>(flag[<span class="number">12</span>::<span class="number">11</span>]) != {<span class="string">'l'</span>, <span class="string">'r'</span>}:</span><br><span class="line">    abort(<span class="number">13</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>set()</code>：将切片转换成一个集合（set）</p>
+<p>从索引值为12的位置开始，步进11，设置值为’l’和’r’</p>
+<p>发现这些值都已经设置过了，所以当验证吧</p>
+<blockquote>
+<p>BaseCTF{&amp;1Mpl&amp;_&amp;s_&amp;&amp;T&amp;&amp;r_&amp;&amp;4n_C0mPl3x}</p>
+</blockquote>
+<h3 id="条件14"><a href="#条件14" class="headerlink" title="条件14"></a>条件14</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> flag[<span class="number">21</span>:<span class="number">27</span>].encode() != <span class="built_in">bytes</span>([<span class="number">116</span>, <span class="number">51</span>, <span class="number">114</span>, <span class="number">95</span>, <span class="number">84</span>, <span class="number">104</span>]):</span><br><span class="line">    abort(<span class="number">14</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>从索引值21到27（不包括），放入ASCII值为这些的字符，为’t3r_Th’</p>
+<blockquote>
+<p> BaseCTF{&amp;1Mpl&amp;_&amp;s_&amp;&amp;Tt3r_Th4n_C0mPl3x}</p>
+</blockquote>
+<h3 id="条件15"><a href="#条件15" class="headerlink" title="条件15"></a>条件15</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">sum</span>(<span class="built_in">ord</span>(c) * <span class="number">2024_08_15</span> ** idx <span class="keyword">for</span> idx, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(flag[<span class="number">17</span>:<span class="number">20</span>])) != <span class="number">41378751114180610</span>:</span><br><span class="line">    abort(<span class="number">15</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>flag[17:20]：切片，索引值17-20（不包括）</p>
+<p><code>enumerate(...)</code>：为这三个字符生成索引（0, 1, 2）</p>
+<p><code>ord(c)</code>：获取字符<code>c</code>的Unicode值。</p>
+<p><code>2024_08_15 ** idx</code>：计算<code>2024_08_15</code>的<code>idx</code>次幂。</p>
+<p><code>sum(...)</code>：把所有计算结果相加。</p>
+<p>索引为17的字符为’_’，并且他的ASCII值为95，18和19是不知道的，设为x和y</p>
+<p>结合得出一个公式：</p>
+<p><strong>95*20240815^0^+x*20240815^1^+y*20240815^2^=41378751114180610</strong></p>
+<p>直接写一个代码来遍历出x和y的值，能确定的是他们的ASCII值在0-127之间</p>
+<p>代码如下：</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">128</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">128</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="number">95</span>*<span class="number">20240815</span>**<span class="number">0</span>+x*<span class="number">20240815</span>**<span class="number">1</span>+y*<span class="number">20240815</span>**<span class="number">2</span>==<span class="number">41378751114180610</span>:</span><br><span class="line">            <span class="built_in">print</span>(x,y)</span><br><span class="line"><span class="comment">#解出x=66，y=101</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>x和y对应的字符为B和e，填入flag</p>
+<blockquote>
+<p> BaseCTF{&amp;1Mpl&amp;_&amp;s_BeTt3r_Th4n_C0mPl3x}</p>
+</blockquote>
+<h3 id="条件16"><a href="#条件16" class="headerlink" title="条件16"></a>条件16</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">all</span>([flag[<span class="number">0</span>].isalpha(), flag[<span class="number">8</span>].islower(), flag[<span class="number">13</span>].isdigit()]):</span><br><span class="line">    abort(<span class="number">16</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>.isalpha()</code>方法检查是否是字母</p>
+<p><code>.islower()</code>方法本身会先检查字符是否是字母，然后才是否是小写</p>
+<p><code>.isdigit()</code>方法检查是否是一个数字</p>
+<p>检查对应索引位置是否满足条件</p>
+<p>得到一个线索，索引位置8为小写字母，但是也不知道值，所以先往下看</p>
+<h3 id="条件17"><a href="#条件17" class="headerlink" title="条件17"></a>条件17</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="string">'{whats} {up}'</span>.<span class="built_in">format</span>(whats=flag[<span class="number">13</span>], up=flag[<span class="number">15</span>]).replace(<span class="string">'3'</span>, <span class="string">'bro'</span>) != <span class="string">'bro 1'</span>:</span><br><span class="line">    abort(<span class="number">17</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p> <code>.format()</code> 方法对字符串 <code>'{whats} {up}'</code> 进行格式化。这里，<code>{whats}</code> 和 <code>{up}</code> 是占位符，它们将被 <code>format()</code> 方法中的关键字参数 <code>whats</code> 和 <code>up</code> 的值所替换。在这个例子中，<code>whats</code> 被替换为 <code>flag[13]</code> 的值，而 <code>up</code> 被替换为 <code>flag[15]</code> 的值</p>
+<p>replace方法将’3’替换为’bro’输出结果，所以flag[13]=3，flag[15]=1</p>
+<blockquote>
+<p>BaseCTF{&amp;1Mpl3_1s_BeTt3r_Th4n_C0mPl3x}</p>
+</blockquote>
+<h3 id="条件18"><a href="#条件18" class="headerlink" title="条件18"></a>条件18</h3><figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> hashlib.sha1(flag.encode()).hexdigest() != <span class="string">'e40075055f34f88993f47efb3429bd0e44a7f479'</span>:</span><br><span class="line">    abort(<span class="number">18</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>hashlib.sha1()</code>函数需要一个字节串作为输入，而不是普通的字符串</p>
+<p><code>.hexdigest()</code>方法将计算出的哈希值（原本是一个字节串）转换为一个十六进制表示的字符串。</p>
+<p>使用了Python的<code>hashlib</code>库来计算<code>flag</code>变量的SHA-1哈希值</p>
+<p>现在就只差flag[8]没有计算出来</p>
+<p>直接写一个代码</p>
+<p>代码如下：</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">97</span>,<span class="number">123</span>):</span><br><span class="line">    flag=<span class="string">'BaseCTF{&amp;1Mpl3_1s_BeTt3r_Th4n_C0mPl3x}'</span></span><br><span class="line">    flag = flag.replace(<span class="string">'&amp;'</span>,<span class="built_in">chr</span>(i))</span><br><span class="line">    <span class="keyword">if</span> hashlib.sha1(flag.encode()).hexdigest() == <span class="string">'e40075055f34f88993f47efb3429bd0e44a7f479'</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">chr</span>(i))</span><br><span class="line">得到flag[<span class="number">8</span>]=s</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>BaseCTF{s1Mpl3_1s_BeTt3r_Th4n_C0mPl3x}</p>
+</blockquote>
+<p>完结撒花！！</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">XMH</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2024/08/16/basectf-ren-sheng-ku-duan-wo-yong-python-misc/">http://example.com/2024/08/16/basectf-ren-sheng-ku-duan-wo-yong-python-misc/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">XMH</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/BaseCTF/">
+                                    <span class="chip bg-color">BaseCTF</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">感谢你的赞！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/weixin.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2024/08/16/basectf-ren-sheng-ku-duan-wo-yong-python-misc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="BaseCTF 人生苦短 我用Python（Misc）">
+                        
+                        <span class="card-title">BaseCTF 人生苦短 我用Python（Misc）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Misc/" class="post-category">
+                                    Misc
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/BaseCTF/">
+                        <span class="chip bg-color">BaseCTF</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/08/14/shen-xin-fu-an-quan-ji-zhu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="深信服安全技术认证工程师学习笔记">
+                        
+                        <span class="card-title">深信服安全技术认证工程师学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/">
+                        <span class="chip bg-color">深信服</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: xmhhmx的blog<br />'
+            + 'Author: HMX<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="472137749"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2024</span>
+            
+            <span id="year">2024</span>
+            <a href="/about" target="_blank">HMX</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">29.9k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2024";
+                    var startMonth = "5";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:1282370648@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1282370648" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1282370648" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <!-- <script type="text/javascript" src="/js/fireworks.js"></script> -->
+
+    <!-- <script type="text/javascript">
+        //只在桌面版网页启用特效
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+    </script> -->
+    
+    <script src="/js/snow.js"></script>
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
