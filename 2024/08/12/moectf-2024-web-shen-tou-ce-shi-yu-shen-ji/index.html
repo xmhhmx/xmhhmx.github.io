@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-08-12
+                    2024-08-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    2.3k
                 </div>
                 
 
@@ -487,7 +487,101 @@
 <p><img src="https://pic.imgdb.cn/item/66ba1f45d9c307b7e95ce0f6.png"></p>
 <p>按照提示,把之前的所有flag按顺序拼在一起,一看,大小写还有等于号,妥妥base64编码,直接网上找一个base64解码平台,解开就有flag了</p>
 <p>结束!七龙珠!</p>
+<h2 id="第二、三周"><a href="#第二、三周" class="headerlink" title="第二、三周"></a>第二、三周</h2><h3 id="ImageCloud前置"><a href="#ImageCloud前置" class="headerlink" title="ImageCloud前置"></a>ImageCloud前置</h3><p><img src="https://pic.imgdb.cn/item/66c1fc64d9c307b7e9700049.png"></p>
+<p>看题目要求，其实熟悉SSRF的人，一眼就知道这是一个SSRF漏洞，因为有一些关键词，’url’，’/etc/passwd’是linux系统中用户文件，’出不了网’，这一些都说明是在内网中，那么SSRF漏洞就可以让服务端去访问内网的网址，可以使用file、dict、gopher、ftp协议进行请求访问相应的文件</p>
+<p><img src="https://pic.imgdb.cn/item/66c1fd24d9c307b7e971d939.png"></p>
+<p>这里需要上传一个url那么就直接来读文件吧</p>
+<p><img src="https://pic.imgdb.cn/item/66c1fddfd9c307b7e973d087.png"></p>
+<p>读出了文件，就找到了flag</p>
+<p><img src="https://pic.imgdb.cn/item/66c1fe03d9c307b7e973ef8e.png"></p>
+<h3 id="ImageCloud"><a href="#ImageCloud" class="headerlink" title="ImageCloud"></a>ImageCloud</h3><img src="https://pic.imgdb.cn/item/66c230f2d9c307b7e9dd3944.png" style="zoom: 67%;">
 
+<p>依旧用刚才上传的php一句话木马实验一下</p>
+<p><img src="https://pic.imgdb.cn/item/66c23120d9c307b7e9dd5d0a.png"></p>
+<p>现在上传php后缀名就不可以了，那就换一个jpg上传试试，burpsuit抓包，更改文件后缀名php5、php3、phtml均被过滤了</p>
+<h3 id="垫刀之路01-MoeCTF？启动！"><a href="#垫刀之路01-MoeCTF？启动！" class="headerlink" title="垫刀之路01: MoeCTF？启动！"></a>垫刀之路01: MoeCTF？启动！</h3><p><img src="https://pic.imgdb.cn/item/66c1fe6cd9c307b7e9746e04.png"></p>
+<p>这题很简单，已经getshell，直接执行Linux系统代码试试（常见的服务器系统是Linux）</p>
+<p><img src="https://pic.imgdb.cn/item/66c1febdd9c307b7e97574a9.png"></p>
+<p>查看一下flag文件内容</p>
+<p><img src="https://pic.imgdb.cn/item/66c1fee2d9c307b7e975b5fd.png"></p>
+<p>看来是不在这个文件里的</p>
+<p><img src="https://pic.imgdb.cn/item/66c20037d9c307b7e9795641.png"></p>
+<p>也不在这里，经过我一番查看，一番折腾，寻找资料</p>
+<p>才意识到他让我们看环境变量</p>
+<p>$PATH、$HOME、$SHELL等那么多环境变量，去找哪一个呢？</p>
+<p>最后经过一番查找，找到了两个查找环境变量的命令</p>
+<ul>
+<li>env </li>
+<li>echo $FLAG（这个是FLAG作为了环境变量）</li>
+</ul>
+<p>终于找出来了！两个命令都可以查看flag</p>
+<p><img src="https://pic.imgdb.cn/item/66c209eed9c307b7e991fcad.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66c20a05d9c307b7e9921135.png"></p>
+<h3 id="垫刀之路02-普通的文件上传"><a href="#垫刀之路02-普通的文件上传" class="headerlink" title="垫刀之路02: 普通的文件上传"></a>垫刀之路02: 普通的文件上传</h3><p><img src="https://pic.imgdb.cn/item/66c20a96d9c307b7e992c38d.png"></p>
+<p>看题目就是一个文件上传漏洞，上传一个php文件，里面包含一句话木马，然后用蚁剑连后门，直接控制系统，那么就开干！</p>
+<p><img src="https://pic.imgdb.cn/item/66c20abdd9c307b7e9931e34.png"></p>
+<p>他说上传图片，但是我还是想先直接上传一个php文件先试试</p>
+<p><img src="https://pic.imgdb.cn/item/66c20b80d9c307b7e9953ae7.png"></p>
+<p>所以说上传图片都是假的，他还没过滤我的php文件名后缀</p>
+<p>那么直接用蚁剑连吧！</p>
+<p><img src="https://pic.imgdb.cn/item/66c20c0dd9c307b7e996a3a5.png"></p>
+<p>连接成功，进来寻找一波</p>
+<p><img src="https://pic.imgdb.cn/item/66c20c4bd9c307b7e996da47.png"></p>
+<p>熟悉的配方，和垫刀01一样的flag.sh，那么直接开一个虚拟终端，直接输入命令来查看</p>
+<p><img src="https://pic.imgdb.cn/item/66c20dead9c307b7e99a7e55.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66c20e10d9c307b7e99ad124.png"></p>
+<p>flag出现，结束！</p>
+<h3 id="垫刀之路03-这是一个图床"><a href="#垫刀之路03-这是一个图床" class="headerlink" title="垫刀之路03: 这是一个图床"></a>垫刀之路03: 这是一个图床</h3><p><img src="https://pic.imgdb.cn/item/66c34b93d9c307b7e93995c4.png"></p>
+<p>上传一个带一句话木马的jpg图片，然后在bp中将文件类型改为php，也就是绕过前端的js对后缀名的检查</p>
+<p><img src="https://pic.imgdb.cn/item/66c34d97d9c307b7e93b94d9.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66c34dd8d9c307b7e93bd119.png"></p>
+<p>已经保存到这个位置，用蚁剑直接连接试试</p>
+<img src="https://pic.imgdb.cn/item/66c34db7d9c307b7e93bb589.png" style="zoom: 50%;">
+
+<p>连接成功，那就进去看看，然后之后的操作就和上面一样了，开一个虚拟终端，查看环境变量</p>
+<p><img src="https://pic.imgdb.cn/item/66c34e53d9c307b7e93c6106.png"></p>
+<h3 id="垫刀之路04-一个文件浏览器"><a href="#垫刀之路04-一个文件浏览器" class="headerlink" title="垫刀之路04: 一个文件浏览器"></a>垫刀之路04: 一个文件浏览器</h3><p><img src="https://pic.imgdb.cn/item/66c5fc0cd9c307b7e99566a8.png"></p>
+<p>题目说在下面的文件里找flag，那么就开始吧</p>
+<img src="https://pic.imgdb.cn/item/66c5fc24d9c307b7e99580f1.png" style="zoom: 67%;">
+
+
+
+<h3 id="垫刀之路05-登陆网站"><a href="#垫刀之路05-登陆网站" class="headerlink" title="垫刀之路05: 登陆网站"></a>垫刀之路05: 登陆网站</h3><p><img src="https://pic.imgdb.cn/item/66c60073d9c307b7e9996ff6.png"></p>
+<img src="https://pic.imgdb.cn/item/66c600a0d9c307b7e9999cb9.png" style="zoom:67%;">
+
+<p>第一反应就是，不信，我就要爆破，结果真的爆不出来，已老实，求放过</p>
+<p>可能前面做题，harkbar用多了，下一反应就是用harkbar捣鼓一下，还是不行</p>
+<p>最后想到了好久没用过的sql注入，哦吼，真就出来了</p>
+<p><img src="https://pic.imgdb.cn/item/66c60311d9c307b7e9a0f4b7.png"></p>
+<p>只能说，久违了SQL注入！</p>
+<h3 id="垫刀之路06-pop-base-mini-moe"><a href="#垫刀之路06-pop-base-mini-moe" class="headerlink" title="垫刀之路06: pop base mini moe"></a>垫刀之路06: pop base mini moe</h3><img src="https://pic.imgdb.cn/item/66c60402d9c307b7e9a3a44f.png" style="zoom:67%;">
+
+
+
+
+
+
+
+
+
+<h3 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h3><p><img src="https://pic.imgdb.cn/item/66c210ccd9c307b7e9a29c35.png"></p>
+<p>好好好，什么都没有，查看了页面源代码，查看了检查，啥都没有</p>
+<p>直接扔到burpsuit里进行扫描，看看有没有其他目录和文件，然后真就有</p>
+<img src="https://pic.imgdb.cn/item/66c21130d9c307b7e9a3a954.png" style="zoom:50%;">
+
+<p>看到了flag的踪影，那就先访问一下这个页面吧</p>
+<img src="https://pic.imgdb.cn/item/66c21167d9c307b7e9a41c1b.png" style="zoom:50%;">
+
+<p>让我直接访问这个php文件，照做就行</p>
+<img src="https://pic.imgdb.cn/item/66c2119ad9c307b7e9a4a031.png" style="zoom:50%;">
+
+<p>有眉目了，继续继续，既要上传get又要上传post请求，那么harkbar直接上</p>
+<p>isset就是存在，isnumeric就是是数字，a和b不能是数字，且（$a ==0&amp;&amp;md5($a)==$b[$a]）</p>
+<p>$b[$a]：这个表达式访问数组 $b中索引为$a 的元素</p>
+<p>这里绞尽脑汁了，还是有点困难，最后请教了一位大神</p>
+<p><img src="https://pic.imgdb.cn/item/66c22dbad9c307b7e9daa844.png"></p>
+<p>我们来看传入的a参数，首先会验证a是否是一个数字，不是数字才能通过，这里我们用到0%201，用0%20也行，%20在url编码中空格，用 0空格 就可以绕过数字的检查，然后进入到之后的条件$a == 0，这里==是弱比较，JavaScript 会将0空格字符串 ‘0 ‘ 转换为数字 0，然后比较 0 == 0，结果为 true，b的话只需要去网上找一个md5加密工具加密一下’0空格’就可以，最后得到flag</p>
+<h3 id="电院-Backend"><a href="#电院-Backend" class="headerlink" title="电院_Backend"></a>电院_Backend</h3><h3 id="勇闯铜人阵"><a href="#勇闯铜人阵" class="headerlink" title="勇闯铜人阵"></a>勇闯铜人阵</h3><h3 id="XDSEC-MessageBox"><a href="#XDSEC-MessageBox" class="headerlink" title="XDSEC_MessageBox"></a>XDSEC_MessageBox</h3>
                 
             </div>
             <hr/>
@@ -1041,7 +1135,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">29.9k</span>&nbsp;字
+                class="white-color">32.4k</span>&nbsp;字
             
             
             

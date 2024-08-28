@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-08-16
+                    2024-08-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    4.8k
+                    5k
                 </div>
                 
 
@@ -860,7 +860,7 @@
 <li>心跳口不能为业务口，需要单独配置一个物理接口（或聚合口）</li>
 </ul>
 <ol start="4">
-<li>注意事项</li>
+<li>==<strong><u>注意事项</u></strong>==</li>
 </ol>
 <p><img src="https://pic.imgdb.cn/item/66befe9fd9c307b7e9608a2e.png"></p>
 <h5 id="主主部署"><a href="#主主部署" class="headerlink" title="主主部署"></a>主主部署</h5><ol>
@@ -871,6 +871,27 @@
 <li>配置思路</li>
 </ol>
 <p><img src="https://pic.imgdb.cn/item/66bf026bd9c307b7e963988b.png"></p>
+<ol start="3">
+<li>配置案例</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66c08cbed9c307b7e93d5d41.png"></p>
+<ol start="4">
+<li><strong><u>==注意事项==</u></strong></li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66c08e9fd9c307b7e93ef010.png"></p>
+<h4 id="4-10-双机聚合应用场景及配置思路-双机部署常见故障"><a href="#4-10-双机聚合应用场景及配置思路-双机部署常见故障" class="headerlink" title="4.10 双机聚合应用场景及配置思路&amp;双机部署常见故障"></a>4.10 双机聚合应用场景及配置思路&amp;双机部署常见故障</h4><ol>
+<li>需求背景</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66c090a9d9c307b7e94100b4.png"></p>
+<ol start="2">
+<li>基本原理</li>
+</ol>
+<p>​		双机聚合功能开启后，每台AF都会在后台程序自动生成一个是0或者是1的编号，这个编号界面上看不到，所有经过AF的流量都会是经过算法(即根据源/目的IP地址)计算，看计算结果的值是0还是1，从而将对应数据包转发到对应编号的AF上进行转发(比如根据算法算出来的值是0，则从编号为0的AF转发数据)</p>
+<p><img src="https://pic.imgdb.cn/item/66c092b3d9c307b7e945cc9d.png"></p>
+<ol start="3">
+<li>具体过程</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66c0933bd9c307b7e94651a9.png"></p>
 <h3 id="第二部分-全网行为管理基础原理与运维"><a href="#第二部分-全网行为管理基础原理与运维" class="headerlink" title="第二部分 全网行为管理基础原理与运维"></a>第二部分 全网行为管理基础原理与运维</h3><h3 id="第三部分-零信任基础原理与运维"><a href="#第三部分-零信任基础原理与运维" class="headerlink" title="第三部分 零信任基础原理与运维"></a>第三部分 零信任基础原理与运维</h3><h3 id="第四部分-终端安全原理与运维"><a href="#第四部分-终端安全原理与运维" class="headerlink" title="第四部分 终端安全原理与运维"></a>第四部分 终端安全原理与运维</h3><h3 id="第五部分-广域网组网与传输安全"><a href="#第五部分-广域网组网与传输安全" class="headerlink" title="第五部分 广域网组网与传输安全"></a>第五部分 广域网组网与传输安全</h3><h3 id="第六部分-态势感知基础原理与运维"><a href="#第六部分-态势感知基础原理与运维" class="headerlink" title="第六部分 态势感知基础原理与运维"></a>第六部分 态势感知基础原理与运维</h3>
                 
             </div>
@@ -1425,7 +1446,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">29.9k</span>&nbsp;字
+                class="white-color">32.4k</span>&nbsp;字
             
             
             
