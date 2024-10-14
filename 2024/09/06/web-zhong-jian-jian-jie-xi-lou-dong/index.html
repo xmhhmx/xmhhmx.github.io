@@ -336,14 +336,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-09-06
+                    2024-10-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    267
+                    1.1k
                 </div>
                 
 
@@ -367,12 +367,64 @@
 <h2 id="IIS-5-x-6-x解析漏洞"><a href="#IIS-5-x-6-x解析漏洞" class="headerlink" title="IIS 5.x-6.x解析漏洞"></a>IIS 5.x-6.x解析漏洞</h2><blockquote>
 <p>使用iis5.x-6.x版本的服务器，大多为windows server 2003，网站比较古老，开发语句一般为asp;该解析漏洞也只能解析asp文件，而不能解析aspx文件。win7-win10中多为iis7.x-8.x了，版本比较高。</p>
 </blockquote>
-<p>目录解析(6.0)<br>        形式:<a target="_blank" rel="noopener" href="http://www.xxx.com/xx.asp/xx.jpg">www.xxx.com/xx.asp/xx.jpg</a><br>        原理:服务器默认会把.asp，.asa目录下的文件都解析成asp文件<br>文件解析<br>        形式:<a target="_blank" rel="noopener" href="http://www.xxx.com/xx.asp;.jpg">www.xxx.com/xx.asp;.jpg</a><br>        原理:服务器默认不解析;号后面的内容，因此xx.asp;.jpg便被解析成asp文件了。<br>解析文件类型<br>        IIS6.0 默认的可执行文件除了asp还包含这三种:<br>        /test.asa<br>        /test.cer<br>        /test.cdx<br>修复方案</p>
+<ol>
+<li>目录解析(6.0)<br>     形式:<a target="_blank" rel="noopener" href="http://www.xxx.com/xx.asp/xx.jpg">www.xxx.com/xx.asp/xx.jpg</a><br>     原理:服务器默认会<strong>把.asp，.asa目录下</strong>的文件都解析成asp文件</li>
+<li>文件解析<br>     形式:<a target="_blank" rel="noopener" href="http://www.xxx.com/xx.asp;.jpg">www.xxx.com/xx.asp;.jpg</a><br>     原理:服务器<strong>默认不解析;号后面的内容</strong>，因此xx.asp;.jpg便被解析成asp文件了。</li>
+<li>解析文件类型<br>     IIS6.0 默认的可执行文件除了asp还包含这三种:<br>     /test.asa<br>     /test.cer	伪装成证书文件<br>     /test.cdx</li>
+</ol>
+<ul>
+<li>修复方案</li>
+</ul>
 <ol>
 <li>目前尚无微软官方的补丁，可以通过自己编写正则，阻止上传xx.asp;.jpg类型的文件名。</li>
 <li>做好权限设置，限制用户创建文件夹。</li>
 <li>安装防护软件，比如D盾等</li>
 </ol>
+<h2 id="Apache解析漏洞"><a href="#Apache解析漏洞" class="headerlink" title="Apache解析漏洞"></a>Apache解析漏洞</h2><p>漏洞原理：<br>        Apache 解析文件的规则是<strong>从右到左</strong>开始判断解析,如果后缀名为不可识别文件解析,就再往左判断。比如test.php.owf.rar，“.owf”和”.rar”这两种后缀是apache不可识别解析，apache就会把xx.php.owf.rar解析成php。<br>漏洞形式：<br><a target="_blank" rel="noopener" href="http://www.xxxx.xxx.com/test.php.php123">www.xxxx.xxx.com/test.php.php123</a></p>
+<blockquote>
+<p>其余配置问题导致漏洞<br>(1)如果在 Apache的 conf 里有这样一行配置 AddHandler  php5-script  .php 这时只要文件名里包含，php 即使文件名是test2.php.jpg 也会以php 来执行。</p>
+<p>(2)如果在 Apache 的 conf 里有这样一行配置 AddType  application/x-httpd-php  .jpg 即使扩展名是 jpg，一样能以 php 方式执行。xx.jpg</p>
+</blockquote>
+<p>1.示例:<a target="_blank" rel="noopener" href="http://www.xxxx,xxx.com/test.php.php123">www.xxxx,xxx.com/test.php.php123</a></p>
+<p>​		比如我们将sql.php改为sq.php.xx，正常来讲的话是不能解析的，但是老版本的apache(<strong>apache2.2</strong>版本及之前的)是能够正常将这个文件解析为php文件的</p>
+<ul>
+<li>修复方案</li>
+</ul>
+<p>1.apache配置文件，禁止.php.这样的文件执行，配置文件里面加入</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fi1es ~ ".(php.|php3.)"&gt;		//正则匹配，只要前面有.和后面有.的所有都拒绝</span><br><span class="line">	order A11ow,Deny</span><br><span class="line">	Deny from a11</span><br><span class="line">&lt;/Fi1es&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>2.用伪静态能解决这个问题，重写类似.php.*这类文件，打开apache的httpd.conf找到LoadModule  rewrite_module  modules/mod_rewrite.so<br>把#号去掉，重启apache,在网站根目录下建立.htaccess文件,代码如下:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mod_rewrite.c&gt;</span><br><span class="line">RewriteEngine on</span><br><span class="line">RewriteRule .(php.|php3.)/index.php			//跳转规则，只要匹配后缀名就统一跳转到首页</span><br><span class="line">RewriteRule .(pHp.|pHp3.)/index.php</span><br><span class="line">RewriteRule .(phP.|phP3.)/index.php</span><br><span class="line">RewriteRule .(Php.|Php3.)/index.php</span><br><span class="line">RewriteRule .(PHp.|PHp3.)/index.php</span><br><span class="line">RewriteRule .(PhP.|PhP3.)/index.php</span><br><span class="line">RewriteRule .(pHP |pHP3.)/index.php</span><br><span class="line">RewriteRule .(PHP.|PHP3.)/index.php</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="Nginx解析漏洞"><a href="#Nginx解析漏洞" class="headerlink" title="Nginx解析漏洞"></a>Nginx解析漏洞</h2><p>1.php路径漏洞</p>
+<p>大致原理：该漏洞与nginx、php版本无关，属于<strong>配置不当造成</strong>的解析漏洞。</p>
+<p>​		当php.ini配置文件中开启了<strong>cgi.fix_pathinfo</strong>，该值默认为1，表示开启。是处理路径用的配置。</p>
+<p>​		比如我们上传了一个木马文件web.jpg，因为web.php不能上传，现在我们想执行这个web.jpg，可以如下路径访问	</p>
+<p>​		<a target="_blank" rel="noopener" href="http://192.168.2.104/pikachu/web.jpg/aaa.php">http://192.168.2.104/pikachu/web.jpg/aaa.php</a></p>
+<p>​		而目标服务器上没有aaa.php文件，本来如果nginx.conf的配置没有问题的话，nginx会先去找下这个文件是否存在，如果存在，在找php解释器来解释执行代码，如果不存在，nginx会直接返回错误信息，说找不到该文件，但是如果nginx.conf配置不当会导致nginx把以’.php’结尾的文件交给fastcgi处理，也就是说首先nginx看到你路径中要找aaa.php，哦，原来是php文件，nginx不去找这个文件了，而是就直接交给了fastcgi，fastcgi又去找php解释器去处理该路径，而php开启了cgi.fix_pathinfo，那么php解释器处理这个路径的时候，发现没aaa.php文件，那么他会找路径中上一层路径的文件作为aaa.php来运行，如是乎就找到了web.jpg，将web.jpg当作aaa.php来运行了，所以代码被执行。</p>
+<ul>
+<li>修复方案</li>
+</ul>
+<p>1.修改php.ini文件，将cgi.fix_pathinfo的值设置为0;</p>
+<p>2.在Nginx配置文件中添加以下代码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if($fastcgi_script_name ~ ..*/.*php){			//匹配到类似test.jpg/a.php的url时返回403</span><br><span class="line">	return 403;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 
             </div>
@@ -612,13 +664,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2024/09/11/nb-iot-ji-zhu/">
+                <a href="/2024/09/11/xin-xi-shou-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="NB-IoT技术">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="信息收集">
                         
-                        <span class="card-title">NB-IoT技术</span>
+                        <span class="card-title">信息收集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -634,7 +686,7 @@
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            HMX
+                            XMH
                             
                         </span>
                     </div>
@@ -911,7 +963,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.2k</span>&nbsp;字
+                class="white-color">61k</span>&nbsp;字
             
             
             

@@ -229,14 +229,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-09-17
+                    2024-09-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.1k
+                    5k
                 </div>
                 
 
@@ -414,8 +414,81 @@
 <p>来扫描列表中所有的ip。</p>
 <p>Nmap为端口探测最常用的方法，操作方便，输出结果非常直观。</p>
 <h3 id="端口表"><a href="#端口表" class="headerlink" title="端口表"></a>端口表</h3><p><img src="https://pic.imgdb.cn/item/66e42774d9c307b7e9e838fd.png"></p>
-<h2 id="8-查找真实IP"><a href="#8-查找真实IP" class="headerlink" title="8.查找真实IP"></a>8.查找真实IP</h2><p>如果目标网站使用了CDN，使用了cdn真实的ip会被隐藏，如果要查找真实的服务器就必须获取真实的ip，根据这个ip继续查询旁站。</p>
+<h2 id="8-CDN绕过-查找真实IP"><a href="#8-CDN绕过-查找真实IP" class="headerlink" title="8.CDN绕过 查找真实IP"></a>8.CDN绕过 查找真实IP</h2><p>如果目标网站使用了CDN，使用了cdn真实的ip会被隐藏，如果要查找真实的服务器就必须获取真实的ip，根据这个ip继续查询旁站。</p>
 <p>注意：很多时候，主站虽然是用了CDN，但子域名可能没有使用CDN，如果主站和子域名在一个ip段中，那么找到子域名的真实ip也是一种途径。</p>
+<p>找到真实IP可以继续旁站检测，找其他站点进行突破，也可以绕过cdn进行访问，从而绕过waf针对攻击语句的拦截 发现有攻击语句就会对攻击的IP封堵。 </p>
+<p>方法:</p>
+<h3 id="1-dns历史绑定记录"><a href="#1-dns历史绑定记录" class="headerlink" title="1. dns历史绑定记录"></a>1. dns历史绑定记录</h3><p>通过以下这些网站可以访问dns的解析，有可能存在未有绑cdn之前的记录。</p>
+<p><a target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/">https://dnsdb.io/zh-cn/</a> ###DNS查询</p>
+<p><a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a> ###微步在线</p>
+<p><a target="_blank" rel="noopener" href="http://viewdns.info/">http://viewdns.info/</a> ###DNS、IP等查询</p>
+<p><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a> ###CDN查询IP</p>
+<p><a target="_blank" rel="noopener" href="https://sitereport.netcraft.com/?url=%E5%9F%9F%E5%90%8D">https://sitereport.netcraft.com/?url=域名</a></p>
+<h3 id="2-子域名解析"><a href="#2-子域名解析" class="headerlink" title="2.子域名解析"></a>2.子域名解析</h3><p>通过子域名的解析指向也有可能指向目标的同一个IP上。使用工具对其子域名进行穷举</p>
+<p>在线子域名查询：</p>
+<p><a target="_blank" rel="noopener" href="https://chaziyu.com/">子域名查询 查子域名 查子站 子域名大全 二级域名查询 查子域 (chaziyu.com)</a></p>
+<p>找到子域名继续确认子域名没有cdn的情况下，批量进行域名解析查询，有cdn的情况继续查询历史。</p>
+<p>域名批量解析：</p>
+<h3 id="3-国外dns获取真实IP"><a href="#3-国外dns获取真实IP" class="headerlink" title="3.国外dns获取真实IP"></a>3.国外dns获取真实IP</h3><p>部分cdn只针对国内的ip访问，如果国外ip访问域名 即可获取真实IP</p>
+<p>全世界DNS地址：</p>
+<p><a target="_blank" rel="noopener" href="http://www.ab173.com/dns/dns_world.php">http://www.ab173.com/dns/dns_world.php</a></p>
+<p> <a target="_blank" rel="noopener" href="https://dnsdumpster.com/">https://dnsdumpster.com/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://dnshistory.org/">https://dnshistory.org/</a> </p>
+<p><a target="_blank" rel="noopener" href="http://whoisrequest.com/history/">http://whoisrequest.com/history/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://completedns.com/dns-history/">https://completedns.com/dns-history/</a> </p>
+<p><a target="_blank" rel="noopener" href="http://dnstrails.com/">http://dnstrails.com/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://who.is/domain-history/">https://who.is/domain-history/</a></p>
+<p><a target="_blank" rel="noopener" href="http://research.domaintools.com/research/hosting-history/">http://research.domaintools.com/research/hosting-history/</a> <a target="_blank" rel="noopener" href="http://site.ip138.com/">http://site.ip138.com/</a> </p>
+<p><a target="_blank" rel="noopener" href="http://viewdns.info/iphistory/">http://viewdns.info/iphistory/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/">https://dnsdb.io/zh-cn/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.virustotal.com/">https://www.virustotal.com/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a> </p>
+<p><a target="_blank" rel="noopener" href="http://viewdns.info/">http://viewdns.info/</a> </p>
+<p><a target="_blank" rel="noopener" href="http://www.17ce.com/">http://www.17ce.com/</a></p>
+<p> <a target="_blank" rel="noopener" href="http://toolbar.netcraft.com/site_report?url=">http://toolbar.netcraft.com/site_report?url=</a> <a target="_blank" rel="noopener" href="https://securitytrails.com/">https://securitytrails.com/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a></p>
+<h3 id="4-ico图标通过空间搜索找真实ip"><a href="#4-ico图标通过空间搜索找真实ip" class="headerlink" title="4.ico图标通过空间搜索找真实ip"></a>4.ico图标通过空间搜索找真实ip</h3><p><a target="_blank" rel="noopener" href="https://www.t00ls.net/favicon.ico">https://www.t00ls.net/favicon.ico</a> 下载图标 放到fofa识别</p>
+<h4 id="1-通过fofa搜图标"><a href="#1-通过fofa搜图标" class="headerlink" title="1.通过fofa搜图标"></a>1.通过fofa搜图标</h4><p>通过这样查询 快速定位资源 查看端口是否开放 这里没有开放</p>
+<h4 id="2-通过zoomeye搜图标"><a href="#2-通过zoomeye搜图标" class="headerlink" title="2.通过zoomeye搜图标"></a>2.通过zoomeye搜图标</h4><h4 id="3-360测绘中心"><a href="#3-360测绘中心" class="headerlink" title="3.360测绘中心"></a>3.360测绘中心</h4><p><a target="_blank" rel="noopener" href="https://quake.360.cn/">https://quake.360.cn</a></p>
+<h3 id="5-fofa搜索真实IP"><a href="#5-fofa搜索真实IP" class="headerlink" title="5.fofa搜索真实IP"></a>5.fofa搜索真实IP</h3><p>domain=”t00ls.net” 	<strong>302</strong>一般是cdn </p>
+<h3 id="6-通过censys找真实ip"><a href="#6-通过censys找真实ip" class="headerlink" title="6.通过censys找真实ip"></a>6.通过censys找真实ip</h3><p>Censys工具就能实现对整个互联网的扫描，Censys是一款用以搜索联网设备信息的新型搜索引擎，能够扫描整个互联网，Censys会将互联网所有的ip进行扫面和连接，以及证书探测。</p>
+<p>若目标站点有https证书，并且默认虚拟主机配了https证书，我们就可以找所有目标站点是该https证书的站点。</p>
+<h3 id="7-360测绘中心"><a href="#7-360测绘中心" class="headerlink" title="7.360测绘中心"></a>7.360测绘中心</h3><h3 id="8-利用SSL证书寻找真实IP"><a href="#8-利用SSL证书寻找真实IP" class="headerlink" title="8.利用SSL证书寻找真实IP"></a>8.利用SSL证书寻找真实IP</h3><p>证书颁发机构(CA)必须将他们发布的每个SSL/TLS证书发布到公共日志中，SSL/TLS证书通常包含域名、子域名和电子邮件地址。因此SSL/TLS证书成为了攻击者的切入点。</p>
+<p>思路：获取网站SSL证书的HASH再结合Censys</p>
+<ol>
+<li><p>在<a target="_blank" rel="noopener" href="https://crt.sh上查找目标网站ssl证书的hash,利用censys搜索网站的ssl证书及hash,/">https://crt.sh上查找目标网站SSL证书的HASH，利用Censys搜索网站的SSL证书及HASH，</a></p>
+</li>
+<li><p>再用Censys搜索该HASH即可得到真实IP地址</p>
+</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66eae1cbf21886ccc0edbd2b.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66eae1f3f21886ccc0ede41f.png"></p>
+<h3 id="9-邮箱获取真实IP"><a href="#9-邮箱获取真实IP" class="headerlink" title="9.邮箱获取真实IP"></a>9.邮箱获取真实IP</h3><p>网站在发信的时候，会附带真实的IP地址 进入邮箱 查看源文件头部信息 选择from</p>
+<p><img src="https://pic.imgdb.cn/item/66eb7d00f21886ccc064daa6.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66eb7d1df21886ccc064ef00.png"></p>
+<p>是否真实 还需要 邮箱发送是否与网站同一个IP地址。</p>
+<h3 id="10-网站敏感文件获取真实IP"><a href="#10-网站敏感文件获取真实IP" class="headerlink" title="10.网站敏感文件获取真实IP"></a>10.网站敏感文件获取真实IP</h3><ul>
+<li><p>文件探针</p>
+</li>
+<li><p>phpinfo</p>
+</li>
+<li><p>网站源代码</p>
+</li>
+<li><p>信息泄露</p>
+</li>
+<li><p>GitHub信息泄露</p>
+</li>
+<li><p>js文件</p>
+</li>
+</ul>
+<h3 id="11-F5-LTM解码法"><a href="#11-F5-LTM解码法" class="headerlink" title="11.F5 LTM解码法"></a>11.F5 LTM解码法</h3><p>当服务器使用F5 LTM做负载均衡时，通过对set-cookie关键字的解码真实ip也可被获取，例如：Set-Cookie: BIGipServerpool_8.29_8030=<strong>487098378</strong>.24095.0000，先把第一小节的十进制数即487098378取出来，然后将其转为十六进制数1d 08 88 0a，接着将这个十六进制从后至前取四位数出来，也就是0a.88.08.1d，最后依次把他们转为十进制数10.136.8.29，也就是最后的真实ip。</p>
+<p>例子：</p>
+<p>rverpool-cas01=3255675072.20480.0000; path=/</p>
+<p>3255675072 转十六进制 c2 0d a8 c0 从右向左取 c0 a8 0d c2 转10进制 192 168 13 194（内网IP）</p>
+<h3 id="12-APP获取真实IP"><a href="#12-APP获取真实IP" class="headerlink" title="12.APP获取真实IP"></a>12.APP获取真实IP</h3><p>如果网站有app，使用Fiddler或BurpSuite抓取数据包 可能获取真实IP</p>
+<p>模拟器 mimi模拟器抓包 </p>
+<h3 id="13-配置不当获取真实IP"><a href="#13-配置不当获取真实IP" class="headerlink" title="13.配置不当获取真实IP"></a>13.配置不当获取真实IP</h3><h3 id="19-扫全网获取真实IP"><a href="#19-扫全网获取真实IP" class="headerlink" title="19.扫全网获取真实IP"></a>19.扫全网获取真实IP</h3><p><a target="_blank" rel="noopener" href="https://github.com/superfish9/hackcdn">https://github.com/superfish9/hackcdn</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/boy-hack/w8fuckcdn">https://github.com/boy-hack/w8fuckcdn</a></p>
 <h2 id="9-旁站和C段"><a href="#9-旁站和C段" class="headerlink" title="9.旁站和C段"></a>9.旁站和C段</h2><p>旁站往往存在业务功能站点，建议先收集已有IP的旁站，再探测C段，确认C段目标后，再在C段的基础上再收集一次旁站。</p>
 <p>旁站是和已知目标站点在同一服务器但不同端口的站点，通过以下方法搜索到旁站后，先访问一下确定是不是自己需要的站点信息。</p>
 <h3 id="1-在线c段-webscan-cc"><a href="#1-在线c段-webscan-cc" class="headerlink" title="1. 在线c段 webscan.cc"></a>1. 在线c段 webscan.cc</h3><p><a target="_blank" rel="noopener" href="https://c.webscan.cc/">https://c.webscan.cc/</a></p>
@@ -495,7 +568,53 @@
 <p>盘搜：<a target="_blank" rel="noopener" href="http://www.pansou.com/">http://www.pansou.com/</a></p>
 <h3 id="5-社工库"><a href="#5-社工库" class="headerlink" title="5.  社工库"></a>5.  社工库</h3><p>名字/常用id/邮箱/密码/电话 登录 网盘 网站 邮箱 找敏感信息</p>
 <p>tg机器人</p>
-<h2 id="15-网站头信息收集"><a href="#15-网站头信息收集" class="headerlink" title="15.网站头信息收集"></a>15.网站头信息收集</h2>
+<h3 id="6-JS敏感信息"><a href="#6-JS敏感信息" class="headerlink" title="6. JS敏感信息"></a>6. JS敏感信息</h3><p>1.网站的url连接写到js里面</p>
+<p>2.js的api接口 里面包含用户信息 比如 账号和密码</p>
+<h4 id="1-jsfinder"><a href="#1-jsfinder" class="headerlink" title="1.jsfinder"></a>1.jsfinder</h4><p>下载地址:<a target="_blank" rel="noopener" href="https://gitee.com/kn1fes/JSFinder">https://gitee.com/kn1fes/JSFinder</a></p>
+<p>python JSFinder.py -u <a target="_blank" rel="noopener" href="http://www.mi.com/">http://www.mi.com</a></p>
+<p>python JSFinder.py -u <a target="_blank" rel="noopener" href="http://www.mi.com/">http://www.mi.com</a> -d</p>
+<p>python JSFinder.py -u <a target="_blank" rel="noopener" href="http://www.mi.com/">http://www.mi.com</a> -d -ou mi_url.txt -os mi_subdomain.txt</p>
+<p>当你想获取更多信息的时候，可以使用-d进行深度爬取来获得更多内容，并使用命令 -ou, -os来指定URL和子域名所保存的文件名</p>
+<p>批量指定URL和JS链接来获取里面的URL。</p>
+<p>指定URL：</p>
+<p>python JSFinder.py -f text.txt</p>
+<p>指定JS：</p>
+<p>python JSFinder.py -f text.txt -j</p>
+<h4 id="2-Packer-Fuzzer"><a href="#2-Packer-Fuzzer" class="headerlink" title="2.Packer-Fuzzer"></a>2.Packer-Fuzzer</h4><p>寻找网站交互接口 授权key</p>
+<p>随着WEB前端打包工具的流行，您在日常渗透测试、安全服务中是否遇到越来越多以Webpack打包器为代表的网站？这类打包器会将整站的API和API参数打包在一起供Web集中调用，这也便于我们快速发现网站的功能和API清单，但往往这些打包器所生成的JS文件数量异常之多并且总JS代码量异常庞大（多达上万行），这给我们的手工测试带来了极大的不便，Packer Fuzzer软件应运而生。</p>
+<p>本工具支持自动模糊提取对应目标站点的API以及API对应的参数内容，并支持对：未授权访问、敏感信息泄露、CORS、SQL注入、水平越权、弱口令、任意文件上传七大漏洞进行模糊高效的快速检测。在扫描结束之后，本工具还支持自动生成扫描报告，您可以选择便于分析的HTML版本以及较为正规的doc、pdf、txt版本。</p>
+<h4 id="3-SecretFinder"><a href="#3-SecretFinder" class="headerlink" title="3.SecretFinder"></a>3.SecretFinder</h4><p>一款基于Python脚本的JavaScript敏感信息搜索工具</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/mucn/SecretFinder">https://gitee.com/mucn/SecretFinder</a></p>
+<p>python3 SecretFinder.py -i <a target="_blank" rel="noopener" href="https://www.moonsec.com/">https://www.moonsec.com/</a> -e</p>
+<h2 id="15-网站头信息收集"><a href="#15-网站头信息收集" class="headerlink" title="15.网站头信息收集"></a>15.网站头信息收集</h2><p>1、中间件 ：web服务【Web Servers】 apache iis7 iis7.5 iis8 nginx WebLogic tomcat</p>
+<p>2.、网站组件： js组件jquery、vue 页面的布局bootstrap</p>
+<p>通过浏览器获取</p>
+<img src="https://pic.imgdb.cn/item/66e9439ef21886ccc0da03ce.png" style="zoom:67%;">
+
+<h3 id="火狐的插件Wappalyzer"><a href="#火狐的插件Wappalyzer" class="headerlink" title="火狐的插件Wappalyzer"></a>火狐的插件Wappalyzer</h3><h3 id="curl命令查询头信息"><a href="#curl命令查询头信息" class="headerlink" title="curl命令查询头信息"></a>curl命令查询头信息</h3><p>curl <a target="_blank" rel="noopener" href="https://www.moonsec.com/">https://www.moonsec.com</a> -i</p>
+<h2 id="17-SSL-TLS证书查询"><a href="#17-SSL-TLS证书查询" class="headerlink" title="17. SSL/TLS证书查询"></a>17. SSL/TLS证书查询</h2><p>SSL/TLS证书通常包含域名、子域名和邮件地址等信息，结合证书中的信息，可以更快速地定位到目标资产，获取到更多目标资产的相关信息。</p>
+<p>查询网站:</p>
+<p>–<a target="_blank" rel="noopener" href="https://myssl.com/">https://myssl.com/</a></p>
+<p>–<a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh</a></p>
+<p><a target="_blank" rel="noopener" href="https://censys.io/">https://censys.io</a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.facebook.com/tools/ct/">https://developers.facebook.com/tools/ct/</a></p>
+<p><a target="_blank" rel="noopener" href="https://google.com/transparencyreport/https/ct/">https://google.com/transparencyreport/https/ct/</a></p>
+<p>SSL证书搜索引擎：</p>
+<p><a target="_blank" rel="noopener" href="https://crt.sh/?Identity=%25.moonsec.com">https://crt.sh/?Identity=%.moonsec.com</a></p>
+<h2 id="18-查找厂商ip段"><a href="#18-查找厂商ip段" class="headerlink" title="18.查找厂商ip段"></a>18.查找厂商ip段</h2><p><a target="_blank" rel="noopener" href="http://ipwhois.cnnic.net.cn/index.jsp">http://ipwhois.cnnic.net.cn/index.jsp</a></p>
+<h2 id="19-移动资产收集"><a href="#19-移动资产收集" class="headerlink" title="19.移动资产收集"></a>19.移动资产收集</h2><h3 id="1-微信小程序支付宝小程序"><a href="#1-微信小程序支付宝小程序" class="headerlink" title="1. 微信小程序支付宝小程序"></a>1. 微信小程序支付宝小程序</h3><p>现在很多企业都有小程序，可以关注企业的微信公众号或者支付宝小程序，或关注运营相关人员，查看朋友圈，获取小程序。</p>
+<p><a target="_blank" rel="noopener" href="https://weixin.sogou.com/weixin?type=1&amp;ie=utf8&amp;query=%E6%8B%BC%E5%A4%9A%E5%A4%9A">https://weixin.sogou.com/weixin?type=1&amp;ie=utf8&amp;query=%E6%8B%BC%E5%A4%9A%E5%A4%9A</a></p>
+<h3 id="2-app软件搜索"><a href="#2-app软件搜索" class="headerlink" title="2. app软件搜索"></a>2. app软件搜索</h3><p><a target="_blank" rel="noopener" href="https://www.qimai.cn/">https://www.qimai.cn/</a></p>
+<h2 id="20-社交信息收集"><a href="#20-社交信息收集" class="headerlink" title="20.社交信息收集"></a>20.社交信息收集</h2><p>QQ群 QQ手机号</p>
+<p>微信群 </p>
+<p>领英</p>
+<p><a target="_blank" rel="noopener" href="https://www.linkedin.com/">https://www.linkedin.com/</a></p>
+<p>脉脉招聘</p>
+<p>boss招聘</p>
+<h2 id="21-防护软件收集"><a href="#21-防护软件收集" class="headerlink" title="21.防护软件收集"></a>21.防护软件收集</h2><p>安全防护、云waf、硬件waf、主机防护软件、软waf</p>
+<h2 id="22-社工相关"><a href="#22-社工相关" class="headerlink" title="22.社工相关"></a>22.社工相关</h2><p>微信或者QQ 混入内部群，蹲点观测。加客服小姐姐发一些连接。进一步获取敏感信息。测试产品，购买服务器，拿去测试账号和密码。</p>
+<h2 id="23-物理接触"><a href="#23-物理接触" class="headerlink" title="23.物理接触"></a>23.物理接触</h2><p>到企业办公层连接wifi，连同内网。丢一些带有后门的usb 开放免费的wifi截取账号和密码。</p>
+
                 
             </div>
             <hr/>
@@ -730,13 +849,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2024/09/12/arl-deng-ta-an-zhuang/">
+                <a href="/2024/09/12/php-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ARL灯塔安装">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="PHP学习">
                         
-                        <span class="card-title">ARL灯塔安装</span>
+                        <span class="card-title">PHP学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -767,13 +886,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/09/11/nb-iot-ji-zhu/">
+                <a href="/2024/09/06/web-zhong-jian-jian-jie-xi-lou-dong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="NB-IoT技术">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Web中间件解析漏洞">
                         
-                        <span class="card-title">NB-IoT技术</span>
+                        <span class="card-title">Web中间件解析漏洞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -784,15 +903,27 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            HMX
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category">
+                                    安全
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web%E4%B8%AD%E9%97%B4%E4%BB%B6%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/">
+                        <span class="chip bg-color">Web中间件解析漏洞</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -927,7 +1058,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.2k</span>&nbsp;字
+                class="white-color">61k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ARL灯塔安装, xmhhmx的blog">
+    <meta name="keywords" content="App渗透, xmhhmx的blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ARL灯塔安装 | xmhhmx的blog</title>
+    <title>App渗透 | xmhhmx的blog</title>
     <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -183,12 +183,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ARL灯塔安装</h1>
+                    <h1 class="description center-align post-title">App渗透</h1>
                 </div>
             </div>
         </div>
@@ -222,21 +222,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-09-12
+                    2024-09-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-09-12
+                    2024-09-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    496
+                    56
                 </div>
                 
 
@@ -256,34 +256,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ARL灯塔安装"><a href="#ARL灯塔安装" class="headerlink" title="ARL灯塔安装"></a>ARL灯塔安装</h1><blockquote>
-<p>整合一下网上的大家安装的过程，并分享一下我的疯狂报错史</p>
-</blockquote>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p> kali系统安装docker和部署vulhub服务：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wuqixiufen2/article/details/135964089">kali系统安装docker</a></p>
-<p>ARL资产侦察灯塔系统安装和使用(含实用配置说明)：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wuqixiufen2/article/details/138444737">ARL资产侦察灯塔系统安装和使用-CSDN博客</a></p>
-<p>ARL项目地址：<a target="_blank" rel="noopener" href="https://github.com/Aabyss-Team/ARL?tab=readme-ov-file">Aabyss-Team/ARL: ARL官方仓库备份项目：ARL(Asset Reconnaissance Lighthouse)资产侦察灯塔系统旨在快速侦察与目标关联的互联网资产，构建基础资产信息库。 协助甲方安全团队或者渗透测试人员有效侦察和检索资产，发现存在的薄弱点和攻击面。 (github.com)</a></p>
-<h2 id="开动"><a href="#开动" class="headerlink" title="开动"></a>开动</h2><p>第一种方法：docker安装ARL</p>
-<p>第二种发法：源码安装ARL</p>
-<ol>
-<li>docker安装</li>
-</ol>
-<p>首先，我是准备用kalil来安装的，那么先安装docker</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#切换管理员权限</span><br><span class="line">sudo su</span><br><span class="line"></span><br><span class="line">#升级数据数据包</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line"></span><br><span class="line"># 如果安装docker，先移除</span><br><span class="line">sudo apt purge --autoremove docker.io</span><br><span class="line"></span><br><span class="line"># 安装docker</span><br><span class="line">sudo apt-get install docker.io</span><br><span class="line"></span><br><span class="line"># docker启动</span><br><span class="line">systemctl start docker </span><br><span class="line"># 或</span><br><span class="line">service docker start </span><br><span class="line"></span><br><span class="line"># 查看docker版本，查看成功表示安装成功了</span><br><span class="line">docker version</span><br><span class="line"></span><br><span class="line"># 安装docker-compose</span><br><span class="line">apt-get install docker-compose  </span><br><span class="line"></span><br><span class="line"># 修改docker镜像源</span><br><span class="line"># 创建或打开daemon.json</span><br><span class="line">vim /etc/docker/daemon.json</span><br><span class="line"></span><br><span class="line"># 按I键进入编辑状态，退出按Esc，保存按【:wq!】，退出不保存按【:q!】。</span><br><span class="line"></span><br><span class="line"># daemon.json文件加入以下内容，如果已经存在文件，有配置就不需要再添加</span><br><span class="line">{</span><br><span class="line">    "registry-mirrors": ["http://mirrors.aliyun.com"]</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"># 重启docker守护进程让修改⽣效</span><br><span class="line">systemctl restart docker</span><br><span class="line"></span><br><span class="line"># 查看docker的镜像信息</span><br><span class="line">docker info</span><br><span class="line"></span><br><span class="line"># 创建一个新目录</span><br><span class="line">mkdir docker_arl</span><br><span class="line"></span><br><span class="line"># 切换到目录docker_arl</span><br><span class="line">cd docker_arl</span><br><span class="line"></span><br><span class="line"># 下载镜像包</span><br><span class="line">wget https://github.com/TophantTechnology/ARL/releases/download/v2.6.2/docker.zip</span><br><span class="line"></span><br><span class="line"># 解压压缩包</span><br><span class="line">unzip docker.zip</span><br><span class="line"></span><br><span class="line"># 删除压缩包</span><br><span class="line">rm -rf docker.zip</span><br><span class="line"></span><br><span class="line"># 创建存储卷</span><br><span class="line">docker volume create arl_db</span><br><span class="line"></span><br><span class="line"># 启动服务，</span><br><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"># 查看所有正在运行容器</span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line"># 查询当前目录下的服务是否启动</span><br><span class="line">docker-compose ps</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h1 id="App渗透"><a href="#App渗透" class="headerlink" title="App渗透"></a>App渗透</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>app 渗透主要方法是抓包和封包。解密token 解密 sign 值然后加密数据包提交测试。App有前端和后端，前端是 app，后端多数是管理后台。</p>
 
                 
             </div>
@@ -310,7 +283,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/09/12/arl-deng-ta-an-zhuang/">http://example.com/2024/09/12/arl-deng-ta-an-zhuang/</a>
+                    <a href="http://example.com/2024/09/27/app-shen-tou/">http://example.com/2024/09/27/app-shen-tou/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -519,13 +492,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2024/09/12/php-xue-xi/">
+                <a href="/2024/09/27/udf-ti-quan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="PHP学习">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="UDF提权">
                         
-                        <span class="card-title">PHP学习</span>
+                        <span class="card-title">UDF提权</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -536,7 +509,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-27
                         </span>
                         <span class="publish-author">
                             
@@ -556,13 +529,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/09/11/xin-xi-shou-ji/">
+                <a href="/2024/09/19/fan-dan-shell-fang-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="信息收集">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="反弹Shell方法">
                         
-                        <span class="card-title">信息收集</span>
+                        <span class="card-title">反弹Shell方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -573,7 +546,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-19
                             </span>
                         <span class="publish-author">
                             
@@ -716,7 +689,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.2k</span>&nbsp;字
+                class="white-color">61k</span>&nbsp;字
             
             
             
