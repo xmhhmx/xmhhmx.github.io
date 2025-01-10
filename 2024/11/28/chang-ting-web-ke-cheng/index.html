@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="samba服务器, xmhhmx的blog">
+    <meta name="keywords" content="长亭Web课程, xmhhmx的blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>samba服务器 | xmhhmx的blog</title>
+    <title>长亭Web课程 | xmhhmx的blog</title>
     <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -183,12 +183,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">samba服务器</h1>
+                    <h1 class="description center-align post-title">长亭Web课程</h1>
                 </div>
             </div>
         </div>
@@ -302,25 +302,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                <span class="chip bg-color">samba服务器</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Linux-and-Windows/" class="post-category">
-                                Linux and Windows
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -329,21 +316,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-07-29
+                    2024-11-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-07-29
+                    2024-12-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.5k
+                    711
                 </div>
                 
 
@@ -363,82 +350,118 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="samba服务器"><a href="#samba服务器" class="headerlink" title="samba服务器"></a>samba服务器</h1><blockquote>
-<p>Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。</p>
-</blockquote>
-<h2 id="Linux中配置samba服务器"><a href="#Linux中配置samba服务器" class="headerlink" title="Linux中配置samba服务器"></a>Linux中配置samba服务器</h2><h3 id="配置要求"><a href="#配置要求" class="headerlink" title="配置要求"></a>配置要求</h3><p>（1）samba服务器目录</p>
-<p>企业数据目录：/companydata</p>
-<p>公共目录：/companydata/public</p>
-<p>销售部目录：/companydata/sales</p>
-<p>技术部：/companydata/tech</p>
-<p>（2）企业员工情况</p>
-<p>总经理：zjl</p>
-<p>销售部：销售部经理 xsjl 员工 xsy1、员工 xsy2</p>
-<p>技术部：技术部经理 jsjl、员工 jsy1、员工 jsy2</p>
-<p>（3）samba服务要求</p>
-<p>搭建samba文件服务器，建立公共共享目录，允许所有人访问，权限为只读，为销售部和技术部分别建立单独的目录，只可以总经理和相应部门员工访问，并且公司员工禁止访问非本部门的共享目录。</p>
-<h3 id="配置分析"><a href="#配置分析" class="headerlink" title="配置分析"></a>配置分析</h3><p>​        对于建立公共目录public字段就可以实现匿名访问，员工只能访问本部门的共享目录，禁止访问非本部门的共享目录，可以通过设置目录共享字段“browseable = no”及字段“valid users”来实现其隐藏功能和相应的访问权限。这样设置不能很好得解决同一目录多种需求的权限设置，所以需要建立独立配置文件，为每个部门建立一个组后并为每个组建立配置文件来实现隔离用户权限会比较灵活。</p>
-<h3 id="配置实施"><a href="#配置实施" class="headerlink" title="配置实施"></a>配置实施</h3><h4 id="安装samba并启动samba服务"><a href="#安装samba并启动samba服务" class="headerlink" title="安装samba并启动samba服务"></a>安装samba并启动samba服务</h4><p># yum install -y samba samba-client </p>
-<p># systemctl start smb.service nmb.service</p>
-<h4 id="修改防火墙设置"><a href="#修改防火墙设置" class="headerlink" title="修改防火墙设置"></a>修改防火墙设置</h4><p>关闭selinux安全机制：setenforce 0 </p>
-<p>关闭防火墙：systemctl stop firewalld</p>
-<h4 id="建立各部门专用共享目录"><a href="#建立各部门专用共享目录" class="headerlink" title="建立各部门专用共享目录"></a>建立各部门专用共享目录</h4><p>#mkdir -p /companydata/public /companydata/xsb /company/jsb</p>
-<h4 id="添加用户和组"><a href="#添加用户和组" class="headerlink" title="添加用户和组"></a>添加用户和组</h4><p># groupadd xsb		//创建销售部</p>
-<p># groupadd jsb 	    //创建技术部</p>
-<p># useradd zjl				//创建总经理</p>
-<p># useradd  xsjl（xsy1/xsy2） //创建销售经理，销售成员1、2</p>
-<p># useradd  jsjl （jsy1/jsy2）	//创建技术经理，技术成员1、2</p>
-<p># gpasswd -M xsjl,xsy1,xsy2 xsb	//将销售经理，销售成员1、2加入销售部</p>
-<p># gpasswd -M jsjl,jsy1,jsy2 jsb		//技术部同理</p>
-<h4 id="设置samba用户"><a href="#设置samba用户" class="headerlink" title="设置samba用户"></a>设置samba用户</h4><p>使用smbpasswd命令添加samba用户。</p>
-<p># smbpasswd -a zjl</p>
-<p>New SMB password:        输入samba用户密码</p>
-<p>Retype new SMB password:    确认samba用户密码</p>
-<p>Added user zjl.</p>
-<p># smbpasswd -a xsjl</p>
-<p># smbpasswd -a xsy1</p>
-<p># smbpasswd -a xsy2</p>
-<p># smbpasswd -a jsjl</p>
-<p># smbpasswd -a jsy1</p>
-<p># smbpasswd -a jsy2</p>
-<p><strong>查看samba用户：pdbedit -L</strong></p>
-<p><strong>删除samba用户：smbpasswd -x xxx</strong></p>
-<p><strong>修改密码：smbpasswd 用户名</strong>       </p>
-<h4 id="配置smb-conf文件"><a href="#配置smb-conf文件" class="headerlink" title="配置smb.conf文件"></a>配置smb.conf文件</h4><p># vim /etc/samba/smb.conf  具体配置如下：<br>[public]<br>        comment = public<br>        path = /companydata/public<br>        <strong>public = yes</strong>				//是否公开<br>[xsb]<br>        comment = xsb			//注释<br>        path = /companydata/sales<br>        <strong>guest ok = no</strong>				//是否允许用户匿名访问<br>        <strong>writable = yes</strong>			  //是否可写<br>        <strong>valid users = @xsb,zjl</strong>			//允许指定用户访问（@代表一个组）<br>[jsb]<br>        comment=jsb<br>        path = /companydata/tech<br>        <strong>guest ok = no</strong><br>        <strong>writable = yes</strong><br>        <strong>valid users = @jsb,zjl</strong></p>
-<p>配置完成之后，重启服务</p>
-<p><strong># systemctl start smb.service nmb.service（或smb nmb）</strong></p>
-<h4 id="配置文件权限"><a href="#配置文件权限" class="headerlink" title="配置文件权限"></a>配置文件权限</h4><p>（1）公共目录：/companydata/public，允许所有用户读取文件但不能修改，权限保持默认。</p>
-<p>（2）销售部目录：/companydata/xsb和技术部目录：/companydata/tjsb只允许本部门   用户写入数据，但不能删除其他用户的数据，不允其他部门访问，但总经理可以查看   不能修改，权限设置如下：</p>
-<p>#chown xsbjl:xsb /companydata/xsb		//设置文件夹的所有者以及所有组</p>
-<p>#chown jsbjl:jsb /companydata/jsb</p>
-<p>#setfacl -m u:zjl:rwx /companydata/sales	//给总经理一个ACL权限，再不加入部门组的情况下，访问部门文件</p>
-<p>#setfacl -m u:zjl:rwx /companydata/tech</p>
-<h4 id="客户端进行访问测试"><a href="#客户端进行访问测试" class="headerlink" title="客户端进行访问测试"></a>客户端进行访问测试</h4><p>在访问测试之前应该注意权限的设置,影响权限的因素有：<u><strong>共享权限，文件本身的权限，selinux安全机制</strong></u><br>    Windows客户端：\\192.168.10.129\public<br>    Linux客户端：首先安装samba-client客户端工具</p>
-<p># smbclient -L 192.168.149.192     以服务器的root用户查看共享文件有哪些</p>
-<p># smbclient -U xsjl -L 192.168.149.192    以samba用户查看服务器的共享文件有哪些</p>
-<p># smbclient -U zjl //192.168.149.192/public    访问服务器共享文件</p>
-<p>  smb: &gt;<br>  常用命令：ls    mkdir    put   get   rm </p>
-<h2 id="Windows中配置samba服务器"><a href="#Windows中配置samba服务器" class="headerlink" title="Windows中配置samba服务器"></a>Windows中配置samba服务器</h2><p>案例2：Windows作为samba服务器（前提是你的用户必须是英文的）</p>
-<p>（1）在Windows系统中设置一个共享目录：D:\sharefiles ,在属性中找到共享，并共享文件夹<br>（2）在Linux下安装 samba-client 客户端 </p>
-<p>​	# yum install samba-client</p>
-<p>（3）安装 cifs-utils 软件包 </p>
-<p>​	# yum install cifs-utils</p>
-<p>（4）在 Linux 下创建一个挂载点 </p>
-<p>​	# mkdir /mnt/Windows</p>
-<p>（5）挂载 Windows 上的共享目录 D:\sharefiles 到 Linux 下的/mnt/Windows 目录下 </p>
-<p>​	# mount -t cifs -o username=HHHXXX //192.168.0.3/sharefiles /mnt/Windows      Enter password: ********<br>​	192.168.0.3为windows的ip，并输入windows对应用户的登陆密码</p>
-<p>（6）如果挂载成功，则可以进入/mnt/Windows 下进行相应操作。<br>（7）在Linux下/etc/fstab 文件中，加入该共享目录的挂载信息 （永久挂载）<br>       192.168.0.3/sharefiles	 /mnt/Windows	 cifs	 username=HHHXXX,password=**** 	0		 0<br>（8）到此为止，Windows 上的共享目录//192.168.0.3/sharefiles就被成功挂载到了 Linux上面了，并且 Linux 重启后，会自动挂载该目录到/mnt/Windows 目录下</p>
-<h2 id="在Windows系统使用samba切换用户解决办法"><a href="#在Windows系统使用samba切换用户解决办法" class="headerlink" title="在Windows系统使用samba切换用户解决办法"></a>在Windows系统使用samba切换用户解决办法</h2><blockquote>
-<p>samba是不允许一台电脑同时连接两个Linux用户的共享文件夹的</p>
-<p>因此需要先断开之前用户的连接，然后再访问其他用户的共享文件夹</p>
-</blockquote>
-<p>断开方法如下：</p>
-<p>1、win+R输入cmd打开命令行工具</p>
-<p>2、输入net use查看当前的连接</p>
-<p>3、可以看到一条正在链接的，地址为对应远程的内容</p>
-<p>输入指令进行删除连接</p>
-<p>#net use \\ip\IPC$ /delete</p>
-
+                <h1 id="长亭Web课程"><a href="#长亭Web课程" class="headerlink" title="长亭Web课程"></a>长亭Web课程</h1><h2 id="Web应用漏洞原理与挖掘"><a href="#Web应用漏洞原理与挖掘" class="headerlink" title="Web应用漏洞原理与挖掘"></a>Web应用漏洞原理与挖掘</h2><h3 id="第1章-Web基础"><a href="#第1章-Web基础" class="headerlink" title="第1章 Web基础"></a>第1章 Web基础</h3><h4 id="1-1-Web概述"><a href="#1-1-Web概述" class="headerlink" title="1.1 Web概述"></a>1.1 Web概述</h4><h5 id="Web应用"><a href="#Web应用" class="headerlink" title="Web应用"></a>Web应用</h5><ul>
+<li>Web应用是多个Web资源的集合，是供浏览器访问的程序，也称为Web应用程序</li>
+<li>一个Web应用由多个静态Web资源和动态Web资源组成。<ul>
+<li>静态Web资源<ul>
+<li>是指静态HTML页面的集合</li>
+<li>页面中浏览的数据始终是不变的</li>
+<li>无法实现和用户的交互</li>
+</ul>
+</li>
+<li>动态Web资源<ul>
+<li>页面中的数据是由服务器程序产生的</li>
+<li>动态Web具有交互性</li>
+<li>Web的页面的内容可以动态更新</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Web应用举例</li>
+</ol>
+<ul>
+<li>Webmail(网页邮件)</li>
+<li>Online shopping(在线购物)</li>
+<li>Wikis (维基百科)</li>
+<li>Instant messaging(即时通信)</li>
+<li>Internet forum(网络论坛、贴吧)</li>
+<li>Blog(博客)</li>
+<li>Web search engine(搜索引擎)</li>
+<li>Browse game(网页游戏)</li>
+<li>Webcam(网络摄像)</li>
+</ul>
+<ol start="3">
+<li>Web五大要素</li>
+</ol>
+<ul>
+<li>URL</li>
+<li>HTTP</li>
+<li>HTML(及XML)</li>
+<li>Web浏览器</li>
+<li>Web服务器</li>
+</ul>
+<ol start="4">
+<li>常见Web服务器</li>
+</ol>
+<ul>
+<li>Microsoft llS</li>
+<li>IBM WebSphere</li>
+<li>WebLogic</li>
+<li>Apache：提供html的服务</li>
+<li>Tomcat：提供JSP、Servlet的服务</li>
+<li>Nginx</li>
+</ul>
+<ol start="5">
+<li>Web工作原理</li>
+</ol>
+<p><img src="https://www.helloimg.com/i/2024/12/18/67628d88b2dfd.png"></p>
+<h5 id="HTTP流程概述"><a href="#HTTP流程概述" class="headerlink" title="HTTP流程概述"></a>HTTP流程概述</h5><ol>
+<li>HTTP请求流程</li>
+</ol>
+<p><img src="https://www.helloimg.com/i/2024/12/18/67628e2373206.png"></p>
+<ol start="2">
+<li>解析URL</li>
+</ol>
+<ul>
+<li>输入网址后，浏览器会效验网址的合法性</li>
+<li>如果网址不合法，会传给默认的搜索引擎</li>
+<li>例如:<a target="_blank" rel="noopener" href="http://user:pass@linkedin.com/a/b?a=b#part">http://user:pass@linkedin.com:80/a/b?a=b#part</a></li>
+</ul>
+<p><img src="https://www.helloimg.com/i/2024/12/18/67628ec3272ee.png"></p>
+<h5 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h5><p><img src="https://www.helloimg.com/i/2024/12/18/67629049d0639.png"></p>
+<ol>
+<li>查询浏览器DNS缓存</li>
+</ol>
+<p>chrome://net-internals/#dns</p>
+<p><img src="https://www.helloimg.com/i/2024/12/18/676290ee07ef6.png"></p>
+<ol start="2">
+<li>查询操作系统缓存</li>
+</ol>
+<p><img src="https://www.helloimg.com/i/2024/12/18/6762915113a17.png"></p>
+<ol start="3">
+<li>读取hosts文件</li>
+</ol>
+<p><img src="https://www.helloimg.com/i/2024/12/18/676291d45c53f.png"></p>
+<ol start="4">
+<li>向域名服务器请求解析</li>
+</ol>
+<ul>
+<li>向本地配置的DNS服务器发送域名解析请求，通过UDP协议向DNS的53端口发起请求</li>
+<li>先向本地DNS服务器进行递归查询，若查不到再向根服务器进行迭代查询</li>
+</ul>
+<p><img src="https://www.helloimg.com/i/2024/12/18/67629331c8c0a.png"></p>
+<h5 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h5><ol>
+<li>TCP连接</li>
+</ol>
+<p><img src="https://www.helloimg.com/i/2024/12/18/676293e213058.png"></p>
+<ol start="2">
+<li>负载均衡</li>
+</ol>
+<ul>
+<li>接收到HTTP请求之后，就到服务器的负载均衡工作了</li>
+<li>负载均衡(Load Balance)，意思是将负载(工作任务，访问请求)进行平衡、分摊到多个操作单元(服务器，组件)上进行执行。是解决高性能，单点故障(高可用)，扩展性(水平伸缩)的终极解决方案。</li>
+</ul>
+<ol start="3">
+<li>响应状态码</li>
+</ol>
+<p><img src="https://www.helloimg.com/i/2024/12/18/67629491a1cd8.png"></p>
+<ol start="4">
+<li>浏览器对页面进行渲染</li>
+</ol>
+<p>（1）计算CSS样式<br>（2）构建Render Tree<br>（3）Layout-定位坐标和大小，各种position,overflow, z-index属性……<br>（4）渲染引擎绘画页面</p>
+<h4 id="1-2-服务器"><a href="#1-2-服务器" class="headerlink" title="1.2 服务器"></a>1.2 服务器</h4><h5 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h5><h5 id="Apache介绍"><a href="#Apache介绍" class="headerlink" title="Apache介绍"></a>Apache介绍</h5><h5 id="Nginx介绍"><a href="#Nginx介绍" class="headerlink" title="Nginx介绍"></a>Nginx介绍</h5><h5 id="IIS介绍"><a href="#IIS介绍" class="headerlink" title="IIS介绍"></a>IIS介绍</h5><h4 id="1-3-中间件"><a href="#1-3-中间件" class="headerlink" title="1.3 中间件"></a>1.3 中间件</h4><h4 id="1-4-数据存储"><a href="#1-4-数据存储" class="headerlink" title="1.4 数据存储"></a>1.4 数据存储</h4><h4 id="1-5-通讯协议"><a href="#1-5-通讯协议" class="headerlink" title="1.5 通讯协议"></a>1.5 通讯协议</h4><h3 id="第2章-开发基础"><a href="#第2章-开发基础" class="headerlink" title="第2章 开发基础"></a>第2章 开发基础</h3><h3 id="第3章-工具使用"><a href="#第3章-工具使用" class="headerlink" title="第3章 工具使用"></a>第3章 工具使用</h3><h3 id="第4章-SQL注入"><a href="#第4章-SQL注入" class="headerlink" title="第4章 SQL注入"></a>第4章 SQL注入</h3><h3 id="第5章-XSS"><a href="#第5章-XSS" class="headerlink" title="第5章 XSS"></a>第5章 XSS</h3><h3 id="第6章-CSRF与SSRF"><a href="#第6章-CSRF与SSRF" class="headerlink" title="第6章 CSRF与SSRF"></a>第6章 CSRF与SSRF</h3><h3 id="第7章-XML注入"><a href="#第7章-XML注入" class="headerlink" title="第7章 XML注入"></a>第7章 XML注入</h3><h3 id="第8章-文件类漏洞"><a href="#第8章-文件类漏洞" class="headerlink" title="第8章 文件类漏洞"></a>第8章 文件类漏洞</h3><h3 id="第9章-命令-代码执行与反序列化"><a href="#第9章-命令-代码执行与反序列化" class="headerlink" title="第9章 命令/代码执行与反序列化"></a>第9章 命令/代码执行与反序列化</h3><h3 id="第10章-URL重定向与界面操作劫持"><a href="#第10章-URL重定向与界面操作劫持" class="headerlink" title="第10章 URL重定向与界面操作劫持"></a>第10章 URL重定向与界面操作劫持</h3><h3 id="第11章-未授权访问与信息泄露"><a href="#第11章-未授权访问与信息泄露" class="headerlink" title="第11章 未授权访问与信息泄露"></a>第11章 未授权访问与信息泄露</h3><h3 id="第12章-暴力破解与DOS"><a href="#第12章-暴力破解与DOS" class="headerlink" title="第12章 暴力破解与DOS"></a>第12章 暴力破解与DOS</h3><h3 id="第13章-其他漏洞"><a href="#第13章-其他漏洞" class="headerlink" title="第13章 其他漏洞"></a>第13章 其他漏洞</h3><h3 id="第14章-业务逻辑漏洞挖掘"><a href="#第14章-业务逻辑漏洞挖掘" class="headerlink" title="第14章 业务逻辑漏洞挖掘"></a>第14章 业务逻辑漏洞挖掘</h3>
                 
             </div>
             <hr/>
@@ -454,7 +477,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">HMX and XMH</a>
+                    <a href="/about" rel="external nofollow noreferrer">XMH</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -464,7 +487,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/07/29/samba-fu-wu-qi/">http://example.com/2024/07/29/samba-fu-wu-qi/</a>
+                    <a href="http://example.com/2024/11/28/chang-ting-web-ke-cheng/">http://example.com/2024/11/28/chang-ting-web-ke-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -477,7 +500,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint polocy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">HMX and XMH</a>
+                    <a href="/about" target="_blank">XMH</a>
                     !
                 </span>
             </div>
@@ -501,11 +524,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                    <span class="chip bg-color">samba服务器</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -673,66 +692,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/07/31/dns-fu-wu-qi-pei-zhi/">
+                <a href="/2024/11/28/chang-ting-web-ke-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="DNS服务器配置">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="长亭Web课程">
                         
-                        <span class="card-title">DNS服务器配置</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-31
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">DNS服务器配置</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/07/23/ci-pan-pei-e/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="磁盘配额">
-                        
-                        <span class="card-title">磁盘配额</span>
+                        <span class="card-title">长亭Web课程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -743,27 +714,53 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-28
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
                             
                         </span>
                     </div>
                 </div>
+
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D/">
-                        <span class="chip bg-color">磁盘配额</span>
-                    </a>
-                    
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/10/25/wei-pai-gong-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="委派攻击">
+                        
+                        <span class="card-title">委派攻击</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
