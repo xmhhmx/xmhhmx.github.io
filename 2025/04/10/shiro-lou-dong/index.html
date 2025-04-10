@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.2.0">
+<meta name="generator" content="Hexo 7.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+</head>
 
 
 
@@ -198,22 +198,129 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/">
+                                <span class="chip bg-color">JAVA框架漏洞</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                JAVA框架漏洞
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -222,7 +329,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-09-13
+                    2025-04-10
                 </div>
                 
 
@@ -236,7 +343,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.2k
+                    4k
                 </div>
                 
 
@@ -307,15 +414,14 @@
 <li><strong>漏洞原理</strong>：与Shiro-550类似，但加密方式改为了<strong>AES-CBC</strong>加密，且密钥是系统随机生成的。然而，这种加密模式可以通过Padding Oracle Attack（填充攻击）来绕过。攻击者可以使用有效的RememberMe Cookie作为前缀，然后精心<u>构造恶意的</u><u>RememberMe Cookie来实施反序列化攻击</u>。</li>
 <li><strong>影响范围</strong>：Apache Shiro&lt;1.4.2</li>
 </ul>
-<blockquote>
-<p><strong>AES 的 CBC 模式</strong></p>
+<h5 id="AES-的-CBC-模式"><a href="#AES-的-CBC-模式" class="headerlink" title="AES 的 CBC 模式"></a><strong>AES 的 CBC 模式</strong></h5><blockquote>
 <p>​		AES加密算法全称是AdvancedEncryptionStandard（高级加密标准)，是最为常见的对称加密算法之一。AES的区块长度固定为128位，密钥长度则可以是128，192或256位。分组密码在加密时明文分组的长度是固定的，而使用中待加密消息的数据量是不定的，数据格式可能是多种多样的。为了能在各种应用场合安全地使用分组密码，通常对不同的使用目的运用不同的工作模式。AES有五种工作模式：</p>
 <p>电码本模式(Electronic Codebook Book，ECB)</p>
 <p>密码分组链接模式(Cipher Block Chaining，CBC)</p>
 <p>计算器模式(Counter,CTR) </p>
 <p>密码反馈模式(Cipher FeedBack，CFB)</p>
 <p>输出反馈模式(Output FeedBack，OFB)。</p>
-<p>而在Shiro721中使用的就是<strong>CBC</strong>模式。</p>
+<p><u>而在Shiro721中使用的就是<strong>CBC</strong>模式</u>。</p>
 <p>​		密码分组链接模式（CipherBlockChaining，CBC)，其中”分组“是指加密和解密过程都是以分组进行的。每一个分组大小为128bits(16字节)，如果明文的长度不是16字节的整数倍，需要对最后一个分组进行填充(padding)，使得最后一个分组长度为16字节。”链接”是指密文分组像链条一样相互连接在一起。</p>
 <p>**<u>加密过程</u>**：（串行运算，需要上一个组的密文，才能进行下一组的异或）</p>
 <p><img src="https://pic1.imgdb.cn/item/67f7857988c538a9b5c87d6c.png"></p>
@@ -329,13 +435,15 @@
 <li>将下一个密文分组使用Key进行解密得到一个新的中间值，而再将上一个密文分组与该中间值进行异或即可得到后续的一个明文分组。重复这个过程直到所有密文分组被解密。</li>
 <li>最后将所有明文分组组合在一起即可获取到完整的明文(Plaintext)。</li>
 </ol>
-<p><strong><u>Padding Oracle 攻击原理</u></strong></p>
+</blockquote>
+<h5 id="Padding-Oracle-攻击原理"><a href="#Padding-Oracle-攻击原理" class="headerlink" title="Padding Oracle 攻击原理"></a><strong>Padding Oracle 攻击原理</strong></h5><blockquote>
 <p>​		Padding的含义是“填充”，在解密时，如果算法发现解密后得到的结果，它的填充方式不符合规则，那么表示输入数据有问题，对于解密的类库来说，往往便会抛出一个异常，提示Padding不正确。Oracle在这里便是“提示”的意思，和甲骨文公司没有任何关系。</p>
 <p><strong>分组填充方式(PKCS5Padding,PKCS7Padding)</strong></p>
 <p>​		因为分组加密方式只能使用一个固定大小的密钥加密相同字节长度的明文（一般长度为8个字节或16个字节），所以需要将加密的明文按照密钥大小拆分为多块（所以也叫块加密），如果拆分后最后一个块明文长度不够，就需要填充字节来补齐长度。按照常见的PKCS#5或PKCS#7公钥加密标准，最后需要填充几个字节，那么每个填充字节的值就用所需填充的字节数，若最后一个明文刚好符合固定长度，就需填充一个完整分组。<br>通过下图我们可以更好的进行理解：</p>
 <p><img src="https://pic1.imgdb.cn/item/67f799d488c538a9b5c89ff4.png"></p>
 <p>​		我们假设每个分组8个字节，当最后一个分组为8个字节长度时，就再填充8个字节，且每个字节的值都为16进制的“8”，即0x08。若最后一个分组为7个字节，则需要填充1个字节，该字节的值为0x01。以此类推，6个字节就需填充两个字节，都为0x02。<br>​		那么它如何判断填充是否错误？当将密文解密后，其会检查明文最后的一个字节，若发现其为0x02，则继续检查倒数第二个字节是否为0x02，若倒数第二个字节不是0x02，则判断出填充错误。其判断方式就是通过去读明文最后一个字节填充的字节，根据该字节的值，继续向前检查。</p>
-<p><strong>Padding Oracle</strong></p>
+</blockquote>
+<h5 id="Padding-Oracle"><a href="#Padding-Oracle" class="headerlink" title="Padding Oracle"></a><strong>Padding Oracle</strong></h5><blockquote>
 <p>​		当我们知晓IV与密文，输入点可控（能够任意输入IV与任意密文交由解密器解密），且当密文解密出错时，能够判断出是否是由于填充错误造成的，就能在不知道对称密钥的情况下，通过构造明文分组中不同的填充值，再利用填充时的错误回显或是时间延迟，进行爆破，推测出密文解密后的中间值，进而可以推测出原始明文，或是利用中间值结合特定的V构造出想要的明文。而这个利用错误回显或是时间延迟做判断的过程就称为oracle。<br>​		接下分析该攻击的具体实现流程，前面我们知道了分组的填充方式以及如何判断填充是否错误，这里我们可以从第一个分组开始进行分析。</p>
 <ul>
 <li>关键词说明：<ul>
@@ -346,8 +454,24 @@
 </ul>
 </li>
 </ul>
-<p>​        采用CBC模式进行解密时，其会将密文分组解密为一个中间值m，而后再将m与IV进行异或得到最后的明文分组。当我们可以控制输入的IV与密文时，我们可以先只输入第一个密文分组，而将其解密后得到的就是完整的明文，是没有填充字节的，这必定会触发填充错误。于是我们可以尝试构造一个G_IV，使得中间值m与G_IV进行异或后得到的明文的最后一个字节Plaintext[-1]为0x01，这样就不会出现填充错误。<br>​        那么如何找到这个G_IV呢？我们可以将G_V的前面7个字节全部设置为0（这样不会改变明文中的前七个字节），而最后一个字节G_IV[-1]从0x00开始到0xFF（一个字节为8位，最多为256种可能）进行尝试，当解出明文的最后一个字节不为0x01就会发生填充错误，由此进行判断，最后我们必然找的到一个GIV[-1]使得”G_IV[-1]xorm[-1]=0x01”。</p>
+<p>​        采用CBC模式进行解密时，其会将密文分组解密为一个中间值m，而后再将m与IV进行异或得到最后的明文分组。当我们可以控制输入的IV与密文时，<u>我们可以先只输入第一个密文分组，而将其解密后得到的就是完整的明文，是没有填充字节的，这必定会触发填充错误。于是我们可以尝试构造一个G_IV，使得中间值m与G_IV进行异或后得到的明文的最后一个字节Plaintext[-1]为0x01，这样就不会出现填充错误</u>。<br>​        那么如何找到这个G_IV呢？我们可以将G_V的前面7个字节全部设置为0（这样不会改变明文中的前七个字节），而最后一个字节G_IV[-1]从0x00开始到0xFF（一个字节为8位，最多为256种可能）进行尝试，当解出明文的最后一个字节不为0x01就会发生填充错误，由此进行判断，最后我们必然找的到一个G_IV[-1]使得”G_IV[-1] xor m[-1]=0x01”。</p>
+<p>​		找到这个G_IV[-1]后，我们可以有以下推论：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G_IV[-1] xor m[-1]=0x01				#找到一个G_IV[-1]与m[-1]异或为0x01</span><br><span class="line">G_IV[-1] xor 0x01=m[-1]				#G_IV[-1]与0x01异或得到解密后的m[-1]</span><br><span class="line">IV[-1] xor m[-1]=Plaintext[-1]		#将m[-1]与原本的Iv[-1]异或就会得到明文的最后一个字节</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​		知道了m[-1]，这个同理我们可以继续构造G_IV[-1] xor m[-1]=0x02，G_IV[-2] xor m[-2]=0x02。因为m[-1]知道所以很容易得到G_IV[-1]，而后我们就可以将G_IV[-2]从0x00开始到0xFF，必定会找到GIV[-2]使得“GIV[-2] xor m[-2]=0x02”，此时不会发生填充错误。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G_Iv[-2] xor m[-2] = 0x02</span><br><span class="line">G_IV[-2] xor Ox02 = m[-2]</span><br><span class="line">Iv[-2] xor m[-2] = Plaintext[-2]</span><br></pre></td></tr></tbody></table></figure>
+
+
+<p>​		于是可以继续构造G_IV[-3]……G_IV[-8]，我们就可以得到该明文分组的所有字节。接下来我们就可以在后续的分组中使用该方法来获取所有明文分组，但是后续的明文分组是使用上一个密文分组来进行异或，所以我们需要修改的是前一个密文分组。</p>
+<p><strong>注意</strong>：当对最后一个密文分组的中间值进行猜解的时候，会遇到明文本身最后一个字节为填充字节，如0x02，可能会得出不同的两个结果。我们将最后一个字节构造成0x01时，无论前面字节是什么都不会触发填充错误，而将最后一个字节构造成0x02同样也不会报错。这时我们可以在最后一个填充字节判断成功的情况下，构造倒数第二字节为任意值都不出现填充错误，则明文最后一个字节就构造成了0x01。</p>
 </blockquote>
+<h5 id="CBC翻转攻击"><a href="#CBC翻转攻击" class="headerlink" title="CBC翻转攻击"></a>CBC翻转攻击</h5><blockquote>
+<pre><code>     我们了解了如何猜解出中间值，并进一步通过中间值来得到明文。当我们知道其解密后的中间值，就可以构造一个ⅣV使得二者异或得到的明文为我们想要的明文，从而完成攻击。
+</code></pre>
+<p><img src="https://pic1.imgdb.cn/item/67f7def488c538a9b5c91791.png"></p>
+<p>​		具体攻击细节我们通过上图来了解，如上图所示，我们需要修改明文分组3的内容，就可以修改密文分组2的内容，让其与中间值3异或运算得到我们想要的结果。但是修改了密文分组2会让其解密后的中间值乱码（损坏），最后得到的明文会是乱码，所以我们需要通过前面的填充攻击的方式猜解出损坏的中间值，再通过修改密文分组来还原该明文分组。同理密文分组1对应的明文分组1也可通过修改IV来还原，最终我们就修改了明文分组3，而且其他明文不变。使用这种方法我们也可以修改整个明文以及添加新的明文。</p>
+</blockquote>
+<p>复现:</p>
 <h3 id="漏洞的危害"><a href="#漏洞的危害" class="headerlink" title="漏洞的危害"></a>漏洞的危害</h3><p>Shiro反序列化漏洞的危害主要包括远程代码执行（RCE）、获取系统权限、敏感信息泄露等。攻击者可以利用这些漏洞来执行恶意代码，控制受影响的系统，进而进行更严重的攻击行为。</p>
 <h3 id="防护措施"><a href="#防护措施" class="headerlink" title="防护措施"></a>防护措施</h3><p>为了防止Shiro反序列化漏洞的攻击，可以采取以下防护措施：</p>
 <ol>
@@ -384,7 +508,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/09/13/shiro-lou-dong/">http://example.com/2024/09/13/shiro-lou-dong/</a>
+                    <a href="http://example.com/2025/04/10/shiro-lou-dong/">http://example.com/2025/04/10/shiro-lou-dong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -421,7 +545,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/">
+                                    <span class="chip bg-color">JAVA框架漏洞</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -589,17 +717,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/09/14/log4j2-lou-dong/">
+                <a href="/2025/04/10/shiro-lou-dong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Log4j2漏洞">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Shiro漏洞">
                         
-                        <span class="card-title">Log4j2漏洞</span>
+                        <span class="card-title">Shiro漏洞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -609,16 +738,29 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-10
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            XMH
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                    JAVA框架漏洞
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/">
+                        <span class="chip bg-color">JAVA框架漏洞</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -630,13 +772,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/09/12/php-xue-xi/">
+                <a href="/2025/04/10/lan-dui-ying-ji-xiang-ying/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="PHP学习">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="蓝队应急响应">
                         
-                        <span class="card-title">PHP学习</span>
+                        <span class="card-title">蓝队应急响应</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -647,15 +789,27 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            XMH
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="post-category">
+                                    应急响应
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">
+                        <span class="chip bg-color">应急响应</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -722,6 +876,100 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 
@@ -790,7 +1038,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">121.6k</span>&nbsp;字
+                class="white-color">122.3k</span>&nbsp;字
             
             
             
