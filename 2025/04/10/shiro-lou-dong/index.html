@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 7.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<meta name="generator" content="Hexo 7.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
 
@@ -409,7 +409,7 @@
 <h4 id="Shiro-721（CVE-2019-12422）"><a href="#Shiro-721（CVE-2019-12422）" class="headerlink" title="Shiro-721（CVE-2019-12422）"></a>Shiro-721（CVE-2019-12422）</h4><ul>
 <li>漏洞介绍</li>
 </ul>
-<p>​		Shiro-721反序列化漏洞，使用由于Shiro通过使用AES-128-CBC模式进行cookie中rememberMe字段的加密，于是用户可通过PaddingOracle加密生成的攻击代码来构造恶意的rememberMe字段，并重新请求网站，进行反序列化攻击，最终导致任意代码执行。</p>
+<p>​		Shiro-721反序列化漏洞，使用由于Shiro通过使用AES-128-CBC模式进行cookie中rememberMe字段的加密，于是用户可通过Padding Oracle加密生成的攻击代码来构造恶意的rememberMe字段，并重新请求网站，进行反序列化攻击，最终导致任意代码执行。</p>
 <ul>
 <li><strong>漏洞原理</strong>：与Shiro-550类似，但加密方式改为了<strong>AES-CBC</strong>加密，且密钥是系统随机生成的。然而，这种加密模式可以通过Padding Oracle Attack（填充攻击）来绕过。攻击者可以使用有效的RememberMe Cookie作为前缀，然后精心<u>构造恶意的</u><u>RememberMe Cookie来实施反序列化攻击</u>。</li>
 <li><strong>影响范围</strong>：Apache Shiro&lt;1.4.2</li>
@@ -717,18 +717,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2025/04/10/shiro-lou-dong/">
+                <a href="/2025/04/10/log4j2-lou-dong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Shiro漏洞">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Log4j2漏洞">
                         
-                        <span class="card-title">Shiro漏洞</span>
+                        <span class="card-title">Log4j2漏洞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -738,22 +737,21 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/" class="post-category">
-                                    JAVA框架漏洞
+                            <a href="/categories/Apache%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                    Apache漏洞
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1038,7 +1036,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">122.3k</span>&nbsp;字
+                class="white-color">131.8k</span>&nbsp;字
             
             
             
