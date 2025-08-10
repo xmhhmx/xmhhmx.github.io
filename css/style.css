@@ -1,5 +1,5 @@
 :root {
-  --red-0: #ff0000;
+  --red-0: #0000ff;
   --red-1: #ff5252;
   --red-2: #ff7c7c;
   --red-3: #ffafaf;
@@ -40,10 +40,10 @@
   --highlight-aqua: #479d9d;
   --highlight-blue: #1973b8;
   --highlight-purple: #7135ac;
-  --cursor-default: url("../images/cursor/reimu-cursor-default.png"), auto;
-  --cursor-pointer: url("../images/cursor/reimu-cursor-pointer.png"), pointer;
-  --cursor-text: url("../images/cursor/reimu-cursor-text.png"), text;
-  --footer-icon: url("../images/taichi.png");
+  --cursor-default: url("../images/cursor/1.png"), auto;
+  --cursor-pointer: url("../images/cursor/2.png"), pointer;
+  --cursor-text: url("../images/cursor/3.png"), text;
+  --footer-icon: url("../images/图1.jpg");
   --sponsor-icon: url("../images/taichi.png");
   --top-icon: url("../images/taichi.png");
   --shadow-meta: 0 0 5px 2px var(--color-meta-shadow);
