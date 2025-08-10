@@ -14,7 +14,7 @@
 
   
 
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   
   <title>
     深信服安全服务认证工程师学习笔记 |
@@ -510,7 +510,7 @@
               &#xe62b;
              
           </div>
-          <a class="main-nav-link" href="/en/">首页</a>
+          <a class="main-nav-link" href="/">首页</a>
         </span>
       
         <span class="main-nav-link-wrap">
@@ -519,7 +519,7 @@
               &#xe62b;
              
           </div>
-          <a class="main-nav-link" href="/en/archives">归类</a>
+          <a class="main-nav-link" href="/archives">归类</a>
         </span>
       
         <span class="main-nav-link-wrap">
@@ -528,7 +528,7 @@
               &#xe62b;
              
           </div>
-          <a class="main-nav-link" href="/en/about">关于</a>
+          <a class="main-nav-link" href="/about">关于</a>
         </span>
       
         <span class="main-nav-link-wrap">
@@ -537,7 +537,7 @@
               &#xe62b;
              
           </div>
-          <a class="main-nav-link" href="/en/friend">右链</a>
+          <a class="main-nav-link" href="/friend">右链</a>
         </span>
       
     
@@ -548,57 +548,6 @@
     
     
   </nav>
-  
-    
-    <nav id="i18n-nav">
-      <div class="custom-dropdown">
-        <div class="select-selected" id="select-selected">
-          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
-          <span id="selected-lang">English</span>
-        </div>
-        <ul class="select-items" id="select-items">
-          
-            <li data-value="zh-CN" >简体中文</li>
-          
-            <li data-value="en" class="selected">English</li>
-          
-        </ul>
-      </div>
-      <script>
-        var selectSelected = document.getElementById("select-selected");
-        var selectedLang = document.getElementById("selected-lang");
-        var selectItems = document.getElementById("select-items");
-        var selectOptions = selectItems.querySelectorAll("li");
-
-        selectSelected.addEventListener("click", () => {
-          selectItems.classList.toggle("show");
-        });
-
-        selectOptions.forEach((item) => {
-          item.addEventListener("click", () => {
-            const langMap = {};
-            
-              langMap['zh-CN'] = '/2024/09/30/shen-xin-fu-an-quan-fu-wu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/';
-            
-              langMap['en'] = '/en/2024/09/30/shen-xin-fu-an-quan-fu-wu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/';
-            
-            selectedLang.textContent = item.textContent;
-            selectItems.classList.remove("show");
-            selectOptions.forEach((option) => {
-              option.classList.remove("selected");
-            });
-            item.classList.add("selected");
-            window.location = langMap[item.dataset.value];
-          });
-        });
-
-        document.addEventListener("click", (event) => {
-          if (!event.target.closest(".custom-dropdown")) {
-            selectItems.classList.remove("show");
-          }
-        });
-      </script>
-    </nav>
   
 </div>
 <header id="header">
@@ -678,7 +627,7 @@
   
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -688,7 +637,7 @@
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -698,7 +647,7 @@
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -708,7 +657,7 @@
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="右链"></a>
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="右链"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -751,7 +700,7 @@
 
       
   <div class="article-category">
-    <a class="article-category-link" href="/en/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
   </div>
 
 
@@ -3679,7 +3628,7 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/" rel="tag">深信服</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/" rel="tag">深信服</a></li></ul>
 
 
     </footer>
@@ -3695,7 +3644,7 @@
             <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="WEB源码泄露漏洞" class="lazyload">
           
         
-        <a href="/en/2024/10/14/web-yuan-ma-xie-lu-lou-dong/"></a>
+        <a href="/2024/10/14/web-yuan-ma-xie-lu-lou-dong/"></a>
         <div class="article-nav-caption">Prev</div>
         <h3 class="article-nav-title">
           
@@ -3713,7 +3662,7 @@
           <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="反弹Shell方法" class="lazyload">
         
       
-      <a href="/en/2024/09/19/fan-dan-shell-fang-fa/"></a>
+      <a href="/2024/09/19/fan-dan-shell-fang-fa/"></a>
       <div class="article-nav-caption">Next</div>
       <h3 class="article-nav-title">
         
@@ -3831,7 +3780,7 @@
   
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -3841,7 +3790,7 @@
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -3851,7 +3800,7 @@
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
@@ -3861,7 +3810,7 @@
       </div>
     
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="右链"></a>
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="右链"></a>
         <div class="sidebar-menu-icon icon rotate">
           
             &#xe62b;
