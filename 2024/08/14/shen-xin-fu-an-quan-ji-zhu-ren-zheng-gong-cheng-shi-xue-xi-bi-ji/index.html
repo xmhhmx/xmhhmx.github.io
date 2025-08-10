@@ -1,369 +1,638 @@
-<!DOCTYPE HTML>
-<html lang="en">
 
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
 
-<head>
-    <meta charset="utf-8">
-    <meta name="keywords" content="深信服安全技术认证工程师学习笔记, xmhhmx的blog">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+  
 
+  
 
-    <title>深信服安全技术认证工程师学习笔记 | xmhhmx的blog</title>
-    <link rel="icon" type="image/png" href="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png">
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    深信服安全技术认证工程师学习笔记 |
+    
+    xmhhmx的blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
+  
+  
+    <meta name="description" content="深信服安全技术认证工程师学习笔记第一章 网络安全基础1.1信息时代与信息安全 我国超级计算机-神威太湖之光、天河二号  《中华人民共和国网络安全法》2016年11月7日颁布，于2017年6月1日正式实行  《中华人民共和国密码法》2019年10月26日正式通过，2020年1月1日正式实施  2020年04月27日，国家网信办等十二部门联合印发《网络安全审查办法》  2021年6月10日《中华人民共">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深信服安全技术认证工程师学习笔记">
+<meta property="og:url" content="http://example.com/2024/08/14/shen-xin-fu-an-quan-ji-zhu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/index.html">
+<meta property="og:site_name" content="xmhhmx的blog">
+<meta property="og:description" content="深信服安全技术认证工程师学习笔记第一章 网络安全基础1.1信息时代与信息安全 我国超级计算机-神威太湖之光、天河二号  《中华人民共和国网络安全法》2016年11月7日颁布，于2017年6月1日正式实行  《中华人民共和国密码法》2019年10月26日正式通过，2020年1月1日正式实施  2020年04月27日，国家网信办等十二部门联合印发《网络安全审查办法》  2021年6月10日《中华人民共">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc90add9c307b7e9c2c1ea.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc918ed9c307b7e9c37e92.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc9200d9c307b7e9c3d55d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc93dbd9c307b7e9c53d54.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc97e9d9c307b7e9c886d8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc9cd6d9c307b7e9cec99c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bc9fcdd9c307b7e9d6d607.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca209d9c307b7e9d8f92c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca239d9c307b7e9d92602.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca2cfd9c307b7e9d9acd0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca308d9c307b7e9d9e170.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca430d9c307b7e9daed50.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca4ead9c307b7e9db9eb2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca5ccd9c307b7e9dc5f5d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca710d9c307b7e9dd97a6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca7e3d9c307b7e9de66c7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca8a2d9c307b7e9df1f86.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca943d9c307b7e9dfd09f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bca9e2d9c307b7e9e074d7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcaa35d9c307b7e9e0d7a8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcaa77d9c307b7e9e1a42f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcaadad9c307b7e9e31c01.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcc0b4d9c307b7e9074ed9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcc107d9c307b7e907a222.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcc165d9c307b7e9080495.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bcc337d9c307b7e909efa6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bd94fcd9c307b7e90d04ae.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bd961cd9c307b7e90dff77.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bd96d0d9c307b7e90ea223.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bd97cbd9c307b7e90f7c3d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bd983ad9c307b7e90fdaad.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bd998bd9c307b7e911b40e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdbb98d9c307b7e9439614.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdbb76d9c307b7e9437a72.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdbc42d9c307b7e9441a79.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdbd0cd9c307b7e944b94c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdbe3ed9c307b7e945aeab.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdc38fd9c307b7e94a22ce.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdc637d9c307b7e950a3ab.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdc668d9c307b7e9510e40.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdcaabd9c307b7e956ca69.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdcbc4d9c307b7e957840f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdceb4d9c307b7e959923b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdcfe1d9c307b7e95a686a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdd093d9c307b7e95add39.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bdd112d9c307b7e95b4273.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66be0893d9c307b7e9a6b07e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66be1181d9c307b7e9b6988f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bed127d9c307b7e93ad5b9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bed226d9c307b7e93b9e4f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bed28dd9c307b7e93be86d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bedce7d9c307b7e9436b93.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bedf51d9c307b7e9456d78.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bedf67d9c307b7e9457f05.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bee04ed9c307b7e9463fb8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bee9ffd9c307b7e94df86a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66beec06d9c307b7e94fd60c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66beed45d9c307b7e950eab9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bef849d9c307b7e95a7b61.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bef8a0d9c307b7e95acb2a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bef975d9c307b7e95bb513.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66befe9fd9c307b7e9608a2e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66beff90d9c307b7e96154b5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66bf026bd9c307b7e963988b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66c08cbed9c307b7e93d5d41.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66c08e9fd9c307b7e93ef010.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66c090a9d9c307b7e94100b4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66c092b3d9c307b7e945cc9d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66c0933bd9c307b7e94651a9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d9c2b8d9c307b7e9021050.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc0647d9c307b7e9bf2b0d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc154ad9c307b7e9d7a1cd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1561d9c307b7e9d7c1f5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1578d9c307b7e9d7e170.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc0946d9c307b7e9c3ffaa.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc0c8bd9c307b7e9c98d3b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1083d9c307b7e9d24039.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1134d9c307b7e9d2cbce.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc11a4d9c307b7e9d33d8d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc13d6d9c307b7e9d5a5ef.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1422d9c307b7e9d60d08.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1433d9c307b7e9d62450.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1487d9c307b7e9d69c66.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc17ded9c307b7e9dc7b6f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1a7dd9c307b7e9e15d68.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1b6bd9c307b7e9e34671.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1c40d9c307b7e9e4c630.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1de4d9c307b7e9e84191.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc1e68d9c307b7e9e8b461.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc601dd9c307b7e957980b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc610fd9c307b7e958f870.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc6183d9c307b7e959a336.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc61e6d9c307b7e95a2f50.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc6598d9c307b7e95f8e8c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc6987d9c307b7e96528e2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc6b83d9c307b7e9696a30.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc6c0dd9c307b7e96b0438.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729d99ad29ded1a8ca1ea64.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729da36d29ded1a8ca25e1a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729da89d29ded1a8ca293f6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729db3cd29ded1a8ca31867.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729dc07d29ded1a8ca3a1d4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6731bf5dd29ded1a8c53f45c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6731c035d29ded1a8c5508d2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6731c11dd29ded1a8c562ebe.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67331a99d29ded1a8c608e46.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67331ad3d29ded1a8c60cde5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67331c8ed29ded1a8c62a1be.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ea3f5d29ded1a8c8ed46b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ea433d29ded1a8c8f5a00.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67331f29d29ded1a8c65430b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67332120d29ded1a8c679590.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673345fbd29ded1a8c8c030a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ea697d29ded1a8c93fced.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673347bcd29ded1a8c8d9c35.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6733486dd29ded1a8c8e3d43.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67334abdd29ded1a8c90ecc1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67334fc8d29ded1a8c94f032.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67334ffbd29ded1a8c95152b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6734adb0d29ded1a8ca87499.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6734ade9d29ded1a8ca89eb1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6734ae52d29ded1a8ca8fb99.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6734b3d7d29ded1a8cae3fb3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6734b4cdd29ded1a8caf393d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673812c9d29ded1a8c4ce0e4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67381488d29ded1a8c4e0d6a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673814b0d29ded1a8c4e27ad.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673814c9d29ded1a8c4e375b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6738153fd29ded1a8c4e8884.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6738159cd29ded1a8c4ec43f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ea7a5d29ded1a8c95b27d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67383ca4d29ded1a8c6d1b8a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67383db3d29ded1a8c6dd66a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67383deed29ded1a8c6e01f9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67383e2bd29ded1a8c6e339a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6738408bd29ded1a8c701b03.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673842b5d29ded1a8c71d7f1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6738431ad29ded1a8c726a8f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673843bad29ded1a8c7312ef.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67384431d29ded1a8c737ce3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6738446fd29ded1a8c73ac15.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673844a0d29ded1a8c73d0ea.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ea92fd29ded1a8c970f1d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ea956d29ded1a8c97318d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673845b9d29ded1a8c74bca7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67384d2ad29ded1a8c7b70f7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67384e29d29ded1a8c7c402c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67384e9ad29ded1a8c7c9baa.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396430d29ded1a8c486cc1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673965c8d29ded1a8c498000.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396600d29ded1a8c49a3ff.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396650d29ded1a8c49dde1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673966efd29ded1a8c4a41aa.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6739678dd29ded1a8c4aa54f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6739691dd29ded1a8c4bb535.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396993d29ded1a8c4c0513.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673969dbd29ded1a8c4c3260.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396ac5d29ded1a8c4cf742.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396aecd29ded1a8c4d1acb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67396b89d29ded1a8c4d8d6c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67397f43d29ded1a8c5c980f.png">
+<meta property="og:image" content="ohttps://pic.imgdb.cn/item/673981add29ded1a8c5e5f79.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673987c8d29ded1a8c6379e3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67398857d29ded1a8c63edce.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673988b1d29ded1a8c643934.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673989c5d29ded1a8c651377.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673989f1d29ded1a8c653a44.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67398a20d29ded1a8c656264.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67398ae3d29ded1a8c66067d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67398b5bd29ded1a8c666814.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673eb6d4d29ded1a8ca55531.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e83c8d29ded1a8c732b34.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8415d29ded1a8c735429.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8601d29ded1a8c747144.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8a4cd29ded1a8c77420f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8b7fd29ded1a8c7800d8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8e07d29ded1a8c79a791.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8e5cd29ded1a8c79e053.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8e89d29ded1a8c79fd2c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e8ea8d29ded1a8c7a10ec.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e9022d29ded1a8c7b0359.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e90e4d29ded1a8c7b8168.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e939dd29ded1a8c7d57df.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e96cfd29ded1a8c824df1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673e9d2cd29ded1a8c894f78.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ebe89d29ded1a8cad2baf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/673ec334d29ded1a8cb0ce26.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6743dac488c538a9b5bb80c4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6743e16288c538a9b5bb82e3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6743e36888c538a9b5bb838c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6743ea8488c538a9b5bb8641.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6743eb7b88c538a9b5bb8684.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6743ebb388c538a9b5bb86a4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6745230c88c538a9b5bbddcb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/674524b788c538a9b5bbe260.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/674525fa88c538a9b5bbe4ef.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6745262588c538a9b5bbe54e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6745277c88c538a9b5bbe7fc.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452a5288c538a9b5bbf098.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452b1088c538a9b5bbf382.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452bb188c538a9b5bbf600.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452cf388c538a9b5bbfac1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452e3388c538a9b5bbfe8b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452edd88c538a9b5bc009d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/67452f9888c538a9b5bc02e1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/674530d3d0e0a243d4d0c00a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/674532dbd0e0a243d4d0c798.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6745332bd0e0a243d4d0c7ae.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746b33dd0e0a243d4d1db89.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746b3e2d0e0a243d4d1dba5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746b7a7d0e0a243d4d1dcbf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746d160d0e0a243d4d1e7a4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746d248d0e0a243d4d1e7fe.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746d2ded0e0a243d4d1e847.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746d34ed0e0a243d4d1e88a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6746d37ad0e0a243d4d1e89d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc703bd9c307b7e975ecd8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc722cd9c307b7e9789fab.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc72e6d9c307b7e979afed.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc731cd9c307b7e979fe31.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc738fd9c307b7e97aa3cc.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc73bbd9c307b7e97ae03a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc7438d9c307b7e97b9d20.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc745dd9c307b7e97bcfce.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc74cdd9c307b7e97c698c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc74fbd9c307b7e97caaf0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc7530d9c307b7e97cfdb0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc7566d9c307b7e97d4aa6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc7579d9c307b7e97d6788.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dc75b3d9c307b7e97db541.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd1642d9c307b7e960e013.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd6242d9c307b7e9db12e0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd7225d9c307b7e9f506eb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd72f2d9c307b7e9f5e061.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd7eead9c307b7e90a79e4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd7ff2d9c307b7e90b99a6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd90ddd9c307b7e926d6f9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd95b1d9c307b7e93439e1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd9a6cd9c307b7e93ad4a9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66dd9c20d9c307b7e93d216a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa912df21886ccc0e13d27.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9183f21886ccc0e19bf8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9269f21886ccc0e2c6b2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9303f21886ccc0e3c00b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9394f21886ccc0e46473.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9419f21886ccc0e4e5af.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9463f21886ccc0e5401e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa94fcf21886ccc0e5e7b2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa97cdf21886ccc0e89ff6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9904f21886ccc0e9d7d6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9a1af21886ccc0ead11a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9c7bf21886ccc0ed2929.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9cfff21886ccc0edab18.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66fa9da1f21886ccc0ee5d7e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66faa4bdf21886ccc0f55938.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ff9650d29ded1a8caf345d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ff98a9d29ded1a8cb17216.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ff9c3ed29ded1a8cb48fac.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ff9e58d29ded1a8cb6765b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ffd0aad29ded1a8ce49dad.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66ffd27ad29ded1a8ce64246.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e05f68d9c307b7e97da0e9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e06010d9c307b7e980247e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66e06094d9c307b7e982080b.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675db63346596.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675db6d7d8118.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675db95a47733.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675dba2f3cbef.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675dba47380d0.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675dbb08a7098.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675dbb34473d8.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675e4735a83f0.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675e49c9ceaf7.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675e4ad64811f.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675e4d50b2a4a.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675e4fb2144df.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675ed0ea31c71.png">
+<meta property="og:image" content="https://www.helloimg.com/i/2024/12/15/675ed176564d5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6700d901d29ded1a8cb4bb72.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6700d96cd29ded1a8cb51ec3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6700dbecd29ded1a8cb7677f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6700dccfd29ded1a8cb83280.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729ce99d29ded1a8c98dac3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729cf22d29ded1a8c99491c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6729d096d29ded1a8c9a97cc.png">
+<meta property="article:published_time" content="2024-08-14T09:56:06.696Z">
+<meta property="article:modified_time" content="2024-12-15T13:16:17.112Z">
+<meta property="article:author" content="HMX">
+<meta property="article:tag" content="深信服">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/66bc90add9c307b7e9c2c1ea.png">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="xmhhmx的blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-    <script src="/libs/jquery/jquery.min.js"></script>
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
 
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
 <meta name="generator" content="Hexo 7.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
-
-
-
-<body>
-    <header class="navbar-fixed">
-    <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
-                    
-                    <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img" alt="LOGO">
-                    
-                    <span class="logo-span">xmhhmx的blog</span>
-                </a>
-            </div>
-            
-
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
-<ul class="right nav-menu">
-  
-  <li class="hide-on-med-and-down nav-item">
+  <body>
     
-    <a href="/" class="waves-effect waves-light">
-      
-      <i class="fas fa-home" style="zoom: 0.6;"></i>
-      
-      <span>首页</span>
-    </a>
     
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/about" class="waves-effect waves-light">
-      
-      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
-      
-      <span>关于我</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/contact" class="waves-effect waves-light">
-      
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
-      
-      <span>留言</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/friends" class="waves-effect waves-light">
-      
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
-      
-      <span>友情链接</span>
-    </a>
-    
-  </li>
-  
-  <li>
-    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
-    </a>
-  </li>
-</ul>
-
-
-<div id="mobile-nav" class="side-nav sidenav">
-
-    <div class="mobile-head bg-color">
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
         
-        <img src="/medias/%E5%A4%A9%E7%A7%A4%E5%BA%A7.png" class="logo-img circle responsive-img">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
         
-        <div class="logo-name">xmhhmx的blog</div>
-        <div class="logo-desc">
-            
-            Never really desperate, only the lost of the soul.
-            
-        </div>
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
     </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
 
-    
-
-    <ul class="menu-list mobile-menu-list">
-        
-        <li class="m-nav-item">
-	  
-		<a href="/" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-home"></i>
-			
-			首页
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/about" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-user-circle"></i>
-			
-			关于我
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/contact" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-comments"></i>
-			
-			留言
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/friends" class="waves-effect waves-light">
-			
-			    <i class="fa-fw fas fa-address-book"></i>
-			
-			友情链接
-		</a>
-          
-        </li>
-        
-        
-    </ul>
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
 </div>
+<div id="heatmap-tooltip"></div>
 
 
-        </div>
-
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">Home</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">Archives</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">About</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">Friend</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" target="_blank"></a>
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
         
-    </nav>
-
+          <img  fetchpriority="high" src="/images/banner.webp" alt="深信服安全技术认证工程师学习笔记">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">深信服安全技术认证工程师学习笔记</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
 </header>
 
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E8%AE%A4%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">深信服安全技术认证工程师学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 网络安全基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1%E4%BF%A1%E6%81%AF%E6%97%B6%E4%BB%A3%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">1.1信息时代与信息安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E5%AD%A6%E7%A7%91%E6%B5%85%E8%B0%88"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">1.2网络空间安全学科浅谈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 操作系统基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 网络运维</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一部分 计算机网络原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二部分 路由与交换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 网络安全产品运维</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.1.</span> <span class="toc-text">第一部分 下一代防火墙基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">4.1.1下一代防火墙概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88%E5%8C%85%E8%BF%87%E6%BB%A4%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89"><span class="toc-number">1.4.1.1.1.</span> <span class="toc-text">传统防火墙（包过滤防火墙）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88%E5%BA%94%E7%94%A8%E4%BB%A3%E7%90%86%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89"><span class="toc-number">1.4.1.1.2.</span> <span class="toc-text">传统防火墙（应用代理防火墙）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89"><span class="toc-number">1.4.1.1.3.</span> <span class="toc-text">传统防火墙（状态检测防火墙）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%EF%BC%88IDS%EF%BC%89"><span class="toc-number">1.4.1.1.4.</span> <span class="toc-text">入侵检测系统（IDS）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A5%E4%BE%B5%E9%98%B2%E5%BE%A1%E7%B3%BB%E7%BB%9F%EF%BC%88IPS%EF%BC%89"><span class="toc-number">1.4.1.1.5.</span> <span class="toc-text">入侵防御系统（IPS）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E7%97%85%E6%AF%92%E7%BD%91%E5%85%B3%EF%BC%88AV%EF%BC%89"><span class="toc-number">1.4.1.1.6.</span> <span class="toc-text">防病毒网关（AV）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%97%85%E6%AF%92%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.4.1.1.6.1.</span> <span class="toc-text">传统的病毒检测方法：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88WAF%EF%BC%89"><span class="toc-number">1.4.1.1.7.</span> <span class="toc-text">Web应用防火墙（WAF）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%A8%81%E8%83%81%E7%AE%A1%E7%90%86%EF%BC%88UTM%EF%BC%89-%E5%A4%9A%E5%90%88%E4%B8%80%E5%AE%89%E5%85%A8%E7%BD%91%E5%85%B3"><span class="toc-number">1.4.1.1.8.</span> <span class="toc-text">统一威胁管理（UTM）-多合一安全网关</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88NGFW%EF%BC%89-%E5%8D%87%E7%BA%A7%E7%89%88UTM"><span class="toc-number">1.4.1.1.9.</span> <span class="toc-text">下一代防火墙（NGFW）-升级版UTM</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-%E6%B7%B1%E4%BF%A1%E6%9C%8D%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">4.1.2 深信服下一代防火墙解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E5%BA%94%E5%AF%B9%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.1.2.1.</span> <span class="toc-text">深信服应对方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9D%80%E6%AF%92%E5%BC%95%E6%93%8ESAVE"><span class="toc-number">1.4.1.2.2.</span> <span class="toc-text">&#x3D;&#x3D;深信服人工智能杀毒引擎SAVE&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E8%81%94%E5%8A%A8"><span class="toc-number">1.4.1.2.3.</span> <span class="toc-text">智能联动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF%E6%99%BA%E8%83%BD%E6%A3%80%E6%B5%8B-%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5"><span class="toc-number">1.4.1.2.4.</span> <span class="toc-text">云端智能检测-威胁情报</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF%E6%99%BA%E8%83%BD%E6%A3%80%E6%B5%8B-%E4%BA%91%E7%AB%AF%E6%B2%99%E7%AE%B1"><span class="toc-number">1.4.1.2.5.</span> <span class="toc-text">云端智能检测-云端沙箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E5%87%BA%E5%8F%A3%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.2.6.</span> <span class="toc-text">互联网出口安全防护场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E5%A4%96%E4%B8%9A%E5%8A%A1%E5%8F%91%E5%B8%83%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.2.7.</span> <span class="toc-text">对外业务发布安全防护场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%9C%BA%E6%9E%84%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.2.8.</span> <span class="toc-text">分支机构安全防护场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4"><span class="toc-number">1.4.1.2.9.</span> <span class="toc-text">数据中心安全防护</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91%E7%AE%80%E4%BB%8B"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">4.1.3 下一代防火墙组网简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AF%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.4.1.3.1.</span> <span class="toc-text">AF的接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E7%BD%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.4.1.3.2.</span> <span class="toc-text">接口设置注意事项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.4.1.3.3.</span> <span class="toc-text">区域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E9%A2%98%EF%BC%9A"><span class="toc-number">1.4.1.3.4.</span> <span class="toc-text">错题：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">4.1.4 下一代防火墙组网-路由模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-5-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E9%80%8F%E6%98%8E%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">4.1.5 下一代防火墙组网-透明模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-6-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">4.1.6 下一代防火墙组网-旁路模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-7-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.7.</span> <span class="toc-text">4.1.7 下一代防火墙组网-混合模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-8-%E7%AD%96%E7%95%A5%E8%B7%AF%E7%94%B1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.1.8.</span> <span class="toc-text">4.1.8 策略路由解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E9%A2%98%EF%BC%9A-1"><span class="toc-number">1.4.1.8.1.</span> <span class="toc-text">错题：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-9-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E5%8A%9F%E8%83%BD%E5%9F%BA%E7%A1%80%EF%BC%88%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E6%9E%B6%E6%9E%84%EF%BC%89"><span class="toc-number">1.4.1.9.</span> <span class="toc-text">4.1.9 高可用性功能基础（高可用性架构）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-10-%E4%B8%BB%E4%B8%BB-%E4%B8%BB%E5%A4%87%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF"><span class="toc-number">1.4.1.10.</span> <span class="toc-text">4.1.10 主主&amp;主备部署应用场景及配置思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E5%A4%87%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.1.10.1.</span> <span class="toc-text">主备部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E4%B8%BB%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.1.10.2.</span> <span class="toc-text">主主部署</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-11-%E5%8F%8C%E6%9C%BA%E8%81%9A%E5%90%88%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF-%E5%8F%8C%E6%9C%BA%E9%83%A8%E7%BD%B2%E5%B8%B8%E8%A7%81%E6%95%85%E9%9A%9C"><span class="toc-number">1.4.1.11.</span> <span class="toc-text">4.1.11 双机聚合应用场景及配置思路&amp;双机部署常见故障</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E9%A2%98%EF%BC%9A-2"><span class="toc-number">1.4.1.11.1.</span> <span class="toc-text">错题：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-12-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9-%E7%BB%88%E7%AB%AF%E4%B8%8A%E7%BD%91%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.12.</span> <span class="toc-text">4.1.12 终端安全风险&amp;终端上网安全应用控制技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-13-%E7%BB%88%E7%AB%AF%E4%B8%8A%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E5%85%B3%E6%9D%80%E6%AF%92%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.13.</span> <span class="toc-text">4.1.13 终端上网安全网关杀毒技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-14-%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.14.</span> <span class="toc-text">4.1.14 僵尸网络检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-15-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E4%B8%93%E9%A2%98-%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E9%98%B2%E6%8A%A4"><span class="toc-number">1.4.1.15.</span> <span class="toc-text">4.1.15 终端安全防护专题-勒索病毒防护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-16-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9%E4%B8%8EDOS%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.16.</span> <span class="toc-text">4.1.16 服务器安全风险与DOS攻击检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-17-%E6%BC%8F%E6%B4%9E%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.17.</span> <span class="toc-text">4.1.17 漏洞攻击防护入侵检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-18-WEB%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.18.</span> <span class="toc-text">4.1.18 WEB攻击检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-19-%E8%81%94%E5%8A%A8%E5%B0%81%E9%94%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.19.</span> <span class="toc-text">4.1.19 联动封锁技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-20-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.1.20.</span> <span class="toc-text">4.1.20 安全运营中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-21-%E4%B8%9A%E5%8A%A1%E5%AE%89%E5%85%A8%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.1.21.</span> <span class="toc-text">4.1.21 业务安全功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-22-%E7%94%A8%E6%88%B7%E5%AE%89%E5%85%A8%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.1.22.</span> <span class="toc-text">4.1.22 用户安全功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-23-%E4%B8%9A%E5%8A%A1%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.1.23.</span> <span class="toc-text">4.1.23 业务资产管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-24-%E4%B8%BB%E5%8A%A8%E8%AF%B1%E6%8D%95%EF%BC%88%E4%BA%91%E8%9C%9C%E7%BD%90%EF%BC%89"><span class="toc-number">1.4.1.24.</span> <span class="toc-text">4.1.24 主动诱捕（云蜜罐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-25-%E8%B4%A6%E5%8F%B7%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.25.</span> <span class="toc-text">4.1.25 账号安全检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-26-DNS-Mapping%E5%8A%9F%E8%83%BD%E4%B8%8E%E8%AE%BE%E5%A4%87%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.1.26.</span> <span class="toc-text">4.1.26 DNS-Mapping功能与设备常用运维功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-27-xhack%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.1.27.</span> <span class="toc-text">4.1.27 xhack工具介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text">第二部分 全网行为管理基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">4.2.1 全网行为管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">4.2.2 全网行为管理的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E7%99%BB%E9%99%86%E8%AE%BE%E5%A4%87"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">1. 登陆设备</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%81%A2%E5%A4%8D%E5%87%BA%E5%8E%82%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.2.2.2.</span> <span class="toc-text">2.恢复出厂设置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98"><span class="toc-number">1.4.2.2.2.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">4.2.3 全网行为管理部署模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.1.</span> <span class="toc-text">路由部署解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BD%91%E6%A1%A5%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.2.</span> <span class="toc-text">网桥部署解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%81%E8%B7%AF%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.3.</span> <span class="toc-text">旁路部署解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.2.3.4.</span> <span class="toc-text">部署模式小结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Trunk%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.5.</span> <span class="toc-text">Trunk部署解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-1"><span class="toc-number">1.4.2.3.5.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">4.2.4 全网行为管理高可用部署</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="toc-number">1.4.2.4.1.</span> <span class="toc-text">1 高可用需求背景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%B8%BB%E5%A4%87%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.2.4.2.</span> <span class="toc-text">2 主备模式部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E4%B8%BB%E4%B8%BB%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.2.4.3.</span> <span class="toc-text">3 主主模式部署</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-2"><span class="toc-number">1.4.2.4.3.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-5-%E6%8E%A5%E5%85%A5%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80"><span class="toc-number">1.4.2.5.</span> <span class="toc-text">4.2.5 接入认证基础</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.5.1.</span> <span class="toc-text">无认证技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IP-MAC%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.5.2.</span> <span class="toc-text">IP&#x2F;MAC认证</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#SNMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.2.5.2.1.</span> <span class="toc-text">SNMP协议</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#MIB%E5%BA%93"><span class="toc-number">1.4.2.5.2.2.</span> <span class="toc-text">MIB库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-3"><span class="toc-number">1.4.2.5.2.3.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-6-%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.6.</span> <span class="toc-text">4.2.6 密码技术认证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%EF%BC%88%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.4.2.6.1.</span> <span class="toc-text">HTTP协议（超文本传输协议）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.2.6.2.</span> <span class="toc-text">密码认证流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.6.3.</span> <span class="toc-text">密码认证配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-7-%E5%A4%96%E9%83%A8%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.7.</span> <span class="toc-text">4.2.7 外部认证技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.7.1.</span> <span class="toc-text">外部认证配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LDAP%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.7.2.</span> <span class="toc-text">LDAP认证配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-4"><span class="toc-number">1.4.2.7.2.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-8-802-1x%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.8.</span> <span class="toc-text">4.2.8 802.1x认证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#802-1X%E5%8D%8F%E8%AE%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.2.8.1.</span> <span class="toc-text">802.1X协议介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MAB%E5%85%8D%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.8.2.</span> <span class="toc-text">MAB免认证</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-9-%E7%BB%88%E7%AB%AF%E8%AF%86%E5%88%AB%E5%92%8C%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.9.</span> <span class="toc-text">4.2.9 终端识别和管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-10-%E7%BB%88%E7%AB%AF%E6%A3%80%E6%9F%A5%E5%92%8C%E7%AE%A1%E6%8E%A7%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.10.</span> <span class="toc-text">4.2.10 终端检查和管控技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9D%80%E8%BD%AF%E6%A3%80%E6%9F%A5%E4%B8%8E%E7%99%BB%E5%BD%95%E5%9F%9F%E6%A3%80%E6%9F%A5"><span class="toc-number">1.4.2.10.1.</span> <span class="toc-text">杀软检查与登录域检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BE%E7%AF%A1%E6%94%B9%E6%A3%80%E6%9F%A5%E4%B8%8E%E5%A4%96%E8%81%94%E6%A3%80%E6%9F%A5"><span class="toc-number">1.4.2.10.2.</span> <span class="toc-text">放篡改检查与外联检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%96%E8%81%94%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%A4%96%E8%AE%BE%E7%AE%A1%E6%8E%A7%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.10.3.</span> <span class="toc-text">外联控制与外设管控技术</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-11%E5%BA%94%E7%94%A8%E7%89%B9%E5%BE%81%E8%AF%86%E5%88%AB%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.11.</span> <span class="toc-text">4.2.11应用特征识别技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E8%A1%8C%E4%B8%BA%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.11.1.</span> <span class="toc-text">深度行为检测技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%8C%85%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%EF%BC%88DPI%EF%BC%89"><span class="toc-number">1.4.2.11.1.1.</span> <span class="toc-text">深度包检测技术（DPI）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E6%B5%81%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%EF%BC%88DFI%EF%BC%89"><span class="toc-number">1.4.2.11.1.2.</span> <span class="toc-text">深度流检测技术（DFI）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%8C%85%E6%A3%80%E6%B5%8B-DPI-VS-%E6%B7%B1%E5%BA%A6%E6%B5%81%E6%A3%80%E6%B5%8B-DFI"><span class="toc-number">1.4.2.11.1.3.</span> <span class="toc-text">深度包检测(DPI) VS 深度流检测(DFI)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-12-HTTP%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.12.</span> <span class="toc-text">4.2.12 HTTP与自定义识别控制技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.4.2.12.1.</span> <span class="toc-text">HTTP识别控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.4.2.12.2.</span> <span class="toc-text">HTTPS识别控制</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTPS%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.2.12.2.1.</span> <span class="toc-text">HTTPS协议</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.4.2.12.3.</span> <span class="toc-text">自定义识别控制</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-13-%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.13.</span> <span class="toc-text">4.2.13 流量管理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E8%83%8C%E6%99%AF"><span class="toc-number">1.4.2.13.1.</span> <span class="toc-text">流量管理背景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.13.2.</span> <span class="toc-text">流量管理技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.13.2.1.</span> <span class="toc-text">1 流量检测方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.13.2.2.</span> <span class="toc-text">2 应用控制技术</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%BA%94%E7%94%A8%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.13.2.3.</span> <span class="toc-text">3 应用检测技术</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6%E7%BB%84%E7%BD%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.2.13.2.4.</span> <span class="toc-text">4 识别控制组网模式</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.13.3.</span> <span class="toc-text">流量控制解决方案</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-14-%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.2.14.</span> <span class="toc-text">4.2.14 流量管理应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-15-DNS%E4%B8%8E%E9%93%BE%E8%B7%AF%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.2.15.</span> <span class="toc-text">4.2.15 DNS与链路流量管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-16-%E8%A1%8C%E4%B8%BA%E5%AE%A1%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.16.</span> <span class="toc-text">4.2.16 行为审计概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-17-SSL%E5%86%85%E5%AE%B9%E8%A7%A3%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.17.</span> <span class="toc-text">4.2.17 SSL内容解密技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-18-%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%AE%A1%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.18.</span> <span class="toc-text">4.2.18 客户端与业务审计技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-19-%E6%95%B0%E6%8D%AE%E4%BB%B7%E5%80%BC%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.19.</span> <span class="toc-text">4.2.19 数据价值解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-20-%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.2.20.</span> <span class="toc-text">4.2.20 管理员账号功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-21-%E7%BB%93%E5%90%88AD%E5%9F%9F%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%EF%BC%88%E8%84%9A%E6%9C%AC%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">1.4.2.21.</span> <span class="toc-text">4.2.21 结合AD域单点登录功能（脚本方式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-22-%E7%BB%93%E5%90%88AD%E5%9F%9F%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.2.22.</span> <span class="toc-text">4.2.22 结合AD域单点登录功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.3.</span> <span class="toc-text">第三部分 零信任基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-aTrust%E8%AE%BE%E5%A4%87%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%96%BD%E4%B8%8A%E6%9E%B6"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">4.3.1 aTrust设备部署实施上架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-aTrust%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">4.3.2 aTrust本地集群部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-aTrust%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">4.3.3 aTrust用户管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-aTrust%E6%9C%AC%E5%9C%B0%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">4.3.4 aTrust本地认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-5-aTrust-LDAP%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.5.</span> <span class="toc-text">4.3.5 aTrust_LDAP认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-6-aTrust-TOTP%E5%8A%A8%E6%80%81%E4%BB%A4%E7%89%8C%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.6.</span> <span class="toc-text">4.3.6 aTrust_TOTP动态令牌认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-7-aTrust%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.7.</span> <span class="toc-text">4.3.7 aTrust证书认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-8-aTrust%E8%85%BE%E8%AE%AF%E4%BA%91%E9%98%BF%E9%87%8C%E4%BA%91%E7%9F%AD%E4%BF%A1%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.8.</span> <span class="toc-text">4.3.8 aTrust腾讯云阿里云短信认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-9-aTrust%E8%87%AA%E5%AE%9A%E4%B9%89HTTP-S-%E7%9F%AD%E4%BF%A1%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.9.</span> <span class="toc-text">4.3.9 aTrust自定义HTTP(S)短信认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-10-aTrust-Radius%E8%B4%A6%E5%8F%B7%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.10.</span> <span class="toc-text">4.3.10 aTrust_Radius账号认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-11-aTrust-Web%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.3.11.</span> <span class="toc-text">4.3.11 aTrust_Web应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-12-aTrust%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.12.</span> <span class="toc-text">4.3.12 aTrust权限管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-13-aTrust%E9%9A%A7%E9%81%93%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.3.13.</span> <span class="toc-text">4.3.13 aTrust隧道应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-14-aTrust%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF"><span class="toc-number">1.4.3.14.</span> <span class="toc-text">4.3.14 aTrust安全基线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-15-aTrust%E7%AD%96%E7%95%A5%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.15.</span> <span class="toc-text">4.3.15 aTrust策略管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-16-aTrust%E8%87%AA%E9%80%82%E5%BA%94%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.16.</span> <span class="toc-text">4.3.16 aTrust自适应认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-17-aTrust%E5%85%8D%E8%AE%A4%E8%AF%81%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.3.17.</span> <span class="toc-text">4.3.17 aTrust免认证应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-18-aTrust-%E5%AF%B9%E6%8E%A5CAS%E7%A5%A8%E6%8D%AE%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.18.</span> <span class="toc-text">4.3.18 aTrust_对接CAS票据认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-19-aTrust-OAuth2%E7%A5%A8%E6%8D%AE%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.19.</span> <span class="toc-text">4.3.19 aTrust_OAuth2票据认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-20-aTrust%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7"><span class="toc-number">1.4.3.20.</span> <span class="toc-text">4.3.20 aTrust系统升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-21-aTrust%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD%E4%B8%8ESNMP%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.21.</span> <span class="toc-text">4.3.21 aTrust配置备份与SNMP管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-22-aTrust%E5%B9%B3%E5%8F%B0%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.3.22.</span> <span class="toc-text">4.3.22 aTrust平台安装部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-23-aTrust%E5%B9%B3%E5%8F%B0%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%8E%88%E6%9D%83"><span class="toc-number">1.4.3.23.</span> <span class="toc-text">4.3.23 aTrust平台网络配置与授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-24-%E9%9B%B6%E4%BF%A1%E4%BB%BB%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84"><span class="toc-number">1.4.3.24.</span> <span class="toc-text">4.3.24 零信任网络安全架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.4.</span> <span class="toc-text">第四部分 终端安全原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-EDR%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">4.4.1 EDR安装部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-EDR%E7%BB%88%E7%AB%AF%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">4.4.2 EDR终端管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-EDR%E7%AD%96%E7%95%A5%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.4.3.</span> <span class="toc-text">4.4.3 EDR策略中心</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80"><span class="toc-number">1.4.4.3.1.</span> <span class="toc-text">一、病毒查杀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7"><span class="toc-number">1.4.4.3.2.</span> <span class="toc-text">二、文件实时监控</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8B%92%E7%B4%A2%E8%AF%B1%E9%A5%B5%E9%98%B2%E6%8A%A4"><span class="toc-number">1.4.4.3.3.</span> <span class="toc-text">三、勒索诱饵防护</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E6%A3%80%E6%B5%8B"><span class="toc-number">1.4.4.3.4.</span> <span class="toc-text">四、暴力破解检测</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA"><span class="toc-number">1.4.4.3.5.</span> <span class="toc-text">五、安全加固</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.4.4.3.6.</span> <span class="toc-text">六、漏洞修复</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BD%BB%E8%A1%A5%E4%B8%81%E6%BC%8F%E6%B4%9E%E5%85%8D%E7%96%AB"><span class="toc-number">1.4.4.3.7.</span> <span class="toc-text">七、轻补丁漏洞免疫</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%BB%88%E7%AB%AF%E5%B9%BF%E5%91%8A%E5%BC%B9%E7%AA%97%E6%8B%A6%E6%88%AA"><span class="toc-number">1.4.4.3.8.</span> <span class="toc-text">八、终端广告弹窗拦截</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-EDR%E5%BE%AE%E9%9A%94%E7%A6%BB"><span class="toc-number">1.4.4.4.</span> <span class="toc-text">4.4.4 EDR微隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-5-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.4.5.</span> <span class="toc-text">4.4.5 终端安全产品介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-6-AIO%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.4.6.</span> <span class="toc-text">4.4.6 AIO功能介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%BB%84%E7%BD%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8"><span class="toc-number">1.4.5.</span> <span class="toc-text">第五部分 广域网组网与传输安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-VPN%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">4.5.1 VPN概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.5.1.1.</span> <span class="toc-text">隧道技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.5.1.2.</span> <span class="toc-text">加解密技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.5.1.3.</span> <span class="toc-text">身份认证技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#PKI%E4%BD%93%E7%B3%BB"><span class="toc-number">1.4.5.1.3.1.</span> <span class="toc-text">PKI体系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CA%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.5.1.3.2.</span> <span class="toc-text">CA中心</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.5.1.3.3.</span> <span class="toc-text">数字证书认证技术原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-IPsec-VPN%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.5.2.</span> <span class="toc-text">4.5.2 IPsec VPN解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E5%8D%8F%E8%AE%AE%E7%B0%87%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6"><span class="toc-number">1.4.5.2.1.</span> <span class="toc-text">IPSEC协议簇安全框架</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.5.2.2.</span> <span class="toc-text">IPSEC工作模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.5.2.3.</span> <span class="toc-text">IPSEC通信协议</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E5%BB%BA%E7%AB%8B%E9%98%B6%E6%AE%B5"><span class="toc-number">1.4.5.2.4.</span> <span class="toc-text">IPSEC建立阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC-VPN%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.5.2.5.</span> <span class="toc-text">IPSEC VPN应用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-SANGFOR-VPN%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.5.3.</span> <span class="toc-text">4.5.3 SANGFOR VPN解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-AutoVPN%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.4.</span> <span class="toc-text">4.5.4 AutoVPN功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-5-BBC%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%AE%BE%E5%A4%87%E7%AE%A1%E6%8E%A7%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.5.</span> <span class="toc-text">4.5.5 BBC部署及设备管控功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-6-BBC%E5%88%86%E6%94%AF%E5%BA%8F%E5%88%97%E5%8F%B7%E6%89%B9%E9%87%8F%E6%9B%B4%E6%96%B0%E5%8F%8A%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.6.</span> <span class="toc-text">4.5.6 BBC分支序列号批量更新及平台告警功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-7-BBC%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.5.7.</span> <span class="toc-text">4.5.7 BBC常见使用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-8-VPN%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E9%80%89%E8%B7%AF%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.8.</span> <span class="toc-text">4.5.8 VPN内网服务选路功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.6.</span> <span class="toc-text">第六部分 态势感知基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E7%9B%91%E6%8E%A7%E5%92%8C%E5%A4%A7%E5%B1%8F"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">4.6.1 安全感知平台功能说明-监控和大屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E5%A4%84%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">4.6.2 安全感知平台功能说明-处置中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E5%88%86%E6%9E%90%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.6.3.</span> <span class="toc-text">4.6.3 安全感知平台功能说明-分析中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-4-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E8%B5%84%E4%BA%A7%E5%92%8C%E6%8A%A5%E5%91%8A%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.6.4.</span> <span class="toc-text">4.6.4 安全感知平台功能说明-资产和报告中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-5-SIP%E5%B9%B3%E5%8F%B0%E6%97%A5%E5%B8%B8%E8%BF%90%E8%90%A5%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.6.5.</span> <span class="toc-text">4.6.5 SIP平台日常运营使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-6-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E5%AF%B9%E6%8E%A5"><span class="toc-number">1.4.6.6.</span> <span class="toc-text">4.6.6 安全感知平台产品对接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-7-%E7%BA%A7%E8%81%94%E5%8A%9F%E8%83%BD%E4%B8%93%E9%A1%B9%E5%9F%B9%E8%AE%AD"><span class="toc-number">1.4.6.7.</span> <span class="toc-text">4.6.7 级联功能专项培训</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="HMX" class="lazyload">
+  <div class="sidebar-author-name">HMX</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
     
-
-
-
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">深信服安全技术认证工程师学习笔记</h1>
-                </div>
-            </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
         </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
     </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-深信服安全技术认证工程师学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-08-14T09:56:06.696Z" itemprop="datePublished">2024-08-14</time>
+    <time style="display: none;" id="post-update-time">2024-12-15</time>
+  </span>
 </div>
 
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-aos="zoom-in">学习笔记</a>
+  </div>
 
 
-
-<main class="post-container content">
-
+    </div>
+    <div class="hr-line"></div>
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
 
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        width: 345px;
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        padding: 35px 0 15px 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content {
-        padding-bottom: 30px;
-        overflow: auto;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-
-        position: absolute;
-        right: 23.5vw;
-        display: block;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 15px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
-<div id="artDetail">
-    <div class="card">
-        <div class="card-content article-info">
-            <div class="row tag-cate">
-                <div class="col s7">
-                    
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/">
-                                <span class="chip bg-color">深信服</span>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                学习笔记
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-
-            <div class="post-info">
-                
-                <div class="post-date info-break-policy">
-                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2024-08-14
-                </div>
-                
-
-                
-                <div class="post-date info-break-policy">
-                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2024-12-15
-                </div>
-                
-
-                
-                <div class="info-break-policy">
-                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    38.7k
-                </div>
-                
-
-                
-
-                
-            </div>
-        </div>
-        <hr class="clearfix">
-
-        
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.css">
-        
-
-        
-
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h1 id="深信服安全技术认证工程师学习笔记"><a href="#深信服安全技术认证工程师学习笔记" class="headerlink" title="深信服安全技术认证工程师学习笔记"></a>深信服安全技术认证工程师学习笔记</h1><h2 id="第一章-网络安全基础"><a href="#第一章-网络安全基础" class="headerlink" title="第一章 网络安全基础"></a>第一章 网络安全基础</h2><h4 id="1-1信息时代与信息安全"><a href="#1-1信息时代与信息安全" class="headerlink" title="1.1信息时代与信息安全"></a>1.1信息时代与信息安全</h4><ul>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="深信服安全技术认证工程师学习笔记"><a href="#深信服安全技术认证工程师学习笔记" class="headerlink" title="深信服安全技术认证工程师学习笔记"></a>深信服安全技术认证工程师学习笔记</h1><h2 id="第一章-网络安全基础"><a href="#第一章-网络安全基础" class="headerlink" title="第一章 网络安全基础"></a>第一章 网络安全基础</h2><h4 id="1-1信息时代与信息安全"><a href="#1-1信息时代与信息安全" class="headerlink" title="1.1信息时代与信息安全"></a>1.1信息时代与信息安全</h4><ul>
 <li><p>我国超级计算机-神威太湖之光、天河二号</p>
 </li>
 <li><p>《中华人民共和国网络安全法》2016年11月7日颁布，于2017年6月1日正式实行</p>
@@ -3279,830 +3548,400 @@
 <p>EDR：终端安全检测		SIP：态势感知平台</p>
 <h4 id="4-6-5-SIP平台日常运营使用"><a href="#4-6-5-SIP平台日常运营使用" class="headerlink" title="4.6.5 SIP平台日常运营使用"></a>4.6.5 SIP平台日常运营使用</h4><h4 id="4-6-6-安全感知平台产品对接"><a href="#4-6-6-安全感知平台产品对接" class="headerlink" title="4.6.6 安全感知平台产品对接"></a>4.6.6 安全感知平台产品对接</h4><h4 id="4-6-7-级联功能专项培训"><a href="#4-6-7-级联功能专项培训" class="headerlink" title="4.6.7 级联功能专项培训"></a>4.6.7 级联功能专项培训</h4><p>[^3]:RADIUS（Remote Authentication Dial-In User Service）协议是一种用于身份验证、授权和计费的网络协议。它广泛应用于各种网络环境中,主要用于验证远程访问用户的身份。<br>[^4]:EAP 终结方式要求 RADIUS 服务器负责完成整个 EAP 身份验证过程。RADIUS 服务器与客户端(如无线接入点)之间使用 RADIUS 协议进行通信。RADIUS 服务器执行 EAP 认证方法,并将最终的认证结果返回给客户端。这种方式简化了客户端的实现,但要求 RADIUS 服务器具有更强的计算能力。<br>[^5]:EAP 透传方式下,RADIUS 服务器不参与 EAP 身份验证过程本身。客户端与 RADIUS 服务器之间使用 RADIUS 协议进行通信,但 EAP 帧是透明地传递的。EAP 认证方法在客户端和终端用户设备之间直接执行,RADIUS 服务器只负责转发 EAP 帧。这种方式将 EAP 认证过程分散到客户端和用户设备上,减轻了 RADIUS 服务器的负担。<br>[^6]:哑终端主要用于输入和输出数据,没有复杂的数据处理和应用程序功能。它们通常只能执行基本的数据显示、键盘输入等功能。哑终端完全依赖于连接的主机或服务器来执行计算和数据处理。它们没有自己的操作系统和本地应用程序,只是充当主机的输入/输出设备。<br>[^7]:VoIP（Voice over Internet Protocol）最初是用于语音通信，但现在也扩展到视频通信。它允许用户通过网络进行实时视频通话，而不是传统的电话系统</p>
 
-                
-            </div>
-            <hr/>
-
-            
-
-    <div class="reprint" id="reprint-statement">
-        
-            <div class="reprint__author">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-user">
-                        Author:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">HMX and XMH</a>
-                </span>
-            </div>
-            <div class="reprint__type">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-link">
-                        Link:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="http://example.com/2024/08/14/shen-xin-fu-an-quan-ji-zhu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/">http://example.com/2024/08/14/shen-xin-fu-an-quan-ji-zhu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/</a>
-                </span>
-            </div>
-            <div class="reprint__notice">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-copyright">
-                        Reprint policy:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    All articles in this blog are used except for special statements
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    reprint polocy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">HMX and XMH</a>
-                    !
-                </span>
-            </div>
-        
+      
     </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/" rel="tag">深信服</a></li></ul>
 
-    <script async defer>
-      document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
-        M.toast({html: toastHTML})
-      });
 
-      function navToReprintStatement() {
-        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
-      }
-    </script>
-
-
-
-            <div class="tag_share" style="display: block;">
-                <div class="post-meta__tag-list" style="display: inline-block;">
-                    
-                        <div class="article-tag">
-                            
-                                <a href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/">
-                                    <span class="chip bg-color">深信服</span>
-                                </a>
-                            
-                        </div>
-                    
-                </div>
-                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
-<div id="article-share">
-
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
     
-    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-    <script src="/libs/share/js/social-share.min.js"></script>
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="BaseCTF 人生苦短 我用Python（Misc）" class="lazyload">
+          
+        
+        <a href="/2024/08/16/basectf-ren-sheng-ku-duan-wo-yong-python-misc/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            BaseCTF 人生苦短 我用Python（Misc）
+          
+        </h3>
+      </div>
     
-
     
-
-</div>
-
-                </div>
-            </div>
-            
-                <style>
-    #reward {
-        margin: 40px 0;
-        text-align: center;
-    }
-
-    #reward .reward-link {
-        font-size: 1.4rem;
-        line-height: 38px;
-    }
-
-    #reward .btn-floating:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    #rewardModal {
-        width: 320px;
-        height: 350px;
-    }
-
-    #rewardModal .reward-title {
-        margin: 15px auto;
-        padding-bottom: 5px;
-    }
-
-    #rewardModal .modal-content {
-        padding: 10px;
-    }
-
-    #rewardModal .close {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        color: rgba(0, 0, 0, 0.5);
-        font-size: 1.3rem;
-        line-height: 20px;
-        cursor: pointer;
-    }
-
-    #rewardModal .close:hover {
-        color: #ef5350;
-        transform: scale(1.3);
-        -moz-transform:scale(1.3);
-        -webkit-transform:scale(1.3);
-        -o-transform:scale(1.3);
-    }
-
-    #rewardModal .reward-tabs {
-        margin: 0 auto;
-        width: 210px;
-    }
-
-    .reward-tabs .tabs {
-        height: 38px;
-        margin: 10px auto;
-        padding-left: 0;
-    }
-
-    .reward-content ul {
-        padding-left: 0 !important;
-    }
-
-    .reward-tabs .tabs .tab {
-        height: 38px;
-        line-height: 38px;
-    }
-
-    .reward-tabs .tab a {
-        color: #fff;
-        background-color: #ccc;
-    }
-
-    .reward-tabs .tab a:hover {
-        background-color: #ccc;
-        color: #fff;
-    }
-
-    .reward-tabs .wechat-tab .active {
-        color: #fff !important;
-        background-color: #22AB38 !important;
-    }
-
-    .reward-tabs .alipay-tab .active {
-        color: #fff !important;
-        background-color: #019FE8 !important;
-    }
-
-    .reward-tabs .reward-img {
-        width: 210px;
-        height: 210px;
-    }
-</style>
-
-<div id="reward">
-    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
-
-    <!-- Modal Structure -->
-    <div id="rewardModal" class="modal">
-        <div class="modal-content">
-            <a class="close modal-close"><i class="fas fa-times"></i></a>
-            <h4 class="reward-title">感谢你的赞！</h4>
-            <div class="reward-content">
-                <div class="reward-tabs">
-                    <ul class="tabs row">
-                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
-                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
-                    </ul>
-                    <div id="alipay">
-                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
-                    </div>
-                    <div id="wechat">
-                        <img src="/medias/reward/weixin.jpg" class="reward-img" alt="微信打赏二维码">
-                    </div>
-                </div>
-            </div>
-        </div>
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MoeCTF 2024 Web渗透测试与审计" class="lazyload">
+        
+      
+      <a href="/2024/08/12/moectf-2024-web-shen-tou-ce-shi-yu-shen-ji/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          MoeCTF 2024 Web渗透测试与审计
+        
+      </h3>
     </div>
-</div>
-
-<script>
-    $(function () {
-        $('.tabs').tabs();
-    });
-</script>
-
-            
-        </div>
-    </div>
-
     
+  </nav>
 
-    
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-<article id="prenext-posts" class="prev-next articles">
-    <div class="row article-row">
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
-            <div class="card">
-                <a href="/2024/08/16/basectf-ren-sheng-ku-duan-wo-yong-python-misc/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="BaseCTF 人生苦短 我用Python（Misc）">
-                        
-                        <span class="card-title">BaseCTF 人生苦短 我用Python（Misc）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-16
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Misc/" class="post-category">
-                                    Misc
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/BaseCTF/">
-                        <span class="chip bg-color">BaseCTF</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/08/12/moectf-2024-web-shen-tou-ce-shi-yu-shen-ji/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="MoeCTF 2024 Web渗透测试与审计">
-                        
-                        <span class="card-title">MoeCTF 2024 Web渗透测试与审计</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-12
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/MoeCTF/" class="post-category">
-                                    MoeCTF
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Web%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">Web安全</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-    </div>
 </article>
 
-</div>
 
 
-<script>
-    $('#articleContent').on('copy', function (e) {
-        // IE8 or earlier browser is 'undefined'
-        if (typeof window.getSelection === 'undefined') return;
-
-        var selection = window.getSelection();
-        // if the selection is short let's not annoy our users.
-        if (('' + selection).length < Number.parseInt('120')) {
-            return;
-        }
-
-        // create a div outside of the visible area and fill it with the selected text.
-        var bodyElement = document.getElementsByTagName('body')[0];
-        var newdiv = document.createElement('div');
-        newdiv.style.position = 'absolute';
-        newdiv.style.left = '-99999px';
-        bodyElement.appendChild(newdiv);
-        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
-
-        // we need a <pre> tag workaround.
-        // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
-            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
-        }
-
-        var url = document.location.href;
-        newdiv.innerHTML += '<br />'
-            + 'From: xmhhmx的blog<br />'
-            + 'Author: HMX<br />'
-            + 'Link: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
-
-        selection.selectAllChildren(newdiv);
-        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
-    });
-</script>
 
 
-<!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
-
-<!-- 代码语言 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
 
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
 
 
-<!-- 代码块收缩 -->
 
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget card" style="background-color: white;">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
-            <div id="toc-content"></div>
+</section>
         </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2020-2025
+      
+      <span class="footer-info-sep rotate"></span>
+      HMX
     </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fas fa-list-ul"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).hide();
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).show();
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
-
     
-
-</main>
-
-
-
-
-    <footer class="page-footer bg-color">
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
     
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
     
-</style>
-<div class="">
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
     
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="song"
-                   id="472137749"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
     
-    <div class="container row center-align" style="margin-bottom: 15px !important;">
-        <div class="col s12 m8 l8 copy-right">
-            Copyright&nbsp;&copy;
-            
-                <span id="year">2024-2025</span>
-            
-            <span id="year">2024</span>
-            <a href="/about" target="_blank">HMX</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">203.1k</span>&nbsp;字
-            
-            
-            
-            
-            
-            
-            <span id="busuanzi_container_site_pv">
-                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
-                    class="white-color"></span>&nbsp;次
-            </span>
-            
-            
-            <span id="busuanzi_container_site_uv">
-                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
-                    class="white-color"></span>&nbsp;人
-            </span>
-            
-            <br>
-            
-            <span id="sitetime">载入运行时间...</span>
-            <script>
-                function siteTime() {
-                    var seconds = 1000;
-                    var minutes = seconds * 60;
-                    var hours = minutes * 60;
-                    var days = hours * 24;
-                    var years = days * 365;
-                    var today = new Date();
-                    var startYear = "2024";
-                    var startMonth = "5";
-                    var startDate = "20";
-                    var startHour = "0";
-                    var startMinute = "0";
-                    var startSecond = "0";
-                    var todayYear = today.getFullYear();
-                    var todayMonth = today.getMonth() + 1;
-                    var todayDate = today.getDate();
-                    var todayHour = today.getHours();
-                    var todayMinute = today.getMinutes();
-                    var todaySecond = today.getSeconds();
-                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
-                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-                    var diff = t2 - t1;
-                    var diffYears = Math.floor(diff / years);
-                    var diffDays = Math.floor((diff / days) - diffYears * 365);
-                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
-                        minutes);
-                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
-                        diffMinutes * minutes) / seconds);
-                    if (startYear == todayYear) {
-                        document.getElementById("year").innerHTML = todayYear;
-                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
-                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
-                    } else {
-                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
-                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
-                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
-                    }
-                }
-                setInterval(siteTime, 1000);
-            </script>
-            
-            <br>
-            
-        </div>
-        <div class="col s12 m4 l4 social-link social-statis">
-
-
-    <a href="mailto:1282370648@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1282370648" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1282370648" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
-
-
-
-
-
-</div>
-    </div>
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
 </footer>
 
-<div class="progress-bar"></div>
-
-
-    <!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
-            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
-                   class="search-input">
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E8%AE%A4%E8%AF%81%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">深信服安全技术认证工程师学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 网络安全基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1%E4%BF%A1%E6%81%AF%E6%97%B6%E4%BB%A3%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">1.1信息时代与信息安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E5%AD%A6%E7%A7%91%E6%B5%85%E8%B0%88"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">1.2网络空间安全学科浅谈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 操作系统基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 网络运维</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一部分 计算机网络原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二部分 路由与交换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 网络安全产品运维</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.1.</span> <span class="toc-text">第一部分 下一代防火墙基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">4.1.1下一代防火墙概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88%E5%8C%85%E8%BF%87%E6%BB%A4%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89"><span class="toc-number">1.4.1.1.1.</span> <span class="toc-text">传统防火墙（包过滤防火墙）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88%E5%BA%94%E7%94%A8%E4%BB%A3%E7%90%86%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89"><span class="toc-number">1.4.1.1.2.</span> <span class="toc-text">传统防火墙（应用代理防火墙）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89"><span class="toc-number">1.4.1.1.3.</span> <span class="toc-text">传统防火墙（状态检测防火墙）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%EF%BC%88IDS%EF%BC%89"><span class="toc-number">1.4.1.1.4.</span> <span class="toc-text">入侵检测系统（IDS）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A5%E4%BE%B5%E9%98%B2%E5%BE%A1%E7%B3%BB%E7%BB%9F%EF%BC%88IPS%EF%BC%89"><span class="toc-number">1.4.1.1.5.</span> <span class="toc-text">入侵防御系统（IPS）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E7%97%85%E6%AF%92%E7%BD%91%E5%85%B3%EF%BC%88AV%EF%BC%89"><span class="toc-number">1.4.1.1.6.</span> <span class="toc-text">防病毒网关（AV）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%97%85%E6%AF%92%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.4.1.1.6.1.</span> <span class="toc-text">传统的病毒检测方法：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88WAF%EF%BC%89"><span class="toc-number">1.4.1.1.7.</span> <span class="toc-text">Web应用防火墙（WAF）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%A8%81%E8%83%81%E7%AE%A1%E7%90%86%EF%BC%88UTM%EF%BC%89-%E5%A4%9A%E5%90%88%E4%B8%80%E5%AE%89%E5%85%A8%E7%BD%91%E5%85%B3"><span class="toc-number">1.4.1.1.8.</span> <span class="toc-text">统一威胁管理（UTM）-多合一安全网关</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%88NGFW%EF%BC%89-%E5%8D%87%E7%BA%A7%E7%89%88UTM"><span class="toc-number">1.4.1.1.9.</span> <span class="toc-text">下一代防火墙（NGFW）-升级版UTM</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-%E6%B7%B1%E4%BF%A1%E6%9C%8D%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">4.1.2 深信服下一代防火墙解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E5%BA%94%E5%AF%B9%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.1.2.1.</span> <span class="toc-text">深信服应对方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E4%BF%A1%E6%9C%8D%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9D%80%E6%AF%92%E5%BC%95%E6%93%8ESAVE"><span class="toc-number">1.4.1.2.2.</span> <span class="toc-text">&#x3D;&#x3D;深信服人工智能杀毒引擎SAVE&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E8%81%94%E5%8A%A8"><span class="toc-number">1.4.1.2.3.</span> <span class="toc-text">智能联动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF%E6%99%BA%E8%83%BD%E6%A3%80%E6%B5%8B-%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5"><span class="toc-number">1.4.1.2.4.</span> <span class="toc-text">云端智能检测-威胁情报</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF%E6%99%BA%E8%83%BD%E6%A3%80%E6%B5%8B-%E4%BA%91%E7%AB%AF%E6%B2%99%E7%AE%B1"><span class="toc-number">1.4.1.2.5.</span> <span class="toc-text">云端智能检测-云端沙箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91%E5%87%BA%E5%8F%A3%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.2.6.</span> <span class="toc-text">互联网出口安全防护场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E5%A4%96%E4%B8%9A%E5%8A%A1%E5%8F%91%E5%B8%83%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.2.7.</span> <span class="toc-text">对外业务发布安全防护场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%9C%BA%E6%9E%84%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.2.8.</span> <span class="toc-text">分支机构安全防护场景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4"><span class="toc-number">1.4.1.2.9.</span> <span class="toc-text">数据中心安全防护</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91%E7%AE%80%E4%BB%8B"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">4.1.3 下一代防火墙组网简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AF%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.4.1.3.1.</span> <span class="toc-text">AF的接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E7%BD%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.4.1.3.2.</span> <span class="toc-text">接口设置注意事项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.4.1.3.3.</span> <span class="toc-text">区域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E9%A2%98%EF%BC%9A"><span class="toc-number">1.4.1.3.4.</span> <span class="toc-text">错题：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">4.1.4 下一代防火墙组网-路由模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-5-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E9%80%8F%E6%98%8E%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">4.1.5 下一代防火墙组网-透明模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-6-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">4.1.6 下一代防火墙组网-旁路模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-7-%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%84%E7%BD%91-%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.1.7.</span> <span class="toc-text">4.1.7 下一代防火墙组网-混合模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-8-%E7%AD%96%E7%95%A5%E8%B7%AF%E7%94%B1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.1.8.</span> <span class="toc-text">4.1.8 策略路由解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E9%A2%98%EF%BC%9A-1"><span class="toc-number">1.4.1.8.1.</span> <span class="toc-text">错题：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-9-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E5%8A%9F%E8%83%BD%E5%9F%BA%E7%A1%80%EF%BC%88%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7%E6%9E%B6%E6%9E%84%EF%BC%89"><span class="toc-number">1.4.1.9.</span> <span class="toc-text">4.1.9 高可用性功能基础（高可用性架构）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-10-%E4%B8%BB%E4%B8%BB-%E4%B8%BB%E5%A4%87%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF"><span class="toc-number">1.4.1.10.</span> <span class="toc-text">4.1.10 主主&amp;主备部署应用场景及配置思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E5%A4%87%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.1.10.1.</span> <span class="toc-text">主备部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E4%B8%BB%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.1.10.2.</span> <span class="toc-text">主主部署</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-11-%E5%8F%8C%E6%9C%BA%E8%81%9A%E5%90%88%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF-%E5%8F%8C%E6%9C%BA%E9%83%A8%E7%BD%B2%E5%B8%B8%E8%A7%81%E6%95%85%E9%9A%9C"><span class="toc-number">1.4.1.11.</span> <span class="toc-text">4.1.11 双机聚合应用场景及配置思路&amp;双机部署常见故障</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E9%A2%98%EF%BC%9A-2"><span class="toc-number">1.4.1.11.1.</span> <span class="toc-text">错题：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-12-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9-%E7%BB%88%E7%AB%AF%E4%B8%8A%E7%BD%91%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.12.</span> <span class="toc-text">4.1.12 终端安全风险&amp;终端上网安全应用控制技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-13-%E7%BB%88%E7%AB%AF%E4%B8%8A%E7%BD%91%E5%AE%89%E5%85%A8%E7%BD%91%E5%85%B3%E6%9D%80%E6%AF%92%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.13.</span> <span class="toc-text">4.1.13 终端上网安全网关杀毒技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-14-%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.14.</span> <span class="toc-text">4.1.14 僵尸网络检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-15-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E4%B8%93%E9%A2%98-%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E9%98%B2%E6%8A%A4"><span class="toc-number">1.4.1.15.</span> <span class="toc-text">4.1.15 终端安全防护专题-勒索病毒防护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-16-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9%E4%B8%8EDOS%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.16.</span> <span class="toc-text">4.1.16 服务器安全风险与DOS攻击检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-17-%E6%BC%8F%E6%B4%9E%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.17.</span> <span class="toc-text">4.1.17 漏洞攻击防护入侵检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-18-WEB%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.18.</span> <span class="toc-text">4.1.18 WEB攻击检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-19-%E8%81%94%E5%8A%A8%E5%B0%81%E9%94%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.19.</span> <span class="toc-text">4.1.19 联动封锁技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-20-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.1.20.</span> <span class="toc-text">4.1.20 安全运营中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-21-%E4%B8%9A%E5%8A%A1%E5%AE%89%E5%85%A8%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.1.21.</span> <span class="toc-text">4.1.21 业务安全功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-22-%E7%94%A8%E6%88%B7%E5%AE%89%E5%85%A8%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.1.22.</span> <span class="toc-text">4.1.22 用户安全功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-23-%E4%B8%9A%E5%8A%A1%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.1.23.</span> <span class="toc-text">4.1.23 业务资产管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-24-%E4%B8%BB%E5%8A%A8%E8%AF%B1%E6%8D%95%EF%BC%88%E4%BA%91%E8%9C%9C%E7%BD%90%EF%BC%89"><span class="toc-number">1.4.1.24.</span> <span class="toc-text">4.1.24 主动诱捕（云蜜罐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-25-%E8%B4%A6%E5%8F%B7%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B%E5%92%8C%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.1.25.</span> <span class="toc-text">4.1.25 账号安全检测和防御技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-26-DNS-Mapping%E5%8A%9F%E8%83%BD%E4%B8%8E%E8%AE%BE%E5%A4%87%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.1.26.</span> <span class="toc-text">4.1.26 DNS-Mapping功能与设备常用运维功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-27-xhack%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.1.27.</span> <span class="toc-text">4.1.27 xhack工具介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text">第二部分 全网行为管理基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">4.2.1 全网行为管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">4.2.2 全网行为管理的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E7%99%BB%E9%99%86%E8%AE%BE%E5%A4%87"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">1. 登陆设备</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%81%A2%E5%A4%8D%E5%87%BA%E5%8E%82%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.2.2.2.</span> <span class="toc-text">2.恢复出厂设置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98"><span class="toc-number">1.4.2.2.2.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">4.2.3 全网行为管理部署模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.1.</span> <span class="toc-text">路由部署解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BD%91%E6%A1%A5%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.2.</span> <span class="toc-text">网桥部署解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%81%E8%B7%AF%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.3.</span> <span class="toc-text">旁路部署解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.2.3.4.</span> <span class="toc-text">部署模式小结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Trunk%E9%83%A8%E7%BD%B2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.3.5.</span> <span class="toc-text">Trunk部署解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-1"><span class="toc-number">1.4.2.3.5.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-%E5%85%A8%E7%BD%91%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">4.2.4 全网行为管理高可用部署</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="toc-number">1.4.2.4.1.</span> <span class="toc-text">1 高可用需求背景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%B8%BB%E5%A4%87%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.2.4.2.</span> <span class="toc-text">2 主备模式部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E4%B8%BB%E4%B8%BB%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.2.4.3.</span> <span class="toc-text">3 主主模式部署</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-2"><span class="toc-number">1.4.2.4.3.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-5-%E6%8E%A5%E5%85%A5%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80"><span class="toc-number">1.4.2.5.</span> <span class="toc-text">4.2.5 接入认证基础</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.5.1.</span> <span class="toc-text">无认证技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IP-MAC%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.5.2.</span> <span class="toc-text">IP&#x2F;MAC认证</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#SNMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.2.5.2.1.</span> <span class="toc-text">SNMP协议</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#MIB%E5%BA%93"><span class="toc-number">1.4.2.5.2.2.</span> <span class="toc-text">MIB库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-3"><span class="toc-number">1.4.2.5.2.3.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-6-%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.6.</span> <span class="toc-text">4.2.6 密码技术认证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%EF%BC%88%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.4.2.6.1.</span> <span class="toc-text">HTTP协议（超文本传输协议）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.2.6.2.</span> <span class="toc-text">密码认证流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.6.3.</span> <span class="toc-text">密码认证配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-7-%E5%A4%96%E9%83%A8%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.7.</span> <span class="toc-text">4.2.7 外部认证技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.7.1.</span> <span class="toc-text">外部认证配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LDAP%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.7.2.</span> <span class="toc-text">LDAP认证配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%94%99%E9%A2%98-4"><span class="toc-number">1.4.2.7.2.1.</span> <span class="toc-text">错题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-8-802-1x%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.8.</span> <span class="toc-text">4.2.8 802.1x认证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#802-1X%E5%8D%8F%E8%AE%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.2.8.1.</span> <span class="toc-text">802.1X协议介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MAB%E5%85%8D%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.2.8.2.</span> <span class="toc-text">MAB免认证</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-9-%E7%BB%88%E7%AB%AF%E8%AF%86%E5%88%AB%E5%92%8C%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.9.</span> <span class="toc-text">4.2.9 终端识别和管理概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-10-%E7%BB%88%E7%AB%AF%E6%A3%80%E6%9F%A5%E5%92%8C%E7%AE%A1%E6%8E%A7%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.10.</span> <span class="toc-text">4.2.10 终端检查和管控技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9D%80%E8%BD%AF%E6%A3%80%E6%9F%A5%E4%B8%8E%E7%99%BB%E5%BD%95%E5%9F%9F%E6%A3%80%E6%9F%A5"><span class="toc-number">1.4.2.10.1.</span> <span class="toc-text">杀软检查与登录域检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BE%E7%AF%A1%E6%94%B9%E6%A3%80%E6%9F%A5%E4%B8%8E%E5%A4%96%E8%81%94%E6%A3%80%E6%9F%A5"><span class="toc-number">1.4.2.10.2.</span> <span class="toc-text">放篡改检查与外联检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%96%E8%81%94%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%A4%96%E8%AE%BE%E7%AE%A1%E6%8E%A7%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.10.3.</span> <span class="toc-text">外联控制与外设管控技术</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-11%E5%BA%94%E7%94%A8%E7%89%B9%E5%BE%81%E8%AF%86%E5%88%AB%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.11.</span> <span class="toc-text">4.2.11应用特征识别技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E8%A1%8C%E4%B8%BA%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.11.1.</span> <span class="toc-text">深度行为检测技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%8C%85%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%EF%BC%88DPI%EF%BC%89"><span class="toc-number">1.4.2.11.1.1.</span> <span class="toc-text">深度包检测技术（DPI）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E6%B5%81%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%EF%BC%88DFI%EF%BC%89"><span class="toc-number">1.4.2.11.1.2.</span> <span class="toc-text">深度流检测技术（DFI）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%8C%85%E6%A3%80%E6%B5%8B-DPI-VS-%E6%B7%B1%E5%BA%A6%E6%B5%81%E6%A3%80%E6%B5%8B-DFI"><span class="toc-number">1.4.2.11.1.3.</span> <span class="toc-text">深度包检测(DPI) VS 深度流检测(DFI)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-12-HTTP%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.12.</span> <span class="toc-text">4.2.12 HTTP与自定义识别控制技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.4.2.12.1.</span> <span class="toc-text">HTTP识别控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.4.2.12.2.</span> <span class="toc-text">HTTPS识别控制</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HTTPS%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.2.12.2.1.</span> <span class="toc-text">HTTPS协议</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.4.2.12.3.</span> <span class="toc-text">自定义识别控制</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-13-%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.13.</span> <span class="toc-text">4.2.13 流量管理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E8%83%8C%E6%99%AF"><span class="toc-number">1.4.2.13.1.</span> <span class="toc-text">流量管理背景</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.13.2.</span> <span class="toc-text">流量管理技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.2.13.2.1.</span> <span class="toc-text">1 流量检测方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.13.2.2.</span> <span class="toc-text">2 应用控制技术</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%BA%94%E7%94%A8%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.13.2.3.</span> <span class="toc-text">3 应用检测技术</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E8%AF%86%E5%88%AB%E6%8E%A7%E5%88%B6%E7%BB%84%E7%BD%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.2.13.2.4.</span> <span class="toc-text">4 识别控制组网模式</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.13.3.</span> <span class="toc-text">流量控制解决方案</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-14-%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.2.14.</span> <span class="toc-text">4.2.14 流量管理应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-15-DNS%E4%B8%8E%E9%93%BE%E8%B7%AF%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.2.15.</span> <span class="toc-text">4.2.15 DNS与链路流量管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-16-%E8%A1%8C%E4%B8%BA%E5%AE%A1%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.16.</span> <span class="toc-text">4.2.16 行为审计概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-17-SSL%E5%86%85%E5%AE%B9%E8%A7%A3%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.17.</span> <span class="toc-text">4.2.17 SSL内容解密技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-18-%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%AE%A1%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.18.</span> <span class="toc-text">4.2.18 客户端与业务审计技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-19-%E6%95%B0%E6%8D%AE%E4%BB%B7%E5%80%BC%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.19.</span> <span class="toc-text">4.2.19 数据价值解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-20-%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.2.20.</span> <span class="toc-text">4.2.20 管理员账号功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-21-%E7%BB%93%E5%90%88AD%E5%9F%9F%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%EF%BC%88%E8%84%9A%E6%9C%AC%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">1.4.2.21.</span> <span class="toc-text">4.2.21 结合AD域单点登录功能（脚本方式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-22-%E7%BB%93%E5%90%88AD%E5%9F%9F%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.2.22.</span> <span class="toc-text">4.2.22 结合AD域单点登录功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.3.</span> <span class="toc-text">第三部分 零信任基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-aTrust%E8%AE%BE%E5%A4%87%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%96%BD%E4%B8%8A%E6%9E%B6"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">4.3.1 aTrust设备部署实施上架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-aTrust%E6%9C%AC%E5%9C%B0%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">4.3.2 aTrust本地集群部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-aTrust%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">4.3.3 aTrust用户管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-aTrust%E6%9C%AC%E5%9C%B0%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">4.3.4 aTrust本地认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-5-aTrust-LDAP%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.5.</span> <span class="toc-text">4.3.5 aTrust_LDAP认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-6-aTrust-TOTP%E5%8A%A8%E6%80%81%E4%BB%A4%E7%89%8C%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.6.</span> <span class="toc-text">4.3.6 aTrust_TOTP动态令牌认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-7-aTrust%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.7.</span> <span class="toc-text">4.3.7 aTrust证书认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-8-aTrust%E8%85%BE%E8%AE%AF%E4%BA%91%E9%98%BF%E9%87%8C%E4%BA%91%E7%9F%AD%E4%BF%A1%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.8.</span> <span class="toc-text">4.3.8 aTrust腾讯云阿里云短信认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-9-aTrust%E8%87%AA%E5%AE%9A%E4%B9%89HTTP-S-%E7%9F%AD%E4%BF%A1%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.9.</span> <span class="toc-text">4.3.9 aTrust自定义HTTP(S)短信认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-10-aTrust-Radius%E8%B4%A6%E5%8F%B7%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.10.</span> <span class="toc-text">4.3.10 aTrust_Radius账号认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-11-aTrust-Web%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.3.11.</span> <span class="toc-text">4.3.11 aTrust_Web应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-12-aTrust%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.12.</span> <span class="toc-text">4.3.12 aTrust权限管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-13-aTrust%E9%9A%A7%E9%81%93%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.3.13.</span> <span class="toc-text">4.3.13 aTrust隧道应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-14-aTrust%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF"><span class="toc-number">1.4.3.14.</span> <span class="toc-text">4.3.14 aTrust安全基线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-15-aTrust%E7%AD%96%E7%95%A5%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.15.</span> <span class="toc-text">4.3.15 aTrust策略管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-16-aTrust%E8%87%AA%E9%80%82%E5%BA%94%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.16.</span> <span class="toc-text">4.3.16 aTrust自适应认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-17-aTrust%E5%85%8D%E8%AE%A4%E8%AF%81%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.3.17.</span> <span class="toc-text">4.3.17 aTrust免认证应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-18-aTrust-%E5%AF%B9%E6%8E%A5CAS%E7%A5%A8%E6%8D%AE%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.18.</span> <span class="toc-text">4.3.18 aTrust_对接CAS票据认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-19-aTrust-OAuth2%E7%A5%A8%E6%8D%AE%E8%AE%A4%E8%AF%81"><span class="toc-number">1.4.3.19.</span> <span class="toc-text">4.3.19 aTrust_OAuth2票据认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-20-aTrust%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7"><span class="toc-number">1.4.3.20.</span> <span class="toc-text">4.3.20 aTrust系统升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-21-aTrust%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD%E4%B8%8ESNMP%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.21.</span> <span class="toc-text">4.3.21 aTrust配置备份与SNMP管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-22-aTrust%E5%B9%B3%E5%8F%B0%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.3.22.</span> <span class="toc-text">4.3.22 aTrust平台安装部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-23-aTrust%E5%B9%B3%E5%8F%B0%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%8E%88%E6%9D%83"><span class="toc-number">1.4.3.23.</span> <span class="toc-text">4.3.23 aTrust平台网络配置与授权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-24-%E9%9B%B6%E4%BF%A1%E4%BB%BB%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84"><span class="toc-number">1.4.3.24.</span> <span class="toc-text">4.3.24 零信任网络安全架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.4.</span> <span class="toc-text">第四部分 终端安全原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-EDR%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">4.4.1 EDR安装部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-EDR%E7%BB%88%E7%AB%AF%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">4.4.2 EDR终端管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-3-EDR%E7%AD%96%E7%95%A5%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.4.3.</span> <span class="toc-text">4.4.3 EDR策略中心</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80"><span class="toc-number">1.4.4.3.1.</span> <span class="toc-text">一、病毒查杀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7"><span class="toc-number">1.4.4.3.2.</span> <span class="toc-text">二、文件实时监控</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8B%92%E7%B4%A2%E8%AF%B1%E9%A5%B5%E9%98%B2%E6%8A%A4"><span class="toc-number">1.4.4.3.3.</span> <span class="toc-text">三、勒索诱饵防护</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E6%A3%80%E6%B5%8B"><span class="toc-number">1.4.4.3.4.</span> <span class="toc-text">四、暴力破解检测</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA"><span class="toc-number">1.4.4.3.5.</span> <span class="toc-text">五、安全加固</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.4.4.3.6.</span> <span class="toc-text">六、漏洞修复</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BD%BB%E8%A1%A5%E4%B8%81%E6%BC%8F%E6%B4%9E%E5%85%8D%E7%96%AB"><span class="toc-number">1.4.4.3.7.</span> <span class="toc-text">七、轻补丁漏洞免疫</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%BB%88%E7%AB%AF%E5%B9%BF%E5%91%8A%E5%BC%B9%E7%AA%97%E6%8B%A6%E6%88%AA"><span class="toc-number">1.4.4.3.8.</span> <span class="toc-text">八、终端广告弹窗拦截</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-4-EDR%E5%BE%AE%E9%9A%94%E7%A6%BB"><span class="toc-number">1.4.4.4.</span> <span class="toc-text">4.4.4 EDR微隔离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-5-%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.4.5.</span> <span class="toc-text">4.4.5 终端安全产品介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-6-AIO%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.4.4.6.</span> <span class="toc-text">4.4.6 AIO功能介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%BB%84%E7%BD%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8"><span class="toc-number">1.4.5.</span> <span class="toc-text">第五部分 广域网组网与传输安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-VPN%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">4.5.1 VPN概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.5.1.1.</span> <span class="toc-text">隧道技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E8%A7%A3%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.5.1.2.</span> <span class="toc-text">加解密技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.5.1.3.</span> <span class="toc-text">身份认证技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#PKI%E4%BD%93%E7%B3%BB"><span class="toc-number">1.4.5.1.3.1.</span> <span class="toc-text">PKI体系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CA%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.5.1.3.2.</span> <span class="toc-text">CA中心</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.5.1.3.3.</span> <span class="toc-text">数字证书认证技术原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-IPsec-VPN%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.5.2.</span> <span class="toc-text">4.5.2 IPsec VPN解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E5%8D%8F%E8%AE%AE%E7%B0%87%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6"><span class="toc-number">1.4.5.2.1.</span> <span class="toc-text">IPSEC协议簇安全框架</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.5.2.2.</span> <span class="toc-text">IPSEC工作模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.4.5.2.3.</span> <span class="toc-text">IPSEC通信协议</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC%E5%BB%BA%E7%AB%8B%E9%98%B6%E6%AE%B5"><span class="toc-number">1.4.5.2.4.</span> <span class="toc-text">IPSEC建立阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPSEC-VPN%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.5.2.5.</span> <span class="toc-text">IPSEC VPN应用场景</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-SANGFOR-VPN%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.5.3.</span> <span class="toc-text">4.5.3 SANGFOR VPN解决方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-AutoVPN%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.4.</span> <span class="toc-text">4.5.4 AutoVPN功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-5-BBC%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%AE%BE%E5%A4%87%E7%AE%A1%E6%8E%A7%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.5.</span> <span class="toc-text">4.5.5 BBC部署及设备管控功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-6-BBC%E5%88%86%E6%94%AF%E5%BA%8F%E5%88%97%E5%8F%B7%E6%89%B9%E9%87%8F%E6%9B%B4%E6%96%B0%E5%8F%8A%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.6.</span> <span class="toc-text">4.5.6 BBC分支序列号批量更新及平台告警功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-7-BBC%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.5.7.</span> <span class="toc-text">4.5.7 BBC常见使用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-8-VPN%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E9%80%89%E8%B7%AF%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.5.8.</span> <span class="toc-text">4.5.8 VPN内网服务选路功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-number">1.4.6.</span> <span class="toc-text">第六部分 态势感知基础原理与运维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-1-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E7%9B%91%E6%8E%A7%E5%92%8C%E5%A4%A7%E5%B1%8F"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">4.6.1 安全感知平台功能说明-监控和大屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-2-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E5%A4%84%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">4.6.2 安全感知平台功能说明-处置中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-3-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E5%88%86%E6%9E%90%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.6.3.</span> <span class="toc-text">4.6.3 安全感知平台功能说明-分析中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-4-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E-%E8%B5%84%E4%BA%A7%E5%92%8C%E6%8A%A5%E5%91%8A%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.6.4.</span> <span class="toc-text">4.6.4 安全感知平台功能说明-资产和报告中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-5-SIP%E5%B9%B3%E5%8F%B0%E6%97%A5%E5%B8%B8%E8%BF%90%E8%90%A5%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.6.5.</span> <span class="toc-text">4.6.5 SIP平台日常运营使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-6-%E5%AE%89%E5%85%A8%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E5%AF%B9%E6%8E%A5"><span class="toc-number">1.4.6.6.</span> <span class="toc-text">4.6.6 安全感知平台产品对接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-7-%E7%BA%A7%E8%81%94%E5%8A%9F%E8%83%BD%E4%B8%93%E9%A1%B9%E5%9F%B9%E8%AE%AD"><span class="toc-number">1.4.6.7.</span> <span class="toc-text">4.6.7 级联功能专项培训</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="HMX" class="lazyload">
+  <div class="sidebar-author-name">HMX</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
         </div>
-        <div id="searchResult"></div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
     </div>
-</div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-$(function () {
-    var searchFunc = function (path, search_id, content_id) {
-        'use strict';
-        $.ajax({
-            url: path,
-            dataType: "xml",
-            success: function (xmlResponse) {
-                // get the contents from search data
-                var datas = $("entry", xmlResponse).map(function () {
-                    return {
-                        title: $("title", this).text(),
-                        content: $("content", this).text(),
-                        url: $("url", this).text()
-                    };
-                }).get();
-                var $input = document.getElementById(search_id);
-                var $resultContent = document.getElementById(content_id);
-                $input.addEventListener('input', function () {
-                    var str = '<ul class=\"search-result-list\">';
-                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
-                    if (this.value.trim().length <= 0) {
-                        return;
-                    }
-                    // perform local searching
-                    datas.forEach(function (data) {
-                        var isMatch = true;
-                        var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                        var data_url = data.url;
-                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
-                        var index_title = -1;
-                        var index_content = -1;
-                        var first_occur = -1;
-                        // only match artiles with not empty titles and contents
-                        if (data_title !== '' && data_content !== '') {
-                            keywords.forEach(function (keyword, i) {
-                                index_title = data_title.indexOf(keyword);
-                                index_content = data_content.indexOf(keyword);
-                                if (index_title < 0 && index_content < 0) {
-                                    isMatch = false;
-                                } else {
-                                    if (index_content < 0) {
-                                        index_content = 0;
-                                    }
-                                    if (i === 0) {
-                                        first_occur = index_content;
-                                    }
-                                }
-                            });
-                        }
-                        // show search results
-                        if (isMatch) {
-                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
-                            var content = data.content.trim().replace(/<[^>]+>/g, "");
-                            if (first_occur >= 0) {
-                                // cut out 100 characters
-                                var start = first_occur - 20;
-                                var end = first_occur + 80;
-                                if (start < 0) {
-                                    start = 0;
-                                }
-                                if (start === 0) {
-                                    end = 100;
-                                }
-                                if (end > content.length) {
-                                    end = content.length;
-                                }
-                                var match_content = content.substr(start, end);
-                                // highlight all keywords
-                                keywords.forEach(function (keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
-                                });
 
-                                str += "<p class=\"search-result\">" + match_content + "...</p>"
-                            }
-                            str += "</li>";
-                        }
-                    });
-                    str += "</ul>";
-                    $resultContent.innerHTML = str;
-                });
-            }
-        });
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
     };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
 
-    searchFunc('/search.xml', 'searchInput', 'searchResult');
-});
-</script>
 
-    <!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "HMX",
+          title: "深信服安全技术认证工程师学习笔记",
+          url: "http://example.com/2024/08/14/shen-xin-fu-an-quan-ji-zhu-ren-zheng-gong-cheng-shi-xue-xi-bi-ji/",
+          excerpt: "",
+          description: "",
+          stripContent: "深信服安全技术认证工程师学习笔记第一章 网络安全基础1.1信息时代与信息安全 我国超级计算机-神威太湖之光、天河二号  《中华人民共和国网络安全法》2016年11月7日颁布，于2017年6月1日正式实行  《中华人民共和国密码法》2019年10月26日正式通过，2020年1月1日正式实施  2020年04月27日，国家网信办等十二部门联合印发《网络安全审查办法》  2021年6月10日《中华人民共和国数据安全法》发布，于2021年9月1日起施行。  2021年7月30日，国务院发布《关键信息基础",
+          date: "Wed Aug 14 2024 17:56:06 GMT+0800",
+          updated: "Sun Dec 15 2024 21:16:17 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
 </div>
 
 
-    <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
-    
-    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-    <!-- <script type="text/javascript" src="/js/fireworks.js"></script> -->
-
-    <!-- <script type="text/javascript">
-        //只在桌面版网页启用特效
-        var windowWidth = $(window).width();
-        if (windowWidth > 768) {
-            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
-        }
-    </script> -->
-    
-    <script src="/js/snow.js"></script>
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
 
 
-    <!-- Baidu Analytics -->
 
-    <!-- Baidu Push -->
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
 
 <script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
 </script>
 
-    
-    
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-    
+
+
+
+
+
+
+
 
     
+  </body>
+  </html>
 
-    
-
-	
-    
-
-    
-
-    
-    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
-    
-
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
-    
-
-</body>
-
-</html>
