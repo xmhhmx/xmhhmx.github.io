@@ -1,0 +1,1099 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    PHP代码审计 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="PHP代码审计代码审计流程1.反向查找流程 通过可控变量(输入点)回溯危险函数 查找危险函数确定可控变量 传递的过程中触发漏洞  反向漏洞挖掘特点 根源：危险函数导致漏洞 特点: 暴力：全局搜索危险函数 简单：无需过多理解目标网站功能与架构 快速：适用于自动化代码审计工具 命中率低：简单的漏洞越来越少 无法挖掘逻辑漏洞：逻辑漏洞多数不存在危险函数，或危险函数的参数“看似”不可控 适应性较差：不适合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP代码审计">
+<meta property="og:url" content="http://example.com/en/2024/10/14/php-dai-ma-shen-ji/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="PHP代码审计代码审计流程1.反向查找流程 通过可控变量(输入点)回溯危险函数 查找危险函数确定可控变量 传递的过程中触发漏洞  反向漏洞挖掘特点 根源：危险函数导致漏洞 特点: 暴力：全局搜索危险函数 简单：无需过多理解目标网站功能与架构 快速：适用于自动化代码审计工具 命中率低：简单的漏洞越来越少 无法挖掘逻辑漏洞：逻辑漏洞多数不存在危险函数，或危险函数的参数“看似”不可控 适应性较差：不适合">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/670f7080d29ded1a8c011ac1.png">
+<meta property="article:published_time" content="2024-10-14T05:16:14.982Z">
+<meta property="article:modified_time" content="2024-10-18T02:28:01.194Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/670f7080d29ded1a8c011ac1.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/10/14/php-dai-ma-shen-ji/';
+            
+              langMap['en'] = '/en/2024/10/14/php-dai-ma-shen-ji/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="PHP代码审计">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">PHP代码审计</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">PHP代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">代码审计流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%8D%E5%90%91%E6%9F%A5%E6%89%BE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.反向查找流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">反向漏洞挖掘特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%AD%A3%E5%90%91%E6%9F%A5%E6%89%BE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.正向查找流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%90%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">正向漏洞挖掘特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8C%E5%90%91%E6%9F%A5%E6%89%BE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.双向查找流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8A%80%E5%B7%A7"><span class="toc-number">1.2.</span> <span class="toc-text">SQL注入漏洞挖掘技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E5%85%A5%E8%BF%87%E6%BB%A4%E7%BB%95%E8%BF%87%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">常见注入过滤绕过方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.3.</span> <span class="toc-text">思路总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.2.4.</span> <span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">任意文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">文件操作函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.2.</span> <span class="toc-text">文件上传漏洞</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-PHP代码审计" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-10-14T05:16:14.982Z" itemprop="datePublished">2024-10-14</time>
+    <time style="display: none;" id="post-update-time">2024-10-18</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="PHP代码审计"><a href="#PHP代码审计" class="headerlink" title="PHP代码审计"></a>PHP代码审计</h1><h2 id="代码审计流程"><a href="#代码审计流程" class="headerlink" title="代码审计流程"></a>代码审计流程</h2><h3 id="1-反向查找流程"><a href="#1-反向查找流程" class="headerlink" title="1.反向查找流程"></a>1.反向查找流程</h3><ol>
+<li>通过可控变量(输入点)回溯危险函数</li>
+<li>查找危险函数确定可控变量</li>
+<li>传递的过程中触发漏洞</li>
+</ol>
+<h4 id="反向漏洞挖掘特点"><a href="#反向漏洞挖掘特点" class="headerlink" title="反向漏洞挖掘特点"></a>反向漏洞挖掘特点</h4><ul>
+<li>根源：<strong>危险函数导致漏洞</strong></li>
+<li>特点:<ul>
+<li>暴力：全局搜索危险函数</li>
+<li>简单：无需过多理解目标网站功能与架构</li>
+<li>快速：适用于自动化代码审计工具</li>
+<li>命中率低：简单的漏洞越来越少</li>
+<li>无法挖掘逻辑漏洞：逻辑漏洞多数不存在危险函数，或危险函数的参数“看似”不可控</li>
+<li>适应性较差：不适合存在全局过滤的站点</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-正向查找流程"><a href="#2-正向查找流程" class="headerlink" title="2.正向查找流程"></a>2.正向查找流程</h3><ol>
+<li>从入口点函数出发</li>
+<li>找到控制器，理解URL派发规则</li>
+<li>跟踪控制器调用，以理解代码为目标进行源码阅读</li>
+<li>阅读代码的过程中，可能发现漏洞</li>
+</ol>
+<h4 id="正向漏洞挖掘特点"><a href="#正向漏洞挖掘特点" class="headerlink" title="正向漏洞挖掘特点"></a>正向漏洞挖掘特点</h4><p>根源：<strong>程序员疏忽或逻辑问题导致漏洞</strong><br>特点：</p>
+<ul>
+<li>复杂：需要及其了解目标源码的功能与架构</li>
+<li>跳跃性大：涉及M/V/C/Service/Dao等多个层面</li>
+<li>漏洞的组合：通常是多个漏洞的组合，很可能存在逻辑相关的漏洞</li>
+<li>潜力无限：安全研究人员的宝库</li>
+</ul>
+<h3 id="3-双向查找流程"><a href="#3-双向查找流程" class="headerlink" title="3.双向查找流程"></a>3.双向查找流程</h3><ul>
+<li>略读代码，了解架构</li>
+<li>是否有全局过滤机制?<ul>
+<li>有：是否可以绕过?<ul>
+<li>可以：寻找漏洞触发点。	</li>
+<li>不可以：寻找没有过滤的变量。</li>
+</ul>
+</li>
+<li>没有：那么它是如何处理的?<ul>
+<li>完全没有处理：可以挖成筛子。</li>
+<li>有处理:：找遗漏的处理点。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>找到了漏洞点，漏洞利用是否有坑?<ul>
+<li>否：成功利用!</li>
+<li>是：利用所知的语言知识(trick)解决问题。</li>
+</ul>
+</li>
+</ul>
+<p>双向漏洞挖掘特点：</p>
+<ul>
+<li>根源：理解程序执行过程，找寻危险逻辑</li>
+<li>特点：<ul>
+<li>高效：如挖隧道，双向开工，时间减半</li>
+<li>知识面广：需要同时掌握正向、反向挖掘技巧，并进行结合</li>
+<li>以及所有正向、反向的优点</li>
+</ul>
+</li>
+</ul>
+<h2 id="SQL注入漏洞挖掘技巧"><a href="#SQL注入漏洞挖掘技巧" class="headerlink" title="SQL注入漏洞挖掘技巧"></a>SQL注入漏洞挖掘技巧</h2><ol>
+<li>PHP+MySQL连接方式</li>
+</ol>
+<ul>
+<li>MySQL（废弃）</li>
+<li>Mysqli[^1]</li>
+<li>PDO[^2]</li>
+</ul>
+<ol start="2">
+<li>SQL注入漏洞常见过滤方法</li>
+</ol>
+<ul>
+<li>intval[^3]/addslashes[^4] /mysql_real_escape（三个函数）</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id = intval($_GET['id']);</span><br><span class="line">echo $id;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id = addslashes($_GET['id']);</span><br><span class="line">// 		' ==&gt; \'</span><br><span class="line">// 		" ==&gt; \"</span><br><span class="line">// 		\ ==&gt; \\</span><br><span class="line">// 		\x00 ==&gt; \0</span><br><span class="line">echo $id;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/670f7080d29ded1a8c011ac1.png"></p>
+<ul>
+<li><p>mysqli_escape_string /mysqli_real_escape_string / mysqli::escape_string</p>
+</li>
+<li><p>PDO::quote</p>
+</li>
+<li><p>参数化查询</p>
+</li>
+</ul>
+<h3 id="常见注入过滤绕过方法"><a href="#常见注入过滤绕过方法" class="headerlink" title="常见注入过滤绕过方法"></a>常见注入过滤绕过方法</h3><ul>
+<li><p>intval</p>
+</li>
+<li><p>addslashes /mysql_real_escape</p>
+<ul>
+<li><p>宽字符注入</p>
+</li>
+<li><p>寻找字符串转换函数</p>
+<ul>
+<li>urldecode</li>
+<li>base64_decode</li>
+</ul>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id = addslashes($_GET['id']);</span><br><span class="line"></span><br><span class="line">$id = base64_decode($id);	//当出现这个语句，那么只要传入的是base64加密语法，不存在引号，并且存在解码base64，那么就是绕过了</span><br><span class="line"></span><br><span class="line">$sql = "SELECT * FROM abc WHERE id = '$id' "	//字符型</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>iconv</li>
+<li>json_decode</li>
+<li>stripshasles</li>
+<li>simple_xml_loadstring</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mysqli::escape_string / PDO::quote</p>
+<ul>
+<li><p>与addslashes区别：<strong>是否会主动加引号包裹</strong></p>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id = addslashes($_GET['id']);</span><br><span class="line"></span><br><span class="line">$sql = "SELECT * FROM abc WHERE id = $id "	//数字型，不存在引号，addslashes无效</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>宽字符注入</p>
+</li>
+</ul>
+</li>
+<li><p>参数化查询</p>
+<ul>
+<li>寻找非SQL值位置（下面的？处为SQL值，其他为非SQL值）</li>
+<li>SELECT `name` FROM `users` WHERE `id` = <strong>?</strong>  ORDER BY `login_time` LIMIT 1</li>
+</ul>
+</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ol>
+<li>寻找遗漏过滤的利用点</li>
+</ol>
+<ul>
+<li>案例：贷齐乐系统header注入</li>
+<li>略读代码，了解架构<ul>
+<li>非MVC架构</li>
+<li>全局GPC转义</li>
+</ul>
+</li>
+<li>目标：找到没有进行过滤的输入点</li>
+<li>结果：$_SERVER[HTTP_*]均无过滤，导致注入</li>
+<li>入手点<ul>
+<li>开发者不熟悉的边缘功能</li>
+<li>常被复制粘贴代码的功能</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>寻找过滤无效的利用点</li>
+</ol>
+<ul>
+<li>案例：ThinkSNS某版本SOL注入漏洞</li>
+<li>略读代码，了解架构<ul>
+<li>基于ThinkPHP3.1开发</li>
+<li>MVC架构</li>
+<li>利用t函数过滤变量</li>
+</ul>
+</li>
+<li>目标：找到t函数过滤完成以后也可以注入的点</li>
+<li>结果：表名位置SQL注入漏洞</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function t($text){</span><br><span class="line">	$text = nl2br($text);</span><br><span class="line">	$text = real_strip_tags($text);		//去除字符串中PHP和HTML标签  绕过思路：s&lt;a&gt;elect</span><br><span class="line">	$text = addslashes($text);			//转义</span><br><span class="line">	$text = trim($text);				//去除字符串首尾处的空白字符</span><br><span class="line">	return $text;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ol start="3">
+<li>寻找过滤可被绕过的利用点</li>
+</ol>
+<ul>
+<li>案例：Metinfo企业网站管理系统SOL注入漏洞</li>
+<li>略读代码，了解架构<ul>
+<li>非MVC架构</li>
+<li>全局覆盖的方式注册变量</li>
+<li>全局GPC转义</li>
+</ul>
+</li>
+<li>目标：获取绕过全局GPC的方法</li>
+<li>结果：利用base64_decode来引入单引号</li>
+</ul>
+<h3 id="思路总结"><a href="#思路总结" class="headerlink" title="思路总结"></a>思路总结</h3><ol>
+<li>开发者容易遗漏的输入点</li>
+</ol>
+<ul>
+<li><p>HTTP头</p>
+<ul>
+<li><p>X-Forwarded-For</p>
+</li>
+<li><p>User-Agent</p>
+</li>
+<li><p>Referer</p>
+</li>
+</ul>
+</li>
+<li><p>PHP SELF</p>
+</li>
+<li><p>REQUEST URI</p>
+</li>
+<li><p>文件名 $_FILES[][name]</p>
+</li>
+<li><p>php://input</p>
+</li>
+</ul>
+<ol start="2">
+<li>引入单引号(转义符)的方法</li>
+</ol>
+<ul>
+<li>stripslashes</li>
+<li>base64_decode</li>
+<li>urldecode</li>
+<li>substr</li>
+<li>iconv</li>
+<li>str_replace(‘0’,”,$sql)</li>
+<li>xml</li>
+<li>json encode</li>
+</ul>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>（1）存在SQL注入漏洞</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common. php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = <span class="subst">$_GET</span>['name'];			//</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where name =<span class="string">'{$name}'</span>;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（2）不存在SQL注入漏洞，不考虑宽字节</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = addslashes(<span class="subst">$_GET</span>['name']);			//</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where name =<span class="string">'{$name}'</span>;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（3）存在SQL注入漏洞，未设置ENT_QUOTES参数，单引号不会被转换</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">’<span class="title function_ invoke__">htmlspecialchars</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$string</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$flags</span> = ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401,</span><br><span class="line">    ?<span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="literal">null</span>,</span><br><span class="line">    <span class="keyword">bool</span> <span class="variable">$double_encode</span> = <span class="literal">true</span></span><br><span class="line">): <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = htmlspecialchars(<span class="subst">$_GET</span>['name']);	//将特殊字符转换为 HTML 实体,未设置ENT_QUOTES参数，单引号不会被转换</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where name =<span class="string">'{$name}'</span>;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left"><code>&amp;</code> (&amp; 符号)</th>
+<th align="left"><code>&amp;</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">字符</td>
+<td align="left">替换后</td>
+</tr>
+<tr>
+<td align="left"><code>"</code> (双引号)</td>
+<td align="left"><code>"</code>，除非设置了 <strong><code>ENT_NOQUOTES</code></strong></td>
+</tr>
+<tr>
+<td align="left"><code>'</code> (单引号)</td>
+<td align="left">设置了 <strong><code>ENT_QUOTES</code></strong> 后， <code>'</code> (如果是 <strong><code>ENT_HTML401</code></strong>) ，或者 <code>'</code> (如果是 **<code>ENT_XML1</code>**、 <strong><code>ENT_XHTML</code></strong> 或 <strong><code>ENT_HTML5</code></strong>)。</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;</code> (小于)</td>
+<td align="left"><code>&lt;</code></td>
+</tr>
+<tr>
+<td align="left"><code>&gt;</code> (大于)</td>
+<td align="left"><code>&gt;</code></td>
+</tr>
+</tbody></table>
+<p>（4）存在SQL注入漏洞，数字型注入可绕过</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = addslashes(<span class="subst">$_GET</span>['age']);		</span></span><br><span class="line"><span class="string">//	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where age &gt;{<span class="variable">$age</span>};<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（5）存在SQL注入，如果输入\‘ =&gt; \\‘，那么斜杠被转义，单引号未被转义</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = str_replace("</span><span class="string">'","\\'</span><span class="string">",<span class="subst">$_GET</span>['name']);	//    ' ==&gt; \'  思路：\' =&gt; \\'，那么</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where name =<span class="string">'{$name}'</span>;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（6）不存在SQL注入</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">intval</span>(<span class="keyword">mixed</span> <span class="variable">$value</span>, <span class="keyword">int</span> <span class="variable">$base</span> = <span class="number">10</span>): <span class="keyword">int</span></span><br><span class="line">通过使用指定的进制 base 转换（默认是十进制），返回变量 value 的 <span class="keyword">int</span> 数值。 <span class="title function_ invoke__">intval</span>() 不能用于 <span class="keyword">object</span>，否则会产生 E_WARNING 错误并返回 <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$id</span> = intval(<span class="subst">$_GET</span>['id']);		//获取变量的整数值</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where id =<span class="string">'{$id}'</span>;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（7）存在SQL注入，未把过滤后的内容传给查询语句</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	if(intval(<span class="subst">$_GET</span>['id'])){		</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where id ={<span class="variable">$_GET</span>[<span class="string">'id'</span>]};<span class="string">";		//未把过滤后的内容传给查询语句</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">	}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（8）存在SQL注入，虽然有404，但是不影响下面的查询语句执行，应该把查询放到else里面</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	if(!is_numeric(<span class="subst">$_GET</span>['id'])){	</span></span><br><span class="line"><span class="string">    	header("</span><span class="number">404</span><span class="string">");				//虽然有404，但是不影响下面的查询语句执行</span></span><br><span class="line"><span class="string">    }	</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where id ={<span class="variable">$_GET</span>[<span class="string">'id'</span>]};<span class="string">";		//未把过滤后的内容传给查询语句</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（9）不存在SQL注入，添加了exit，就不存在漏洞了</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	if(!is_numeric(<span class="subst">$_GET</span>['id'])){	</span></span><br><span class="line"><span class="string">    	header("</span><span class="number">404</span><span class="string">");	</span></span><br><span class="line"><span class="string">        exit;				//添加了exit，就不存在漏洞了</span></span><br><span class="line"><span class="string">    }	</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where id ={<span class="variable">$_GET</span>[<span class="string">'id'</span>]};<span class="string">";		//未把过滤后的内容传给查询语句</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（10）存在SQL注入漏洞</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$order</span> = addslashes(<span class="subst">$_GET</span>['order']);		</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details ORDER BY id = {<span class="variable">$order</span>};<span class="string">";					//此处为数字型，addslashes未起到作用</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（11）存在SQL注入，只判断了有正则，而没有严格限制</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">preg_match:执行匹配正则表达式</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$order</span> = addslashes(<span class="subst">$_GET</span>['order']);	</span></span><br><span class="line"><span class="string">    if (!preg_match('/DESC|ASC/i',<span class="subst">$order</span>)){			//如果不是desc等就退出执行，但此处只要求包含DESC等，而不是强制要求必须是，  </span></span><br><span class="line"><span class="string">    注入思路: union select 1,2,3 # DESC</span></span><br><span class="line"><span class="string">    修改思路: /^(DESC|ASC)$/i	从首到尾只能有</span></span><br><span class="line"><span class="string">    	exit("</span>Bad order!<span class="string">");</span></span><br><span class="line"><span class="string">    }	</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details ORDER BY id = {<span class="variable">$order</span>};<span class="string">";					//此处为数字型，addslashes未起到作用</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（12）不存在SQL注入漏洞，标准的预编译</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = <span class="subst">$_GET</span>['name'];			</span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where name = ?;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindValue(1,<span class="subst">$name</span>);		//</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>（13）存在SQL注入，urldecode</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include_once</span> <span class="string">"./common.php';</span></span><br><span class="line"><span class="string">try{</span></span><br><span class="line"><span class="string">	<span class="subst">$name</span> = addslashes(<span class="subst">$_GET</span>['name']);	</span></span><br><span class="line"><span class="string">    <span class="subst">$name</span> = urldecode(<span class="subst">$name</span>);		//可以通过url编码引入单引号</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">	<span class="subst">$query</span> = "</span>SELECT name, age, email, country FROM user_details where name = <span class="string">'{$name}'</span>;<span class="string">";</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span> = <span class="subst">$conn</span>-&gt;prepare(<span class="subst">$query</span>);</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;execute();</span></span><br><span class="line"><span class="string">	<span class="subst">$stmt</span>-&gt;bindColumn("</span>ema1l<span class="string">', $email);</span></span><br><span class="line"><span class="string">	while($row= $stmt-&gt;fetch(PDO::FETCH_BOUND)){	</span></span><br><span class="line"><span class="string">		echo "$email"."&lt;br&gt;";</span></span><br><span class="line"><span class="string">		}</span></span><br><span class="line"><span class="string">}catch(PDOException $e){</span></span><br><span class="line"><span class="string">	echo $e-&gt;getMessage();</span></span><br><span class="line"><span class="string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="任意文件操作"><a href="#任意文件操作" class="headerlink" title="任意文件操作"></a>任意文件操作</h2><h3 id="文件操作函数"><a href="#文件操作函数" class="headerlink" title="文件操作函数"></a>文件操作函数</h3><ul>
+<li>文件包含<ul>
+<li>include / require / include_once / require_once / spl_autoload</li>
+</ul>
+</li>
+<li>文件读取<ul>
+<li>file_get contents / fread / readfile / file / highlight_file / show_source</li>
+</ul>
+</li>
+<li>文件写入<ul>
+<li>file_put_contents / fwrite / mkdir / fputs</li>
+</ul>
+</li>
+<li>文件删除<br>  unlink / rmdir</li>
+<li>文件上传<br>  move_uploaded_file / copy / rename</li>
+</ul>
+<h3 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h3><ul>
+<li>文件上传流程<ol>
+<li>检查文件大小、后缀、类型</li>
+<li>检查文件内容(如图片头等)</li>
+<li>提取文件后缀</li>
+<li>生成新文件名</li>
+<li>将上传临时文件拷贝到新文件名位置</li>
+</ol>
+</li>
+<li>文件上传逻辑常见错误<ul>
+<li>只检查文件类型不检查文件后缀</li>
+<li>文件后缀黑名单导致遗漏</li>
+<li>使用原始文件名，导致\0截断等漏洞</li>
+</ul>
+</li>
+</ul>
+<p>[^1]:mysqli (MySQL Improved) 是一个用于访问 MySQL 数据库的 PHP 扩展。它是 PHP 默认的数据库访问接口,取代了较早的 mysql 扩展。与 mysql 相比,mysqli 提供了更多的功能和特性,包括:支持预处理语句和存储过程,提高了数据库访问的安全性和性能。支持事务处理和多语句查询。提供了面向对象的接口,使代码更加清晰和易维护。支持异步查询,可以并发执行多个查询。提供了更丰富的错误处理和调试功能。<br>[^2]:PDO (PHP Data Objects) 是 PHP 中的一个数据库抽象层,它提供了一种统一的接口来访问不同种类的数据库,包括 MySQL、PostgreSQL、Oracle 等。<br>[^3]:通过使用指定的进制 base 转换（默认是十进制），返回变量 value的int数值。 <strong>intval()</strong> 不能用于 object，否则会产生 <strong><code>E_WARNING</code></strong> 错误并返回 1<br>[^4]:使用反斜线引用字符串，返回需要在转义字符之前添加反斜线的字符串</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="网络安全产品" class="lazyload">
+          
+        
+        <a href="/en/2024/10/17/wang-luo-an-quan-chan-pin/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            网络安全产品
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="WEB源码泄露漏洞" class="lazyload">
+        
+      
+      <a href="/en/2024/10/14/web-yuan-ma-xie-lu-lou-dong/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          WEB源码泄露漏洞
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">PHP代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">代码审计流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%8D%E5%90%91%E6%9F%A5%E6%89%BE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.反向查找流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">反向漏洞挖掘特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%AD%A3%E5%90%91%E6%9F%A5%E6%89%BE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.正向查找流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%90%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">正向漏洞挖掘特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8C%E5%90%91%E6%9F%A5%E6%89%BE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.双向查找流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8A%80%E5%B7%A7"><span class="toc-number">1.2.</span> <span class="toc-text">SQL注入漏洞挖掘技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E5%85%A5%E8%BF%87%E6%BB%A4%E7%BB%95%E8%BF%87%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">常见注入过滤绕过方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.3.</span> <span class="toc-text">思路总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.2.4.</span> <span class="toc-text">实践</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">任意文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">文件操作函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.2.</span> <span class="toc-text">文件上传漏洞</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "PHP代码审计",
+          url: "http://example.com/2024/10/14/php-dai-ma-shen-ji/",
+          excerpt: "",
+          description: "",
+          stripContent: "PHP代码审计代码审计流程1.反向查找流程 通过可控变量(输入点)回溯危险函数 查找危险函数确定可控变量 传递的过程中触发漏洞  反向漏洞挖掘特点 根源：危险函数导致漏洞 特点: 暴力：全局搜索危险函数 简单：无需过多理解目标网站功能与架构 快速：适用于自动化代码审计工具 命中率低：简单的漏洞越来越少 无法挖掘逻辑漏洞：逻辑漏洞多数不存在危险函数，或危险函数的参数“看似”不可控 适应性较差：不适合存在全局过滤的站点    2.正向查找流程 从入口点函数出发 找到控制器，理解URL派发规则 跟踪控",
+          date: "Mon Oct 14 2024 13:16:14 GMT+0800",
+          updated: "Fri Oct 18 2024 10:28:01 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

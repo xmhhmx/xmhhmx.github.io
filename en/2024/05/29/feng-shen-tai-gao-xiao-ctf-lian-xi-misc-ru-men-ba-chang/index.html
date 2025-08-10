@@ -1,0 +1,1190 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    封神台高校CTF练习（Misc入门靶场） |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="封神台高校CTF练习（Misc入门靶场） 封神台练习平台&#x3D;&#x3D;用到的工具平台&#x3D;&#x3D;Unicode加解密：https:&#x2F;&#x2F;www.toolhelper.cn&#x2F;EncodeDecode&#x2F;UnicodeChineseRC4加解密：在线RC4加密解密 (lddgo.net)MD5加解密：md5在线解密破解,md5解密加密 (cmd5.com)凯撒密码加解密：在线凯撒密码加密解密 (lddgo.net)核心价值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封神台高校CTF练习（Misc入门靶场）">
+<meta property="og:url" content="http://example.com/en/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="封神台高校CTF练习（Misc入门靶场） 封神台练习平台&#x3D;&#x3D;用到的工具平台&#x3D;&#x3D;Unicode加解密：https:&#x2F;&#x2F;www.toolhelper.cn&#x2F;EncodeDecode&#x2F;UnicodeChineseRC4加解密：在线RC4加密解密 (lddgo.net)MD5加解密：md5在线解密破解,md5解密加密 (cmd5.com)凯撒密码加解密：在线凯撒密码加密解密 (lddgo.net)核心价值">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665715c4d9c307b7e93f60fd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66571ca6d9c307b7e9485bcc.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66571e63d9c307b7e94a21a2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66572105d9c307b7e94cc375.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665723b9d9c307b7e94fbc8b.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665725e7d9c307b7e9521dbe.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665726bdd9c307b7e953599f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66572bf9d9c307b7e95b1749.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66573179d9c307b7e961bb4b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665734d3d9c307b7e96603a0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66573901d9c307b7e96c4d91.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665739a2d9c307b7e96d1572.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66573d4ad9c307b7e9716e07.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665ddc6e5e6d1bfa054bb957.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665dde1e5e6d1bfa054dcabc.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665ddf485e6d1bfa054f841c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665de01e5e6d1bfa0550f8e8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665de7605e6d1bfa0559e813.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665de7c25e6d1bfa055a4a31.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665de8a65e6d1bfa055c4ced.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665de9b85e6d1bfa055e0252.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665dea305e6d1bfa055e84cf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df04d5e6d1bfa0564e571.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df2705e6d1bfa0566e1ce.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df4e75e6d1bfa05691bbd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df54b5e6d1bfa056980e9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df5fb5e6d1bfa056a19a8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df6645e6d1bfa056a6e0d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df7ac5e6d1bfa056cf802.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/665df82f5e6d1bfa056d600b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66681165d9c307b7e9d315a4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6668112dd9c307b7e9d27154.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666811c2d9c307b7e9d3e30f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6668137bd9c307b7e9d86cea.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666813f5d9c307b7e9d9652a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666815bbd9c307b7e9dbb43c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66681627d9c307b7e9dc292f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6668171bd9c307b7e9dd3a34.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66681fbcd9c307b7e9e57207.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66682061d9c307b7e9e74795.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66682085d9c307b7e9e7996d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666820bad9c307b7e9e7d4ea.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66682115d9c307b7e9e85cc0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66682247d9c307b7e9ea346c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666822f5d9c307b7e9eae9a2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66682384d9c307b7e9eb7a3d.png">
+<meta property="article:published_time" content="2024-05-28T19:12:34.000Z">
+<meta property="article:modified_time" content="2024-06-11T10:46:33.263Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="杂项">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/665715c4d9c307b7e93f60fd.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/';
+            
+              langMap['en'] = '/en/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="封神台高校CTF练习（Misc入门靶场）">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">封神台高校CTF练习（Misc入门靶场）</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%81%E7%A5%9E%E5%8F%B0%E9%AB%98%E6%A0%A1CTF%E7%BB%83%E4%B9%A0%EF%BC%88Misc%E5%85%A5%E9%97%A8%E9%9D%B6%E5%9C%BA%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">封神台高校CTF练习（Misc入门靶场）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E7%A5%9E%E5%8F%B0%E7%BB%83%E4%B9%A0%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">封神台练习平台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.1.</span> <span class="toc-text">&#x3D;&#x3D;用到的工具平台&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%9D%82%E9%A1%B91%EF%BC%9A%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99"><span class="toc-number">1.2.</span> <span class="toc-text">（1）杂项1：图片隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%9D%82%E9%A1%B92%EF%BC%9A%E5%AF%86%E6%96%87%E5%9C%A8%E8%BF%99%E9%87%8C-%E7%9C%8B%E7%9C%8B%E4%BD%A0%E6%98%AF%E5%90%A6%E8%83%BD%E8%A7%A3%E5%BC%80"><span class="toc-number">1.3.</span> <span class="toc-text">（2）杂项2：密文在这里,看看你是否能解开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%9D%82%E9%A1%B93%EF%BC%9A%E4%B8%80%E6%AE%B5%E7%89%B9%E6%AE%8A%E7%9A%84ascii%E5%AF%86%E6%96%87"><span class="toc-number">1.4.</span> <span class="toc-text">（3）杂项3：一段特殊的ascii密文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E9%A1%B93%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E8%A1%A5%E5%85%85"><span class="toc-number">1.4.1.</span> <span class="toc-text">杂项3学习资料补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%9D%82%E9%A1%B94%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%AF%86%E7%9A%84xlsx%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.5.</span> <span class="toc-text">（4）杂项4：一个加密的xlsx表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E6%9D%82%E9%A1%B95%EF%BC%9A%E5%88%9A%E5%88%9A%E6%88%AA%E8%8E%B7%E5%BE%B7%E5%86%9B%E7%9A%84%E5%AF%86%E7%94%B5"><span class="toc-number">1.6.</span> <span class="toc-text">（5）杂项5：刚刚截获德军的密电</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E6%9D%82%E9%A1%B96%EF%BC%9A%E7%AE%80%E5%8D%95%E5%8A%A0%E5%AF%86"><span class="toc-number">1.7.</span> <span class="toc-text">（6）杂项6：简单加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%887%EF%BC%89%E6%9D%82%E9%A1%B97%EF%BC%9A%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82"><span class="toc-number">1.8.</span> <span class="toc-text">（7）杂项7：社会主义核心价值观</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%888%EF%BC%89%E6%9D%82%E9%A1%B98%EF%BC%9A%E5%A5%87%E6%80%AA%E7%9A%84%E7%9F%AD%E4%BF%A1"><span class="toc-number">1.9.</span> <span class="toc-text">（8）杂项8：奇怪的短信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%889%EF%BC%89%E6%9D%82%E9%A1%B99%EF%BC%9ASOS%E7%9A%84%E6%B1%82%E6%95%91%E4%BF%A1%E6%81%AF"><span class="toc-number">1.10.</span> <span class="toc-text">（9）杂项9：SOS的求救信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8810%EF%BC%89%E6%9D%82%E9%A1%B910%EF%BC%9ABase"><span class="toc-number">1.11.</span> <span class="toc-text">（10）杂项10：Base</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8811%EF%BC%89%E6%9D%82%E9%A1%B911%EF%BC%9A%E8%BF%99%E6%98%AF%E6%88%91%E6%9C%80%E5%96%9C%E6%AC%A2%E7%9A%84%E5%A5%B3%E6%98%8E%E6%98%9F"><span class="toc-number">1.12.</span> <span class="toc-text">（11）杂项11：这是我最喜欢的女明星</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8812%EF%BC%89%E6%9D%82%E9%A1%B912%EF%BC%9A%E6%89%93%E7%94%B1%E8%AF%97"><span class="toc-number">1.13.</span> <span class="toc-text">（12）杂项12：打由诗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8813%EF%BC%89%E6%9D%82%E9%A1%B913%EF%BC%9A%E4%BD%9B%E8%AF%B4"><span class="toc-number">1.14.</span> <span class="toc-text">（13）杂项13：佛说</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8814%EF%BC%89%E6%9D%82%E9%A1%B914-%E5%A5%87%E6%80%AA%E7%9A%84Base%E5%8A%A0%E5%AF%86"><span class="toc-number">1.15.</span> <span class="toc-text">（14）杂项14:奇怪的Base加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8815%EF%BC%89%E6%9D%82%E9%A1%B915%EF%BC%9A%E8%B7%B3%E8%88%9E%E5%B0%8F%E4%BA%BA"><span class="toc-number">1.16.</span> <span class="toc-text">（15）杂项15：跳舞小人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8816%EF%BC%89%E6%9D%82%E9%A1%B916%EF%BC%9A%E7%A5%9E%E7%A7%98%E5%9B%BE%E7%89%87"><span class="toc-number">1.17.</span> <span class="toc-text">（16）杂项16：神秘图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8817%EF%BC%89%E6%9D%82%E9%A1%B917-%E5%8F%AF%E8%BE%BE%E9%B8%AD"><span class="toc-number">1.18.</span> <span class="toc-text">（17）杂项17:可达鸭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8818%EF%BC%89%E6%9D%82%E9%A1%B918%EF%BC%9A%E4%B8%80%E7%BB%84%E7%A5%9E%E7%A7%98%E7%9A%84%E5%9B%BE%E7%89%87"><span class="toc-number">1.19.</span> <span class="toc-text">（18）杂项18：一组神秘的图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8819%EF%BC%89%E6%9D%82%E9%A1%B919%EF%BC%9A%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%8A%A0%E5%AF%86"><span class="toc-number">1.20.</span> <span class="toc-text">（19）杂项19：神奇的压缩包加密</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-封神台高校CTF练习（Misc入门靶场）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-05-28T19:12:34.000Z" itemprop="datePublished">2024-05-29</time>
+    <time style="display: none;" id="post-update-time">2024-06-11</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/CTF%E7%BB%83%E4%B9%A0/" data-aos="zoom-in">CTF练习</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="封神台高校CTF练习（Misc入门靶场）"><a href="#封神台高校CTF练习（Misc入门靶场）" class="headerlink" title="封神台高校CTF练习（Misc入门靶场）"></a>封神台高校CTF练习（Misc入门靶场）</h1><hr>
+<h3 id="封神台练习平台"><a href="#封神台练习平台" class="headerlink" title="封神台练习平台"></a><a target="_blank" rel="noopener" href="https://hack.zkaq.cn/">封神台练习平台</a></h3><h2 id="用到的工具平台"><a href="#用到的工具平台" class="headerlink" title="==用到的工具平台=="></a>==用到的工具平台==</h2><p>Unicode加解密：<a target="_blank" rel="noopener" href="https://www.toolhelper.cn/EncodeDecode/UnicodeChinese">https://www.toolhelper.cn/EncodeDecode/UnicodeChinese</a><br>RC4加解密：<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/rc4">在线RC4加密解密 (lddgo.net)</a><br>MD5加解密：<a target="_blank" rel="noopener" href="https://www.cmd5.com/default.aspx">md5在线解密破解,md5解密加密 (cmd5.com)</a><br>凯撒密码加解密：<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/caesar-cipher">在线凯撒密码加密解密 (lddgo.net)</a><br>核心价值观加解密平台：<a target="_blank" rel="noopener" href="http://www.hiencode.com/cvencode.html">CTF在线工具-在线核心价值观编码|核心价值观编码算法|Core Values Encoder (hiencode.com)</a><br>栅栏加解密平台：（<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">栅栏密码在线加密解密 - 千千秀字 (qqxiuzi.cn)</a>）<br>Base加解密平台：<a target="_blank" rel="noopener" href="http://www.hiencode.com/base64.html">CTF在线工具-在线base编码|在线base解码|base16编码|base32编码|base64编码 (hiencode.com)</a><br>百度识图：<a target="_blank" rel="noopener" href="https://graph.baidu.com/pcpage/index?tpl_from=pc">https://graph.baidu.com/pcpage/index?tpl_from=pc</a></p>
+<h2 id="（1）杂项1：图片隐写"><a href="#（1）杂项1：图片隐写" class="headerlink" title="（1）杂项1：图片隐写"></a>（1）杂项1：图片隐写</h2><p> <img src="https://pic.imgdb.cn/item/665715c4d9c307b7e93f60fd.png"></p>
+<ul>
+<li><p>步骤</p>
+<blockquote>
+<p>将图片下载到本地，并且用文本文档（.txt）打开并查看源码</p>
+</blockquote>
+<p>  <img src="https://pic.imgdb.cn/item/66571ca6d9c307b7e9485bcc.png" alt="图片"></p>
+<blockquote>
+<p>查看源码，发现有Unicode码</p>
+</blockquote>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#107;&amp;#101;&amp;#121;&amp;#123;&amp;#122;&amp;#45;&amp;#110;&amp;#115;&amp;#100;&amp;#105;&amp;#117;&amp;#97;&amp;#125;</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>在网上搜一个Unicode码解码工具（<a target="_blank" rel="noopener" href="https://www.toolhelper.cn/EncodeDecode/UnicodeChinese">Unicode与中文 编码/解码 - 锤子在线工具 (toolhelper.cn)</a> ，并解码</p>
+</blockquote>
+<p>  <img src="https://pic.imgdb.cn/item/66571e63d9c307b7e94a21a2.png" alt="解码"></p>
+<blockquote>
+<p>得到flag</p>
+</blockquote>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key{z-nsdiua}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h2 id="（2）杂项2：密文在这里-看看你是否能解开"><a href="#（2）杂项2：密文在这里-看看你是否能解开" class="headerlink" title="（2）杂项2：密文在这里,看看你是否能解开"></a>（2）杂项2：密文在这里,看看你是否能解开</h2><p><img src="https://pic.imgdb.cn/item/66572105d9c307b7e94cc375.png"></p>
+<p>==RC4原理：==</p>
+<p>RC4（Rivest Cipher 4）是一种流密码（stream cipher）算法，用于加密和解密数据。它由Ron Rivest设计并于1987年发布。RC4算法的核心是通过对称密钥生成伪随机位流（pseudo-random stream），然后将明文与该位流进行抑或（XOR）运算来实现加密和解密。</p>
+<p>具体来说，RC4算法包括以下步骤：</p>
+<ol>
+<li><strong>密钥调度算法（Key Scheduling Algorithm，KSA）</strong>：根据输入的密钥，生成一个密钥调度表（S-box），用于后续的伪随机位流生成。</li>
+<li><strong>伪随机生成算法（Pseudo-Random Generation Algorithm，PRGA）</strong>：利用密钥调度表生成一个伪随机位流，该位流的元素会被用作加密过程中的“密钥流”。</li>
+<li><strong>加密/解密</strong>：将明文与伪随机位流进行逐位的抑或运算，以实现加密或解密操作。</li>
+</ol>
+<p>在使用RC4算法时，需要注意以下几点：</p>
+<ul>
+<li>密钥的选择和管理非常重要，弱密钥会导致加密的不安全性。</li>
+<li>加密和解密使用相同的密钥。</li>
+<li>在实际应用中，通常需要引入初始化向量（Initialization Vector，IV）来提高安全性。</li>
+</ul>
+<p>总的来说，RC4算法是一种快速且简单的加密算法，但由于存在一些安全性方面的问题，如密钥漏洞和偏差等，现在已不推荐作为加密标准使用。</p>
+<ul>
+<li><p>步骤：</p>
+<blockquote>
+<p>RC4解密是需要密钥的，所以需要寻找密钥，题中一个声音在耳边响起，看一下自己的键盘，他好像在组成某种神秘的组合（rtygcvb ，ujmko，ujmko），跟着他的字母在键盘上对一下，于是前两个组成了两个字母</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/665723b9d9c307b7e94fbc8b.jpg"></p>
+<blockquote>
+<p>重复敲击两次，那么猜测密钥为zvvzvv,并在网上找一个RC4解密工具解密（<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/rc4">在线RC4加密解密 (lddgo.net)</a>）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：M6UUSlt6rxWO328Kez8xXCMd</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>输入密钥，将字符集选择为UTF-8，输入格式为base64，输出格式为字符串（string）</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665725e7d9c307b7e9521dbe.png" alt="RC4解密"></p>
+<blockquote>
+<p>得到flag</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key{zkz-good-kkey}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（3）杂项3：一段特殊的ascii密文"><a href="#（3）杂项3：一段特殊的ascii密文" class="headerlink" title="（3）杂项3：一段特殊的ascii密文"></a>（3）杂项3：一段特殊的ascii密文</h2><p><img src="https://pic.imgdb.cn/item/665726bdd9c307b7e953599f.png"></p>
+<ul>
+<li>步骤：</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">83,121,110,116,71,115,121,110,116,136,135,120,135,108,110,126,115,112,63,61,63,62,108,67,63,69,108,76,76,76,76,138,90,113,66,71,112,110,66,62,62,67,112,112,66,111,112,67,113,63,110,114,69,66,65,110,111,111,113,68,61,63,112,69,68,68,68</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>首先，猜测flag是以“flag”开头的，且121,110,116三个数在2，3，4位置和在7，8，9位置都在，那么先将flag转换为ascii码，为102，108，97，103，</p>
+<p>102（+6）108（-11）97（+6）103</p>
+<p>121（-11）110（+6）116</p>
+<p>那么可以看出108，97，103和121，110，116之间的差距是相同的，那么121-108=13，将所有数字-13</p>
+</blockquote>
+<blockquote>
+<p>那么写一个python代码，将这些整数转化为ascii码</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66572bf9d9c307b7e95b1749.png" alt="代码运行图"></p>
+<p>代码：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a=[<span class="number">83</span>,<span class="number">121</span>,<span class="number">110</span>,<span class="number">116</span>,<span class="number">71</span>,<span class="number">115</span>,<span class="number">121</span>,<span class="number">110</span>,<span class="number">116</span>,<span class="number">136</span>,<span class="number">135</span>,<span class="number">120</span>,<span class="number">135</span>,</span><br><span class="line">   <span class="number">108</span>,<span class="number">110</span>,<span class="number">126</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">63</span>,<span class="number">61</span>,<span class="number">63</span>,<span class="number">62</span>,<span class="number">108</span>,<span class="number">67</span>,<span class="number">63</span>,<span class="number">69</span>,<span class="number">108</span>,</span><br><span class="line">   <span class="number">76</span>,<span class="number">76</span>,<span class="number">76</span>,<span class="number">76</span>,<span class="number">138</span>,<span class="number">90</span>,<span class="number">113</span>,<span class="number">66</span>,<span class="number">71</span>,<span class="number">112</span>,<span class="number">110</span>,<span class="number">66</span>,<span class="number">62</span>,<span class="number">62</span>,<span class="number">67</span>,</span><br><span class="line">   <span class="number">112</span>,<span class="number">112</span>,<span class="number">66</span>,<span class="number">111</span>,<span class="number">112</span>,<span class="number">67</span>,<span class="number">113</span>,<span class="number">63</span>,<span class="number">110</span>,<span class="number">114</span>,<span class="number">69</span>,<span class="number">66</span>,<span class="number">65</span>,<span class="number">110</span>,</span><br><span class="line">   <span class="number">111</span>,<span class="number">111</span>,<span class="number">113</span>,<span class="number">68</span>,<span class="number">61</span>,<span class="number">63</span>,<span class="number">112</span>,<span class="number">69</span>,<span class="number">68</span>,<span class="number">68</span>,<span class="number">68</span>]</span><br><span class="line">flag = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    j = <span class="built_in">chr</span>(i-<span class="number">13</span>)</span><br><span class="line">    <span class="comment"># chr()函数用于返回指定整数对应的ASCII字符</span></span><br><span class="line">    flag=flag+j</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>得到部分的flag，md5值其实最后还有个d，这个d其实也是可以跑出来的</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flag:flag{zkz_aqfc2021_628_????}Md5:ca5116cc5bc6d2ae854abbd702c8777d</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>这里的一个思路就是尝试用md5解密工具（<a target="_blank" rel="noopener" href="https://www.cmd5.com/default.aspx">md5在线解密破解,md5解密加密 (cmd5.com)</a>），但是是不成功的，因为数据源是无穷尽的，而 MD5密文是有限的。</p>
+<p>那么这里我就查看了平台的解题思路：标准的md5碰撞，写一个碰撞脚本（碰撞需要一段时间，耐心等待）</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66573179d9c307b7e961bb4b.png" alt="MD5碰撞脚本运行"></p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line">flag_md5 = 'ca5116cc5bc6d2ae854abbd702c8777d'</span><br><span class="line">strs = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&amp;()" \</span><br><span class="line">       "*+,-./:;&lt;=&gt;?@[\]^_`{|}~ "</span><br><span class="line">for a in strs:</span><br><span class="line">    for b in strs:</span><br><span class="line">        for c in strs:</span><br><span class="line">            for d in strs:</span><br><span class="line">                md5 = hashlib.md5()</span><br><span class="line">                flag = 'flag{zkz_aqfc2021_628_' +str(a)+str(b)+str(c)+str(d)+'}'</span><br><span class="line">                md5.update(flag.encode())</span><br><span class="line">                if md5.hexdigest() == flag_md5:</span><br><span class="line">                    print(flag)</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>得到flag</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{zkz_aqfc2021_628_zxcv}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="杂项3学习资料补充"><a href="#杂项3学习资料补充" class="headerlink" title="杂项3学习资料补充"></a>杂项3学习资料补充</h3><p>==hashlib库==</p>
+<ul>
+<li><p>hashlib库是Python的一个标准库，用于提供哈希算法。其中包含多种哈希算法，如MD5、SHA-1、SHA-256等。</p>
+</li>
+<li><p>MD5 (Message Digest Algorithm 5) 是一种广泛使用的哈希算法，用于将任意长度的输入数据生成一个128位的哈希值。它具有以下特点：</p>
+<ol>
+<li><p>不可逆：无法从生成的哈希值还原出原始数据。</p>
+</li>
+<li><p>唯一性：不同的输入数据生成的哈希值几乎不会相同。</p>
+</li>
+<li><p>高效性：计算速度快，适合用于检查数据完整性。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>在Python中，可以使用<code>hashlib</code>库中的<code>md5()</code>函数来计算数据的MD5哈希值，示例代码如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">data = <span class="string">'Hello, World!'</span></span><br><span class="line">md5_hash = hashlib.md5(data).hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"MD5 hash value:"</span>, md5_hash)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这段代码会计算字符串<code>'Hello, World!'</code>的MD5哈希值，并打印出该哈希值。</p>
+<p><code>hexdigest()</code>是<code>hashlib</code>库中<code>hash</code>对象的一个方法，用于获取以十六进制表示的哈希值。在计算完哈希值之后，可以使用<code>hexdigest()</code>方法将哈希值转换为字符串形式，方便输出或者存储。这样可以避免直接输出二进制形式的哈希值，使得结果更易读和使用。</p>
+<h2 id="（4）杂项4：一个加密的xlsx表格"><a href="#（4）杂项4：一个加密的xlsx表格" class="headerlink" title="（4）杂项4：一个加密的xlsx表格"></a>（4）杂项4：一个加密的xlsx表格</h2><p><img src="https://pic.imgdb.cn/item/665734d3d9c307b7e96603a0.png"></p>
+<blockquote>
+<p>打开传送门后，想要下载表格就需要密码</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66573901d9c307b7e96c4d91.png"></p>
+<blockquote>
+<p>尝试用文本文档（txt）打开寻找线索，真就发现了线索</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665739a2d9c307b7e96d1572.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{asd}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（5）杂项5：刚刚截获德军的密电"><a href="#（5）杂项5：刚刚截获德军的密电" class="headerlink" title="（5）杂项5：刚刚截获德军的密电"></a>（5）杂项5：刚刚截获德军的密电</h2><p><img src="https://pic.imgdb.cn/item/66573d4ad9c307b7e9716e07.png"></p>
+<p>==ADFGX古典密码==<br>　　1918年，第一次世界大战将要结束时，法军截获了一份德军电报，电文中的所有单词都由A、D、F、G、X五个字母拼成，因此被称为ADFGX密码。ADFGX密码是1918年3月由德军上校Fritz Nebel发明的，是结合了Polybius密码和置换密码的双重加密方案。<br>　　A、D、F、G、X即Polybius方阵中的前5个字母。 </p>
+<p>　　明文：A T T A C K A T O N C E<br>　　经过Polybius变换：AF AD AD AF GF DX AF AD DF FX GF XF </p>
+<blockquote>
+<p>按照表进行转换：<img src="https://pic.imgdb.cn/item/665ddc6e5e6d1bfa054bb957.png" style="zoom:50%;"></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：FA XX DD AG DD XA FF FF AX DX</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>第一个字母为行数，第二个字母为列数，转换后</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：flagabxxmo</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（6）杂项6：简单加密"><a href="#（6）杂项6：简单加密" class="headerlink" title="（6）杂项6：简单加密"></a>（6）杂项6：简单加密</h2><p><img src="https://pic.imgdb.cn/item/665dde1e5e6d1bfa054dcabc.png"></p>
+<blockquote>
+<p>synt一看联想到凯撒密码，f与s偏移13位，直接上工具（<a target="_blank" rel="noopener" href="https://www.lddgo.net/encrypt/caesar-cipher">在线凯撒密码加密解密 (lddgo.net)</a>）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：synt{mxnd_pgs_xxxebg13}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><img src="https://pic.imgdb.cn/item/665ddf485e6d1bfa054f841c.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：flag{zkaq_ctf_kkkrot13}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（7）杂项7：社会主义核心价值观"><a href="#（7）杂项7：社会主义核心价值观" class="headerlink" title="（7）杂项7：社会主义核心价值观"></a>（7）杂项7：社会主义核心价值观</h2><p><img src="https://pic.imgdb.cn/item/665de01e5e6d1bfa0550f8e8.png"></p>
+<blockquote>
+<p>核心价值观加解密平台：（<a target="_blank" rel="noopener" href="http://www.hiencode.com/cvencode.html">CTF在线工具-在线核心价值观编码|核心价值观编码算法|Core Values Encoder (hiencode.com)</a>）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：公正公正公正诚信文明公正民主公正法治法治诚信民主法治诚信富强公正友善平等公正民主法治民主平等友善敬业法治和谐公正爱国法治诚信富强法治敬业公正爱国平等友善敬业和谐公正和谐富强和谐公正法治诚信和谐</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/665de7605e6d1bfa0559e813.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：flag{zkaq_shzyh_606}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（8）杂项8：奇怪的短信"><a href="#（8）杂项8：奇怪的短信" class="headerlink" title="（8）杂项8：奇怪的短信"></a>（8）杂项8：奇怪的短信</h2><p><img src="https://pic.imgdb.cn/item/665de7c25e6d1bfa055a4a31.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：33 53 21 41 94 52 21 72 74 42</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>手机上发短信有9键和26键，肯定不是和26键有关，考虑9键，</p>
+</blockquote>
+<p>看一个9键键盘：</p>
+<img src="https://pic.imgdb.cn/item/665de8a65e6d1bfa055c4ced.jpg" style="zoom: 33%;">
+
+<blockquote>
+<p>第一个字母首先考虑f，则看出33，就是“3”的第三个字母，推出密文:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：flagzkaqsh</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（9）杂项9：SOS的求救信息"><a href="#（9）杂项9：SOS的求救信息" class="headerlink" title="（9）杂项9：SOS的求救信息"></a>（9）杂项9：SOS的求救信息</h2><p><img src="https://pic.imgdb.cn/item/665de9b85e6d1bfa055e0252.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">密文：</span><br><span class="line">..-.</span><br><span class="line">....</span><br><span class="line">..-.</span><br><span class="line">.-..</span><br><span class="line">--.-</span><br><span class="line">.-</span><br><span class="line">.-</span><br><span class="line">--.</span><br><span class="line">-.-.</span><br><span class="line">--..</span><br><span class="line">--.</span><br><span class="line">-.-</span><br><span class="line">.-</span><br><span class="line">--..</span><br><span class="line">.-..</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>一眼得摩斯电码，查表解决</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665dea305e6d1bfa055e84cf.png" alt="摩斯电码表"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解密得：fhflqaagczgkazl</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>这个密码具备f、l、a、g，只是顺序有问题，考虑栅栏加密</p>
+</blockquote>
+<p>==栅栏加密：==</p>
+<p>​        所谓的栅栏密码，就是将一段被加密的明文划分成N个组，然后取每个组的第1个字符，根据情况排列成一段话，特点相对简单，字母不会太多。</p>
+<p>1、加密原理：</p>
+<p>例如明文：THIS IS ZHISHITOM<br>去掉空格吧还是：THISISZHISHITOM<br>设置栏数为3加密：TSHHZIIHTSIOISM<br>下面分解一下加密过程（分为3组）:<br>第一组：T H I S I<br>第二组：S Z H I S<br>第三组：H I T O M<br>然后按列取出字母：TSH HZI IHT SIO ISM<br>然后连在一起就形成了加密：TSHHZIIHTSIOISM</p>
+<p>2、解密原理<br>明确了加密的过程，下面逆推就行<br>加密明文：TSHHZIIHTSIOISM<br>先划分：<br>T S H<br>H Z I<br>I H T<br>S I O<br>I S M<br>按列顺序取字母：THISISZHISHITOM<br>完成了解密。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Makboli/article/details/126464442">https://blog.csdn.net/Makboli/article/details/126464442</a></p>
+<p>栅栏加解密平台：（<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">栅栏密码在线加密解密 - 千千秀字 (qqxiuzi.cn)</a>）</p>
+<p><img src="https://pic.imgdb.cn/item/665df04d5e6d1bfa0564e571.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解出的明文：flagzkzhqacgalf</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>但是仍未通过，查看解析发现flag是需要将他倒置才可以</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">提交flag：flagcaqhzkzgalf</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（10）杂项10：Base"><a href="#（10）杂项10：Base" class="headerlink" title="（10）杂项10：Base"></a>（10）杂项10：Base</h2><p><img src="https://pic.imgdb.cn/item/665df2705e6d1bfa0566e1ce.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：RzVBVE1RUlhJRTNER05aVUdZM0RPUVJXR0kzRENOWlRHWTJUR05SVEdRMlVNTlJTR1lZVE9NWldHVVpUQ01aV0c1Q0E9PT09</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Base加解密平台：<a target="_blank" rel="noopener" href="http://www.hiencode.com/base64.html">CTF在线工具-在线base编码|在线base解码|base16编码|base32编码|base64编码 (hiencode.com)</a></p>
+<ul>
+<li>Base64，包含大写字母（A-Z）,小写字母（a-z），数字（0-9）以及+/；</li>
+<li>Base32，只有大写字母（A-Z）和数字234567；</li>
+<li>Base16，只有16进制的数据，其范围是数字(0-9)，字母（ABCDEF）。</li>
+</ul>
+<blockquote>
+<p>该密文有小写所以为Base64</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665df4e75e6d1bfa05691bbd.png" alt="Base64解密"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Base64解密后：G5ATMQRXIE3DGNZUGY3DOQRWGI3DCNZTGY2TGNRTGQ2UMNRSGYYTOMZWGUZTCMZWG5CA====</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>解密后只有大写和数字234567，判断为Base32，继续解密</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665df54b5e6d1bfa056980e9.png" alt="Base32解密"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Base32解密后：7A6B7A6374667B6261736536345F6261736531367D</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>此时只有16进制的数据，其范围是数字(0-9)和字母</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665df5fb5e6d1bfa056a19a8.png" alt="Base16解密"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">得到flag：zkzctf{base64_base16}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（11）杂项11：这是我最喜欢的女明星"><a href="#（11）杂项11：这是我最喜欢的女明星" class="headerlink" title="（11）杂项11：这是我最喜欢的女明星"></a>（11）杂项11：这是我最喜欢的女明星</h2><p><img src="https://pic.imgdb.cn/item/665df6645e6d1bfa056a6e0d.png"></p>
+<blockquote>
+<p>第一反应是像之前一样下载下来用txt打开找flag，但是发现有太多信息了，找不到，于是回去看了解析，居然是用试图软件去识别图片人物啊！</p>
+<p>百度识图：<a target="_blank" rel="noopener" href="https://graph.baidu.com/pcpage/index?tpl_from=pc">https://graph.baidu.com/pcpage/index?tpl_from=pc</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/665df7ac5e6d1bfa056cf802.png"></p>
+<blockquote>
+<p>那这个女神就是邱淑贞了，那就去查一查她的英文名吧！</p>
+<p>flag：Chingmy Yau</p>
+</blockquote>
+<h2 id="（12）杂项12：打由诗"><a href="#（12）杂项12：打由诗" class="headerlink" title="（12）杂项12：打由诗"></a>（12）杂项12：打由诗</h2><p><img src="https://pic.imgdb.cn/item/665df82f5e6d1bfa056d600b.png"></p>
+<blockquote>
+<p>在网上查找得知此为当铺密码，将其每个字都转换为数字</p>
+</blockquote>
+<p>==当铺密码==：</p>
+<p>当前汉字有多少笔画出头，就是转化成数字几。例如：</p>
+<p>王：该字外面有 6 个出头的位置，所以该汉字对应的数字就是 6；</p>
+<p>口：该字外面没有出头的位置，那就是0；</p>
+<p>人：该字外面有 3 个出头的位置，所以该汉字对应的数字就是 3；</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：由口中,由口井,圭土,由口人,由中人,由中中,由口主,由中中,圭土,由凹凸,由由中,由目圭,克工</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>将其转换为数字，并用ASCII码解开</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">明文：102 108 97 103 123 122 107 122 95 100 112 109 109 54</span><br><span class="line">flag{zkz_dpm6}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（13）杂项13：佛说"><a href="#（13）杂项13：佛说" class="headerlink" title="（13）杂项13：佛说"></a>（13）杂项13：佛说</h2><p><img src="https://pic.imgdb.cn/item/66681165d9c307b7e9d315a4.png"></p>
+<blockquote>
+<p>网上查看其为与佛论禅，那就寻找工具解密</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：佛曰：諳娑蒙罰世那真耶除梵沙缽能蒙切一怯南缽爍皤若佛涅無侄殿依缽以俱耨皤大缽若道他怯數等侄即喝至能楞怯伊奢阿諳利哆跋遮知智罰悉缽伽即所遠那等多</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>解密工具：<a target="_blank" rel="noopener" href="https://ctf.bugku.com/tool/todousharp">与佛论禅密码 - Bugku CTF</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6668112dd9c307b7e9d27154.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{zkaq_fochan}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（14）杂项14-奇怪的Base加密"><a href="#（14）杂项14-奇怪的Base加密" class="headerlink" title="（14）杂项14:奇怪的Base加密"></a>（14）杂项14:奇怪的Base加密</h2><p><img src="https://pic.imgdb.cn/item/666811c2d9c307b7e9d3e30f.png"></p>
+<blockquote>
+<p>下载文件，这么长的一段Base,还有;base64,这个关键词，这个一定是图片Base64加密，直接解密就可以了</p>
+<p>加解密平台：<a target="_blank" rel="noopener" href="https://tool.chinaz.com/tools/imgtobase/">https://tool.chinaz.com/tools/imgtobase/</a></p>
+<p>记得加一个头部图片的格式：data:image/jpg；</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6668137bd9c307b7e9d86cea.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{base64_tupian_a}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（15）杂项15：跳舞小人"><a href="#（15）杂项15：跳舞小人" class="headerlink" title="（15）杂项15：跳舞小人"></a>（15）杂项15：跳舞小人</h2><p><img src="https://pic.imgdb.cn/item/666813f5d9c307b7e9d9652a.png"></p>
+<blockquote>
+<p>跳舞小人中明显有一个二维码，截图发现少了一块，补上直接扫描</p>
+</blockquote>
+<p>得到flag</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{GC-ACUID}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（16）杂项16：神秘图片"><a href="#（16）杂项16：神秘图片" class="headerlink" title="（16）杂项16：神秘图片"></a>（16）杂项16：神秘图片</h2><p><img src="https://pic.imgdb.cn/item/666815bbd9c307b7e9dbb43c.png"></p>
+<blockquote>
+<p>下载文件，然后右键属性，看到里面的照相机镜头信息</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/66681627d9c307b7e9dc292f.png" style="zoom:67%;">
+
+<p>得到flag</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{ctf_tupian_666}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（17）杂项17-可达鸭"><a href="#（17）杂项17-可达鸭" class="headerlink" title="（17）杂项17:可达鸭"></a>（17）杂项17:可达鸭</h2><p><img src="https://pic.imgdb.cn/item/6668171bd9c307b7e9dd3a34.png"></p>
+<blockquote>
+<p>看到图片明显能感觉到显示不全，下载发现是一个png图片</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66681fbcd9c307b7e9e57207.png"></p>
+<blockquote>
+<p>自然就想到利用16进制编辑器打开图片，到找IHDR调整大小，发现后面的flag，可以使用网上的16进制编辑器，把图片长度更改；工具：<a target="_blank" rel="noopener" href="https://hexed.it/">HexEd.it — 基于浏览器的十六进制编辑器</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66682061d9c307b7e9e74795.png"></p>
+<p>更改为：</p>
+<p><img src="https://pic.imgdb.cn/item/66682085d9c307b7e9e7996d.png"></p>
+<p>得到图片：</p>
+<img src="https://pic.imgdb.cn/item/666820bad9c307b7e9e7d4ea.png" style="zoom:50%;">
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{ke-da-ya!}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（18）杂项18：一组神秘的图片"><a href="#（18）杂项18：一组神秘的图片" class="headerlink" title="（18）杂项18：一组神秘的图片"></a>（18）杂项18：一组神秘的图片</h2><p><img src="https://pic.imgdb.cn/item/66682115d9c307b7e9e85cc0.png"></p>
+<blockquote>
+<p>下载压缩包，解压之后得到一些黑白图，这个图片只有黑和白两种，有点像二进制中的0和1，尝试把白色换成0，黑色换成1，得出一串二进制</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二进制：01100110011011000110000101100111011110110110011100101101011000110110011101111101</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic.imgdb.cn/item/66682247d9c307b7e9ea346c.png"></p>
+<blockquote>
+<p>将其转换为ASCII码，工具：<a target="_blank" rel="noopener" href="https://coding.tools/cn/binary-to-text">2进制到ASCII字符串在线转换工具 - Coding.Tools</a></p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/666822f5d9c307b7e9eae9a2.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag{g-cg}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="（19）杂项19：神奇的压缩包加密"><a href="#（19）杂项19：神奇的压缩包加密" class="headerlink" title="（19）杂项19：神奇的压缩包加密"></a>（19）杂项19：神奇的压缩包加密</h2><p><img src="https://pic.imgdb.cn/item/66682384d9c307b7e9eb7a3d.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/%E6%9D%82%E9%A1%B9/" rel="tag">杂项</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="SQL注入" class="lazyload">
+          
+        
+        <a href="/en/2024/05/29/sql-zhu-ru/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            SQL注入
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="开创博客" class="lazyload">
+        
+      
+      <a href="/en/2024/05/20/kai-chuang-bo-ke/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          开创博客
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%81%E7%A5%9E%E5%8F%B0%E9%AB%98%E6%A0%A1CTF%E7%BB%83%E4%B9%A0%EF%BC%88Misc%E5%85%A5%E9%97%A8%E9%9D%B6%E5%9C%BA%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">封神台高校CTF练习（Misc入门靶场）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E7%A5%9E%E5%8F%B0%E7%BB%83%E4%B9%A0%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">封神台练习平台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.1.</span> <span class="toc-text">&#x3D;&#x3D;用到的工具平台&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%9D%82%E9%A1%B91%EF%BC%9A%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99"><span class="toc-number">1.2.</span> <span class="toc-text">（1）杂项1：图片隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%9D%82%E9%A1%B92%EF%BC%9A%E5%AF%86%E6%96%87%E5%9C%A8%E8%BF%99%E9%87%8C-%E7%9C%8B%E7%9C%8B%E4%BD%A0%E6%98%AF%E5%90%A6%E8%83%BD%E8%A7%A3%E5%BC%80"><span class="toc-number">1.3.</span> <span class="toc-text">（2）杂项2：密文在这里,看看你是否能解开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%9D%82%E9%A1%B93%EF%BC%9A%E4%B8%80%E6%AE%B5%E7%89%B9%E6%AE%8A%E7%9A%84ascii%E5%AF%86%E6%96%87"><span class="toc-number">1.4.</span> <span class="toc-text">（3）杂项3：一段特殊的ascii密文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E9%A1%B93%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E8%A1%A5%E5%85%85"><span class="toc-number">1.4.1.</span> <span class="toc-text">杂项3学习资料补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%9D%82%E9%A1%B94%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%AF%86%E7%9A%84xlsx%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.5.</span> <span class="toc-text">（4）杂项4：一个加密的xlsx表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E6%9D%82%E9%A1%B95%EF%BC%9A%E5%88%9A%E5%88%9A%E6%88%AA%E8%8E%B7%E5%BE%B7%E5%86%9B%E7%9A%84%E5%AF%86%E7%94%B5"><span class="toc-number">1.6.</span> <span class="toc-text">（5）杂项5：刚刚截获德军的密电</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E6%9D%82%E9%A1%B96%EF%BC%9A%E7%AE%80%E5%8D%95%E5%8A%A0%E5%AF%86"><span class="toc-number">1.7.</span> <span class="toc-text">（6）杂项6：简单加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%887%EF%BC%89%E6%9D%82%E9%A1%B97%EF%BC%9A%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82"><span class="toc-number">1.8.</span> <span class="toc-text">（7）杂项7：社会主义核心价值观</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%888%EF%BC%89%E6%9D%82%E9%A1%B98%EF%BC%9A%E5%A5%87%E6%80%AA%E7%9A%84%E7%9F%AD%E4%BF%A1"><span class="toc-number">1.9.</span> <span class="toc-text">（8）杂项8：奇怪的短信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%889%EF%BC%89%E6%9D%82%E9%A1%B99%EF%BC%9ASOS%E7%9A%84%E6%B1%82%E6%95%91%E4%BF%A1%E6%81%AF"><span class="toc-number">1.10.</span> <span class="toc-text">（9）杂项9：SOS的求救信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8810%EF%BC%89%E6%9D%82%E9%A1%B910%EF%BC%9ABase"><span class="toc-number">1.11.</span> <span class="toc-text">（10）杂项10：Base</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8811%EF%BC%89%E6%9D%82%E9%A1%B911%EF%BC%9A%E8%BF%99%E6%98%AF%E6%88%91%E6%9C%80%E5%96%9C%E6%AC%A2%E7%9A%84%E5%A5%B3%E6%98%8E%E6%98%9F"><span class="toc-number">1.12.</span> <span class="toc-text">（11）杂项11：这是我最喜欢的女明星</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8812%EF%BC%89%E6%9D%82%E9%A1%B912%EF%BC%9A%E6%89%93%E7%94%B1%E8%AF%97"><span class="toc-number">1.13.</span> <span class="toc-text">（12）杂项12：打由诗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8813%EF%BC%89%E6%9D%82%E9%A1%B913%EF%BC%9A%E4%BD%9B%E8%AF%B4"><span class="toc-number">1.14.</span> <span class="toc-text">（13）杂项13：佛说</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8814%EF%BC%89%E6%9D%82%E9%A1%B914-%E5%A5%87%E6%80%AA%E7%9A%84Base%E5%8A%A0%E5%AF%86"><span class="toc-number">1.15.</span> <span class="toc-text">（14）杂项14:奇怪的Base加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8815%EF%BC%89%E6%9D%82%E9%A1%B915%EF%BC%9A%E8%B7%B3%E8%88%9E%E5%B0%8F%E4%BA%BA"><span class="toc-number">1.16.</span> <span class="toc-text">（15）杂项15：跳舞小人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8816%EF%BC%89%E6%9D%82%E9%A1%B916%EF%BC%9A%E7%A5%9E%E7%A7%98%E5%9B%BE%E7%89%87"><span class="toc-number">1.17.</span> <span class="toc-text">（16）杂项16：神秘图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8817%EF%BC%89%E6%9D%82%E9%A1%B917-%E5%8F%AF%E8%BE%BE%E9%B8%AD"><span class="toc-number">1.18.</span> <span class="toc-text">（17）杂项17:可达鸭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8818%EF%BC%89%E6%9D%82%E9%A1%B918%EF%BC%9A%E4%B8%80%E7%BB%84%E7%A5%9E%E7%A7%98%E7%9A%84%E5%9B%BE%E7%89%87"><span class="toc-number">1.19.</span> <span class="toc-text">（18）杂项18：一组神秘的图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%8819%EF%BC%89%E6%9D%82%E9%A1%B919%EF%BC%9A%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%8A%A0%E5%AF%86"><span class="toc-number">1.20.</span> <span class="toc-text">（19）杂项19：神奇的压缩包加密</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "封神台高校CTF练习（Misc入门靶场）",
+          url: "http://example.com/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/",
+          excerpt: "",
+          description: "",
+          stripContent: "封神台高校CTF练习（Misc入门靶场） 封神台练习平台==用到的工具平台==Unicode加解密：https://www.toolhelper.cn/EncodeDecode/UnicodeChineseRC4加解密：在线RC4加密解密 (lddgo.net)MD5加解密：md5在线解密破解,md5解密加密 (cmd5.com)凯撒密码加解密：在线凯撒密码加密解密 (lddgo.net)核心价值观加解密平台：CTF在线工具-在线核心价值观编码|核心价值观编码算法|Core Values Enc",
+          date: "Wed May 29 2024 03:12:34 GMT+0800",
+          updated: "Tue Jun 11 2024 18:46:33 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

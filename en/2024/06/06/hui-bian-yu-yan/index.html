@@ -1,0 +1,1300 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    汇编语言 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="汇编语言&#x3D;&#x3D;学习路径&#x3D;&#x3D;：[汇编语言](https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Rs411c7HG） &#x3D;&#x3D;测试点练习路径&#x3D;&#x3D;：汇编语言 - 王爽 基础知识概念 汇编语言是机器指令便于记忆的的书写格式  组成 汇编指令（机器码的助记符） 伪指令（由编译器执行） 其他符号（由编译器识别）：+-*÷ 由编译器转换为逻辑运算符（与或非）传给计算机执行  基础知识 存储单元的地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编语言">
+<meta property="og:url" content="http://example.com/en/2024/06/06/hui-bian-yu-yan/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="汇编语言&#x3D;&#x3D;学习路径&#x3D;&#x3D;：[汇编语言](https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Rs411c7HG） &#x3D;&#x3D;测试点练习路径&#x3D;&#x3D;：汇编语言 - 王爽 基础知识概念 汇编语言是机器指令便于记忆的的书写格式  组成 汇编指令（机器码的助记符） 伪指令（由编译器执行） 其他符号（由编译器识别）：+-*÷ 由编译器转换为逻辑运算符（与或非）传给计算机执行  基础知识 存储单元的地址">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6662f2ef5e6d1bfa053655fe.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66651a0f5e6d1bfa05504fc1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66651a915e6d1bfa05511a7b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66651c475e6d1bfa05541995.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666526ed5e6d1bfa055e1914.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666550545e6d1bfa058c71bd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6665596a5e6d1bfa05977392.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66655a625e6d1bfa05987fd4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66729796d9c307b7e9683f92.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6672a236d9c307b7e97b9464.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6672add2d9c307b7e990a2f6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6672b19bd9c307b7e997288c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6672b712d9c307b7e9a01d33.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673bd69d9c307b7e9544e8c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673bdfbd9c307b7e9554102.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673be4cd9c307b7e955bf8a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673bf23d9c307b7e9572b6e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c0f3d9c307b7e95a4cb0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c15dd9c307b7e95b0087.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c3e9d9c307b7e95f838a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c431d9c307b7e95ff75c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c77ed9c307b7e966d310.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c89fd9c307b7e968c609.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673c9e4d9c307b7e96b591e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673cc10d9c307b7e972caea.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673cc4dd9c307b7e973d476.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673cce2d9c307b7e9760560.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66765f31d9c307b7e9198672.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66792c60d9c307b7e9c98c40.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6679306bd9c307b7e9d22b21.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66794388d9c307b7e9fa7948.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66794b09d9c307b7e90b27cd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66794c0cd9c307b7e90d7b88.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6679453fd9c307b7e9ff3aa5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66794831d9c307b7e904e9dc.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66794964d9c307b7e907d00c.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6679629dd9c307b7e9450f23.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667964f1d9c307b7e94b95c7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66796671d9c307b7e94fd244.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66796899d9c307b7e95512ac.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66796f40d9c307b7e968dfa4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667cf196d9c307b7e90651fb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667cff8cd9c307b7e91f5ad7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d0945d9c307b7e932282d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d127ad9c307b7e944166d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d12fad9c307b7e94501c2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d15bdd9c307b7e94a072d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d184cd9c307b7e94e85b4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d174dd9c307b7e94cd75a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667d1997d9c307b7e950d426.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667fd8c0d9c307b7e95eca43.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6680fe30d9c307b7e9c40a50.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6680fe7ad9c307b7e9c45fbb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6680ffaed9c307b7e9c5e44a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668102cad9c307b7e9cac72f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66810376d9c307b7e9cb99b6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668106abd9c307b7e9cf64bb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66810673d9c307b7e9cf2521.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66810feed9c307b7e9da8107.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66810f9fd9c307b7e9da27f6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668124a0d9c307b7e9f50371.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6681264cd9c307b7e9f6d51f.png">
+<meta property="article:published_time" content="2024-06-06T12:33:32.873Z">
+<meta property="article:modified_time" content="2024-06-30T10:02:48.488Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="汇编语言">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/6662f2ef5e6d1bfa053655fe.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/06/06/hui-bian-yu-yan/';
+            
+              langMap['en'] = '/en/2024/06/06/hui-bian-yu-yan/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="汇编语言">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">汇编语言</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">汇编语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">&#x3D;&#x3D;学习路径&#x3D;&#x3D;：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%82%B9%E7%BB%83%E4%B9%A0%E8%B7%AF%E5%BE%84-%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">&#x3D;&#x3D;测试点练习路径&#x3D;&#x3D;：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.3.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-number">1.3.2.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">基础知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88CPU%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">寄存器（CPU工作原理）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.1.</span> <span class="toc-text">CPU概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">寄存器概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.3.</span> <span class="toc-text">汇编指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="toc-number">1.4.4.</span> <span class="toc-text">物理地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.5.</span> <span class="toc-text">段的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.4.6.</span> <span class="toc-text">段寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%AE%B5"><span class="toc-number">1.4.7.</span> <span class="toc-text">代码段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.5.</span> <span class="toc-text">实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">寄存器（内存访问）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%B8%AD%E5%AD%97%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.6.1.</span> <span class="toc-text">内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DS%E5%92%8C-address"><span class="toc-number">1.6.2.</span> <span class="toc-text">DS和[address]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%9A%84%E4%BC%A0%E9%80%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">字的传送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mov%E3%80%81add%E3%80%81sub%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.4.</span> <span class="toc-text">mov、add、sub指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%AE%B5"><span class="toc-number">1.6.5.</span> <span class="toc-text">数据段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.6.6.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E9%A1%B6%E8%B6%8A%E7%95%8C%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.7.</span> <span class="toc-text">栈顶越界的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push%E3%80%81pop%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.8.</span> <span class="toc-text">push、pop指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E6%AE%B5"><span class="toc-number">1.6.9.</span> <span class="toc-text">栈段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.7.</span> <span class="toc-text">汇编语言程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.7.1.</span> <span class="toc-text">源程序</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-汇编语言" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-06-06T12:33:32.873Z" itemprop="datePublished">2024-06-06</time>
+    <time style="display: none;" id="post-update-time">2024-06-30</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" data-aos="zoom-in">编程语言</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h1><h2 id="学习路径-："><a href="#学习路径-：" class="headerlink" title="==学习路径==："></a>==学习路径==：</h2><p>[汇编语言](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Rs411c7HG%EF%BC%89">https://www.bilibili.com/video/BV1Rs411c7HG）</a></p>
+<h2 id="测试点练习路径-："><a href="#测试点练习路径-：" class="headerlink" title="==测试点练习路径==："></a>==测试点练习路径==：</h2><p><a target="_blank" rel="noopener" href="https://hansimov.gitbook.io/asm-lang/solutions/ch01-basics">汇编语言 - 王爽</a></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>汇编语言是机器指令便于记忆的的书写格式</p>
+</blockquote>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><ol>
+<li>汇编指令（机器码的助记符）</li>
+<li>伪指令（由编译器执行）</li>
+<li>其他符号（由编译器识别）：+-*÷ 由编译器转换为逻辑运算符（与或非）传给计算机执行</li>
+</ol>
+<h3 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h3><blockquote>
+<p>存储单元的地址（地址信息）<br>器件的选择，读或写命令（控制信息）<br>读或写的数据（数据信息）</p>
+</blockquote>
+<p>==总线==：连接CPU与其他芯片的导线</p>
+<ol>
+<li><p>地址总线</p>
+<ul>
+<li>通过地址总线来指定存储单元</li>
+<li>一个cpu有N根地址总线，则可以说这个cpu地址总线的宽度位N，最多可以寻找2^n^个存储单元</li>
+<li>64位的速度由64位CPU、64位操作系统、64位软件共同决定</li>
+</ul>
+</li>
+<li><p>数据总线</p>
+<ul>
+<li>数据总线的宽度决定cpu与外界的数据传送速度</li>
+</ul>
+</li>
+<li><p>控制总线</p>
+<ul>
+<li>有多少根控制总线，就意味着cpu提供了对外部器件的多少种控制</li>
+</ul>
+</li>
+</ol>
+<p>==内存地址空间==：</p>
+<p>​		假如一个cpu的地址总线宽度为10，那么可以寻址1024个内存单元，这些内存单元就构成了这个cpu的内存地址空间</p>
+<p>==主板==：</p>
+<p>​		一个PC有一个主板，包含核心器件和主要器件，这些器件通过总线相连</p>
+<p>==接口卡==：</p>
+<p>​		cpu对外部设备不能直接控制，直接控制这些设备进行互作的是插在扩展插槽的接口卡</p>
+<p>==存储器芯片==：</p>
+<ol>
+<li><p>从读写属性上看分为：随机存储器（RAM）和只读存储器（ROM）</p>
+</li>
+<li><p>从功能和连接上分类：</p>
+<ul>
+<li><p>随机存储器RAM</p>
+</li>
+<li><p>装有BIOS的ROM</p>
+<ol>
+<li>BIOS(基本输入输出系统)：由主板和各类接口卡厂商提供的软件系统，可以通过它利用该硬件设备进行最基础的输入输出。cpu与显示器通过显卡；网卡。</li>
+</ol>
+</li>
+<li><p>接口卡上的RAM</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>主板逻辑连接：</p>
+<img src="https://pic.imgdb.cn/item/6662f2ef5e6d1bfa053655fe.png" style="zoom: 67%;">
+
+<h2 id="寄存器（CPU工作原理）"><a href="#寄存器（CPU工作原理）" class="headerlink" title="寄存器（CPU工作原理）"></a>寄存器（CPU工作原理）</h2><h3 id="CPU概述"><a href="#CPU概述" class="headerlink" title="CPU概述"></a>CPU概述</h3><blockquote>
+<p>由运算器、控制器、寄存器等器件组成</p>
+</blockquote>
+<h3 id="寄存器概述"><a href="#寄存器概述" class="headerlink" title="寄存器概述"></a>寄存器概述</h3><blockquote>
+<p>8086CPU有14个寄存器</p>
+</blockquote>
+<p>==通用寄存器==：</p>
+<ol>
+<li><p>通用寄存器：AX，BX，CX，DX：存放一般数据</p>
+</li>
+<li><p>8086CPU所有的寄存器都是16位，可以存放两个字节</p>
+</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66651a0f5e6d1bfa05504fc1.png"></p>
+<img src="https://pic.imgdb.cn/item/66651a915e6d1bfa05511a7b.png" style="zoom: 80%;">
+
+<ol start="3">
+<li><p>为保证兼容性，会将这四个16位的寄存器都分别分为两个独立的8位的寄存器（可独立使用），以兼容以前的8位寄存器</p>
+</li>
+<li><p>AX可以分为AH（高位）和AL（低位），BX、CX、DX同理</p>
+</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66651c475e6d1bfa05541995.png"></p>
+<p>==字==：</p>
+<p>一个字=2字节（2B），字高位和低位分别对应寄存器的高位和低位</p>
+<h3 id="汇编指令"><a href="#汇编指令" class="headerlink" title="汇编指令"></a>汇编指令</h3><blockquote>
+<p>汇编指令不区分大小写</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/666526ed5e6d1bfa055e1914.png"></p>
+<p><img src="https://pic.imgdb.cn/item/666550545e6d1bfa058c71bd.png"></p>
+<p>00C5H+93H=0058H（不是0158H，因为高低8位是独立的，不共用，进制位会被单独存放在特点的寄存器）</p>
+<h3 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h3><p>==16位结构的CPU==：</p>
+<ol>
+<li>运算器一次最多可以处理16位的数据</li>
+<li>寄存器的最大宽度位16位</li>
+<li>寄存器和运算器之间的通路是16位</li>
+</ol>
+<p>8086cpu给出物理地址的方法</p>
+<img src="https://pic.imgdb.cn/item/6665596a5e6d1bfa05977392.png" style="zoom:80%;">
+
+<p>地址加法器工作原理：</p>
+<p>​	合成物理地址的方法：</p>
+<p>​	<u>物理地址=段地址*16+偏移地址</u></p>
+<p><img src="https://pic.imgdb.cn/item/66655a625e6d1bfa05987fd4.png"></p>
+<h3 id="段的概念"><a href="#段的概念" class="headerlink" title="段的概念"></a>段的概念</h3><blockquote>
+<p>内存并没有分段，段的划分来自于CPU</p>
+<p>CPU访问内单元时，必须向内存提供内存单元的物理地址</p>
+<p>8086CPU在内部用段地址和偏移地址移位相加的方法形成最终的物理地址</p>
+</blockquote>
+<ul>
+<li>CPU可以用不同的段地址+偏移地址形成同一个物理地址</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/66729796d9c307b7e9683f92.png"></p>
+<h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><blockquote>
+<p>8086CPU有四个段寄存器：</p>
+<ul>
+<li>CS（代码段寄存器，Code Segment）</li>
+<li>DS（数据段寄存器，Data Segment）</li>
+<li>SS（堆栈段寄存器，Stack Segment）</li>
+<li>ES（附加段寄存器，Extra Segment）</li>
+</ul>
+<p>当8086CPU需要访问内存时，由这4个寄存器提供内存单元的段地址</p>
+</blockquote>
+<p>==CS和IP（指令指针寄存器）==</p>
+<p><img src="https://pic.imgdb.cn/item/6672a236d9c307b7e97b9464.png"></p>
+<p>工作流程：</p>
+<ol>
+<li>从CS:IP指向的内存单元读取指令，读取的指令进入指令缓冲区</li>
+<li>IP=IP+所读取指令的长度，从而指向下一条指令</li>
+<li>执行指令，转到步骤1</li>
+</ol>
+<blockquote>
+<p>在8086CPU加电启动时，CS=FFFFH，IP=0000H，即CPU从内存FFFF0H单元中读取指令执行</p>
+</blockquote>
+<p>==修改CS:IP的指令==</p>
+<ul>
+<li><p>mov不能用于设置CS、IP的值</p>
+</li>
+<li><p>同时修改CS、IP:</p>
+</li>
+</ul>
+<p>​		而是用转移指令：jmp</p>
+<p>​		<u>jmp 段地址:偏移地址</u></p>
+<p>​		jmp 2AE3:3 对应物理地址2AE33</p>
+<p>​		jmp 3:0B16 对应物理地址0003*16=00030，00030+00B16=00B46</p>
+<ul>
+<li>仅修改IP的内容</li>
+</ul>
+<p>​		jmp 某一合法寄存器</p>
+<p>​		jmp ax	（类似于mov IP,ax）//用寄存器的值修改IP</p>
+<p>练习：</p>
+<img src="https://pic.imgdb.cn/item/6672add2d9c307b7e990a2f6.png" style="zoom:67%;">
+
+<p>依次执行：</p>
+<ul>
+<li><p>mov ax,6622H		 ax=6622</p>
+</li>
+<li><p>jmp 1000:3 			</p>
+</li>
+<li><p>mov ax,0000			ax=0000</p>
+</li>
+<li><p>mov bx,ax				bx=0000</p>
+</li>
+<li><p>jmp bx</p>
+</li>
+<li><p>mov ax,0123H         ax=0123</p>
+</li>
+<li><p>执行mov ax,0000 不断循环</p>
+</li>
+</ul>
+<h3 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h3><blockquote>
+<p>对于8086PC机，可以根据需求将一组内存单元定义为一个段</p>
+<p>可以将长度为N的一组代码存在一组地址连续、起始地址为16的倍数的内存单元中，这段内存是用来存放代码的，从而定义了一个代码段</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/6672b19bd9c307b7e997288c.png" style="zoom:67%;">
+
+<p>CS:IP指向代码段，则代码段就被执行，CPU只认CS:IP所指代码段</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><blockquote>
+<p>查看CPU和内存，用机器指令和汇编指令编程</p>
+<p>使用工具：DOSBox</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/6672b712d9c307b7e9a01d33.png" style="zoom:67%;">
+
+<p>​	R:查看、改变CPU寄存器内容</p>
+<p><img src="https://pic.imgdb.cn/item/6673bd69d9c307b7e9544e8c.png"></p>
+<p>T:执行指令</p>
+<p><img src="https://pic.imgdb.cn/item/6673bdfbd9c307b7e9554102.png"></p>
+<p>D:查看内存内容</p>
+<p><img src="https://pic.imgdb.cn/item/6673be4cd9c307b7e955bf8a.png"></p>
+<p>（1）</p>
+<p><img src="https://pic.imgdb.cn/item/6673bf23d9c307b7e9572b6e.png"></p>
+<ol>
+<li>通过-a，将指令输入</li>
+<li>用过-d，来查看内存</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c0f3d9c307b7e95a4cb0.png"></p>
+<ol start="3">
+<li>用u来将指令转换为汇编语言</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c15dd9c307b7e95b0087.png"></p>
+<ol start="4">
+<li>改变CS:IP指向刚刚执行的指令</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c3e9d9c307b7e95f838a.png"></p>
+<ol start="5">
+<li>执行当前指令，发现ax被覆盖，并且IP的值也指向了下一个指令</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c431d9c307b7e95ff75c.png"></p>
+<p>（2）将下面3条指令写入从2000:0开始的内存单元中，利用这3条指令计算2的8次方</p>
+<ul>
+<li>mov ax,1</li>
+<li>add ax,ax</li>
+<li>jmp 2000:0003</li>
+</ul>
+<ol>
+<li>-a写入指令</li>
+<li>-r改变CS:IP指向指令内存地址</li>
+<li>-t依次执行</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c77ed9c307b7e966d310.png"></p>
+<p>（3）</p>
+<p><img src="https://pic.imgdb.cn/item/6673c89fd9c307b7e968c609.png"></p>
+<ol>
+<li>-d查看，其中30（十六进制）对应0（ASCII），2F（十六进制）对应/（ASCII），依次对应</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673c9e4d9c307b7e96b591e.png"></p>
+<ol start="2">
+<li>-e更改，发现无法更改，因为写在ROM中的，为只读</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6673cc10d9c307b7e972caea.png"></p>
+<p>（4）</p>
+<p><img src="https://pic.imgdb.cn/item/6673cc4dd9c307b7e973d476.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6673cce2d9c307b7e9760560.png"></p>
+<p>观察右上角出现图案，是因为在往显存中写数据，所以出现了图案</p>
+<h2 id="寄存器（内存访问）"><a href="#寄存器（内存访问）" class="headerlink" title="寄存器（内存访问）"></a>寄存器（内存访问）</h2><h3 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h3><ul>
+<li>任何两个地址连续的内存单元，N号单元和N+1号单元可以看成两个内存单元，也可以看成一个地址为N的<strong>字单元</strong>中的<strong>高位</strong>字节单元和<strong>低位</strong>字节单元</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/66765f31d9c307b7e9198672.png" style="zoom: 67%;">
+
+<p>1地址<strong>字单元</strong>的中存放的<strong>字型</strong>数据是<u>124EH</u></p>
+<p>2地址<strong>字单元</strong>的中存放的<strong>字型</strong>数据是<u>0012H</u></p>
+<h3 id="DS和-address"><a href="#DS和-address" class="headerlink" title="DS和[address]"></a>DS和[address]</h3><p>mov指令格式：</p>
+<ul>
+<li>[ ]：表示一个内存单元</li>
+<li>[ ]中的0：表示内存单元中的偏移地址</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/66792c60d9c307b7e9c98c40.png"></p>
+<p><strong>注意</strong>：8086CPU不支持将数据直接送入段寄存器（DS）（硬件设计的问题）<br>所以mov ds,1000H是不合法的</p>
+<p><strong>数据–&gt;通用寄存器–&gt;段寄存器</strong> </p>
+<p>如何将数据从寄存器送入内存单元？也就是从内存单元读数据的逆过程，但是注意通过通用寄存器作为中间人</p>
+<p><img src="https://pic.imgdb.cn/item/6679306bd9c307b7e9d22b21.png"></p>
+<h3 id="字的传送"><a href="#字的传送" class="headerlink" title="字的传送"></a>字的传送</h3><blockquote>
+<p>8086CPU是16位结构，有16根数据线，可以一次性传送16位数据（一个字）</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66794388d9c307b7e9fa7948.png"></p>
+<ol>
+<li>先写入数据</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66794b09d9c307b7e90b27cd.png"></p>
+<ol start="2">
+<li>查看寄存器信息，以及CS:IP所指内存地址的信息</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66794c0cd9c307b7e90d7b88.png"></p>
+<ol start="3">
+<li>写入指令</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6679453fd9c307b7e9ff3aa5.png"></p>
+<ol start="4">
+<li>执行指令，mov ax,[0]:将DS为1000，偏移量[0]，也就是地址为10000H的值，以及高一个的地址的值传入ax，此处也就是10000H以及10001H的值，因此ax=1123，以此类推</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66794831d9c307b7e904e9dc.png"></p>
+<p>add bx,[1]:将bx的值（6622）加上DS为1000，偏移地址为[1]（也就是10001H的值）及高一个的地址（10002H的值），因此bx=6622H+2211H=8833H，以此类推</p>
+<p><img src="https://pic.imgdb.cn/item/66794964d9c307b7e907d00c.png"></p>
+<p><strong>注意</strong>：如何来看是吧[0]、[1]……当作字节（1字节）来看，还是当作字（2字节）来看</p>
+<ul>
+<li><p>如果为ax则当作字来看，则取当前及上一个的地址</p>
+</li>
+<li><p>如果为al或者ah，则当成字节来看，取当前的地址</p>
+</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6679629dd9c307b7e9450f23.png"></p>
+<ol>
+<li><p>写入数据</p>
+</li>
+<li><p>写入指令（11316为十进制，对应十六进制为2C34；sub指令就是相减）</p>
+</li>
+<li><p>执行指令</p>
+</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/667964f1d9c307b7e94b95c7.png"></p>
+<p>sub bx,[2] 就为bx=bx-[2]，所以bx=2c34-1122=1b12，查看内存信息，1b12已经存入内存</p>
+<p><img src="https://pic.imgdb.cn/item/66796671d9c307b7e94fd244.png"></p>
+<h3 id="mov、add、sub指令"><a href="#mov、add、sub指令" class="headerlink" title="mov、add、sub指令"></a>mov、add、sub指令</h3><p>mov:</p>
+<p><img src="https://pic.imgdb.cn/item/66796899d9c307b7e95512ac.png"></p>
+<p>add、sub:</p>
+<img src="https://pic.imgdb.cn/item/66796f40d9c307b7e968dfa4.png" style="zoom: 80%;">
+
+
+
+<h3 id="数据段"><a href="#数据段" class="headerlink" title="数据段"></a>数据段</h3><blockquote>
+<p>8位为一个字节，16位（2字节）为一个字，32位（4字节）为双字</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/667cf196d9c307b7e90651fb.png"></p>
+<p><img src="https://pic.imgdb.cn/item/667cff8cd9c307b7e91f5ad7.png"></p>
+<blockquote>
+<p>逻辑地址等于段地址左移4位后加上偏移地址，即逻辑地址 = 段地址 x 16 + 偏移地址</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/667d0945d9c307b7e932282d.png"></p>
+<ul>
+<li>0001:0000 = 0001 *16 +0000 = 0010</li>
+</ul>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><blockquote>
+<p>push指令：入栈</p>
+<p>pop指令：出栈</p>
+<p>8086CPU的入栈和出栈都是以字为单位进行</p>
+</blockquote>
+<ul>
+<li>push ax：将寄存器ax中的数据送入栈中</li>
+<li>pop ax：从栈顶取出数据送入ax</li>
+</ul>
+<p>入栈：</p>
+<img src="https://pic.imgdb.cn/item/667d127ad9c307b7e944166d.png" style="zoom:67%;">
+
+<p>出栈：</p>
+<img src="https://pic.imgdb.cn/item/667d12fad9c307b7e94501c2.png" style="zoom: 67%;">
+
+<blockquote>
+<p>段寄存器SS：存放栈顶的段地址</p>
+<p>寄存器SP：存放栈顶的偏移地址</p>
+<p>SS:SP指向栈顶元素</p>
+</blockquote>
+<p>push指令执行过程：</p>
+<img src="https://pic.imgdb.cn/item/667d15bdd9c307b7e94a072d.png" style="zoom:80%;">
+
+<img src="https://pic.imgdb.cn/item/667d184cd9c307b7e94e85b4.png" style="zoom:67%;">
+
+<p>pop是push的逆过程</p>
+<p>push：先SP=SP-2，再放入数据</p>
+<p>pop：先取出数据，再SP=SP+2</p>
+<p><strong>注意</strong>：pop之后，数据其实依旧在，只是下一次push的时候，会将其覆盖</p>
+<blockquote>
+<p>当栈为空时，SP指向最高地址单元的下一个单元，这样当有数据进来，sp先减2，指向1000EH再将数据写入</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/667d174dd9c307b7e94cd75a.png" style="zoom:67%;">
+
+<p>换个角度看：</p>
+<img src="https://pic.imgdb.cn/item/667d1997d9c307b7e950d426.png" style="zoom:67%;">
+
+<img src="https://pic.imgdb.cn/item/667fd8c0d9c307b7e95eca43.png" style="zoom:67%;">
+
+
+
+<h3 id="栈顶越界的问题"><a href="#栈顶越界的问题" class="headerlink" title="栈顶越界的问题"></a>栈顶越界的问题</h3><blockquote>
+<p>要根据可能用到的最大栈空间，来安排栈的大小，防止入栈的数据过多而导致超界</p>
+<p>执行出栈时也要注意，以防栈空的时候出栈导致超界</p>
+</blockquote>
+<h3 id="push、pop指令"><a href="#push、pop指令" class="headerlink" title="push、pop指令"></a>push、pop指令</h3><p>push ds：将一个段寄存器中的数据入栈</p>
+<p>pop ds：出栈，用一个段寄存器接收出栈的数据</p>
+<p><img src="https://pic.imgdb.cn/item/6680fe30d9c307b7e9c40a50.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6680fe7ad9c307b7e9c45fbb.png"></p>
+<p> <img src="https://pic.imgdb.cn/item/6680ffaed9c307b7e9c5e44a.png"></p>
+<ul>
+<li>mov ax,001AH</li>
+<li>mov bx,001BH</li>
+<li>mov cx,1000H</li>
+<li>mov ss,cx</li>
+<li>mov sp,0010H</li>
+<li>push ax</li>
+<li>push bx</li>
+<li>mov ax,0</li>
+<li>mov bx,0</li>
+<li>pop bx</li>
+<li>pop ax</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/668102cad9c307b7e9cac72f.png" style="zoom:67%;">
+
+
+
+<p><img src="https://pic.imgdb.cn/item/66810376d9c307b7e9cb99b6.png"></p>
+<ul>
+<li>mov cx,1000H	//段寄存器过渡</li>
+<li>mov ss,cx</li>
+<li>mov sp,0010H   //栈顶指针</li>
+<li>mov ax,002AH  //赋值</li>
+<li>mov bx,002BH</li>
+<li>push ax               //入栈</li>
+<li>push bx</li>
+<li>mov ax,0             //清零</li>
+<li>mov bx,0</li>
+<li>pop ax                  //用ax来接收刚刚bx的数据</li>
+<li>pop bx</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/668106abd9c307b7e9cf64bb.png"></p>
+<ul>
+<li>mov ax,1000H</li>
+<li>mov ss,ax</li>
+<li>mov sp,2             //因为push之前先执行SP=SP-2，所以将栈顶指针指到10002H</li>
+<li>mov ax,2266H</li>
+<li>push ax</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/66810673d9c307b7e9cf2521.png" style="zoom:67%;">
+
+
+
+<h3 id="栈段"><a href="#栈段" class="headerlink" title="栈段"></a>栈段</h3><blockquote>
+<p>将一段内存当作栈段是我们自己安排的，CPU不会在执行push、pop时自动将我们定义的栈段当作栈空间来使用</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/66810feed9c307b7e9da8107.png"></p>
+<p><img src="https://pic.imgdb.cn/item/66810f9fd9c307b7e9da27f6.png"></p>
+<h2 id="汇编语言程序"><a href="#汇编语言程序" class="headerlink" title="汇编语言程序"></a>汇编语言程序</h2><h3 id="源程序"><a href="#源程序" class="headerlink" title="源程序"></a>源程序</h3><blockquote>
+<p>汇编指令：有对应的机器码的指令，可以被编译为机器指令，最终被CPU执行</p>
+<p>伪指令：没有对应的机器码的指令，最终不被CPU所执行，它是由编译器来执行的指令</p>
+</blockquote>
+<ul>
+<li>伪指令：</li>
+</ul>
+<p>segment和ends是一对成对使用的伪指令</p>
+<p>功能是定义一个段，segment说明一个段开始，ends说明一个段结束</p>
+<ul>
+<li>伪指令使用格式：</li>
+</ul>
+<p>​	段名	segment</p>
+<p>​	段名	ends</p>
+<blockquote>
+<p>一个汇编指令由多个段组成，这些段用来存放代码、数据 、当作栈空间来使用</p>
+<p>一个有意义的汇编程序中至少有一个段，这个段用来存放代码</p>
+<p>end是一个汇编程序的结束标记，编译器在编译过程中碰到end就结束对源程序的编译</p>
+</blockquote>
+<ul>
+<li>assume:</li>
+</ul>
+<p>假设某一段寄存器和程序中的某一个segment……ends定义的段相关联</p>
+<blockquote>
+<p>源程序：源程序文件中的所有内容</p>
+<p>程序：源程序中最终由计算机执行处理的指令或数据</p>
+<p>程序最先以汇编指令的形式存在源程序中，经编译连接后变为机器码，存在可执行文件中</p>
+</blockquote>
+<img src="https://pic.imgdb.cn/item/668124a0d9c307b7e9f50371.png" style="zoom:67%;">
+
+<ul>
+<li>标号：一个标号指代了一个地址</li>
+<li>codesg放在segment前面，作为一个段的名称，他最终会被编译连接程序处理为一个段的段地址</li>
+</ul>
+<img src="https://pic.imgdb.cn/item/6681264cd9c307b7e9f6d51f.png" style="zoom:67%;">
+
+<blockquote>
+<p>DOS是一个单任务操作系统</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" rel="tag">汇编语言</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Web安全攻防-渗透测试实战指南" class="lazyload">
+          
+        
+        <a href="/en/2024/06/07/web-an-quan-gong-fang-shen-tou-ce-shi-shi-zhan-zhi-nan/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Web安全攻防-渗透测试实战指南
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="VPN技术" class="lazyload">
+        
+      
+      <a href="/en/2024/06/06/vpn-ji-zhu/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          VPN技术
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">汇编语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">&#x3D;&#x3D;学习路径&#x3D;&#x3D;：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%82%B9%E7%BB%83%E4%B9%A0%E8%B7%AF%E5%BE%84-%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">&#x3D;&#x3D;测试点练习路径&#x3D;&#x3D;：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.3.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-number">1.3.2.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">基础知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88CPU%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">寄存器（CPU工作原理）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.1.</span> <span class="toc-text">CPU概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">寄存器概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4"><span class="toc-number">1.4.3.</span> <span class="toc-text">汇编指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="toc-number">1.4.4.</span> <span class="toc-text">物理地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.5.</span> <span class="toc-text">段的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.4.6.</span> <span class="toc-text">段寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%AE%B5"><span class="toc-number">1.4.7.</span> <span class="toc-text">代码段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.5.</span> <span class="toc-text">实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">寄存器（内存访问）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%B8%AD%E5%AD%97%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.6.1.</span> <span class="toc-text">内存中字的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DS%E5%92%8C-address"><span class="toc-number">1.6.2.</span> <span class="toc-text">DS和[address]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%9A%84%E4%BC%A0%E9%80%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">字的传送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mov%E3%80%81add%E3%80%81sub%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.4.</span> <span class="toc-text">mov、add、sub指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%AE%B5"><span class="toc-number">1.6.5.</span> <span class="toc-text">数据段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.6.6.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E9%A1%B6%E8%B6%8A%E7%95%8C%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.7.</span> <span class="toc-text">栈顶越界的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push%E3%80%81pop%E6%8C%87%E4%BB%A4"><span class="toc-number">1.6.8.</span> <span class="toc-text">push、pop指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E6%AE%B5"><span class="toc-number">1.6.9.</span> <span class="toc-text">栈段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.7.</span> <span class="toc-text">汇编语言程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.7.1.</span> <span class="toc-text">源程序</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "汇编语言",
+          url: "http://example.com/2024/06/06/hui-bian-yu-yan/",
+          excerpt: "",
+          description: "",
+          stripContent: "汇编语言==学习路径==：[汇编语言](https://www.bilibili.com/video/BV1Rs411c7HG） ==测试点练习路径==：汇编语言 - 王爽 基础知识概念 汇编语言是机器指令便于记忆的的书写格式  组成 汇编指令（机器码的助记符） 伪指令（由编译器执行） 其他符号（由编译器识别）：+-*÷ 由编译器转换为逻辑运算符（与或非）传给计算机执行  基础知识 存储单元的地址（地址信息）器件的选择，读或写命令（控制信息）读或写的数据（数据信息）  ==总线==：连接CPU与",
+          date: "Thu Jun 06 2024 20:33:32 GMT+0800",
+          updated: "Sun Jun 30 2024 18:02:48 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

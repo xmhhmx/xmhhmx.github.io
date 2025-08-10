@@ -1,0 +1,1095 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    upload-labs |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="upload-labs">
+<meta property="og:url" content="http://example.com/en/2024/06/17/upload-labs/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fe4a3d9c307b7e9085db1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fdd20d9c307b7e9fa577e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fdd5dd9c307b7e9fabe43.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fde6ad9c307b7e9fc8a34.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fdf36d9c307b7e9ff1840.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fe4d3d9c307b7e908b3fd.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fe50fd9c307b7e9092267.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fe546d9c307b7e909882e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fe5fed9c307b7e90ace82.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666fe642d9c307b7e90b439f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673d15cd9c307b7e981140b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673d1b7d9c307b7e981b7b0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673d7cfd9c307b7e98e0866.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673d585d9c307b7e989d6f1.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673d5b1d9c307b7e98a21e9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673d878d9c307b7e98f2e6b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673dc06d9c307b7e995e954.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673dd03d9c307b7e997d319.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673df89d9c307b7e99cce97.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673e634d9c307b7e9aa5fdf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673e649d9c307b7e9aa8720.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6673eef5d9c307b7e9b9fcc0.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/667698dcd9c307b7e9882677.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66769a87d9c307b7e98aede6.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66769b08d9c307b7e98bb61a.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668913c9d9c307b7e90db9f4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6689143cd9c307b7e90e8850.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668913c9d9c307b7e90db9f4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6689155ed9c307b7e910898f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6689174ed9c307b7e9157dc2.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668935e1d9c307b7e95220bc.png">
+<meta property="article:published_time" content="2024-06-17T06:45:57.477Z">
+<meta property="article:modified_time" content="2025-03-06T15:02:01.676Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="upload注入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/666fe4a3d9c307b7e9085db1.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/06/17/upload-labs/';
+            
+              langMap['en'] = '/en/2024/06/17/upload-labs/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="upload-labs">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">upload-labs</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#upload-labs"><span class="toc-number">1.</span> <span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01-%E5%89%8D%E7%AB%AFjs%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.</span> <span class="toc-text">Pass-01 前端js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02-content-type%E7%BB%95%E8%BF%87"><span class="toc-number">1.2.</span> <span class="toc-text">Pass-02 content-type绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03-%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">Pass-03 特殊后缀绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-htaccess%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.</span> <span class="toc-text">Pass-04 .htaccess绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05-user-ini%E7%BB%95%E8%BF%87"><span class="toc-number">1.5.</span> <span class="toc-text">Pass-05 .user.ini绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06-%E5%A4%A7%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.</span> <span class="toc-text">Pass-06 大写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-number">1.7.</span> <span class="toc-text">Pass-07 空格绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08-%E5%90%8E%E7%BC%80%E5%8A%A0%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-number">1.8.</span> <span class="toc-text">Pass-08 后缀加点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-number">1.8.1.</span> <span class="toc-text">额外数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09-DATA%E7%BB%95%E8%BF%87"><span class="toc-number">1.9.</span> <span class="toc-text">Pass-09 ::$DATA绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10-%E7%82%B9%E7%A9%BA%E6%A0%BC%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-number">1.10.</span> <span class="toc-text">Pass-10 点空格点绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11-%E5%90%8E%E7%BC%80%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.11.</span> <span class="toc-text">Pass-11 后缀双写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12-00%E6%88%AA%E6%96%AD"><span class="toc-number">1.12.</span> <span class="toc-text">Pass-12 %00截断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.12.1.</span> <span class="toc-text">空字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13-0x00%E6%88%AA%E6%96%AD"><span class="toc-number">1.13.</span> <span class="toc-text">Pass-13 0x00截断</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-upload-labs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-06-17T06:45:57.477Z" itemprop="datePublished">2024-06-17</time>
+    <time style="display: none;" id="post-update-time">2025-03-06</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/upload%E6%B3%A8%E5%85%A5/" data-aos="zoom-in">upload注入</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="upload-labs"><a href="#upload-labs" class="headerlink" title="upload-labs"></a>upload-labs</h1><p>使用工具：<br>burpsuite<br>中国蚁剑</p>
+<h2 id="Pass-01-前端js绕过"><a href="#Pass-01-前端js绕过" class="headerlink" title="Pass-01 前端js绕过"></a>Pass-01 前端js绕过</h2><blockquote>
+<p>前端JS代码对上传文件合法性的验证</p>
+</blockquote>
+<ol>
+<li>先上传一个不合法php文件来测试</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fe4a3d9c307b7e9085db1.png"></p>
+<p><img src="https://pic.imgdb.cn/item/666fdd20d9c307b7e9fa577e.png"></p>
+<ol start="2">
+<li>该文件类型不允许上传</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fdd5dd9c307b7e9fabe43.png"></p>
+<ol start="3">
+<li>burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤</li>
+</ol>
+<img src="https://pic.imgdb.cn/item/666fde6ad9c307b7e9fc8a34.png" style="zoom:67%;">
+
+<ol start="4">
+<li>他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的拦截</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fdf36d9c307b7e9ff1840.png"></p>
+<ol start="5">
+<li>能抓到包，证明绕过了前端验证</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fe4d3d9c307b7e908b3fd.png"></p>
+<ol start="6">
+<li>然后将文件后缀名从jpg重新改回php上传，一句话木马就植入服务器了，这里看到打开图片连接，实际上是php文件</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fe50fd9c307b7e9092267.png"></p>
+<ol start="7">
+<li>可以用后门连接工具（蚁剑）来连接并控制服务器，输入url和连接密码（也就是post传入的参数）</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fe546d9c307b7e909882e.png"></p>
+<ol start="8">
+<li>连接成功，并添加，打开数据记录就可以控制服务器目录</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fe5fed9c307b7e90ace82.png"></p>
+<ol start="9">
+<li>可以对服务器的目录进行操作，此处演示删除操作</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/666fe642d9c307b7e90b439f.png"></p>
+<blockquote>
+<p>另一个方法：</p>
+<p>在网页前端设置中禁用JavaScript，就可以正常上传php文件了</p>
+</blockquote>
+<ol>
+<li>鼠标右键-检查-设置-禁用JavaScript</li>
+</ol>
+<p>设置：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d15cd9c307b7e981140b.png"></p>
+<p>禁用：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d1b7d9c307b7e981b7b0.png"></p>
+<h2 id="Pass-02-content-type绕过"><a href="#Pass-02-content-type绕过" class="headerlink" title="Pass-02 content-type绕过"></a>Pass-02 content-type绕过</h2><blockquote>
+<p>基本流程第一步先上传php文件去尝试，回显文件类型错误，猜测通过content-type的内容来拦截不合法的文件格式上传</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6673d7cfd9c307b7e98e0866.png"></p>
+<ol>
+<li>用burpsuite先抓包，拦下数据包，然后将php文件的content-type内容改为图像对应的内容（image/jpeg）上传，即可绕过</li>
+</ol>
+<p>原始包内容：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d585d9c307b7e989d6f1.png"></p>
+<p>修改后：</p>
+<p><img src="https://pic.imgdb.cn/item/6673d5b1d9c307b7e98a21e9.png"></p>
+<p>然后放行，显示上传成功</p>
+<p>同样可以用蚁剑来连接</p>
+<h2 id="Pass-03-特殊后缀绕过"><a href="#Pass-03-特殊后缀绕过" class="headerlink" title="Pass-03 特殊后缀绕过"></a>Pass-03 特殊后缀绕过</h2><blockquote>
+<p>先上传php文件去尝试，回显不允许上传的文件后缀名，猜测对后缀名写了黑名单，来拦截不合法的文件格式上传</p>
+<p>可以通过上传同样可以被解析为php文件的一些后缀，类似php3、php5、phtml等，是否能成功取决于中间件（apache）的配置文件中是否有设置</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6673d878d9c307b7e98f2e6b.png"></p>
+<blockquote>
+<p>更改apache配置文件：设置什么样的文件后缀可以php的方式来解析</p>
+</blockquote>
+<ul>
+<li>步骤：打开配置文件-（httpd-config）-找到addtype</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6673dc06d9c307b7e995e954.png"></p>
+<ul>
+<li>找到addtype，取消注释，添加类型</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/6673dd03d9c307b7e997d319.png"></p>
+<blockquote>
+<p>如果还是不行，那么考虑是php的版本问题，切换到不带nts的低版本，就可以用蚁剑连接成功</p>
+<p>nts（非多线程安全）、ts（多线程安全）</p>
+</blockquote>
+<ol>
+<li><p>上传php文件，在burpsuite中将后缀名改为php5（php3，phtml）然后放行，关闭抓包</p>
+</li>
+<li><p>打开图片链接，并且复制图片链接，在蚁剑上连接</p>
+</li>
+</ol>
+<h2 id="Pass-04-htaccess绕过"><a href="#Pass-04-htaccess绕过" class="headerlink" title="Pass-04 .htaccess绕过"></a>Pass-04 .htaccess绕过</h2><blockquote>
+<p>老样子，先上传php文件，看回显，文件不允许上传</p>
+<p>作为练习，那么看源码来分析</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/6673df89d9c307b7e99cce97.png"></p>
+<p>源码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$deny_ext = array(".php",".php5",".php4",".php3",".php2",".php1",".html",".htm",".phtml",".pht",".pHp",".pHp5",".pHp4",".pHp3",".pHp2",".pHp1",".Html",".Htm",".pHtml",".jsp",".jspa",".jspx",".jsw",".jsv",".jspf",".jtml",".jSp",".jSpx",".jSpa",".jSw",".jSv",".jSpf",".jHtml",".asp",".aspx",".asa",".asax",".ascx",".ashx",".asmx",".cer",".aSp",".aSpx",".aSa",".aSax",".aScx",".aShx",".aSmx",".cEr",".sWf",".swf",".ini"); //后缀名黑名单</span><br><span class="line">        $file_name = trim($_FILES['upload_file']['name']); //去除文件名中的前和后空格</span><br><span class="line">        $file_name = deldot($file_name);				   //删除文件名末尾的点</span><br><span class="line">        $file_ext = strrchr($file_name, '.');			   //从文件名中提取文件的扩展名</span><br><span class="line">        $file_ext = strtolower($file_ext); 				   //转换为小写</span><br><span class="line">        $file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA</span><br><span class="line">        $file_ext = trim($file_ext); 					   //收尾去空</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​		.htaccess文件在站点的根目录下面，不是在apache目录下，但它属于apache的一个局部配置文件，它负责相关目录下的网页配置，修改后即生效。而httpd.conf是apache全局主配置文件，影响整个服务器，修改后需重启服务器才生效</p>
+<p>​		通过htaccess文件，可以帮助我们实现：网页301重定向、自定义404错误页面，改变文件扩展名、允许/阻止特定的用户或者目录的访问，禁止目录列表，配置默认文档等功能</p>
+<p>​		其中.htaccess文件中的“SetHandler application/x-http-php”的意思是设置当前目录所有文件都使用php解析，那么无论上传任何文件，只要符合php语言代码规范，就会被当做PHP执行，不符合规则则报错。.htaccess通常用于伪静态的一个转换。           </p>
+<p><strong>前提条件：</strong>目标服务器apache必须开启“mod_rewrite”模块和“AllowOverride ALL”。</p>
+<p><img src="https://pic.imgdb.cn/item/6673e634d9c307b7e9aa5fdf.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6673e649d9c307b7e9aa8720.png"></p>
+<p><img src="https://pic.imgdb.cn/item/6673eef5d9c307b7e9b9fcc0.png"></p>
+<ol>
+<li>写一个.htaccess文件并上传，内容为：</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SetHandler application/x-httpd-php   //将所有文件都解析成PHP文件</span><br><span class="line">或者</span><br><span class="line">AddType application/x-httpd-php .jpg .txt   //将jpg或txt以php来解析</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>将一句话木马的php后缀改为jpg或者txt，然后上传，蚁剑连接的时候后缀就是jpg，可以连接</li>
+</ol>
+<blockquote>
+<p> 也可以将php文件合并到图片文件中一起上传</p>
+</blockquote>
+<p><u>方法1：</u></p>
+<ul>
+<li>在文件当前目录打开cmd，输入命令合并两个文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy shell.php+1.jpg/b 000.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<p>/b:二进制</p>
+<p>000.jpg：合并之后的文件</p>
+<p><u>方法2：</u></p>
+<ul>
+<li>burpsuite抓包，上传一个图片，在图片的内容最后加上一句话木马内容，然后上传</li>
+</ul>
+<blockquote>
+<p>当然，如果只看这道题，还有一个方法绕过</p>
+</blockquote>
+<ul>
+<li><p>抓包之后将文件名改为“shell.php. .”（加了点 空格 点），是根据源码过滤规则来绕过的，过滤之后发往服务器的文件名是“shell.php.”，然后需要知道windows的命名规则中后缀名之后的”空格”和”.”是会被去除的</p>
+</li>
+<li><p>所以服务器中保存到文件名为“shell.php”</p>
+</li>
+</ul>
+<h2 id="Pass-05-user-ini绕过"><a href="#Pass-05-user-ini绕过" class="headerlink" title="Pass-05 .user.ini绕过"></a>Pass-05 .user.ini绕过</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li><p>.htaccess<br>  作用:分布式配置文件，一般用于URL重写、认证、访问控制等<br>  作用范围:特定目录(一般是网站根目录)及其子目录<br>  优先级:<strong>较高</strong>，可覆盖 Apache的主要配置文件(httpd-conf)<br>  生效方式:修改后立刻生效</p>
+</li>
+<li><p>httpd-conf<br>  作用:包含 Apache·HTTP服务器的全局行为和默认设置<br>  作用范围:整个服务器<br>  优先级:较低<br>  生效方式:管理员权限，重启服务器后生效</p>
+</li>
+<li><p>.user.ini<br>  作用:特定于用户或特定目录的配置文件,通常位于Web应用程序的根目录下，它用于覆盖或追加全局配置文件(如php.ini)中的PHP配置选项。<br>  作用范围:存放该文件的目录以及其子目录<br>  优先级:<strong>较高</strong>，可以覆盖 php.ini<br>  生效方式:立即生效</p>
+</li>
+<li><p>php.inie<br>  作用:存储了对整个PHP环境生效的配置选项。它通常位于PHP安装目录中<br>  作用范围:所有运行在该PHP环境中的PHP请求<br>  优先级:·较低<br>  生效方式:重启 php或 web 服务器</p>
+</li>
+</ul>
+<blockquote>
+<p>.user.ini可以生效的前提：</p>
+</blockquote>
+<ul>
+<li>php版本最好是7.x的版本</li>
+<li>Server API为CGI/FastCGI（通过phpinfo查看）</li>
+</ul>
+<blockquote>
+<p>.user.ini文件上传漏洞的前提：</p>
+</blockquote>
+<ul>
+<li>.user.ini可以生效</li>
+<li>并且上传目录由php文件</li>
+</ul>
+<p>写法：</p>
+<p>auto_prepend_file=shell.txt（这个文件中包含php内容）</p>
+<p>A：echo“hello”.php </p>
+<p>B：echo“world”.txt</p>
+<p>auto_prepend_file=B.txt………………hello world</p>
+<ol>
+<li>写一个.user.ini文件，此文件的作用是在该目录下上传文件时都会预先加载文件中的内容，此处内容则是预先加载shell.jpg文件去包含一句话木马，这意味着在每个 PHP 脚本执行之前，都会先执行 shell.jpg 文件，然后将其上传</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/667698dcd9c307b7e9882677.png"></p>
+<ol start="2">
+<li>然后再上传shell.jpg文件（包含一句话木马），为了方便查看加一句显示的语句</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66769a87d9c307b7e98aede6.png"></p>
+<ol start="3">
+<li>上传的目录中自己包含一个readme.php文件，在网页上访问此文件，就会首先加载shell.jpg文件，则会输出“上传成功”，此处因为编码方式不同出现乱码，但是其实已经包含成功</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/66769b08d9c307b7e98bb61a.png"></p>
+<blockquote>
+<p>同样，根据这道题的源码来看，可以通过点空格点来绕过</p>
+</blockquote>
+<h2 id="Pass-06-大写绕过"><a href="#Pass-06-大写绕过" class="headerlink" title="Pass-06 大写绕过"></a>Pass-06 大写绕过</h2><blockquote>
+<p>查看源码，发现没有将文件扩展名转为小写的代码，可以使用大写绕过</p>
+</blockquote>
+<ul>
+<li>上传文件，burpsuite抓包，然后将文件后缀名任意字母改为大写，然后上传</li>
+</ul>
+<p><strong>注意</strong>：版本要调低，这里我用的是php5.4.45，版本太高无法连接</p>
+<h2 id="Pass-07-空格绕过"><a href="#Pass-07-空格绕过" class="headerlink" title="Pass-07 空格绕过"></a>Pass-07 空格绕过</h2><blockquote>
+<p>查看源码，发现没有将文件扩展名去除首尾空格的代码，可以使用空格绕过</p>
+</blockquote>
+<ul>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上空格，然后上传</li>
+</ul>
+<h2 id="Pass-08-后缀加点绕过"><a href="#Pass-08-后缀加点绕过" class="headerlink" title="Pass-08 后缀加点绕过"></a>Pass-08 后缀加点绕过</h2><blockquote>
+<p>查看源码，发现没有将文件扩展名去除末尾点的代码，可以使用后缀加点绕过</p>
+</blockquote>
+<ul>
+<li><p>上传文件，burpsuite抓包，然后将文件后缀名最后加上一个点，然后上传</p>
+</li>
+<li><p>前面这三种类型为什么能绕过呢？原理就是增加特殊字符，从而绕开黑名单的过滤</p>
+</li>
+</ul>
+<h3 id="额外数据流"><a href="#额外数据流" class="headerlink" title="额外数据流"></a>额外数据流</h3><p>​		在Windows操作系统中，当你看到文件名后跟着”::$DATA”时，它表示文件的一个附加数据流(Alternate·DataStream，ADS)。数据流是一种用于在文件内部存储额外数据的机制。<br>​		在普通情况下，我们使用的文件只有一个默认的数据流，可以通过文件名访问。但是WindowS·NT·文件系统(NTFS)支持在文件内部创建额外的数据流，以存储其他信息。这些额外的数据流可以通过在文件名后面添加”::DATA”来访问。<br>​		例如，”1.txt”是一个文件，而”1.txt::$DATA”是这个文件的一个附加数据流。这样的数据流可以用于存储文件的元数据、备份信息、标签等。<br>​		需要注意的是，<strong>大多数常规的文件操作工具不会意识到这些额外的数据流，而只会处理默认</strong><br><strong>的数据流</strong>。要访问或操作这些附加数据流，通常需要使用特定的命令行工具或编程接口。</p>
+<p>写入方法：</p>
+<p>echo 内容 &gt;&gt;文件名:数据流名</p>
+<p>type 文件名 &gt;&gt;文件名:数据流名</p>
+<p>查看方法：</p>
+<p>notepad 文件名:数据流名</p>
+<p>例子：</p>
+<ol>
+<li>创建一个txt文件，并写入内容</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/668913c9d9c307b7e90db9f4.png"></p>
+<ol start="2">
+<li>给该文件写一个附加数据流，用notepad查看文件只显示文件内容，不显示附加数据流内容</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6689143cd9c307b7e90e8850.png"></p>
+<p><img src="https://pic.imgdb.cn/item/668913c9d9c307b7e90db9f4.png"></p>
+<ol start="3">
+<li>按此方法查看，就可以查看附加数据流，“你好”</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6689155ed9c307b7e910898f.png"></p>
+<ol start="4">
+<li>type：将2.txt写入1.txt的额外数据流</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/6689174ed9c307b7e9157dc2.png"></p>
+<h2 id="Pass-09-DATA绕过"><a href="#Pass-09-DATA绕过" class="headerlink" title="Pass-09 ::$DATA绕过"></a>Pass-09 ::$DATA绕过</h2><blockquote>
+<p>::$DATA结尾的是文件附加数据流，在PHP中文件附加数据流是不会验证文件后缀的，因为他仅表示一个文件流，不是一个文件</p>
+</blockquote>
+<ul>
+<li><p>上传文件，burpsuite抓包，然后将文件后缀名最后加上::$DATA，然后上传，因为他已经是一个文件附加数据流了，所有不是文件，不检查文件后缀名</p>
+</li>
+<li><p>上传之后，Windows操作系统的会将后缀名的::$DATA去除，也就成了文件，而不再是文件数据流了</p>
+</li>
+</ul>
+<h2 id="Pass-10-点空格点绕过"><a href="#Pass-10-点空格点绕过" class="headerlink" title="Pass-10 点空格点绕过"></a>Pass-10 点空格点绕过</h2><blockquote>
+<p>查看源码，根据代码执行顺序，可以看出(php. .)在每一条代码之后过滤，还剩一个点，从而使它不是php文件，从而绕过，而上传之后windows操作系统在处理后缀名时，会删除后缀名中的点，从而得到最终上传上去的php文件</p>
+</blockquote>
+<ul>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上点空格点，然后上传</li>
+</ul>
+<h2 id="Pass-11-后缀双写绕过"><a href="#Pass-11-后缀双写绕过" class="headerlink" title="Pass-11 后缀双写绕过"></a>Pass-11 后缀双写绕过</h2><blockquote>
+<p>查看源码，发现他一旦遇到黑名单里的后缀名，就会将其后缀名替换为空，也就是没有后缀名了，因此双写后缀名，即使去除一个，还有一个后缀名</p>
+</blockquote>
+<ul>
+<li>上传文件，burpsuite抓包，然后将文件后缀名最后加上点空格点，然后上传</li>
+<li>修改文件名为shell.pphphp<ul>
+<li>不能是连续的php，不然都要被去掉</li>
+</ul>
+</li>
+</ul>
+<h2 id="Pass-12-00截断"><a href="#Pass-12-00截断" class="headerlink" title="Pass-12 %00截断"></a>Pass-12 %00截断</h2><h3 id="空字符"><a href="#空字符" class="headerlink" title="空字符"></a>空字符</h3><blockquote>
+<p>（你好 0x00php）php发现了0x00之后就不会读取之后的数据了</p>
+</blockquote>
+<ul>
+<li>0x00：编程语言</li>
+<li>%00：URL编码（ASCII码转化为十六进制，再加上%）</li>
+</ul>
+<blockquote>
+<p>查看源码，这道题是白名单</p>
+</blockquote>
+<ul>
+<li><p>上传jpg文件，burpsuite抓包，然后在文件的保存路径上直接写一个文件，然后%00截断后面的内容，然后上传</p>
+<ul>
+<li><p>jpg是用来通过白名单的</p>
+<p>  <img src="https://pic.imgdb.cn/item/668935e1d9c307b7e95220bc.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Pass-13-0x00截断"><a href="#Pass-13-0x00截断" class="headerlink" title="Pass-13 0x00截断"></a>Pass-13 0x00截断</h2><p>​	</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/upload%E6%B3%A8%E5%85%A5/" rel="tag">upload注入</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Iptables防火墙" class="lazyload">
+          
+        
+        <a href="/en/2024/07/05/iptables-fang-huo-qiang/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Iptables防火墙
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="阿里云云服务器" class="lazyload">
+        
+      
+      <a href="/en/2024/06/17/a-li-yun-yun-fu-wu-qi/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          阿里云云服务器
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#upload-labs"><span class="toc-number">1.</span> <span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01-%E5%89%8D%E7%AB%AFjs%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.</span> <span class="toc-text">Pass-01 前端js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02-content-type%E7%BB%95%E8%BF%87"><span class="toc-number">1.2.</span> <span class="toc-text">Pass-02 content-type绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03-%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">Pass-03 特殊后缀绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-htaccess%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.</span> <span class="toc-text">Pass-04 .htaccess绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05-user-ini%E7%BB%95%E8%BF%87"><span class="toc-number">1.5.</span> <span class="toc-text">Pass-05 .user.ini绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06-%E5%A4%A7%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.</span> <span class="toc-text">Pass-06 大写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-number">1.7.</span> <span class="toc-text">Pass-07 空格绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08-%E5%90%8E%E7%BC%80%E5%8A%A0%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-number">1.8.</span> <span class="toc-text">Pass-08 后缀加点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-number">1.8.1.</span> <span class="toc-text">额外数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09-DATA%E7%BB%95%E8%BF%87"><span class="toc-number">1.9.</span> <span class="toc-text">Pass-09 ::$DATA绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10-%E7%82%B9%E7%A9%BA%E6%A0%BC%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-number">1.10.</span> <span class="toc-text">Pass-10 点空格点绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11-%E5%90%8E%E7%BC%80%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.11.</span> <span class="toc-text">Pass-11 后缀双写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12-00%E6%88%AA%E6%96%AD"><span class="toc-number">1.12.</span> <span class="toc-text">Pass-12 %00截断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.12.1.</span> <span class="toc-text">空字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13-0x00%E6%88%AA%E6%96%AD"><span class="toc-number">1.13.</span> <span class="toc-text">Pass-13 0x00截断</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "upload-labs",
+          url: "http://example.com/2024/06/17/upload-labs/",
+          excerpt: "",
+          description: "",
+          stripContent: "upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的拦截    能抓到包，证明绕过了前端验证    然后将文件后缀名从jpg重新改回php上传，一句话木",
+          date: "Mon Jun 17 2024 14:45:57 GMT+0800",
+          updated: "Thu Mar 06 2025 23:02:01 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

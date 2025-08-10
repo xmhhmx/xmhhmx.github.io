@@ -1,0 +1,866 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    PHP学习 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="PHP学习1.PHP简述 PHP：超文本预处理器 通用开源脚本语言  php的使用：  PHP 可以生成动态页面内容 PHP 可以创建、打开、读取、写入、关闭服务器上的文件 PHP 可以收集表单数据 PHP 可以发送和接收 cookies PHP 可以添加、删除、修改您的数据库中的数据 PHP 可以限制用户访问您的网站上的一些页面 PHP 可以加密数据  2.基本语法格式 PHP 脚本以 &lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习">
+<meta property="og:url" content="http://example.com/en/2024/09/12/php-xue-xi/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="PHP学习1.PHP简述 PHP：超文本预处理器 通用开源脚本语言  php的使用：  PHP 可以生成动态页面内容 PHP 可以创建、打开、读取、写入、关闭服务器上的文件 PHP 可以收集表单数据 PHP 可以发送和接收 cookies PHP 可以添加、删除、修改您的数据库中的数据 PHP 可以限制用户访问您的网站上的一些页面 PHP 可以加密数据  2.基本语法格式 PHP 脚本以 &lt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-12T13:31:31.749Z">
+<meta property="article:modified_time" content="2024-09-13T02:15:46.825Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/09/12/php-xue-xi/';
+            
+              langMap['en'] = '/en/2024/09/12/php-xue-xi/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="PHP学习">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">PHP学习</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+
+        
+      
+      
+        
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-PHP学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-09-12T13:31:31.749Z" itemprop="datePublished">2024-09-12</time>
+    <time style="display: none;" id="post-update-time">2024-09-13</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="PHP学习"><a href="#PHP学习" class="headerlink" title="PHP学习"></a>PHP学习</h1><h2 id="1-PHP简述"><a href="#1-PHP简述" class="headerlink" title="1.PHP简述"></a>1.PHP简述</h2><ul>
+<li>PHP：超文本预处理器</li>
+<li>通用开源脚本语言</li>
+</ul>
+<p>php的使用：</p>
+<ol>
+<li>PHP 可以生成动态页面内容</li>
+<li>PHP 可以创建、打开、读取、写入、关闭服务器上的文件</li>
+<li>PHP 可以收集表单数据</li>
+<li>PHP 可以发送和接收 cookies</li>
+<li>PHP 可以添加、删除、修改您的数据库中的数据</li>
+<li>PHP 可以限制用户访问您的网站上的一些页面</li>
+<li>PHP 可以加密数据</li>
+</ol>
+<h2 id="2-基本语法格式"><a href="#2-基本语法格式" class="headerlink" title="2.基本语法格式"></a>2.基本语法格式</h2><ul>
+<li><p>PHP 脚本以 &lt;?php 开始，以 ?&gt; 结束</p>
+</li>
+<li><p>static的关键字的使用</p>
+<ul>
+<li><p>当一个函数完成时，它的所有变量通常都会被删除。</p>
+</li>
+<li><p>然而，有时候您希望某个局部变量不要被删除。</p>
+</li>
+<li><p>要做到这一点，请在您第一次声明变量时使用 static 关键字：</p>
+</li>
+</ul>
+</li>
+</ul>
+ <figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</span><br><span class="line">    <span class="built_in">static</span> <span class="variable">$n</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="variable">$n</span>++;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"调用了一次"</span>.<span class="variable">$n</span>.<span class="string">"\n"</span>;</span><br><span class="line">}</span><br><span class="line"><span class="title function_ invoke__">test</span>();<span class="title function_ invoke__">test</span>();<span class="title function_ invoke__">test</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="3-数据类型、常量以及字符串"><a href="#3-数据类型、常量以及字符串" class="headerlink" title="3.数据类型、常量以及字符串"></a>3.数据类型、常量以及字符串</h2><figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$f</span> = <span class="keyword">array</span>(<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>);<span class="comment">//数组类型</span></span><br><span class="line"><span class="variable">$g</span> = <span class="keyword">array</span>(<span class="string">'x'</span>=&gt;<span class="number">1</span>,<span class="string">'b'</span>=&gt;<span class="string">'2'</span>);<span class="comment">//字典类型</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">obj</span></span>{<span class="comment">//php对象的声明</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="variable">$num</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params"></span>) </span>{ }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"><span class="variable">$o</span> = <span class="keyword">new</span> <span class="title function_ invoke__">obj</span>();<span class="comment">//对象实例化类型</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$f</span>);</span><br><span class="line"><span class="comment">//Array([0]=&gt;1 [1]=&gt;1 [2]=&gt;xxx)//数组输出</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$g</span>);</span><br><span class="line"><span class="comment">//Array([x]=&gt;1 [b]=&gt;2)//字典输出</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>对象、数组、字典需要var_dump()或print_r()才能输出，其余可用echo</li>
+</ul>
+<p>常量:</p>
+<p>设置常量，使用 define() 函数，函数语法如下：</p>
+<p>bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )</p>
+<p>　　该函数有三个参数:</p>
+<p>name：必选参数，常量名称，即标志符。</p>
+<p>value：必选参数，常量的值。</p>
+<p>case_insensitive ：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">"CL"</span>, <span class="string">"这是一个全局常量"</span>, <span class="literal">true</span>);</span><br><span class="line">	<span class="keyword">echo</span> CL; <span class="comment">// 默认false，变量名区分大小写</span></span><br><span class="line">	<span class="keyword">echo</span> cl; <span class="comment">// true不区分大小写</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>预定义常量:</p>
+<p>PHP预定义了许多常量，这些常量无需使用define()函数定义，可直接在程序中使用。下面列举了一些常用的PHP预定义常量。</p>
+<p>（1）__FILE__(FILE前后分别是两个下画线)：当前正在处理的脚本文件名，若使用在一个被引用的文件中（include或require），那么　　它的值就是被引用的文件，而不是引用它的那个文件。</p>
+<p>（2）__LINE__(LINE前后分别是两个下画线)：正在处理的脚本文件的当前行数。</p>
+<p>（3）PHP_VERSION：当前PHP预处理器的版本，如5.4.16。</p>
+<p>（4）PHP_OS: PHP所在的操作系统的类型。如Linux。</p>
+<p>（5）TRUE：表示逻辑真。FALSE：表示逻辑假。NULL：表示没有值或值不确定。</p>
+<p>（6）DIRECTORY_SEPARATOR: 表示目录分隔符，UNIX或Linux操作系统环境时的值为“ / ”, Window操作系统环境时的值为 “ \ ”。</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="keyword">__FILE__</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="keyword">__LINE__</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> PHP_VERSION;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> PHP_OS;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> DIRECTORY_SEPARATOR;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>整型：</p>
+<p>$a = 120 //十进制</p>
+<p>$a = 0b110 //二进制</p>
+<p>$a = 0120   //八进制</p>
+<p>$a = 0x120  //十六进制</p>
+<p>// 使用echo输出时。默认输出为<strong>十进制</strong></p>
+<p>decbin() // 十进制转二进制</p>
+<p>decoct() // 十进制转八进制</p>
+<p>dechex() // 十进制转十六进制</p>
+<p>bindec() // 二进制转十进制			0b二进制-&gt;echo-&gt;自动转整型</p>
+<p>bin2hex() //二进制转十六进制  </p>
+<p>字符串:</p>
+<p>双引号：解析字符串中的变量</p>
+<p>单引号：不解析变量，当成字符串输出</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$name</span>=<span class="string">'xmh'</span>;</span><br><span class="line"><span class="comment">//双引号里面有变量会输出变量的值,变量两侧有空格</span></span><br><span class="line"><span class="variable">$str</span> =<span class="string">"这是 <span class="subst">$name</span> 的学习笔记"</span>;</span><br><span class="line"><span class="comment">//单引号如果里面有变量都作为一个字符串处理</span></span><br><span class="line"><span class="variable">$str1</span> =<span class="string">'这是 $name 的学习笔记'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$str</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$str1</span>;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>strlen：返回字符串长度</p>
+<p>trim：去除两端空格</p>
+<p>strpos（$str，‘字符串’）：查找字符串首次出现位置</p>
+<p>substr（$str，1，10）：字符串截取</p>
+<p>str_replace(‘1’,’0’,$a)：字符串替换</p>
+<p>md5($a)：md5加密</p>
+<p>$a[0]：通过下标取字符的值</p>
+<p>遍历字符串：</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;=<span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>);<span class="variable">$i</span>++){</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="string">'&lt;/br&gt;'</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="4-数组"><a href="#4-数组" class="headerlink" title="4.数组"></a>4.数组</h2><p>在 PHP 中，有三种类型的数组：</p>
+<p><strong>数值数组</strong> - 带有数字 ID 键的数组</p>
+<p><strong>关联数组</strong> - 带有指定的键的数组，每个键关联一个值</p>
+<p><strong>多维数组</strong> - 包含一个或多个数组的数组</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">数组的声明:</span><br><span class="line"><span class="variable">$array1</span> = <span class="keyword">array</span>();</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cars</span>=<span class="keyword">array</span>(<span class="string">"Volvo"</span>,<span class="string">"BMW"</span>,<span class="string">"Toyota"</span>);	<span class="comment">//简单的数组</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">count</span>(<span class="variable">$cars</span>);	<span class="comment">//count()返回数组的长度</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h2>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="反弹Shell方法" class="lazyload">
+          
+        
+        <a href="/en/2024/09/19/fan-dan-shell-fang-fa/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            反弹Shell方法
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="信息收集" class="lazyload">
+        
+      
+      <a href="/en/2024/09/11/xin-xi-shou-ji/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          信息收集
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+
+      
+    
+  </div>
+  
+    
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "PHP学习",
+          url: "http://example.com/2024/09/12/php-xue-xi/",
+          excerpt: "",
+          description: "",
+          stripContent: "PHP学习1.PHP简述 PHP：超文本预处理器 通用开源脚本语言  php的使用：  PHP 可以生成动态页面内容 PHP 可以创建、打开、读取、写入、关闭服务器上的文件 PHP 可以收集表单数据 PHP 可以发送和接收 cookies PHP 可以添加、删除、修改您的数据库中的数据 PHP 可以限制用户访问您的网站上的一些页面 PHP 可以加密数据  2.基本语法格式 PHP 脚本以 &amp;lt;?php 开始，以 ?&amp;gt; 结束  static的关键字的使用  当一个函数完成时，它的所有变量",
+          date: "Thu Sep 12 2024 21:31:31 GMT+0800",
+          updated: "Fri Sep 13 2024 10:15:46 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

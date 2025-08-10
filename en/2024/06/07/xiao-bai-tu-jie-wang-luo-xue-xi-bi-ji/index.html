@@ -1,0 +1,906 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    小白图解网络学习笔记 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="小白图解网络学习笔记模型：  HTTPHTTP报文格式 请求报文  12345678910111213141516GET &#x2F;cmaskboss&#x2F;164203142_30_1.enhance.webmask HTTP&#x2F;1.1请求方法 					URL 				协议版本&#x2F;&#x2F;Headers头Host: upos-sz-staticks3.bilivideo.comConnection: keep-ali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小白图解网络学习笔记">
+<meta property="og:url" content="http://example.com/en/2024/06/07/xiao-bai-tu-jie-wang-luo-xue-xi-bi-ji/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="小白图解网络学习笔记模型：  HTTPHTTP报文格式 请求报文  12345678910111213141516GET &#x2F;cmaskboss&#x2F;164203142_30_1.enhance.webmask HTTP&#x2F;1.1请求方法 					URL 				协议版本&#x2F;&#x2F;Headers头Host: upos-sz-staticks3.bilivideo.comConnection: keep-ali">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/666309395e6d1bfa055281bb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66631c7e5e6d1bfa056c0e04.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66631cf65e6d1bfa056cba38.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66821f6bd9c307b7e92be8e7.png">
+<meta property="og:image" content="https://pic.imgdb.cn/item/66822309d9c307b7e930bd3a.png">
+<meta property="article:published_time" content="2024-06-07T13:16:06.060Z">
+<meta property="article:modified_time" content="2024-07-01T03:38:44.972Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="网络技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/666309395e6d1bfa055281bb.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/06/07/xiao-bai-tu-jie-wang-luo-xue-xi-bi-ji/';
+            
+              langMap['en'] = '/en/2024/06/07/xiao-bai-tu-jie-wang-luo-xue-xi-bi-ji/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="小白图解网络学习笔记">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">小白图解网络学习笔记</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">小白图解网络学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">HTTP报文格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request-URL"><span class="toc-number">1.1.2.</span> <span class="toc-text">Request URL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URL%E4%B8%8EURI%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">URL与URI的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request-Method"><span class="toc-number">1.1.3.</span> <span class="toc-text">Request Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GET"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HEAD"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PUT"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DELETE"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OPTIONS"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">OPTIONS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.3.6.1.</span> <span class="toc-text">简单请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.3.6.2.</span> <span class="toc-text">复杂请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96options"><span class="toc-number">1.1.3.6.3.</span> <span class="toc-text">如何优化options</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Status-Code%EF%BC%88%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%89"><span class="toc-number">1.1.3.6.4.</span> <span class="toc-text">Status Code（状态码）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-小白图解网络学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-06-07T13:16:06.060Z" itemprop="datePublished">2024-06-07</time>
+    <time style="display: none;" id="post-update-time">2024-07-01</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" data-aos="zoom-in">网络技术</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="小白图解网络学习笔记"><a href="#小白图解网络学习笔记" class="headerlink" title="小白图解网络学习笔记"></a>小白图解网络学习笔记</h1><p>模型：</p>
+<p><img src="https://pic.imgdb.cn/item/666309395e6d1bfa055281bb.png"></p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h3><ol>
+<li>请求报文</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">GET /cmaskboss/164203142_30_1.enhance.webmask HTTP/1.1</span><br><span class="line">请求方法 					URL 				协议版本</span><br><span class="line">//Headers头</span><br><span class="line">Host: upos-sz-staticks3.bilivideo.com</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) </span><br><span class="line">AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36</span><br><span class="line">Accept: */*</span><br><span class="line">Origin: https://www.bilibili.com</span><br><span class="line">Sec-Fetch-Site: cross-site</span><br><span class="line">Sec-Fetch-Mode: cors</span><br><span class="line">Sec-Fetch-Dest: empty</span><br><span class="line">Referer: https://www.bilibili.com/</span><br><span class="line">Accept-Encoding: identity</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Range: bytes=0-16</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>响应报文</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 206 Partial Content</span><br><span class="line">协议版本  状态码    状态描述符</span><br><span class="line">//Headers信息</span><br><span class="line">Content-Type: application/octet-stream</span><br><span class="line">Content-Length: 17</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Server: Tengine</span><br><span class="line">ETag: "92086de1e6d1d4791fb950a0ac7e30ba"</span><br><span class="line">Date: Sat, 30 Jan 2021 09:31:31 GMT</span><br><span class="line">Last-Modified: Sun, 04 Oct 2020 01:54:28 GMT</span><br><span class="line">Expires: Mon, 01 Mar 2021 09:31:31 GMT</span><br><span class="line">Age: 1018695</span><br><span class="line">Content-Range: bytes 0-16/353225</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">X-Application-Context: application</span><br><span class="line">x-kss-request-id: 75bcbfa8ab194e3c825e89c81a912692</span><br><span class="line">x-kss-BucketOwner: MjAwMDAyMDEwNw==</span><br><span class="line">X-Info-StorageClass: -</span><br><span class="line">Content-MD5: kght4ebR1HkfuVCgrH4wug==</span><br><span class="line">X-Cache-Status: HIT from KS-CLOUD-JH-MP-01-03</span><br><span class="line">X-Cache-Status: HIT from KS-CLOUD-TJ-UN-14-13</span><br><span class="line">X-Cache-Status: HIT from KS-CLOUD-LF-UN-11-25</span><br><span class="line">Access-Control-Allow-Origin: https://www.bilibili.com</span><br><span class="line">Access-Control-Allow-Headers: Origin,X-Requested-With,ContentType,Accept,range</span><br><span class="line">X-Cdn-Request-ID:</span><br><span class="line">7e2c783ca7d392624118593ec1dc66bc</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Request-URL"><a href="#Request-URL" class="headerlink" title="Request URL"></a>Request URL</h3><p>url：协议://URL：（端口号）/虚拟目录/……（虚拟目录）/文件名？</p>
+<h4 id="URL与URI的区别"><a href="#URL与URI的区别" class="headerlink" title="URL与URI的区别"></a>URL与URI的区别</h4><ul>
+<li><p>URL:Uniform Resource Locator 统⼀资源定位符； </p>
+</li>
+<li><p>URI: Uniform Resource Identifier 统⼀资源标识符；</p>
+</li>
+</ul>
+<p>​		URL是URI的子集</p>
+<p>​		简单解释下。 假设”小白”(URI)是⼀种资源，”在迪丽亦巴的怀里”表明了一个位置。如果你想要找到（locate）小白， 那么你可以到”在迪丽亦巴怀里”找到小白，而”在迪丽亦巴怀里的/小白”才是我们常说的URL。而”在迪丽亦巴怀里的/小白”（URL）显然是”小白”（URI）的子集，毕竟，”小白”还可能是”在牛亦菲怀⾥的/小白”（其他URL）</p>
+<h3 id="Request-Method"><a href="#Request-Method" class="headerlink" title="Request Method"></a>Request Method</h3><p>请求方法：Get、POST、HEAD、OPTIONS、PUT、DELETE、TRACE 、CONNECT</p>
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>请求指定的页面信息，并返回消息主体(body)+头信息(header)。</p>
+<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><p>HEAD和GET本质是⼀样的，区别在于HEAD只返回头信息(header)，不返回消息主体(body)</p>
+<ul>
+<li><p>HEAD省下拿body的消耗</p>
+</li>
+<li><p>如果请求的是⼀个⽐较⼤的资源，使用HEAD请求，返回的headers会带有文件的大小，不需要整个下载下来</p>
+</li>
+</ul>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>POST每次调用都可能会修改数据，是非幂等的，而GET类似于只读，是<u>幂等</u>的。在HTTP规范中POST是<u>非等幂</u>的，多次调用会产生不同的结果</p>
+<ul>
+<li><p>幂等（Idempotent）：指一个操作的重复执行不会产生额外的影响。无论对一个操作进行一次或多次的执行，系统状态都会保持一致。换句话说，多次执行幂等操作所产生的结果与执行一次的结果相同。常见的幂等操作包括GET请求、删除某个资源等。</p>
+</li>
+<li><p>非幂等（Non-Idempotent）：指一个操作的重复执行会导致系统状态发生变化。多次执行非幂等操作可能会对系统产生不同的影响，导致状态发生改变。比如POST请求、创建资源等操作通常是非幂等的。</p>
+</li>
+</ul>
+<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>创建⼀个用户,由于网络原因或是其他原因多创建了几次,那么将会有多个用户被创建。而PUT id/xiaobai 则会创建一个id为 xiaobai 的用户，多次调用还是会创建的结果是⼀样的，所以PUT是等幂的</p>
+<h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>⼀般实战中如果是删除操作，也是使用POST来替代</p>
+<h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h4><p>用于获取当前URL所支持的方法，若请求成功，则它会在HTTP响应头部中带上给各种“Allow”的头，表明某个请求在对应的服务器中都支持哪种请求方法</p>
+<p><img src="https://pic.imgdb.cn/item/66631c7e5e6d1bfa056c0e04.png"></p>
+<ul>
+<li><p>Response Header里的关键字段</p>
+<p>  <img src="https://pic.imgdb.cn/item/66631cf65e6d1bfa056cba38.png"></p>
+</li>
+</ul>
+<p><strong>跨域</strong>的情况下，浏览器发起<u>复杂请求</u>前会<u>自动发起 options 请求</u></p>
+<h5 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h5><ul>
+<li>请求方法为 GET、HEAD、POST </li>
+<li>只有以下 Headers 字段 <ul>
+<li>Accept </li>
+<li>Accept-Language</li>
+<li>Content-Language </li>
+<li>Content-Type </li>
+<li>DPR/Downlink/Save-Data/Viewport-Width/Width (这些不常见，放在⼀起)</li>
+</ul>
+</li>
+<li>Content-Type 只有以下三种 <ul>
+<li>application/x-www-form-urlencoded </li>
+<li>multipart/form-data </li>
+<li>text/plain</li>
+</ul>
+</li>
+<li>请求中的任意 XMLHttpRequestUpload 对象均没有注册任何事件监听器； </li>
+<li>请求中没有使用 ReadableStream 对象。</li>
+</ul>
+<h5 id="复杂请求"><a href="#复杂请求" class="headerlink" title="复杂请求"></a>复杂请求</h5><ul>
+<li><p>不满足简单请求的，都是复杂请求</p>
+</li>
+<li><p>因为上述请求在获取网上资源的请求Headers里带有 Access-Control-Request-Headers:  range , 而 range 正好不在简单请求的条件2中提到的Headers范围里，因此属于复杂请求，于是触发预检options请求</p>
+</li>
+</ul>
+<p><strong>跨域</strong></p>
+<ul>
+<li>同源：域名、协议、端⼝均相同</li>
+</ul>
+<p>例子：</p>
+<p><img src="https://pic.imgdb.cn/item/66821f6bd9c307b7e92be8e7.png"></p>
+<p><strong>注意</strong>：localhost和127.0.0.1虽然都指向本机，但也不属于同源</p>
+<ul>
+<li><strong><u>非同源</u><strong>之间网页调用就是我们所说的</strong><u>跨域</u></strong></li>
+<li>每次复杂请求前都要使用options询问一次</li>
+</ul>
+<h5 id="如何优化options"><a href="#如何优化options" class="headerlink" title="如何优化options"></a>如何优化options</h5><p>​		每次复杂请求前都会调用⼀次options，这其实没有必要。因为大部分时候相同的请求，短时间内获得的结果是不会变的，是否可以通过浏览器缓存省掉这⼀次查询？</p>
+<p>​		Access-Control-Max-Age 就是优化这个流程中使用的⼀个Header。它的作用是当你每次请求 options 方法时，服务端返回调用支持的方法（Access-Control-Allow-Methods ）和 Headers（Access-Control-Allow-Headers）有哪些，同时告诉你，它在接下来 Access-ControlMax-Age 时间（单位是秒）里都支持，则这段时间内，不再需要使用options进行请求。</p>
+<p>​		特别注意的是， 当 Access-Control-Max-Age 的值为-1时，表示禁用缓存，每⼀次请求都需要发送预检请求，即用 OPTIONS请求进行检测。</p>
+<h5 id="Status-Code（状态码）"><a href="#Status-Code（状态码）" class="headerlink" title="Status Code（状态码）"></a>Status Code（状态码）</h5><p>浏览器向服务器发送请求，服务器则会根据请求作出响应，而状态码则是响应的⼀部分，代表着本次请求的结果。</p>
+<img src="https://pic.imgdb.cn/item/66822309d9c307b7e930bd3a.png" style="zoom: 67%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" rel="tag">网络技术</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="阿里云云服务器" class="lazyload">
+          
+        
+        <a href="/en/2024/06/17/a-li-yun-yun-fu-wu-qi/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            阿里云云服务器
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Web安全攻防-渗透测试实战指南" class="lazyload">
+        
+      
+      <a href="/en/2024/06/07/web-an-quan-gong-fang-shen-tou-ce-shi-shi-zhan-zhi-nan/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Web安全攻防-渗透测试实战指南
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%99%BD%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">小白图解网络学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">HTTP报文格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request-URL"><span class="toc-number">1.1.2.</span> <span class="toc-text">Request URL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URL%E4%B8%8EURI%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">URL与URI的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Request-Method"><span class="toc-number">1.1.3.</span> <span class="toc-text">Request Method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GET"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HEAD"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">HEAD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PUT"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">PUT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DELETE"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">DELETE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OPTIONS"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">OPTIONS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.3.6.1.</span> <span class="toc-text">简单请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.3.6.2.</span> <span class="toc-text">复杂请求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96options"><span class="toc-number">1.1.3.6.3.</span> <span class="toc-text">如何优化options</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Status-Code%EF%BC%88%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%89"><span class="toc-number">1.1.3.6.4.</span> <span class="toc-text">Status Code（状态码）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "小白图解网络学习笔记",
+          url: "http://example.com/2024/06/07/xiao-bai-tu-jie-wang-luo-xue-xi-bi-ji/",
+          excerpt: "",
+          description: "",
+          stripContent: "小白图解网络学习笔记模型：  HTTPHTTP报文格式 请求报文  12345678910111213141516GET /cmaskboss/164203142_30_1.enhance.webmask HTTP/1.1请求方法      URL     协议版本//Headers头Host: upos-sz-staticks3.bilivideo.comConnection: keep-aliveUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS",
+          date: "Fri Jun 07 2024 21:16:06 GMT+0800",
+          updated: "Mon Jul 01 2024 11:38:44 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

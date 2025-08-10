@@ -1,0 +1,864 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    samba服务器 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="samba服务器 Samba是一款在Linux&#x2F;Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb&#x2F;cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="samba服务器">
+<meta property="og:url" content="http://example.com/en/2024/07/29/samba-fu-wu-qi/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="samba服务器 Samba是一款在Linux&#x2F;Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb&#x2F;cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-29T08:47:58.778Z">
+<meta property="article:modified_time" content="2024-07-29T11:28:06.014Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="samba服务器">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2024/07/29/samba-fu-wu-qi/';
+            
+              langMap['en'] = '/en/2024/07/29/samba-fu-wu-qi/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="samba服务器">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">samba服务器</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#samba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Linux中配置samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">配置分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%96%BD"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置实施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba%E5%B9%B6%E5%90%AF%E5%8A%A8samba%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">安装samba并启动samba服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">修改防火墙设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%90%84%E9%83%A8%E9%97%A8%E4%B8%93%E7%94%A8%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">建立各部门专用共享目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">添加用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEsamba%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">设置samba用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEsmb-conf%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">配置smb.conf文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-number">1.1.3.7.</span> <span class="toc-text">配置文件权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.3.8.</span> <span class="toc-text">客户端进行访问测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Windows中配置samba服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8samba%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">在Windows系统使用samba切换用户解决办法</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-samba服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2024-07-29T08:47:58.778Z" itemprop="datePublished">2024-07-29</time>
+    <time style="display: none;" id="post-update-time">2024-07-29</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/Linux-and-Windows/" data-aos="zoom-in">Linux and Windows</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="samba服务器"><a href="#samba服务器" class="headerlink" title="samba服务器"></a>samba服务器</h1><blockquote>
+<p>Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。</p>
+</blockquote>
+<h2 id="Linux中配置samba服务器"><a href="#Linux中配置samba服务器" class="headerlink" title="Linux中配置samba服务器"></a>Linux中配置samba服务器</h2><h3 id="配置要求"><a href="#配置要求" class="headerlink" title="配置要求"></a>配置要求</h3><p>（1）samba服务器目录</p>
+<p>企业数据目录：/companydata</p>
+<p>公共目录：/companydata/public</p>
+<p>销售部目录：/companydata/sales</p>
+<p>技术部：/companydata/tech</p>
+<p>（2）企业员工情况</p>
+<p>总经理：zjl</p>
+<p>销售部：销售部经理 xsjl 员工 xsy1、员工 xsy2</p>
+<p>技术部：技术部经理 jsjl、员工 jsy1、员工 jsy2</p>
+<p>（3）samba服务要求</p>
+<p>搭建samba文件服务器，建立公共共享目录，允许所有人访问，权限为只读，为销售部和技术部分别建立单独的目录，只可以总经理和相应部门员工访问，并且公司员工禁止访问非本部门的共享目录。</p>
+<h3 id="配置分析"><a href="#配置分析" class="headerlink" title="配置分析"></a>配置分析</h3><p>​        对于建立公共目录public字段就可以实现匿名访问，员工只能访问本部门的共享目录，禁止访问非本部门的共享目录，可以通过设置目录共享字段“browseable = no”及字段“valid users”来实现其隐藏功能和相应的访问权限。这样设置不能很好得解决同一目录多种需求的权限设置，所以需要建立独立配置文件，为每个部门建立一个组后并为每个组建立配置文件来实现隔离用户权限会比较灵活。</p>
+<h3 id="配置实施"><a href="#配置实施" class="headerlink" title="配置实施"></a>配置实施</h3><h4 id="安装samba并启动samba服务"><a href="#安装samba并启动samba服务" class="headerlink" title="安装samba并启动samba服务"></a>安装samba并启动samba服务</h4><p># yum install -y samba samba-client </p>
+<p># systemctl start smb.service nmb.service</p>
+<h4 id="修改防火墙设置"><a href="#修改防火墙设置" class="headerlink" title="修改防火墙设置"></a>修改防火墙设置</h4><p>关闭selinux安全机制：setenforce 0 </p>
+<p>关闭防火墙：systemctl stop firewalld</p>
+<h4 id="建立各部门专用共享目录"><a href="#建立各部门专用共享目录" class="headerlink" title="建立各部门专用共享目录"></a>建立各部门专用共享目录</h4><p>#mkdir -p /companydata/public /companydata/xsb /company/jsb</p>
+<h4 id="添加用户和组"><a href="#添加用户和组" class="headerlink" title="添加用户和组"></a>添加用户和组</h4><p># groupadd xsb		//创建销售部</p>
+<p># groupadd jsb 	    //创建技术部</p>
+<p># useradd zjl				//创建总经理</p>
+<p># useradd  xsjl（xsy1/xsy2） //创建销售经理，销售成员1、2</p>
+<p># useradd  jsjl （jsy1/jsy2）	//创建技术经理，技术成员1、2</p>
+<p># gpasswd -M xsjl,xsy1,xsy2 xsb	//将销售经理，销售成员1、2加入销售部</p>
+<p># gpasswd -M jsjl,jsy1,jsy2 jsb		//技术部同理</p>
+<h4 id="设置samba用户"><a href="#设置samba用户" class="headerlink" title="设置samba用户"></a>设置samba用户</h4><p>使用smbpasswd命令添加samba用户。</p>
+<p># smbpasswd -a zjl</p>
+<p>New SMB password:        输入samba用户密码</p>
+<p>Retype new SMB password:    确认samba用户密码</p>
+<p>Added user zjl.</p>
+<p># smbpasswd -a xsjl</p>
+<p># smbpasswd -a xsy1</p>
+<p># smbpasswd -a xsy2</p>
+<p># smbpasswd -a jsjl</p>
+<p># smbpasswd -a jsy1</p>
+<p># smbpasswd -a jsy2</p>
+<p><strong>查看samba用户：pdbedit -L</strong></p>
+<p><strong>删除samba用户：smbpasswd -x xxx</strong></p>
+<p><strong>修改密码：smbpasswd 用户名</strong>       </p>
+<h4 id="配置smb-conf文件"><a href="#配置smb-conf文件" class="headerlink" title="配置smb.conf文件"></a>配置smb.conf文件</h4><p># vim /etc/samba/smb.conf  具体配置如下：<br>[public]<br>        comment = public<br>        path = /companydata/public<br>        <strong>public = yes</strong>				//是否公开<br>[xsb]<br>        comment = xsb			//注释<br>        path = /companydata/sales<br>        <strong>guest ok = no</strong>				//是否允许用户匿名访问<br>        <strong>writable = yes</strong>			  //是否可写<br>        <strong>valid users = @xsb,zjl</strong>			//允许指定用户访问（@代表一个组）<br>[jsb]<br>        comment=jsb<br>        path = /companydata/tech<br>        <strong>guest ok = no</strong><br>        <strong>writable = yes</strong><br>        <strong>valid users = @jsb,zjl</strong></p>
+<p>配置完成之后，重启服务</p>
+<p><strong># systemctl start smb.service nmb.service（或smb nmb）</strong></p>
+<h4 id="配置文件权限"><a href="#配置文件权限" class="headerlink" title="配置文件权限"></a>配置文件权限</h4><p>（1）公共目录：/companydata/public，允许所有用户读取文件但不能修改，权限保持默认。</p>
+<p>（2）销售部目录：/companydata/xsb和技术部目录：/companydata/tjsb只允许本部门   用户写入数据，但不能删除其他用户的数据，不允其他部门访问，但总经理可以查看   不能修改，权限设置如下：</p>
+<p>#chown xsbjl:xsb /companydata/xsb		//设置文件夹的所有者以及所有组</p>
+<p>#chown jsbjl:jsb /companydata/jsb</p>
+<p>#setfacl -m u:zjl:rwx /companydata/sales	//给总经理一个ACL权限，再不加入部门组的情况下，访问部门文件</p>
+<p>#setfacl -m u:zjl:rwx /companydata/tech</p>
+<h4 id="客户端进行访问测试"><a href="#客户端进行访问测试" class="headerlink" title="客户端进行访问测试"></a>客户端进行访问测试</h4><p>在访问测试之前应该注意权限的设置,影响权限的因素有：<u><strong>共享权限，文件本身的权限，selinux安全机制</strong></u><br>    Windows客户端：\\192.168.10.129\public<br>    Linux客户端：首先安装samba-client客户端工具</p>
+<p># smbclient -L 192.168.149.192     以服务器的root用户查看共享文件有哪些</p>
+<p># smbclient -U xsjl -L 192.168.149.192    以samba用户查看服务器的共享文件有哪些</p>
+<p># smbclient -U zjl //192.168.149.192/public    访问服务器共享文件</p>
+<p>  smb: &gt;<br>  常用命令：ls    mkdir    put   get   rm </p>
+<h2 id="Windows中配置samba服务器"><a href="#Windows中配置samba服务器" class="headerlink" title="Windows中配置samba服务器"></a>Windows中配置samba服务器</h2><p>案例2：Windows作为samba服务器（前提是你的用户必须是英文的）</p>
+<p>（1）在Windows系统中设置一个共享目录：D:\sharefiles ,在属性中找到共享，并共享文件夹<br>（2）在Linux下安装 samba-client 客户端 </p>
+<p>​	# yum install samba-client</p>
+<p>（3）安装 cifs-utils 软件包 </p>
+<p>​	# yum install cifs-utils</p>
+<p>（4）在 Linux 下创建一个挂载点 </p>
+<p>​	# mkdir /mnt/Windows</p>
+<p>（5）挂载 Windows 上的共享目录 D:\sharefiles 到 Linux 下的/mnt/Windows 目录下 </p>
+<p>​	# mount -t cifs -o username=HHHXXX //192.168.0.3/sharefiles /mnt/Windows      Enter password: ********<br>​	192.168.0.3为windows的ip，并输入windows对应用户的登陆密码</p>
+<p>（6）如果挂载成功，则可以进入/mnt/Windows 下进行相应操作。<br>（7）在Linux下/etc/fstab 文件中，加入该共享目录的挂载信息 （永久挂载）<br>       192.168.0.3/sharefiles	 /mnt/Windows	 cifs	 username=HHHXXX,password=**** 	0		 0<br>（8）到此为止，Windows 上的共享目录//192.168.0.3/sharefiles就被成功挂载到了 Linux上面了，并且 Linux 重启后，会自动挂载该目录到/mnt/Windows 目录下</p>
+<h2 id="在Windows系统使用samba切换用户解决办法"><a href="#在Windows系统使用samba切换用户解决办法" class="headerlink" title="在Windows系统使用samba切换用户解决办法"></a>在Windows系统使用samba切换用户解决办法</h2><blockquote>
+<p>samba是不允许一台电脑同时连接两个Linux用户的共享文件夹的</p>
+<p>因此需要先断开之前用户的连接，然后再访问其他用户的共享文件夹</p>
+</blockquote>
+<p>断开方法如下：</p>
+<p>1、win+R输入cmd打开命令行工具</p>
+<p>2、输入net use查看当前的连接</p>
+<p>3、可以看到一条正在链接的，地址为对应远程的内容</p>
+<p>输入指令进行删除连接</p>
+<p>#net use \\ip\IPC$ /delete</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">samba服务器</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="DNS服务器配置" class="lazyload">
+          
+        
+        <a href="/en/2024/07/31/dns-fu-wu-qi-pei-zhi/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            DNS服务器配置
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="磁盘配额" class="lazyload">
+        
+      
+      <a href="/en/2024/07/23/ci-pan-pei-e/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          磁盘配额
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#samba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Linux中配置samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.1.1.</span> <span class="toc-text">配置要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">配置分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%96%BD"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置实施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba%E5%B9%B6%E5%90%AF%E5%8A%A8samba%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">安装samba并启动samba服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">修改防火墙设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%90%84%E9%83%A8%E9%97%A8%E4%B8%93%E7%94%A8%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">建立各部门专用共享目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">添加用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEsamba%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">设置samba用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEsmb-conf%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">配置smb.conf文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-number">1.1.3.7.</span> <span class="toc-text">配置文件权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.3.8.</span> <span class="toc-text">客户端进行访问测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Windows中配置samba服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8samba%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">在Windows系统使用samba切换用户解决办法</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "samba服务器",
+          url: "http://example.com/2024/07/29/samba-fu-wu-qi/",
+          excerpt: "",
+          description: "",
+          stripContent: "samba服务器 Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。  Li",
+          date: "Mon Jul 29 2024 16:47:58 GMT+0800",
+          updated: "Mon Jul 29 2024 19:28:06 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

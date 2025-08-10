@@ -1,0 +1,876 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    OutGuess 工具 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="OutGuess 工具介绍OutGuess 是一款用于隐写术（Steganography）的开源工具，主要用于在图像文件中隐藏和提取秘密数据。它支持多种图像格式（如 JPEG、PNG），并采用先进的算法确保数据隐藏后不会显著改变图像的外观，从而避免被检测。 1. OutGuess 的主要功能（1）数据隐藏 将文本、文件或其他数据嵌入到图像中，不影响图像的视觉质量。 支持JPEG格式（最常用），也可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OutGuess 工具">
+<meta property="og:url" content="http://example.com/en/2025/06/28/outguess-gong-ju/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="OutGuess 工具介绍OutGuess 是一款用于隐写术（Steganography）的开源工具，主要用于在图像文件中隐藏和提取秘密数据。它支持多种图像格式（如 JPEG、PNG），并采用先进的算法确保数据隐藏后不会显著改变图像的外观，从而避免被检测。 1. OutGuess 的主要功能（1）数据隐藏 将文本、文件或其他数据嵌入到图像中，不影响图像的视觉质量。 支持JPEG格式（最常用），也可">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-28T13:18:39.018Z">
+<meta property="article:modified_time" content="2025-06-28T13:34:03.452Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/06/28/outguess-gong-ju/';
+            
+              langMap['en'] = '/en/2025/06/28/outguess-gong-ju/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="OutGuess 工具">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">OutGuess 工具</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OutGuess-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">OutGuess 工具介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-OutGuess-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text">1. OutGuess 的主要功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%95%B0%E6%8D%AE%E9%9A%90%E8%97%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">（1）数据隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96"><span class="toc-number">1.1.2.</span> <span class="toc-text">（2）数据提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%8A%97%E6%A3%80%E6%B5%8B%E8%83%BD%E5%8A%9B"><span class="toc-number">1.1.3.</span> <span class="toc-text">（3）抗检测能力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-OutGuess"><span class="toc-number">1.2.</span> <span class="toc-text">2. 安装 OutGuess</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-macOS"><span class="toc-number">1.2.1.</span> <span class="toc-text">Linux &#x2F; macOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">1.2.2.</span> <span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. 基本使用示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%9A%90%E8%97%8F%E6%95%B0%E6%8D%AE%E5%88%B0%E5%9B%BE%E7%89%87"><span class="toc-number">1.3.1.</span> <span class="toc-text">（1）隐藏数据到图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BB%8E%E5%9B%BE%E7%89%87%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">（2）从图片提取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%A3%80%E6%9F%A5%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%9A%90%E8%97%8F%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">（3）检查图片是否包含隐藏数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">4. 高级用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%B0%83%E6%95%B4%E5%B5%8C%E5%85%A5%E5%BC%BA%E5%BA%A6"><span class="toc-number">1.4.1.</span> <span class="toc-text">（1）调整嵌入强度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%B5%8C%E5%85%A5%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">（2）使用不同的嵌入算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%A3%80%E6%B5%8B%E9%9A%90%E5%86%99%E6%95%B0%E6%8D%AE"><span class="toc-number">1.5.</span> <span class="toc-text">5. 检测隐写数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Stegdetect"><span class="toc-number">1.5.1.</span> <span class="toc-text">使用 Stegdetect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-StegExpose"><span class="toc-number">1.5.2.</span> <span class="toc-text">使用 StegExpose</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.6.</span> <span class="toc-text">6. 适用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.7.</span> <span class="toc-text">7. 注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%9B%BF%E4%BB%A3%E5%B7%A5%E5%85%B7"><span class="toc-number">1.8.</span> <span class="toc-text">8. 替代工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-OutGuess 工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-06-28T13:18:39.018Z" itemprop="datePublished">2025-06-28</time>
+    <time style="display: none;" id="post-update-time">2025-06-28</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="OutGuess-工具介绍"><a href="#OutGuess-工具介绍" class="headerlink" title="OutGuess 工具介绍"></a>OutGuess 工具介绍</h1><p>OutGuess 是一款用于<strong>隐写术（Steganography）</strong>的开源工具，主要用于在图像文件中隐藏和提取秘密数据。它支持多种图像格式（如 JPEG、PNG），并采用先进的算法确保数据隐藏后不会显著改变图像的外观，从而避免被检测。</p>
+<h2 id="1-OutGuess-的主要功能"><a href="#1-OutGuess-的主要功能" class="headerlink" title="1. OutGuess 的主要功能"></a><strong>1. OutGuess 的主要功能</strong></h2><h3 id="（1）数据隐藏"><a href="#（1）数据隐藏" class="headerlink" title="（1）数据隐藏"></a><strong>（1）数据隐藏</strong></h3><ul>
+<li>将文本、文件或其他数据嵌入到图像中，不影响图像的视觉质量。</li>
+<li>支持<strong>JPEG</strong>格式（最常用），也可用于其他图像格式。</li>
+<li>使用<strong>密钥（密码）</strong>保护隐藏的数据，提高安全性。</li>
+</ul>
+<h3 id="（2）数据提取"><a href="#（2）数据提取" class="headerlink" title="（2）数据提取"></a><strong>（2）数据提取</strong></h3><ul>
+<li>从已隐藏数据的图像中提取原始信息。</li>
+<li>需要正确的密钥才能解密提取的数据。</li>
+</ul>
+<h3 id="（3）抗检测能力"><a href="#（3）抗检测能力" class="headerlink" title="（3）抗检测能力"></a><strong>（3）抗检测能力</strong></h3><ul>
+<li>采用<strong>统计不可见性（Statistical Invisibility）</strong>技术，使隐写后的图像难以被常规检测工具发现。</li>
+<li>适用于<strong>安全通信</strong>和<strong>隐蔽数据传输</strong>。</li>
+</ul>
+<h2 id="2-安装-OutGuess"><a href="#2-安装-OutGuess" class="headerlink" title="2. 安装 OutGuess"></a><strong>2. 安装 OutGuess</strong></h2><h3 id="Linux-macOS"><a href="#Linux-macOS" class="headerlink" title="Linux / macOS"></a><strong>Linux / macOS</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 使用包管理器安装（如 Debian/Ubuntu）</span><br><span class="line">sudo apt-get install outguess</span><br><span class="line"></span><br><span class="line"># 或从源码编译</span><br><span class="line">git clone https://github.com/resurrecting-open-source-projects/outguess</span><br><span class="line">cd outguess</span><br><span class="line">./configure &amp;&amp; make</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a><strong>Windows</strong></h3><ul>
+<li>可下载预编译版本或使用 WSL（Windows Subsystem for Linux）运行。</li>
+</ul>
+<h2 id="3-基本使用示例"><a href="#3-基本使用示例" class="headerlink" title="3. 基本使用示例"></a><strong>3. 基本使用示例</strong></h2><h3 id="（1）隐藏数据到图片"><a href="#（1）隐藏数据到图片" class="headerlink" title="（1）隐藏数据到图片"></a><strong>（1）隐藏数据到图片</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k "mysecretkey" -d secret.txt image.jpg output.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>-k "mysecretkey"</code>：设置加密密钥（可选）。</li>
+<li><code>-d secret.txt</code>：要隐藏的文件。</li>
+<li><code>image.jpg</code>：原始图片。</li>
+<li><code>output.jpg</code>：输出含隐藏数据的图片。</li>
+</ul>
+<h3 id="（2）从图片提取数据"><a href="#（2）从图片提取数据" class="headerlink" title="（2）从图片提取数据"></a><strong>（2）从图片提取数据</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k "mysecretkey" -r output.jpg extracted_secret.txt</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>-k "mysecretkey"</code>：必须与隐藏时使用的密钥一致。</li>
+<li><code>-r</code>：表示提取模式。</li>
+<li><code>output.jpg</code>：含隐藏数据的图片。</li>
+<li><code>extracted_secret.txt</code>：提取出的数据文件。</li>
+</ul>
+<h3 id="（3）检查图片是否包含隐藏数据"><a href="#（3）检查图片是否包含隐藏数据" class="headerlink" title="（3）检查图片是否包含隐藏数据"></a><strong>（3）检查图片是否包含隐藏数据</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k "mysecretkey" -E output.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>-E</code>：检查图片是否可能包含隐藏数据。</li>
+</ul>
+<h2 id="4-高级用法"><a href="#4-高级用法" class="headerlink" title="4. 高级用法"></a><strong>4. 高级用法</strong></h2><h3 id="（1）调整嵌入强度"><a href="#（1）调整嵌入强度" class="headerlink" title="（1）调整嵌入强度"></a><strong>（1）调整嵌入强度</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k "mysecretkey" -t 0.5 -d secret.txt image.jpg output.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>-t 0.5</code>：调整嵌入强度（0.1~1.0），数值越大隐藏的数据越多，但可能影响图像质量。</li>
+</ul>
+<h3 id="（2）使用不同的嵌入算法"><a href="#（2）使用不同的嵌入算法" class="headerlink" title="（2）使用不同的嵌入算法"></a><strong>（2）使用不同的嵌入算法</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k "mysecretkey" -e F5 -d secret.txt image.jpg output.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>-e F5</code>：使用 F5 算法（更抗检测）。</li>
+</ul>
+<h2 id="5-检测隐写数据"><a href="#5-检测隐写数据" class="headerlink" title="5. 检测隐写数据"></a><strong>5. 检测隐写数据</strong></h2><h3 id="使用-Stegdetect"><a href="#使用-Stegdetect" class="headerlink" title="使用 Stegdetect"></a><strong>使用 Stegdetect</strong></h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stegdetect output.jpg</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>如果图片可能包含隐藏数据，会返回可疑度评分。</li>
+</ul>
+<h3 id="使用-StegExpose"><a href="#使用-StegExpose" class="headerlink" title="使用 StegExpose"></a><strong>使用 StegExpose</strong></h3><ul>
+<li>更高级的隐写分析工具，可检测 OutGuess 隐藏的数据。</li>
+</ul>
+<hr>
+<h2 id="6-适用场景"><a href="#6-适用场景" class="headerlink" title="6. 适用场景"></a><strong>6. 适用场景</strong></h2><ul>
+<li><strong>隐蔽通信</strong>：在看似正常的图片中传递加密信息。</li>
+<li><strong>数字水印</strong>：隐藏版权信息。</li>
+<li><strong>渗透测试</strong>：测试数据泄露防护能力。</li>
+<li><strong>CTF（Capture The Flag）比赛</strong>：常用于隐写术挑战。</li>
+</ul>
+<hr>
+<h2 id="7-注意事项"><a href="#7-注意事项" class="headerlink" title="7. 注意事项"></a><strong>7. 注意事项</strong></h2><ul>
+<li><strong>密钥安全</strong>：如果密钥泄露，隐藏的数据可能被提取。</li>
+<li><strong>文件大小限制</strong>：JPEG 图像能隐藏的 数据量有限（通常为原图的 10%~15%）。</li>
+<li><strong>抗检测性</strong>：虽然 OutGuess 抗检测能力较强，但高级分析工具仍可能发现异常。</li>
+</ul>
+<hr>
+<h2 id="8-替代工具"><a href="#8-替代工具" class="headerlink" title="8. 替代工具"></a><strong>8. 替代工具</strong></h2><table>
+<thead>
+<tr>
+<th align="left">工具</th>
+<th align="left">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Steghide</strong></td>
+<td align="left">支持 JPEG、BMP、WAV 等格式，简单易用</td>
+</tr>
+<tr>
+<td align="left"><strong>OpenStego</strong></td>
+<td align="left">图形界面，支持水印和文件隐藏</td>
+</tr>
+<tr>
+<td align="left"><strong>F5 Steganography</strong></td>
+<td align="left">更先进的 JPEG 隐写算法</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>OutGuess 是一款强大的隐写工具，适用于安全研究人员、CTF 选手和隐私保护需求者。通过合理使用密钥和调整嵌入参数，可以有效地隐藏和提取数据，同时避免被检测。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Git" class="lazyload">
+          
+        
+        <a href="/en/2025/07/03/git/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Git
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="kali虚拟机中配置外网" class="lazyload">
+        
+      
+      <a href="/en/2025/06/14/kali-xu-ni-ji-zhong-pei-zhi-wai-wang/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          kali虚拟机中配置外网
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OutGuess-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">OutGuess 工具介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-OutGuess-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text">1. OutGuess 的主要功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%95%B0%E6%8D%AE%E9%9A%90%E8%97%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">（1）数据隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96"><span class="toc-number">1.1.2.</span> <span class="toc-text">（2）数据提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%8A%97%E6%A3%80%E6%B5%8B%E8%83%BD%E5%8A%9B"><span class="toc-number">1.1.3.</span> <span class="toc-text">（3）抗检测能力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-OutGuess"><span class="toc-number">1.2.</span> <span class="toc-text">2. 安装 OutGuess</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-macOS"><span class="toc-number">1.2.1.</span> <span class="toc-text">Linux &#x2F; macOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">1.2.2.</span> <span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. 基本使用示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%9A%90%E8%97%8F%E6%95%B0%E6%8D%AE%E5%88%B0%E5%9B%BE%E7%89%87"><span class="toc-number">1.3.1.</span> <span class="toc-text">（1）隐藏数据到图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BB%8E%E5%9B%BE%E7%89%87%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">（2）从图片提取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%A3%80%E6%9F%A5%E5%9B%BE%E7%89%87%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E9%9A%90%E8%97%8F%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">（3）检查图片是否包含隐藏数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">4. 高级用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%B0%83%E6%95%B4%E5%B5%8C%E5%85%A5%E5%BC%BA%E5%BA%A6"><span class="toc-number">1.4.1.</span> <span class="toc-text">（1）调整嵌入强度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%B5%8C%E5%85%A5%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">（2）使用不同的嵌入算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%A3%80%E6%B5%8B%E9%9A%90%E5%86%99%E6%95%B0%E6%8D%AE"><span class="toc-number">1.5.</span> <span class="toc-text">5. 检测隐写数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Stegdetect"><span class="toc-number">1.5.1.</span> <span class="toc-text">使用 Stegdetect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-StegExpose"><span class="toc-number">1.5.2.</span> <span class="toc-text">使用 StegExpose</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.6.</span> <span class="toc-text">6. 适用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.7.</span> <span class="toc-text">7. 注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%9B%BF%E4%BB%A3%E5%B7%A5%E5%85%B7"><span class="toc-number">1.8.</span> <span class="toc-text">8. 替代工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "OutGuess 工具",
+          url: "http://example.com/2025/06/28/outguess-gong-ju/",
+          excerpt: "",
+          description: "",
+          stripContent: "OutGuess 工具介绍OutGuess 是一款用于隐写术（Steganography）的开源工具，主要用于在图像文件中隐藏和提取秘密数据。它支持多种图像格式（如 JPEG、PNG），并采用先进的算法确保数据隐藏后不会显著改变图像的外观，从而避免被检测。 1. OutGuess 的主要功能（1）数据隐藏 将文本、文件或其他数据嵌入到图像中，不影响图像的视觉质量。 支持JPEG格式（最常用），也可用于其他图像格式。 使用密钥（密码）保护隐藏的数据，提高安全性。  （2）数据提取 从已隐藏数据的图",
+          date: "Sat Jun 28 2025 21:18:39 GMT+0800",
+          updated: "Sat Jun 28 2025 21:34:03 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

