@@ -226,7 +226,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">63</div>
+    <div class="sidebar-state-number">64</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -309,14 +309,61 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2024/08/06/firewalld-fang-huo-qiang/" aria-label="firewalld防火墙"></a>
+      <a class="post-link" href="/2024/08/12/moectf-2024-web-shen-tou-ce-shi-yu-shen-ji/" aria-label="MoeCTF 2024 Web渗透测试与审计"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/14.jpg" data-sizes="auto" alt="firewalld防火墙" class="lazyload">
+          <img data-src="/covers/20.jpg" data-sizes="auto" alt="MoeCTF 2024 Web渗透测试与审计" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-08-12</span>
+        <span><span class="icon-pencil"></span>2.6k words</span>
+        <span><span class="icon-clock"></span>9 mins</span>
+      </div>
+      <h2 class="post-title">MoeCTF 2024 Web渗透测试与审计</h2>
+      <article class="post-article">
+        
+          MoeCTF 2024–Web渗透测试与审计第一周Web渗透测试与审计入门指北下载附件，附件提示，搭个php网站访问即可获得flag（本地搭一个就行）
+整体说一下思路吧，首先得有一个phpstudy，将页面文件放到apache服务的访问页面的默认目录，开启apache服务，直接127.0.0.1访问对应网页文件就可以，现在来操作一遍吧！
+
+配置网站目录，将页面文件放到网站目录下
+
+
+
+开启服务
+
+
+
+访问页面，得到flag
+
+
+弗拉格之地的入口打开之后，是这样的，他提到要用爬虫，那么大概率就是要爬取网页的目录以及文件
+
+那么我们就开始爬虫，我打算用burpsuite来进行，开启代理，burps
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/08/06/firewalld-fang-huo-qiang/" aria-label="firewalld防火墙"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/0.jpg" data-sizes="auto" alt="firewalld防火墙" class="lazyload">
         
       
     </div>
@@ -338,16 +385,16 @@
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2024/08/05/python-pa-chong-jian-dan-ying-yong/" aria-label="Python爬虫简单应用"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/13.jpg" data-sizes="auto" alt="Python爬虫简单应用" class="lazyload">
+          <img data-src="/covers/4.jpg" data-sizes="auto" alt="Python爬虫简单应用" class="lazyload">
         
       
     </div>
@@ -373,16 +420,16 @@
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2024/08/03/chang-jian-de-zhong-jian-jian/" aria-label="常见的中间件"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/15.jpg" data-sizes="auto" alt="常见的中间件" class="lazyload">
+          <img data-src="/covers/5.jpg" data-sizes="auto" alt="常见的中间件" class="lazyload">
         
       
     </div>
@@ -410,12 +457,12 @@ A
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2024/08/02/nginx-de-an-quan-jia-gu/" aria-label="Nginx的安全加固"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
@@ -451,16 +498,16 @@ http {
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2024/07/31/dns-fu-wu-qi-pei-zhi/" aria-label="DNS服务器配置"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/7.jpg" data-sizes="auto" alt="DNS服务器配置" class="lazyload">
+          <img data-src="/covers/9.jpg" data-sizes="auto" alt="DNS服务器配置" class="lazyload">
         
       
     </div>
@@ -486,41 +533,6 @@ http {
 DNS的查询规则递归式查询，即client向支持递归查询的DNS Server发出解析请求，则自DNS服务器不论是自身直接解析还是无法解析想根发出请求，总会由其向client返回一个结果。（老好人，会帮你一直查，查到返回给你结果）
 迭代式查询，即接收client解析请求的DNS Server，若其能够解析则直接返回结果，若其不能解析将把解析请求交给其他DNS服务器，而不是自己亲自将解析过程完成。 （踢皮球，让你去找别人去得到结果）
 DN
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/07/29/samba-fu-wu-qi/" aria-label="samba服务器"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/14.jpg" data-sizes="auto" alt="samba服务器" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-07-29</span>
-        <span><span class="icon-pencil"></span>1.5k words</span>
-        <span><span class="icon-clock"></span>6 mins</span>
-      </div>
-      <h2 class="post-title">samba服务器</h2>
-      <article class="post-article">
-        
-          samba服务器
-Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。
-
-Linux中配置samba服务器配置要求（1）samba服务器目录
-企业数据目录：/companydat
         
       </article>
     </div>
@@ -564,10 +576,10 @@ Linux中配置samba服务器配置要求（1）samba服务器目录
     
       <div>
         <span class="icon-brush"></span>
-        222.2k
+        260.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        13:41
+        16:08
       </div>
     
     
@@ -603,7 +615,7 @@ Linux中配置samba服务器配置要求（1）samba服务器目录
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">63</div>
+    <div class="sidebar-state-number">64</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>

