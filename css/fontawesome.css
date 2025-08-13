@@ -121,6 +121,9 @@
   font-family: var(--font-icon);
   content: "\f105";
 }
+.icon-twitter:before {
+  content: "\e61b";
+}
 .sidebar-btn-wrapper .sidebar-toc-btn:before {
   font-family: var(--font-icon);
   content: "\f0e8";

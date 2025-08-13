@@ -123,6 +123,9 @@
   font-family: "iconfont";
   content: "\e630";
 }
+.icon-twitter:before {
+  content: "\e62a";
+}
 .sidebar-btn-wrapper .sidebar-toc-btn:before {
   font-family: "iconfont";
   content: "\e633";
