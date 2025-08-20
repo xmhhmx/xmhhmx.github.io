@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   
   <title>
-    upload-labs |
+    Upload-labs |
     
     mX1@0_blog
   </title>
@@ -35,12 +35,12 @@
 
   
   
-    <meta name="description" content="upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的">
+    <meta name="description" content="Upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="upload-labs">
+<meta property="og:title" content="Upload-labs">
 <meta property="og:url" content="http://example.com/2024/06/17/upload-labs/index.html">
 <meta property="og:site_name" content="mX1@0_blog">
-<meta property="og:description" content="upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的">
+<meta property="og:description" content="Upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.imgdb.cn/item/666fe4a3d9c307b7e9085db1.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/666fdd20d9c307b7e9fa577e.png">
@@ -74,9 +74,10 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/6689174ed9c307b7e9157dc2.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/668935e1d9c307b7e95220bc.png">
 <meta property="article:published_time" content="2024-06-17T06:45:57.477Z">
-<meta property="article:modified_time" content="2025-03-06T15:02:01.676Z">
+<meta property="article:modified_time" content="2025-08-20T10:01:02.309Z">
 <meta property="article:author" content="mX1@0">
-<meta property="article:tag" content="upload注入">
+<meta property="article:tag" content="靶场">
+<meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic.imgdb.cn/item/666fe4a3d9c307b7e9085db1.png">
   
@@ -221,7 +222,7 @@
           
         </picture>
         
-          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="upload-labs">
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="Upload-labs">
         
       
     
@@ -232,7 +233,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">upload-labs</h1>
+            <h1 data-aos="slide-up">Upload-labs</h1>
           </a>
         
       
@@ -259,7 +260,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#upload-labs"><span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01-%E5%89%8D%E7%AB%AFjs%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-01 前端js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02-content-type%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-02 content-type绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03-%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-03 特殊后缀绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-htaccess%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-04 .htaccess绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05-user-ini%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-05 .user.ini绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06-%E5%A4%A7%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-06 大写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-07 空格绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08-%E5%90%8E%E7%BC%80%E5%8A%A0%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-08 后缀加点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">额外数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09-DATA%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-09 ::$DATA绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10-%E7%82%B9%E7%A9%BA%E6%A0%BC%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-10 点空格点绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11-%E5%90%8E%E7%BC%80%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-11 后缀双写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12-00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-12 %00截断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-text">空字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13-0x00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-13 0x00截断</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-labs"><span class="toc-text">Upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01-%E5%89%8D%E7%AB%AFjs%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-01 前端js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02-content-type%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-02 content-type绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03-%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-03 特殊后缀绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-htaccess%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-04 .htaccess绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05-user-ini%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-05 .user.ini绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06-%E5%A4%A7%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-06 大写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-07 空格绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08-%E5%90%8E%E7%BC%80%E5%8A%A0%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-08 后缀加点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">额外数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09-DATA%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-09 ::$DATA绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10-%E7%82%B9%E7%A9%BA%E6%A0%BC%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-10 点空格点绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11-%E5%90%8E%E7%BC%80%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-11 后缀双写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12-00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-12 %00截断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-text">空字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13-0x00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-13 0x00截断</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -272,15 +273,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">64</div>
+    <div class="sidebar-state-number">62</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">18</div>
+    <div class="sidebar-state-number">27</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">24</div>
+    <div class="sidebar-state-number">54</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -355,19 +356,19 @@
   
 </aside>
 
-          <section id="main"><article id="post-upload-labs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-Upload-labs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2024-06-17T06:45:57.477Z" itemprop="datePublished">2024-06-17</time>
-    <time style="display: none;" id="post-update-time">2025-03-06</time>
+    <time style="display: none;" id="post-update-time">2025-08-20</time>
   </span>
 </div>
 
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/upload%E6%B3%A8%E5%85%A5/" data-aos="zoom-in">upload注入</a>
+    <a class="article-category-link" href="/categories/Web%E9%9D%B6%E5%9C%BA/" data-aos="zoom-in">Web靶场</a>
   </div>
 
 
@@ -378,7 +379,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h1 id="upload-labs"><a href="#upload-labs" class="headerlink" title="upload-labs"></a>upload-labs</h1><p>使用工具：<br>burpsuite<br>中国蚁剑</p>
+        <h1 id="Upload-labs"><a href="#Upload-labs" class="headerlink" title="Upload-labs"></a>Upload-labs</h1><p>使用工具：<br>burpsuite<br>中国蚁剑</p>
 <h2 id="Pass-01-前端js绕过"><a href="#Pass-01-前端js绕过" class="headerlink" title="Pass-01 前端js绕过"></a>Pass-01 前端js绕过</h2><blockquote>
 <p>前端JS代码对上传文件合法性的验证</p>
 </blockquote>
@@ -665,7 +666,7 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/upload%E6%B3%A8%E5%85%A5/" rel="tag">upload注入</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag">文件上传</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a></li></ul>
 
 
     </footer>
@@ -678,7 +679,7 @@
         
           
           
-            <img data-src="/covers/16.jpg" data-sizes="auto" alt="Iptables防火墙" class="lazyload">
+            <img data-src="/covers/6.jpg" data-sizes="auto" alt="Iptables防火墙" class="lazyload">
           
         
         <a href="/2024/07/05/iptables-fang-huo-qiang/"></a>
@@ -696,7 +697,7 @@
       
         
         
-          <img data-src="/covers/18.jpg" data-sizes="auto" alt="阿里云云服务器" class="lazyload">
+          <img data-src="/covers/3.jpg" data-sizes="auto" alt="阿里云云服务器" class="lazyload">
         
       
       <a href="/2024/06/17/a-li-yun-yun-fu-wu-qi/"></a>
@@ -749,10 +750,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        276.8k
+        278.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:12
+        17:20
       </div>
     
     
@@ -786,7 +787,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#upload-labs"><span class="toc-text">upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01-%E5%89%8D%E7%AB%AFjs%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-01 前端js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02-content-type%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-02 content-type绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03-%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-03 特殊后缀绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-htaccess%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-04 .htaccess绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05-user-ini%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-05 .user.ini绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06-%E5%A4%A7%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-06 大写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-07 空格绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08-%E5%90%8E%E7%BC%80%E5%8A%A0%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-08 后缀加点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">额外数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09-DATA%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-09 ::$DATA绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10-%E7%82%B9%E7%A9%BA%E6%A0%BC%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-10 点空格点绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11-%E5%90%8E%E7%BC%80%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-11 后缀双写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12-00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-12 %00截断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-text">空字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13-0x00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-13 0x00截断</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-labs"><span class="toc-text">Upload-labs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01-%E5%89%8D%E7%AB%AFjs%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-01 前端js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02-content-type%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-02 content-type绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03-%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-03 特殊后缀绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-htaccess%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-04 .htaccess绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05-user-ini%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-05 .user.ini绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06-%E5%A4%A7%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-06 大写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-07 空格绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08-%E5%90%8E%E7%BC%80%E5%8A%A0%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-08 后缀加点绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">额外数据流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09-DATA%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-09 ::$DATA绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10-%E7%82%B9%E7%A9%BA%E6%A0%BC%E7%82%B9%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-10 点空格点绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11-%E5%90%8E%E7%BC%80%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-text">Pass-11 后缀双写绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12-00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-12 %00截断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-text">空字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13-0x00%E6%88%AA%E6%96%AD"><span class="toc-text">Pass-13 0x00截断</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -799,15 +800,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">64</div>
+    <div class="sidebar-state-number">62</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">18</div>
+    <div class="sidebar-state-number">27</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">24</div>
+    <div class="sidebar-state-number">54</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -947,13 +948,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "mX1@0",
-          title: "upload-labs",
+          title: "Upload-labs",
           url: "http://example.com/2024/06/17/upload-labs/",
           excerpt: "",
           description: "",
-          stripContent: "upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的拦截    能抓到包，证明绕过了前端验证    然后将文件后缀名从jpg重新改回php上传，一句话木",
+          stripContent: "Upload-labs使用工具：burpsuite中国蚁剑 Pass-01 前端js绕过 前端JS代码对上传文件合法性的验证   先上传一个不合法php文件来测试     该文件类型不允许上传    burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤     他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的拦截    能抓到包，证明绕过了前端验证    然后将文件后缀名从jpg重新改回php上传，一句话木",
           date: "Mon Jun 17 2024 14:45:57 GMT+0800",
-          updated: "Thu Mar 06 2025 23:02:01 GMT+0800",
+          updated: "Wed Aug 20 2025 18:01:02 GMT+0800",
           cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
         };
       </script>

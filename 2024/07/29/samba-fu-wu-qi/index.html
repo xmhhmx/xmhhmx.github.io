@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   
   <title>
-    samba服务器 |
+    Samba服务器 |
     
     mX1@0_blog
   </title>
@@ -35,17 +35,18 @@
 
   
   
-    <meta name="description" content="samba服务器 Samba是一款在Linux&#x2F;Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb&#x2F;cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则">
+    <meta name="description" content="Samba服务器 Samba是一款在Linux&#x2F;Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb&#x2F;cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则">
 <meta property="og:type" content="article">
-<meta property="og:title" content="samba服务器">
+<meta property="og:title" content="Samba服务器">
 <meta property="og:url" content="http://example.com/2024/07/29/samba-fu-wu-qi/index.html">
 <meta property="og:site_name" content="mX1@0_blog">
-<meta property="og:description" content="samba服务器 Samba是一款在Linux&#x2F;Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb&#x2F;cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则">
+<meta property="og:description" content="Samba服务器 Samba是一款在Linux&#x2F;Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb&#x2F;cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-29T08:47:58.778Z">
-<meta property="article:modified_time" content="2024-07-29T11:28:06.014Z">
+<meta property="article:modified_time" content="2025-08-20T09:44:40.134Z">
 <meta property="article:author" content="mX1@0">
-<meta property="article:tag" content="samba服务器">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
   
   
@@ -189,7 +190,7 @@
           
         </picture>
         
-          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="samba服务器">
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="Samba服务器">
         
       
     
@@ -200,7 +201,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">samba服务器</h1>
+            <h1 data-aos="slide-up">Samba服务器</h1>
           </a>
         
       
@@ -227,7 +228,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#samba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Linux中配置samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-text">配置要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90"><span class="toc-text">配置分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%96%BD"><span class="toc-text">配置实施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba%E5%B9%B6%E5%90%AF%E5%8A%A8samba%E6%9C%8D%E5%8A%A1"><span class="toc-text">安装samba并启动samba服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE"><span class="toc-text">修改防火墙设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%90%84%E9%83%A8%E9%97%A8%E4%B8%93%E7%94%A8%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-text">建立各部门专用共享目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-text">添加用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEsamba%E7%94%A8%E6%88%B7"><span class="toc-text">设置samba用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEsmb-conf%E6%96%87%E4%BB%B6"><span class="toc-text">配置smb.conf文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-text">配置文件权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-text">客户端进行访问测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Windows中配置samba服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8samba%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">在Windows系统使用samba切换用户解决办法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Samba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Linux中配置samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-text">配置要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90"><span class="toc-text">配置分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%96%BD"><span class="toc-text">配置实施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba%E5%B9%B6%E5%90%AF%E5%8A%A8samba%E6%9C%8D%E5%8A%A1"><span class="toc-text">安装samba并启动samba服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE"><span class="toc-text">修改防火墙设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%90%84%E9%83%A8%E9%97%A8%E4%B8%93%E7%94%A8%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-text">建立各部门专用共享目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-text">添加用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEsamba%E7%94%A8%E6%88%B7"><span class="toc-text">设置samba用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEsmb-conf%E6%96%87%E4%BB%B6"><span class="toc-text">配置smb.conf文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-text">配置文件权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-text">客户端进行访问测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Windows中配置samba服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8samba%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">在Windows系统使用samba切换用户解决办法</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -240,15 +241,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">64</div>
+    <div class="sidebar-state-number">62</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">18</div>
+    <div class="sidebar-state-number">27</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">24</div>
+    <div class="sidebar-state-number">54</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -323,19 +324,19 @@
   
 </aside>
 
-          <section id="main"><article id="post-samba服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-Samba服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2024-07-29T08:47:58.778Z" itemprop="datePublished">2024-07-29</time>
-    <time style="display: none;" id="post-update-time">2024-07-29</time>
+    <time style="display: none;" id="post-update-time">2025-08-20</time>
   </span>
 </div>
 
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux-and-Windows/" data-aos="zoom-in">Linux and Windows</a>
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" data-aos="zoom-in">网络技术</a>
   </div>
 
 
@@ -346,7 +347,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h1 id="samba服务器"><a href="#samba服务器" class="headerlink" title="samba服务器"></a>samba服务器</h1><blockquote>
+        <h1 id="Samba服务器"><a href="#Samba服务器" class="headerlink" title="Samba服务器"></a>Samba服务器</h1><blockquote>
 <p>Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。</p>
 </blockquote>
 <h2 id="Linux中配置samba服务器"><a href="#Linux中配置samba服务器" class="headerlink" title="Linux中配置samba服务器"></a>Linux中配置samba服务器</h2><h3 id="配置要求"><a href="#配置要求" class="headerlink" title="配置要求"></a>配置要求</h3><p>（1）samba服务器目录</p>
@@ -434,7 +435,7 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/samba%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">samba服务器</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul>
 
 
     </footer>
@@ -447,7 +448,7 @@
         
           
           
-            <img data-src="/covers/15.jpg" data-sizes="auto" alt="DNS服务器配置" class="lazyload">
+            <img data-src="/covers/2.jpg" data-sizes="auto" alt="DNS服务器配置" class="lazyload">
           
         
         <a href="/2024/07/31/dns-fu-wu-qi-pei-zhi/"></a>
@@ -465,7 +466,7 @@
       
         
         
-          <img data-src="/covers/21.jpg" data-sizes="auto" alt="磁盘配额" class="lazyload">
+          <img data-src="/covers/4.jpg" data-sizes="auto" alt="磁盘配额" class="lazyload">
         
       
       <a href="/2024/07/23/ci-pan-pei-e/"></a>
@@ -518,10 +519,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        276.8k
+        278.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:12
+        17:20
       </div>
     
     
@@ -555,7 +556,7 @@
   <h3 class="toc-title">Contents</h3>
   <div class="sidebar-toc-wrapper toc-div-class" >
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#samba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Linux中配置samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-text">配置要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90"><span class="toc-text">配置分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%96%BD"><span class="toc-text">配置实施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba%E5%B9%B6%E5%90%AF%E5%8A%A8samba%E6%9C%8D%E5%8A%A1"><span class="toc-text">安装samba并启动samba服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE"><span class="toc-text">修改防火墙设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%90%84%E9%83%A8%E9%97%A8%E4%B8%93%E7%94%A8%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-text">建立各部门专用共享目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-text">添加用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEsamba%E7%94%A8%E6%88%B7"><span class="toc-text">设置samba用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEsmb-conf%E6%96%87%E4%BB%B6"><span class="toc-text">配置smb.conf文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-text">配置文件权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-text">客户端进行访问测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Windows中配置samba服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8samba%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">在Windows系统使用samba切换用户解决办法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Samba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Linux中配置samba服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-text">配置要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E6%9E%90"><span class="toc-text">配置分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9E%E6%96%BD"><span class="toc-text">配置实施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85samba%E5%B9%B6%E5%90%AF%E5%8A%A8samba%E6%9C%8D%E5%8A%A1"><span class="toc-text">安装samba并启动samba服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE"><span class="toc-text">修改防火墙设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%90%84%E9%83%A8%E9%97%A8%E4%B8%93%E7%94%A8%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-text">建立各部门专用共享目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-text">添加用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEsamba%E7%94%A8%E6%88%B7"><span class="toc-text">设置samba用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEsmb-conf%E6%96%87%E4%BB%B6"><span class="toc-text">配置smb.conf文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-text">配置文件权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9B%E8%A1%8C%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-text">客户端进行访问测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E4%B8%AD%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Windows中配置samba服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8samba%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">在Windows系统使用samba切换用户解决办法</span></a></li></ol></li></ol>
       
   </div>
 </div>
@@ -568,15 +569,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">64</div>
+    <div class="sidebar-state-number">62</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">18</div>
+    <div class="sidebar-state-number">27</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">24</div>
+    <div class="sidebar-state-number">54</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -716,13 +717,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "mX1@0",
-          title: "samba服务器",
+          title: "Samba服务器",
           url: "http://example.com/2024/07/29/samba-fu-wu-qi/",
           excerpt: "",
           description: "",
-          stripContent: "samba服务器 Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。  Li",
+          stripContent: "Samba服务器 Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。  Li",
           date: "Mon Jul 29 2024 16:47:58 GMT+0800",
-          updated: "Mon Jul 29 2024 19:28:06 GMT+0800",
+          updated: "Wed Aug 20 2025 17:44:40 GMT+0800",
           cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
         };
       </script>
