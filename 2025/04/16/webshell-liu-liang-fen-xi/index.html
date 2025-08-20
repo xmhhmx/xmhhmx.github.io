@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   
   <title>
-    webshell流量分析 |
+    Webshell流量分析 |
     
     mX1@0_blog
   </title>
@@ -35,17 +35,19 @@
 
   
   
-    <meta name="description" content="webshell流量分析蚁剑流量分析上传一个webshell，用wireshark抓包，过滤http.request.method&#x3D;&#x3D;POST  特征表现在有多个item， 蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，">
+    <meta name="description" content="Webshell流量分析蚁剑流量分析上传一个webshell，用wireshark抓包，过滤http.request.method&#x3D;&#x3D;POST  特征表现在有多个item， 蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webshell流量分析">
+<meta property="og:title" content="Webshell流量分析">
 <meta property="og:url" content="http://example.com/2025/04/16/webshell-liu-liang-fen-xi/index.html">
 <meta property="og:site_name" content="mX1@0_blog">
-<meta property="og:description" content="webshell流量分析蚁剑流量分析上传一个webshell，用wireshark抓包，过滤http.request.method&#x3D;&#x3D;POST  特征表现在有多个item， 蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，">
+<meta property="og:description" content="Webshell流量分析蚁剑流量分析上传一个webshell，用wireshark抓包，过滤http.request.method&#x3D;&#x3D;POST  特征表现在有多个item， 蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/67ff82e588c538a9b5d3bd7a.png">
 <meta property="article:published_time" content="2025-04-16T10:08:27.686Z">
-<meta property="article:modified_time" content="2025-04-20T04:27:31.828Z">
+<meta property="article:modified_time" content="2025-08-20T11:01:43.487Z">
 <meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="Webshell">
+<meta property="article:tag" content="流量分析">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.imgdb.cn/item/67ff82e588c538a9b5d3bd7a.png">
   
@@ -190,7 +192,7 @@
           
         </picture>
         
-          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="webshell流量分析">
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="Webshell流量分析">
         
       
     
@@ -201,7 +203,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">webshell流量分析</h1>
+            <h1 data-aos="slide-up">Webshell流量分析</h1>
           </a>
         
       
@@ -224,7 +226,16 @@
     <div class="sidebar-wrap" data-aos="fade-up">
       
         
-          <div class="sidebar-author">
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">蚁剑流量分析</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
   <div class="sidebar-author-name">mX1@0</div>
   <div class="sidebar-description"></div>
@@ -232,15 +243,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">62</div>
+    <div class="sidebar-state-number">55</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">27</div>
+    <div class="sidebar-state-number">25</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">54</div>
+    <div class="sidebar-state-number">65</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -295,11 +306,15 @@
     
   
 </div>
-
+</div>
         
       
       
         
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
         
       
     </div>
@@ -311,17 +326,21 @@
   
 </aside>
 
-          <section id="main"><article id="post-webshell流量分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-Webshell流量分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-16T10:08:27.686Z" itemprop="datePublished">2025-04-16</time>
-    <time style="display: none;" id="post-update-time">2025-04-20</time>
+    <time style="display: none;" id="post-update-time">2025-08-20</time>
   </span>
 </div>
 
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" data-aos="zoom-in">流量分析</a>
+  </div>
+
 
     </div>
     <div class="hr-line"></div>
@@ -330,7 +349,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h1 id="webshell流量分析"><a href="#webshell流量分析" class="headerlink" title="webshell流量分析"></a>webshell流量分析</h1><h2 id="蚁剑流量分析"><a href="#蚁剑流量分析" class="headerlink" title="蚁剑流量分析"></a>蚁剑流量分析</h2><p>上传一个webshell，用wireshark抓包，过滤http.request.method==POST</p>
+        <h1 id="Webshell流量分析"><a href="#Webshell流量分析" class="headerlink" title="Webshell流量分析"></a>Webshell流量分析</h1><h2 id="蚁剑流量分析"><a href="#蚁剑流量分析" class="headerlink" title="蚁剑流量分析"></a>蚁剑流量分析</h2><p>上传一个webshell，用wireshark抓包，过滤http.request.method==POST</p>
 <p><img src="https://pic1.imgdb.cn/item/67ff82e588c538a9b5d3bd7a.png"></p>
 <p>特征表现在有多个item，</p>
 <p>蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，	</p>
@@ -347,6 +366,8 @@
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Webshell/" rel="tag">Webshell</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" rel="tag">流量分析</a></li></ul>
+
 
     </footer>
   </div>
@@ -358,7 +379,7 @@
         
           
           
-            <img data-src="/covers/5.jpg" data-sizes="auto" alt="Weblogic反序列化漏洞" class="lazyload">
+            <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Weblogic反序列化漏洞" class="lazyload">
           
         
         <a href="/2025/04/23/weblogic-fan-xu-lie-hua-lou-dong/"></a>
@@ -376,7 +397,7 @@
       
         
         
-          <img data-src="/covers/8.jpg" data-sizes="auto" alt="Vite CVE-2025-30208" class="lazyload">
+          <img data-src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" data-sizes="auto" alt="Vite CVE-2025-30208" class="lazyload">
         
       
       <a href="/2025/04/15/vite-cve-2025-30208/"></a>
@@ -429,10 +450,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        278.3k
+        286.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:20
+        17:52
       </div>
     
     
@@ -462,7 +483,16 @@
   <div class="sidebar-wrap">
     
       
-        <div class="sidebar-author">
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Webshell%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">Webshell流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-text">蚁剑流量分析</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
   <div class="sidebar-author-name">mX1@0</div>
   <div class="sidebar-description"></div>
@@ -470,15 +500,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">62</div>
+    <div class="sidebar-state-number">55</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">27</div>
+    <div class="sidebar-state-number">25</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">54</div>
+    <div class="sidebar-state-number">65</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -533,12 +563,16 @@
     
   
 </div>
-
+</div>
       
     
   </div>
   
     
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
     
   
 </nav>
@@ -614,13 +648,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "mX1@0",
-          title: "webshell流量分析",
+          title: "Webshell流量分析",
           url: "http://example.com/2025/04/16/webshell-liu-liang-fen-xi/",
           excerpt: "",
           description: "",
-          stripContent: "webshell流量分析蚁剑流量分析上传一个webshell，用wireshark抓包，过滤http.request.method==POST  特征表现在有多个item， 蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，  ",
+          stripContent: "Webshell流量分析蚁剑流量分析上传一个webshell，用wireshark抓包，过滤http.request.method==POST  特征表现在有多个item， 蚁剑是一个小马拉大马的过程，小马就是一句话木马，大马就是蚁剑的核心代码，  ",
           date: "Wed Apr 16 2025 18:08:27 GMT+0800",
-          updated: "Sun Apr 20 2025 12:27:31 GMT+0800",
+          updated: "Wed Aug 20 2025 19:01:43 GMT+0800",
           cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
         };
       </script>
