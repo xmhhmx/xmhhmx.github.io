@@ -35,17 +35,20 @@
 
   
   
-    <meta name="description" content="JAVA内存马">
+    <meta name="description" content="JAVA内存马反射先来一个简单Dog类 12345678910111213141516171819202122package org.example;public class Dog {    private String name;    public int a;    public int b;    Dog(){}    Dog(String name){        this.name">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA内存马">
 <meta property="og:url" content="http://example.com/2025/04/06/java-nei-cun-ma/index.html">
 <meta property="og:site_name" content="mX1@0_blog">
-<meta property="og:description" content="JAVA内存马">
+<meta property="og:description" content="JAVA内存马反射先来一个简单Dog类 12345678910111213141516171819202122package org.example;public class Dog {    private String name;    public int a;    public int b;    Dog(){}    Dog(String name){        this.name">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-20%20111328.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-20%20145317.png">
 <meta property="article:published_time" content="2025-04-06T07:24:33.090Z">
-<meta property="article:modified_time" content="2025-04-06T07:24:55.099Z">
+<meta property="article:modified_time" content="2025-08-20T06:53:37.416Z">
 <meta property="article:author" content="mX1@0">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-20%20111328.png">
   
   
   
@@ -222,7 +225,16 @@
     <div class="sidebar-wrap" data-aos="fade-up">
       
         
-          <div class="sidebar-author">
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">JAVA内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">序列化和反序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">JVM类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URLDNS%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%A9%E7%94%A8%E9%93%BE"><span class="toc-text">URLDNS反序列化利用链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B"><span class="toc-text">常见类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet-API%E7%B1%BB"><span class="toc-text">Servlet-API类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">Servlet内存马</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
   <div class="sidebar-author-name">mX1@0</div>
   <div class="sidebar-description"></div>
@@ -293,11 +305,15 @@
     
   
 </div>
-
+</div>
         
       
       
         
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
         
       
     </div>
@@ -315,7 +331,7 @@
       <div class="article-date">
   <span class="article-date-link" data-aos="zoom-in">
     <time datetime="2025-04-06T07:24:33.090Z" itemprop="datePublished">2025-04-06</time>
-    <time style="display: none;" id="post-update-time">2025-04-06</time>
+    <time style="display: none;" id="post-update-time">2025-08-20</time>
   </span>
 </div>
 
@@ -328,7 +344,130 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h1 id="JAVA内存马"><a href="#JAVA内存马" class="headerlink" title="JAVA内存马"></a>JAVA内存马</h1>
+        <h1 id="JAVA内存马"><a href="#JAVA内存马" class="headerlink" title="JAVA内存马"></a>JAVA内存马</h1><h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>先来一个简单Dog类</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> {</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> b;</span><br><span class="line">    Dog(){}</span><br><span class="line">    Dog(String name){</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>{</span><br><span class="line">        System.out.println(name + <span class="string">":嗷嗷叫"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">say</span><span class="params">(String massage)</span>{</span><br><span class="line">        System.out.println(name + <span class="string">":"</span> + massage);</span><br><span class="line">    }</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Dog{name='"</span> + name + <span class="string">"'}"</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>主类</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">"旺财"</span>);</span><br><span class="line">        dog.say();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们写代码的时候视线知道了Dog类的信息，自然无需反射就可以使用</p>
+<p><strong>反射</strong></p>
+<p>​		Java反射机制的核心是在程序运行时动态加载类并获取类的详细信息，从而操作类或对象的属性和方法。</p>
+<p>​		如果你不知道类或对象的具体信息，自然也就没办法在编码阶段使用new来创建对象和使用对象。你就可以使用反射来使用Dog类。</p>
+<p>​		比如在spring中，就有使用反射来动态构造类和属性的使用</p>
+<p><strong>反射的应用场景</strong></p>
+<ul>
+<li>在编译时根本无法知道该对象或类可能属于哪些类，程序只依靠运行时信息来发现该对象和类的真实信息</li>
+<li>比如：log4j，Servlet、SSM框架技术都用到了反射机制</li>
+</ul>
+<p><strong>反射操作</strong></p>
+<ol>
+<li>获取类(相关类：Class.forName)</li>
+<li>根据类创建对象<br>  a. 调用无参构造方法实例化对象<br>  b. 调用有参构造方法创建对象</li>
+<li>为对象属性赋值</li>
+<li>调用对象方法<br> a.重载情况</li>
+</ol>
+<p>反射的代码</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        <span class="type">Class</span> <span class="variable">c</span> <span class="operator">=</span> Class.forName(<span class="string">"org.example.Dog"</span>);			<span class="comment">//获取类</span></span><br><span class="line">        <span class="type">Constructor</span> <span class="variable">cs</span> <span class="operator">=</span> c.getDeclaredConstructor(String.class);        <span class="comment">//获取构造器</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> cs.newInstance(<span class="string">"旺财"</span>);			<span class="comment">//实例化对象</span></span><br><span class="line">        System.out.println(o);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        for(Field f : c.getFields()){       //获取所有变量，但是只能获取public属性的，如果想哟获取全部使用getDeclaredFields()</span></span><br><span class="line"><span class="comment">//            System.out.println(f);</span></span><br><span class="line"><span class="comment">//        }</span></span><br><span class="line">        <span class="type">Field</span> <span class="variable">f</span> <span class="operator">=</span> c.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">        f.setAccessible(<span class="literal">true</span>);      <span class="comment">//更改访问级别</span></span><br><span class="line">        f.set(o, <span class="string">"大黄"</span>);				<span class="comment">//更改变量</span></span><br><span class="line">        System.out.println(o);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        for(Method m : c.getDeclaredMethods()){</span></span><br><span class="line"><span class="comment">//            System.out.println(m);</span></span><br><span class="line"><span class="comment">//        }</span></span><br><span class="line">        <span class="type">Method</span> <span class="variable">m</span> <span class="operator">=</span> c.getDeclaredMethod(<span class="string">"say"</span>,String.class);</span><br><span class="line">        m.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        m.invoke(o,<span class="string">"汪汪汪"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h2><ul>
+<li>Java序列化是指把Java对象转换为字节序列的过程便于保存在内存、文件、数据库中。</li>
+<li>Java反序列化是指把字节序列恢复为Java对象的过程。</li>
+</ul>
+<p><strong>序列化的应用场景</strong></p>
+<p>​		一种是将对象持久化保存到硬盘/数据库。序列化机制并不是Java语言才有的。我们知道Java对象的数据都是存放在内存中的。但内存不具备持久化特性，一旦进程关闭或设备关机，内存中的数据将永远消失。但有些场景却需要将对象持久化保存，例如用户的Session，如果Session缓存清空，用户就需要重新登陆，为了使缓存系统内存中的Session对象一直有效，就需要有一种机制将对象从内存中保存入磁盘，并且待系统重启后还能将Session对象恢复到内存中，这个过程就是对象序列化与反序列化的过程，从而避免了用户会话的有效性受系统故障的影响。<br>​		此外还有一种场景就是需要将一台主机中的对象通过网络传输给另一台机器，如RPC，RMI，网络传输等场景。</p>
+<p><strong>序列化相关协议</strong></p>
+<p>对象的反序列化技术实现并不唯一。常见的反序列化协议有：</p>
+<ul>
+<li>XML&amp;SOAP</li>
+<li>JSON</li>
+<li>Protobuf</li>
+<li>Java Serializable接口</li>
+</ul>
+<p>Dog类</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> {</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> b;</span><br><span class="line">    Dog(){}</span><br><span class="line">    Dog(String name){</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">say</span><span class="params">()</span>{</span><br><span class="line">        System.out.println(name + <span class="string">":嗷嗷叫"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">say</span><span class="params">(String massage)</span>{</span><br><span class="line">        System.out.println(name + <span class="string">":"</span> + massage);</span><br><span class="line">    }</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Dog{name='"</span> + name + <span class="string">"'}"</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">readObject</span><span class="params">(ObjectInputStream in)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        in.defaultReadObject();</span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">"calc"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Ser类，执行序列化和反序列化</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Ser</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">serializable</span><span class="params">(String path,Object obj)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(path));</span><br><span class="line">        oos.writeObject(obj);       <span class="comment">//序列化</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">unserializable</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span>  <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(path));</span><br><span class="line">        <span class="keyword">return</span> ois.readObject();       <span class="comment">//反序列化</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">"大黄"</span>);</span><br><span class="line">        serializable(<span class="string">"ser.bin"</span>,dog);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> unserializable(<span class="string">"ser.bin"</span>);</span><br><span class="line">        System.out.println(o);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>Dog</code>类中重写了<code>readObject</code>方法，并且该方法包含了恶意代码 <code>Runtime.getRuntime().exec("calc")</code></p>
+<ul>
+<li>当你调用 <code>unserializable("ser.bin")</code> 时</li>
+<li>Java会读取序列化文件并开始反序列化<code>Dog</code>对象</li>
+<li>由于<code>Dog</code>类有自定义的<code>readObject</code>方法，Java会调用它</li>
+<li>方法中的 <code>Runtime.getRuntime().exec("calc")</code> 执行了Windows的计算器程序</li>
+</ul>
+<h2 id="JVM类加载器"><a href="#JVM类加载器" class="headerlink" title="JVM类加载器"></a>JVM类加载器</h2><p><strong>类加载器</strong><br>        类加载器是一个负责加载类的对象，用于实现类加载过程中的加载这一步。每个Java类都有一个引用指向加载它的 ClassLoader。<br>        简单来说，类加载器的主要作用就是加载 Java 类的字节码（class文件）到 JVM 中（在内存中生成一个代表该类的Class对象）。字节码可以是Java源程序（java文件）经过javac编译得来，也可以是通过工具动态生成或者通过网络下载得来。</p>
+<p><strong>类加载器分类</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-20%20111328.png" style="zoom:67%;">
+
+<p><strong>BootStrapClassLoader(启动类加载器）</strong></p>
+<p>​		最顶层的加载类，由C++实现，通常表示为null，并且没有父级，主要用来加载 JDK 内部的核心类库（<code>%JAVA_HOME%/lib</code>目录下的<code>rt. jar</code>、<code>resources. jar</code>、<code>charsets.jar</code>等 jar 包和类）以及被<code>-Xbootclasspath</code>参数指定的路径下的所有类。</p>
+<p><strong>Extension ClassLoader(扩展类加载器）</strong></p>
+<p>​		主要负责加载 <code>%JRE_HOME%/lib/ext</code> 目录下的jar包和类以及被 <code>java.ext.dirs</code> 系统变量所指定的路径下的所有类</p>
+<p><strong>AppClassLoader(应用程序类加载器）</strong></p>
+<p>​		面向我们用户的加载器，负责加载当前应用classpath下的所有jar包和类。</p>
+<p><strong>自定义加载器</strong></p>
+<p>​		除了这三种类加载器之外，用户还可以加入自定义的类加载器来进行拓展，以满足自己的特殊需求。比如，我们可以对Java类的字节码（.class文件）进行加密，加载时再利用自定义的类加载器对其解密。</p>
+<p><strong>双亲委派模型</strong></p>
+<p>​		ClassLoader类使用委托模型来搜索类和资源。每个ClassLoader实例都有一个相关的父类加载器。需要查找类或资源时，ClassLoader实例会在试图亲自查找类或资源之前，将搜索类或资源的任务委托给其父类加载器。虚拟机中被称为“bootstrapclassloader”的内置类加载器本身没有父类加载器，但是可以作为ClassLoader实例的父类加载器。</p>
+<p>URLClassLoader类加载器</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.net.URLClassLoader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassLoaderTest</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {</span><br><span class="line">        <span class="type">URLClassLoader</span> <span class="variable">cl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">URLClassLoader</span>(</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">URL</span>[]{<span class="keyword">new</span> <span class="title class_">URL</span>(<span class="string">"file:///E:\\Test\\"</span>)}		<span class="comment">//可以为网络地址</span></span><br><span class="line">        );</span><br><span class="line">        Class&lt;?&gt; c = cl.loadClass(<span class="string">"Person"</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> c.newInstance();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>实例文件</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> {</span><br><span class="line">  <span class="keyword">static</span> String a;</span><br><span class="line">  <span class="keyword">static</span> <span class="type">int</span> b;</span><br><span class="line">  <span class="keyword">static</span> {</span><br><span class="line">    System.out.println(<span class="string">"静态方法块"</span>);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">()</span> {</span><br><span class="line">    System.out.println(<span class="string">"无参构造器"</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用<code>javac -encoding UTF-8 Person.java</code>编译生成Person.class</p>
+<p>执行自定义加载Person.class，输出</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">静态方法块</span><br><span class="line">无参构造器</span><br></pre></td></tr></tbody></table></figure>
+
+<p>同时，URL也可以是网络地址，</p>
+<p>自定义类加载器</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyClassLoader</span> <span class="keyword">extends</span> <span class="title class_">ClassLoader</span>{</span><br><span class="line">    String path;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyClassLoader</span><span class="params">(String path)</span> {</span><br><span class="line">        <span class="built_in">this</span>.path = path;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException {</span><br><span class="line">        <span class="type">String</span> <span class="variable">fullpath</span> <span class="operator">=</span> path + name.replace(<span class="string">'.'</span>,<span class="string">'/'</span>).concat(<span class="string">".class"</span>);</span><br><span class="line">        <span class="type">byte</span>[] bytes;</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            bytes = Files.readAllBytes(Paths.get(fullpath));</span><br><span class="line">        } <span class="keyword">catch</span> (IOException e) {</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> defineClass(name,bytes,<span class="number">0</span>,bytes.length);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>测试自定义类加载器</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.net.URLClassLoader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassLoaderTest</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {</span><br><span class="line">        <span class="type">MyClassLoader</span> <span class="variable">cl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyClassLoader</span>(<span class="string">"E:\\Test\\"</span>);</span><br><span class="line">        Class&lt;?&gt; c = cl.findClass(<span class="string">"Person"</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> c.newInstance();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="URLDNS反序列化利用链"><a href="#URLDNS反序列化利用链" class="headerlink" title="URLDNS反序列化利用链"></a>URLDNS反序列化利用链</h2><p>演示效果</p>
+<p>用反序列化工具选择URLDNS链，输入bp的collaborator模块生成的域名，导出bin文件，在事先写好的反序列化函数中进行反序列化，bp上收到请求数据</p>
+<p>反序列化函数</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Ser</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">serializable</span><span class="params">(String path,Object obj)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(path));</span><br><span class="line">        oos.writeObject(obj);       <span class="comment">//序列化</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">unserializable</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span>  <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(path));</span><br><span class="line">        <span class="keyword">return</span> ois.readObject();       <span class="comment">//反序列化</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception {</span><br><span class="line">        unserializable(<span class="string">"urldns.bin"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>BP效果</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-20%20145317.png" style="zoom:67%;">
+
+
+
+
+
+
+
+
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>​		随着安全防护技术的发展，传统的文件型 WebShell 越来越难以逃避检测和清理。因此，攻击者开始植入一种无文件落地的木马——内存马（MemoryShell)</p>
+<p>​		内存马是一种将恶意代码直接注入到应用程序运行时内存中的技术手段。与传统的基于文件的 WebShell 不同，内存马不依赖于磁盘上的任何持久化存储，而是利用 Java、.NET等语言提供的反射机制或动态编译功能，在内存中创建并执行恶意逻辑。这种方式不仅能够绕过大多数基于文件扫描的安全防护措施，而且由于其高度的灵活性和隐蔽性，使得一旦成功植入，很难被发现和清除</p>
+<h2 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h2><ol>
+<li>动态注册 servlet/filter/listener（使用servlet-api的具体实现）</li>
+<li>动态注册 interceptor/controller（使用框架如spring/struts2）</li>
+<li>动态注册使用职责链设计模式的中间件、框架的实现（例如Tomcat的Pipeline &amp; Valve，Grizzly的FilterChain &amp; Filter 等等）</li>
+<li>使用java agent技术写入字节码</li>
+</ol>
+<h2 id="Servlet-API类"><a href="#Servlet-API类" class="headerlink" title="Servlet-API类"></a>Servlet-API类</h2><h3 id="Servlet内存马"><a href="#Servlet内存马" class="headerlink" title="Servlet内存马"></a>Servlet内存马</h3><p>​		Servlet内存马是通过动态注册Servlet来实现的一种内存攻击手段。在JavaWeb应用中，Servlet作为处理客户端请求的核心组件之一，能够直接处理HTTP请求并返回响应。攻击者利用这一点，通过程序化地向Web容器（如Tomcat）在运行时注册恶意的Servlet对象，使得该Servlet能够在没有实际文件存在的情况下执行恶意程序</p>
+<p>​		在编写我们自己的内存马之前，我们需要先搞清楚一个问题：我们写的Servlet类是怎么被装载到Web容器的</p>
+<p>实现机制：</p>
+<ol>
+<li>创建恶意Servlet类</li>
+<li>获取context：StandardContext（通过反射）</li>
+<li>从context获取Wrapper对象</li>
+<li>将自己的Servlet封装进Wrapper对象</li>
+</ol>
+<figure class="highlight jsp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line"><span class="comment">//定义恶意的servlet</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MemServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span>{</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> Servlet{</span><br><span class="line">	Runtime.getRuntime().exec(<span class="string">"calc"</span>);</span><br><span class="line">	}</span><br><span class="line">}	</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%！</span><br><span class="line"><span class="comment">//通过反射，拿到standardContext</span></span><br><span class="line">    <span class="type">ServletContext</span> <span class="variable">servletContext</span> <span class="operator">=</span> request.getServletContext();</span><br><span class="line"><span class="comment">//通过standardContext拿到contextPath</span></span><br><span class="line">	<span class="type">Filed</span> <span class="variable">applicationContextField</span> <span class="operator">=</span> servletContext.getClass().getDeclaredField(<span class="string">"context"</span>);</span><br><span class="line">	applicationContextField.setAccessible(<span class="literal">true</span>);</span><br><span class="line">	<span class="type">ApplicationContext</span> <span class="variable">applicationContext</span> <span class="operator">=</span> applicationContextField.get(servletContext);</span><br><span class="line"></span><br><span class="line">%&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
@@ -352,7 +491,7 @@
         
           
           
-            <img data-src="/covers/4.jpg" data-sizes="auto" alt="蓝队应急响应" class="lazyload">
+            <img data-src="/covers/16.jpg" data-sizes="auto" alt="蓝队应急响应" class="lazyload">
           
         
         <a href="/2025/04/10/lan-dui-ying-ji-xiang-ying/"></a>
@@ -370,7 +509,7 @@
       
         
         
-          <img data-src="/covers/11.jpg" data-sizes="auto" alt="委派攻击" class="lazyload">
+          <img data-src="/covers/22.jpg" data-sizes="auto" alt="委派攻击" class="lazyload">
         
       
       <a href="/2024/10/25/wei-pai-gong-ji/"></a>
@@ -423,10 +562,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        260.3k
+        276.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        16:08
+        17:12
       </div>
     
     
@@ -456,7 +595,16 @@
   <div class="sidebar-wrap">
     
       
-        <div class="sidebar-author">
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">JAVA内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">序列化和反序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">JVM类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URLDNS%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%A9%E7%94%A8%E9%93%BE"><span class="toc-text">URLDNS反序列化利用链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B"><span class="toc-text">常见类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet-API%E7%B1%BB"><span class="toc-text">Servlet-API类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">Servlet内存马</span></a></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
   <div class="sidebar-author-name">mX1@0</div>
   <div class="sidebar-description"></div>
@@ -527,12 +675,16 @@
     
   
 </div>
-
+</div>
       
     
   </div>
   
     
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
     
   
 </nav>
@@ -612,9 +764,9 @@
           url: "http://example.com/2025/04/06/java-nei-cun-ma/",
           excerpt: "",
           description: "",
-          stripContent: "JAVA内存马",
+          stripContent: "JAVA内存马反射先来一个简单Dog类 12345678910111213141516171819202122package org.example;public class Dog {    private String name;    public int a;    public int b;    Dog(){}    Dog(String name){        this.name = name;    }    void say(){        System.out.pri",
           date: "Sun Apr 06 2025 15:24:33 GMT+0800",
-          updated: "Sun Apr 06 2025 15:24:55 GMT+0800",
+          updated: "Wed Aug 20 2025 14:53:37 GMT+0800",
           cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
         };
       </script>
