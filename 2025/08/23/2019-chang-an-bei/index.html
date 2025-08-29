@@ -1,0 +1,983 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    2019 长安杯 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="2019 长安杯 原服务器存在多少硬盘分区    原服务器中硬盘分区其中含有一个LVM逻辑卷的分区，请找出该分区内开始的逻辑区块地址（LBA）。（答案格式： 扇区，Sector）    该LVM逻辑卷分区内root逻辑卷的文件系统是什么？ 该LVM逻辑卷分区内root逻辑卷的物理大小是多少？（单位：byte）  注意硬盘扇区的大小是512字节（byte） 35643392*512   网站目录所在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019 长安杯">
+<meta property="og:url" content="http://example.com/2025/08/23/2019-chang-an-bei/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="2019 长安杯 原服务器存在多少硬盘分区    原服务器中硬盘分区其中含有一个LVM逻辑卷的分区，请找出该分区内开始的逻辑区块地址（LBA）。（答案格式： 扇区，Sector）    该LVM逻辑卷分区内root逻辑卷的文件系统是什么？ 该LVM逻辑卷分区内root逻辑卷的物理大小是多少？（单位：byte）  注意硬盘扇区的大小是512字节（byte） 35643392*512   网站目录所在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-23_193640_258.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-23_194122_857.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_143639_153.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_143813_749.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_150349_640.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_150930_238.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_172224_216.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_173406_487.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_174803_174.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-25_101345_491.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-25_110957_518.png">
+<meta property="article:published_time" content="2025-08-23T11:10:57.092Z">
+<meta property="article:modified_time" content="2025-08-25T03:12:03.065Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="长安杯">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-23_193640_258.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="2019 长安杯">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">2019 长安杯</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E9%95%BF%E5%AE%89%E6%9D%AF"><span class="toc-text">2019 长安杯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3"><span class="toc-text">会话流程详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1. 连接服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%97%AE%E5%80%99%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">2. 客户端问候服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%EF%BC%88%E7%99%BB%E5%BD%95%EF%BC%89"><span class="toc-text">3. 身份认证（登录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E5%8F%91%E4%BB%B6%E4%BA%BA%E5%92%8C%E6%94%B6%E4%BB%B6%E4%BA%BA"><span class="toc-text">4. 设置发件人和收件人</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E4%BC%A0%E8%BE%93%E9%82%AE%E4%BB%B6%E6%95%B0%E6%8D%AE"><span class="toc-text">5. 传输邮件数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E9%82%AE%E4%BB%B6%E5%86%85%E5%AE%B9%EF%BC%88%E6%A0%B8%E5%BF%83%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-text">6. 邮件内容（核心部分）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E7%BB%93%E6%9D%9F%E4%BC%9A%E8%AF%9D"><span class="toc-text">7. 结束会话</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">57</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-2019 长安杯" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-08-23T11:10:57.092Z" itemprop="datePublished">2025-08-23</time>
+    <time style="display: none;" id="post-update-time">2025-08-25</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/" data-aos="zoom-in">CTF</a><a class="article-category-link" href="/categories/CTF/%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/" data-aos="zoom-in">电子取证</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="2019-长安杯"><a href="#2019-长安杯" class="headerlink" title="2019 长安杯"></a>2019 长安杯</h1><ol start="4">
+<li>原服务器存在多少硬盘分区</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-23_193640_258.png"></p>
+<ol start="5">
+<li>原服务器中硬盘分区其中含有一个LVM逻辑卷的分区，请找出该分区内开始的逻辑区块地址（LBA）。（答案格式： 扇区，Sector）</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/1.png"></p>
+<ol start="6">
+<li>该LVM逻辑卷分区内root逻辑卷的文件系统是什么？</li>
+<li>该LVM逻辑卷分区内root逻辑卷的物理大小是多少？（单位：byte）</li>
+</ol>
+<p><strong>注意硬盘扇区的大小是512字节（byte）</strong> 35643392*512</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-23_194122_857.png"></p>
+<ol start="21">
+<li>网站目录所在的主机路径为下列选项中的哪个？</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 53766d68636f</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_143639_153.png"></p>
+<ol start="22">
+<li>网站日志的路径在哪？（格式：容器ID：路径）</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 16fc160060c1 /bin/bash</span><br><span class="line">ls</span><br><span class="line">find / -name nginx</span><br><span class="line">more /etc/nginx/nginx.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_143813_749.png" style="zoom: 67%;">
+
+<ol start="25">
+<li>当我们想将网站重构好时，访问网站时，web应用在其中承担什么样的工作？</li>
+</ol>
+<p>查看配置文件：/var/lib/docker/overlay2/3a12f92867577b851a302ae4431e87aa2d9b57d6acf286b95df29c08f2c61e41/diff/ete/nginx/nginx.conf</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_150349_640.png" style="zoom:67%;">
+
+<p>可知为转发，转发至172.17.0.3:8012，即容器16fc的8012端口</p>
+<ol start="26">
+<li>从网站日志中，我们可以看到嫌疑人入侵服务器所使用的IP是（  ）</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@16fc160060c1:/etc/nginx/logs# more jrweb.log</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看容器中/etc/nginx/logs/jrweb.log日志文件，可以看到恶意行为</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_150930_238.png"></p>
+<p><strong>数据库服务器</strong></p>
+<p>通过查看mongo进程信息发现mongo的配置信息，查看mongd.conf文件发现mongod的日志配置情况和安装物理路径</p>
+<p>前置准备</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -anplt</span><br><span class="line">ps aux | grep mongod</span><br><span class="line">more /etc/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_172224_216.png"></p>
+<ol start="35">
+<li><p>该数据库服务器使用数据库的安装路径在哪？</p>
+</li>
+<li><p>数据库的日志文件路径在哪里？</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbPath就是安装路径</span><br><span class="line">systemLog下的path就是数据库日志文件路径</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_173406_487.png" style="zoom: 67%;">
+
+<ol start="40">
+<li>该用户表被做过什么样的修改？</li>
+</ol>
+<p>查看.dbshell可以看到用户表的修改， 重点看update</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-24_174803_174.png"></p>
+<ol start="69">
+<li>嫌疑人成功连接至192.168.184.128服务器的时间为：</li>
+</ol>
+<p>SECSH这个点已经成功连接上</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-25_101345_491.png"></p>
+<p>（1）<code>folder.ini</code></p>
+<ul>
+<li><strong>文件类型</strong>:<br>  这是一个<strong>初始化配置文件</strong>（INI format）。</li>
+<li><strong>作用</strong>:<br>  在这个上下文中，它最可能是Xshell用来存储<strong>文件夹显示属性</strong>的配置文件。例如，它可能记录了Xshell界面中“会话管理器”里对应文件夹的显示名称、排序方式或其他视图元数据。用户通常不需要手动编辑这个文件。</li>
+</ul>
+<p>（2）<code>新建会话.xsh</code></p>
+<ul>
+<li><strong>文件名解析</strong>:<ul>
+<li><code>新建会话</code>: 这是一个中文名称，意思是 “New Session”。</li>
+<li><code>.xsh</code>: 这是 <strong>Xshell会话配置文件</strong> 的专属扩展名。</li>
+</ul>
+</li>
+<li><strong>作用</strong>:<br>  这是一个Xshell的<strong>会话配置文件</strong>。它保存了连接到某台服务器的所有设置信息，例如：<ul>
+<li>服务器IP地址（如 <code>192.168.168.128</code>）</li>
+<li>端口号（如 <code>22</code>）</li>
+<li>协议类型（如 SSH）</li>
+<li>用户名</li>
+<li>认证方式（如密码或公钥认证）</li>
+<li>使用的密钥文件（可能会指向 <code>key_192.168.168.128_22.pub</code> 对应的私钥）</li>
+<li>字符编码、终端类型、颜色方案等个性化设置。</li>
+</ul>
+</li>
+<li><strong>如何使用</strong>:<br>  在Xshell中双击这个文件，软件就会自动读取配置并尝试连接到文件中定义的服务器。</li>
+</ul>
+<p>（3）<code>SECSH</code></p>
+<ul>
+<li><strong>文件类型</strong>:<br>  这很可能是一个<strong>文件夹（目录）</strong>，而不是文件（虽然在列表里看起来像文件）。在有些显示方式中，文件夹不会明确标出斜杠 <code>/</code>。</li>
+<li><strong>含义</strong>:<br>  <code>SECSH</code> 是 <strong>Secure Shell</strong> 的缩写，这直接指明了它与SSH安全连接相关。</li>
+<li><strong>作用</strong>:<br>  这个目录<strong>极有可能是Xshell用来存储所有会话配置文件的默认文件夹</strong>。Xshell的会话文件（<code>.xsh</code> 文件）通常就保存在名为 <code>SECSH</code> 的目录下。</li>
+</ul>
+<p>（4）<code>key_192.168.168.128_22.pub</code></p>
+<ul>
+<li><strong>文件名解析</strong>:<ul>
+<li><code>key</code>: 表明这是一个密钥文件。</li>
+<li><code>192.168.168.128</code>: 这是一个<strong>IP地址</strong>，通常是你想连接的目标服务器的地址。</li>
+<li><code>22</code>: 这是<strong>端口号</strong>，22是SSH服务的默认端口。</li>
+<li><code>.pub</code>: 文件扩展名，代表这是一个<strong>公钥（Public Key）</strong> 文件。</li>
+</ul>
+</li>
+<li><strong>作用</strong>:<br>  这是用于<strong>SSH密钥认证</strong>的公钥文件。在SSH连接中，为了免密码登录，通常会使用一对密钥（私钥和公钥）。将公钥（就是这个文件的内容）放置到服务器的指定位置（如 <code>~/.ssh/authorized_keys</code> 文件中），然后本机使用对应的私钥进行连接，就可以实现安全且无需输入密码的登录。</li>
+<li><strong>总结</strong>: 这是用于连接到服务器 <code>192.168.168.128:22</code> 的SSH认证公钥。</li>
+</ul>
+<ol start="72">
+<li>请计算该下载文件（we.tar.gz）的sha256值：</li>
+</ol>
+<p>通过数据包找到一个<strong>SMTP 邮件发送会话记录</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN//img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-25_110957_518.png"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">220 smtp.qq.com Esmtp QQ Mail Server</span><br><span class="line"></span><br><span class="line">EHLO DESKTOP-11NVT5D</span><br><span class="line"></span><br><span class="line">250-smtp.qq.com</span><br><span class="line">250-PIPELINING</span><br><span class="line">250-SIZE 73400320</span><br><span class="line">250-STARTTLS</span><br><span class="line">250-AUTH LOGIN PLAIN</span><br><span class="line">250-AUTH=LOGIN</span><br><span class="line">250-MAILCOMPRESS</span><br><span class="line">250 8BITMIME</span><br><span class="line"></span><br><span class="line">AUTH LOGIN</span><br><span class="line"></span><br><span class="line">334 VXNlcm5hbWU6</span><br><span class="line"></span><br><span class="line">aGx0ZXN0MTIzQGZvcmVuc2l4LmNu</span><br><span class="line"></span><br><span class="line">334 UGFzc3dvcmQ6</span><br><span class="line"></span><br><span class="line">dGVzdDQ1Nkhs</span><br><span class="line"></span><br><span class="line">235 Authentication successful</span><br><span class="line"></span><br><span class="line">MAIL FROM: &lt;hltest123@forensix.cn&gt; SIZE=2534</span><br><span class="line"></span><br><span class="line">250 Ok</span><br><span class="line"></span><br><span class="line">RCPT TO: &lt;1649840939@qq.com&gt;</span><br><span class="line"></span><br><span class="line">250 Ok</span><br><span class="line"></span><br><span class="line">DATA</span><br><span class="line"></span><br><span class="line">354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;</span><br><span class="line"></span><br><span class="line">Date: Sat, 13 Jul 2019 17:56:09 +0800</span><br><span class="line">From: "hltest123@forensix.cn" &lt;hltest123@forensix.cn&gt;</span><br><span class="line">To: 1649840939 &lt;1649840939@qq.com&gt;</span><br><span class="line">Subject: =?GB2312?B?sbi33dK7z8LD3NS/?=</span><br><span class="line">X-Priority: 3</span><br><span class="line">X-GUID: 96A6B872-AEFB-4317-B072-E385CFF532AC</span><br><span class="line">X-Has-Attach: yes</span><br><span class="line">X-Mailer: Foxmail 7.2.11.303[cn]</span><br><span class="line">Mime-Version: 1.0</span><br><span class="line">Message-ID: &lt;201907131756092264712@forensix.cn&gt;</span><br><span class="line">Content-Type: multipart/mixed;</span><br><span class="line">	boundary="----=_001_NextPart781306505705_=----"</span><br><span class="line"></span><br><span class="line">This is a multi-part message in MIME format.</span><br><span class="line"></span><br><span class="line">------=_001_NextPart781306505705_=----</span><br><span class="line">Content-Type: multipart/alternative;</span><br><span class="line">	boundary="----=_002_NextPart181106771031_=----"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------=_002_NextPart181106771031_=----</span><br><span class="line">Content-Type: text/plain;</span><br><span class="line">	charset="GB2312"</span><br><span class="line">Content-Transfer-Encoding: base64</span><br><span class="line"></span><br><span class="line">DQqxuLfd0rvPwg0KDQoNCg0K</span><br><span class="line"></span><br><span class="line">------=_002_NextPart181106771031_=----</span><br><span class="line">Content-Type: text/html;</span><br><span class="line">	charset="GB2312"</span><br><span class="line">Content-Transfer-Encoding: quoted-printable</span><br><span class="line"></span><br><span class="line">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=3D"content-type" content=3D"text/html; charse=</span><br><span class="line">t=3DGB2312"&gt;&lt;style&gt;body { line-height: 1.5; }body { font-size: 10.5pt; fon=</span><br><span class="line">t-family: 'Microsoft YaHei UI'; color: rgb(0, 0, 0); line-height: 1.5; }&lt;/=</span><br><span class="line">style&gt;&lt;/head&gt;&lt;body&gt;=0A&lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;=0A&lt;div&gt;=B1=B8=B7=DD=D2=</span><br><span class="line">=BB=CF=C2&lt;/div&gt;&lt;hr style=3D"WIDTH: 210px; HEIGHT: 1px" color=3D"#b5c4df" s=</span><br><span class="line">ize=3D"1" align=3D"left"&gt;=0A&lt;div&gt;&lt;span&gt;&lt;div style=3D"MARGIN: 10px; FONT-FA=</span><br><span class="line">MILY: verdana; FONT-SIZE: 10pt"&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;=0A&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">------=_002_NextPart181106771031_=------</span><br><span class="line"></span><br><span class="line">------=_001_NextPart781306505705_=----</span><br><span class="line">Content-Type: application/octet-stream;</span><br><span class="line">	name="BitLocker.rar"</span><br><span class="line">Content-Transfer-Encoding: base64</span><br><span class="line">Content-Disposition: attachment;</span><br><span class="line">	filename="BitLocker.rar"</span><br><span class="line"></span><br><span class="line">UmFyIRoHAQDz4YLrCwEFBwAGAQGAgIAAtGmLkFoCAzzQAwSsBSF0+7l2gAMADUJpdExvY2tlci5U</span><br><span class="line">WFQwAQADDwwjH0m6Pe1LyUTe5Y8r52AqXD7EpTgLep1VF8yLo4a2B0AOOeCKLgNSUG8gCgMCtCdI</span><br><span class="line">TWA51QFwczPdFjn5U4C66uv4nn1Z93ck4Q+kk5Ns+EHqhbZKqh6olwMFXa9DDB22XPYL5GEpFk3x</span><br><span class="line">o/Z+0P2/wssJ/uecUaoRtHjrjauLguuyWYzylF3vy9yrQah5+RN8vg7/CwW92M/yY7wAOT2xBIhQ</span><br><span class="line">VITmG+IMeYM2Um1uscRv2gYEM1yKc1Dohqq3YdyqKuHZcESFnl8GSyych4GZGzlNJ4CPg8Gyx7nQ</span><br><span class="line">e4a1+xCl67AJ2mHSl5HWOtdDqw2f5l4rXO8LuYrnB+F6Vcksg0bHmG5V0j26beNDrQlJ+5GIxKiS</span><br><span class="line">ooTGHNDef/qzIETkXsXYZu+gkzVfefhmZdqO4HR4KXxmRgrYDO+8S4D8upAYibwAmSVLJ6oKX9Jh</span><br><span class="line">NdoJCSyLrR90mcGZVYyzeg3oYzvTYOrYAz/2ZFYmmEj1fvDnfu1ci/wW6mWYVUtCBmT8oK3raK73</span><br><span class="line">LtlUMUHW2t2KzddUfPQmyegJerwiPDIQTjCtVrv8s42sJ47qcYn/fNtFz7Bb10js6oGNiqRoMOCk</span><br><span class="line">QF9znlNbLwiFS2h6dUjJYFpLDsyOOvDwUpEanPsBznbkGzAi90sOQ527GW++kdbak7VKBK6kEn6+</span><br><span class="line">Q+vYFCGzZUe0LB8qMh13VlEDBQQA</span><br><span class="line"></span><br><span class="line">------=_001_NextPart781306505705_=------</span><br><span class="line"></span><br><span class="line">.</span><br><span class="line"></span><br><span class="line">250 Ok: queued as </span><br><span class="line"></span><br><span class="line">QUIT</span><br><span class="line"></span><br><span class="line">221 Bye</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<h3 id="会话流程详解"><a href="#会话流程详解" class="headerlink" title="会话流程详解"></a>会话流程详解</h3><h4 id="1-连接服务器"><a href="#1-连接服务器" class="headerlink" title="1. 连接服务器"></a>1. 连接服务器</h4><ul>
+<li><code>220 smtp.qq.com Esmtp QQ Mail Server</code><ul>
+<li>客户端连接到 QQ 邮箱的 SMTP 服务器（端口通常是 25 或 465/587），服务器返回 <code>220</code> 响应，告知其身份。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-客户端问候服务器"><a href="#2-客户端问候服务器" class="headerlink" title="2. 客户端问候服务器"></a>2. 客户端问候服务器</h4><ul>
+<li><code>EHLO DESKTOP-11NVT5D</code><ul>
+<li>客户端（从一台名为 <code>DESKTOP-11NVT5D</code> 的电脑）向服务器发送 EHLO 命令，开始会话并表明自己支持 ESMTP 扩展功能。</li>
+</ul>
+</li>
+<li><code>250-...</code> 系列响应<ul>
+<li>服务器回应，列出它支持的功能，包括：<ul>
+<li><code>PIPELINING</code>：支持管道操作，可以连续发送多个命令。</li>
+<li><code>SIZE 73400320</code>：允许的邮件最大大小（约 70MB）。</li>
+<li><code>STARTTLS</code>：支持升级到加密连接（但此会话中后续未使用，可能已在使用 SSL/TLS 连接）。</li>
+<li><code>AUTH LOGIN PLAIN</code>：支持的认证方式（LOGIN 和 PLAIN）。</li>
+<li><code>8BITMIME</code>：支持 8位字节传输。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-身份认证（登录）"><a href="#3-身份认证（登录）" class="headerlink" title="3. 身份认证（登录）"></a>3. 身份认证（登录）</h4><ul>
+<li><code>AUTH LOGIN</code><ul>
+<li>客户端选择使用 <code>LOGIN</code> 方式认证。</li>
+</ul>
+</li>
+<li><code>334 VXNlcm5hbWU6</code><ul>
+<li>服务器返回 <code>334</code>，并要求“Username:”。后面的字符串 <code>VXNlcm5hbWU6</code> 是 <code>Username:</code> 的 <strong>Base64 编码</strong>。</li>
+</ul>
+</li>
+<li><code>aGx0ZXN0MTIzQGZvcmVuc2l4LmNu</code><ul>
+<li>客户端发送用户名。解码这个 Base64 字符串，得到：<code>hltest123@forensix.cn</code></li>
+</ul>
+</li>
+<li><code>334 UGFzc3dvcmQ6</code><ul>
+<li>服务器返回 <code>334</code>，要求“Password:”。<code>UGFzc3dvcmQ6</code> 是 <code>Password:</code> 的 Base64 编码。</li>
+</ul>
+</li>
+<li><code>dGVzdDQ1Nkhs</code><ul>
+<li>客户端发送密码。解码这个 Base64 字符串，得到：<code>test456Hl</code></li>
+</ul>
+</li>
+<li><code>235 Authentication successful</code><ul>
+<li>服务器确认认证成功。</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-设置发件人和收件人"><a href="#4-设置发件人和收件人" class="headerlink" title="4. 设置发件人和收件人"></a>4. 设置发件人和收件人</h4><ul>
+<li><code>MAIL FROM: &lt;hltest123@forensix.cn&gt; SIZE=2534</code><ul>
+<li>客户端指定发件人邮箱地址，并告知邮件体大小约为 2534 字节。</li>
+</ul>
+</li>
+<li><code>250 Ok</code><ul>
+<li>服务器接受发件人地址。</li>
+</ul>
+</li>
+<li><code>RCPT TO: &lt;1649840939@qq.com&gt;</code><ul>
+<li>客户端指定收件人邮箱地址（一个 QQ 邮箱）。</li>
+</ul>
+</li>
+<li><code>250 Ok</code><ul>
+<li>服务器接受收件人地址。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-传输邮件数据"><a href="#5-传输邮件数据" class="headerlink" title="5. 传输邮件数据"></a>5. 传输邮件数据</h4><ul>
+<li><code>DATA</code><ul>
+<li>客户端请求开始传输邮件内容。</li>
+</ul>
+</li>
+<li><code>354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;</code><ul>
+<li>服务器响应，告知客户端可以开始发送数据，并以单独一行的英文句点 <code>.&lt;CR&gt;&lt;LF&gt;</code> 结束。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-邮件内容（核心部分）"><a href="#6-邮件内容（核心部分）" class="headerlink" title="6. 邮件内容（核心部分）"></a>6. 邮件内容（核心部分）</h4><p>这部分是邮件的原始源码，遵循 MIME 格式标准。</p>
+<ul>
+<li><strong>邮件头（Headers）</strong>:<ul>
+<li><code>From: "hltest123@forensix.cn" &lt;hltest123@forensix.cn&gt;</code>: 发件人</li>
+<li><code>To: 1649840939 &lt;1649840939@qq.com&gt;</code>: 收件人</li>
+<li><code>Subject: =?GB2312?B?sbi33dK7z8LD3NS/?=</code>: 邮件主题。这是经过 <strong>MIME encoded-word</strong> 编码的。解码后可知主题是：<strong>“备分一下”</strong> （使用了 GB2312 字符集，Base64 编码）。</li>
+<li><code>X-Mailer: Foxmail 7.2.11.303[cn]</code>: 明确指出发送此邮件的客户端是 <strong>Foxmail</strong>。</li>
+<li><code>Content-Type: multipart/mixed; boundary="----=_001_NextPart781306505705_=----"</code>: 声明这是一个<strong>混合内容</strong>的邮件（包含纯文本、HTML和附件），并使用指定的边界字符串来分隔不同部分。</li>
+</ul>
+</li>
+<li><strong>邮件体（Body）</strong>:<ul>
+<li><strong>第一部分（文本正文）</strong>: 是 Base64 编码的纯文本 <code>DQqxuLfd0rvPwg0KDQoNCg0K</code>，解码后是一个换行符和“备分一下”四个字。</li>
+<li><strong>第二部分（HTML正文）</strong>: 是 Quoted-Printable 编码的 HTML 内容，解码后也是显示“备分一下”以及一些格式。</li>
+<li><strong>第三部分（附件）</strong>: 这是最关键的部分。<ul>
+<li><code>Content-Type: application/octet-stream; name="BitLocker.rar"</code>: 声明这是一个附件，文件名为 <code>BitLocker.rar</code>。</li>
+<li><code>Content-Transfer-Encoding: base64</code>: 附件使用 Base64 编码。</li>
+<li>后面长长的 Base64 字符串 <code>UmFyIRoHAQDz4YLr...</code> 就是 <strong>BitLocker.rar 文件的内容</strong>。解码这段 Base64 就可以还原出这个 RAR 压缩包。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>结束符</strong>:<ul>
+<li>客户端发送一个单独的行 <code>.</code> 来告知服务器邮件内容结束。</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-结束会话"><a href="#7-结束会话" class="headerlink" title="7. 结束会话"></a>7. 结束会话</h4><ul>
+<li><code>250 Ok: queued as</code><ul>
+<li>服务器确认邮件已成功接收并放入发送队列。</li>
+</ul>
+</li>
+<li><code>QUIT</code><ul>
+<li>客户端请求断开连接。</li>
+</ul>
+</li>
+<li><code>221 Bye</code><ul>
+<li>服务器确认并关闭连接。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>使用桌面上存在的字典文件爆破压缩包</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E9%95%BF%E5%AE%89%E6%9D%AF/" rel="tag">长安杯</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/7.jpg" data-sizes="auto" alt="SQL-labs" class="lazyload">
+        
+      
+      <a href="/2025/08/21/sql-labs/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          SQL-labs
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        298.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        18:36
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E9%95%BF%E5%AE%89%E6%9D%AF"><span class="toc-text">2019 长安杯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3"><span class="toc-text">会话流程详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1. 连接服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%97%AE%E5%80%99%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">2. 客户端问候服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%EF%BC%88%E7%99%BB%E5%BD%95%EF%BC%89"><span class="toc-text">3. 身份认证（登录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E5%8F%91%E4%BB%B6%E4%BA%BA%E5%92%8C%E6%94%B6%E4%BB%B6%E4%BA%BA"><span class="toc-text">4. 设置发件人和收件人</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E4%BC%A0%E8%BE%93%E9%82%AE%E4%BB%B6%E6%95%B0%E6%8D%AE"><span class="toc-text">5. 传输邮件数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E9%82%AE%E4%BB%B6%E5%86%85%E5%AE%B9%EF%BC%88%E6%A0%B8%E5%BF%83%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-text">6. 邮件内容（核心部分）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E7%BB%93%E6%9D%9F%E4%BC%9A%E8%AF%9D"><span class="toc-text">7. 结束会话</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">57</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "2019 长安杯",
+          url: "http://example.com/2025/08/23/2019-chang-an-bei/",
+          excerpt: "",
+          description: "",
+          stripContent: "2019 长安杯 原服务器存在多少硬盘分区    原服务器中硬盘分区其中含有一个LVM逻辑卷的分区，请找出该分区内开始的逻辑区块地址（LBA）。（答案格式： 扇区，Sector）    该LVM逻辑卷分区内root逻辑卷的文件系统是什么？ 该LVM逻辑卷分区内root逻辑卷的物理大小是多少？（单位：byte）  注意硬盘扇区的大小是512字节（byte） 35643392*512   网站目录所在的主机路径为下列选项中的哪个？  1docker inspect 53766d68636f    网",
+          date: "Sat Aug 23 2025 19:10:57 GMT+0800",
+          updated: "Mon Aug 25 2025 11:12:03 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
