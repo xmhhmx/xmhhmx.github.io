@@ -1,0 +1,923 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    SRC挖掘思路 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="SRC挖掘思路任意文件下载可以在网站的下载文件的地方，更改其JS代码，将其下载文件的路径更改为服务器的敏感文件或者配置文件的路径 tips：更改路径中的文件后缀名的大小写，检查其对大小写是否敏感来判断是Windows还是Linux系统 1&lt;a class&#x3D;&quot;down&quot; href&#x3D;&quot;&#x2F;download&#x2F;view&#x2F;id&#x2F;1.html&quot;&gt;  更改为 1234Linux&lt;a class&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRC挖掘思路">
+<meta property="og:url" content="http://example.com/2025/09/25/src-wa-jue-si-lu/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="SRC挖掘思路任意文件下载可以在网站的下载文件的地方，更改其JS代码，将其下载文件的路径更改为服务器的敏感文件或者配置文件的路径 tips：更改路径中的文件后缀名的大小写，检查其对大小写是否敏感来判断是Windows还是Linux系统 1&lt;a class&#x3D;&quot;down&quot; href&#x3D;&quot;&#x2F;download&#x2F;view&#x2F;id&#x2F;1.html&quot;&gt;  更改为 1234Linux&lt;a class&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-25T13:57:11.970Z">
+<meta property="article:modified_time" content="2025-10-01T01:07:39.367Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="SRC挖掘思路">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">SRC挖掘思路</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">60</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+        
+      
+      
+        
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-SRC挖掘思路" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-09-25T13:57:11.970Z" itemprop="datePublished">2025-09-25</time>
+    <time style="display: none;" id="post-update-time">2025-10-01</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="SRC挖掘思路"><a href="#SRC挖掘思路" class="headerlink" title="SRC挖掘思路"></a>SRC挖掘思路</h1><h2 id="任意文件下载"><a href="#任意文件下载" class="headerlink" title="任意文件下载"></a>任意文件下载</h2><p>可以在网站的下载文件的地方，更改其JS代码，将其下载文件的路径更改为服务器的敏感文件或者配置文件的路径</p>
+<p>tips：更改路径中的文件后缀名的大小写，检查其对大小写是否敏感来判断是Windows还是Linux系统</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a <span class="keyword">class</span>=<span class="string">"down"</span> href=<span class="string">"/download/view/id/1.html"</span>&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>更改为</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Linux</span></span><br><span class="line">&lt;a <span class="keyword">class</span>=<span class="string">"down"</span> href=<span class="string">"../../../../../../../../etc/passwd"</span>&gt;</span><br><span class="line"><span class="title class_">Windows</span></span><br><span class="line">&lt;a <span class="keyword">class</span>=<span class="string">"down"</span> href=<span class="string">"../../../../../../../../C/boot.ini"</span>&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>常见windows和linux的敏感目录</p>
+<p><strong>Windows：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">文件或目录</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">c:/boot.ini</td>
+<td align="center">查看系统版本</td>
+</tr>
+<tr>
+<td align="center">c:/windows/php.ini</td>
+<td align="center">php配置信息</td>
+</tr>
+<tr>
+<td align="center">c:/windows/my.ini</td>
+<td align="center">MYSQL配置文件，记录管理员登陆过的MYSQL用户名和密码</td>
+</tr>
+<tr>
+<td align="center">c:/winnt/php.ini</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">c:/winnt/my.ini</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">c:\mysql\data\mysql\user.MYD</td>
+<td align="center">存储了mysql.user表中的数据库连接密码</td>
+</tr>
+<tr>
+<td align="center">c:\Program Files\RhinoSoft.com\Serv-U\ServUDaemon.ini</td>
+<td align="center">存储了虚拟主机网站路径和密码</td>
+</tr>
+<tr>
+<td align="center">c:\Program Files\Serv-U\ServUDaemon.ini</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">c:\windows\system32\inetsrv\MetaBase.xml</td>
+<td align="center">查看IIS的虚拟主机配置</td>
+</tr>
+<tr>
+<td align="center">c:\windows\repair\sam</td>
+<td align="center">存储了WINDOWS系统初次安装的密码</td>
+</tr>
+<tr>
+<td align="center">c:\Program Files\ Serv-U\ServUAdmin.exe</td>
+<td align="center">6.0版本以前的serv-u管理员密码存储于此</td>
+</tr>
+<tr>
+<td align="center">c:\Program Files\RhinoSoft.com\ServUDaemon.exe</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">C:\Documents and Settings\All Users\Application Data\Symantec\pcAnywhere*.cif文件</td>
+<td align="center">存储了pcAnywhere的登陆密码</td>
+</tr>
+<tr>
+<td align="center">c:\Program Files\Apache Group\Apache\conf\httpd.conf 或c:\apache\conf\httpd.conf</td>
+<td align="center">查看WINDOWS系统apache文件</td>
+</tr>
+<tr>
+<td align="center">c:/Resin-3.0.14/conf/resin.conf</td>
+<td align="center">查看jsp开发的网站 resin文件配置信息</td>
+</tr>
+<tr>
+<td align="center">c:/Resin/conf/resin.conf /usr/local/resin/conf/resin.conf</td>
+<td align="center">查看linux系统配置的JSP虚拟主机</td>
+</tr>
+<tr>
+<td align="center">d:\APACHE\Apache2\conf\httpd.conf</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">C:\Program Files\mysql\my.ini</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">C:\mysql\data\mysql\user.MYD</td>
+<td align="center">存在MYSQL系统中的用户密码</td>
+</tr>
+</tbody></table>
+<p><strong>Linux下：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">文件或目录</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/usr/local/app/apache2/conf/httpd.conf</td>
+<td align="center">apache2缺省配置文件</td>
+</tr>
+<tr>
+<td align="center">/usr/local/apache2/conf/httpd.conf</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf</td>
+<td align="center">虚拟网站设置</td>
+</tr>
+<tr>
+<td align="center">/usr/local/app/php5/lib/php.ini</td>
+<td align="center">PHP相关设置</td>
+</tr>
+<tr>
+<td align="center">/etc/sysconfig/iptables</td>
+<td align="center">从中得到防火墙规则策略</td>
+</tr>
+<tr>
+<td align="center">/etc/httpd/conf/httpd.conf</td>
+<td align="center">apache配置文件</td>
+</tr>
+<tr>
+<td align="center">/etc/rsyncd.conf</td>
+<td align="center">同步程序配置文件</td>
+</tr>
+<tr>
+<td align="center">/etc/my.cnf</td>
+<td align="center">mysql的配置文件</td>
+</tr>
+<tr>
+<td align="center">/etc/redhat-release</td>
+<td align="center">系统版本</td>
+</tr>
+<tr>
+<td align="center">/etc/issue</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">/etc/issue.net</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">/usr/local/app/php5/lib/php.ini</td>
+<td align="center">PHP相关设置</td>
+</tr>
+<tr>
+<td align="center">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf</td>
+<td align="center">虚拟网站设置</td>
+</tr>
+<tr>
+<td align="center">/etc/httpd/conf/httpd.conf或/usr/local/apche/conf/httpd.conf</td>
+<td align="center">查看linux APACHE虚拟主机配置文件</td>
+</tr>
+<tr>
+<td align="center">/usr/local/resin-3.0.22/conf/resin.conf</td>
+<td align="center">针对3.0.22的RESIN配置文件查看</td>
+</tr>
+<tr>
+<td align="center">/usr/local/resin-pro-3.0.22/conf/resin.conf</td>
+<td align="center">同上</td>
+</tr>
+<tr>
+<td align="center">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf</td>
+<td align="center">APASHE虚拟主机查看</td>
+</tr>
+<tr>
+<td align="center">/etc/httpd/conf/httpd.conf或/usr/local/apche/conf /httpd.conf</td>
+<td align="center">查看linux APACHE虚拟主机配置文件</td>
+</tr>
+<tr>
+<td align="center">/usr/local/resin-3.0.22/conf/resin.conf</td>
+<td align="center">针对3.0.22的RESIN配置文件查看</td>
+</tr>
+<tr>
+<td align="center">/usr/local/resin-pro-3.0.22/conf/resin.conf</td>
+<td align="center">同上</td>
+</tr>
+<tr>
+<td align="center">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf</td>
+<td align="center">APASHE虚拟主机查看</td>
+</tr>
+<tr>
+<td align="center">/etc/sysconfig/iptables</td>
+<td align="center">查看防火墙策略</td>
+</tr>
+</tbody></table>
+<h2 id="更改响应包数据"><a href="#更改响应包数据" class="headerlink" title="更改响应包数据"></a>更改响应包数据</h2><p>bp抓包的响应包中返回的响应体中包含响应码、响应是否成功的状态等信息，例如返回400，false等数据，可以更改为200、success等状态，通过bp的Do intercept的Response to this request更改的响应包数据重新放行，查看是否成功返回数据</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">	“success”:false,</span><br><span class="line">	"code":400,</span><br><span class="line">	"message":"invalid_captcha"</span><br><span class="line">	………………</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="遇到URL中存在auth的"><a href="#遇到URL中存在auth的" class="headerlink" title="遇到URL中存在auth的"></a>遇到URL中存在auth的</h2><p>使用浏览器插件，查看JS代码中存在的URL，可以找一些含有auth的url，在请求数据包中加入Authorization参数，看是否会出现不同的响应</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /oauth/token</span><br><span class="line">………………</span><br><span class="line">Authorization:1</span><br><span class="line">………………</span><br></pre></td></tr></tbody></table></figure>
+
+<p>也可以尝试遍历Authorization的值，看是否响应包会不同响应</p>
+<h2 id="Google语法搜索个人信息"><a href="#Google语法搜索个人信息" class="headerlink" title="Google语法搜索个人信息"></a>Google语法搜索个人信息</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">site:xxx.com		//域名</span><br><span class="line">inurl:xxx			//url的内容</span><br><span class="line">intitle:xxx			//标题内容包含</span><br><span class="line"></span><br><span class="line">eg: site:xxx.com “学号”	//查询是否存在可用的学号信息</span><br></pre></td></tr></tbody></table></figure>
+
+<p>也可以取GitHub上搜索一下是否有个人信息</p>
+<h2 id="FUZZ-URL-参数工具"><a href="#FUZZ-URL-参数工具" class="headerlink" title="FUZZ URL 参数工具"></a>FUZZ URL 参数工具</h2><p>arjun</p>
+<p>fuzz出参数之后，可以爆破一下值</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/16.jpg" data-sizes="auto" alt="Windows API" class="lazyload">
+          
+        
+        <a href="/2025/10/25/windows-api/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Windows API
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/15.jpg" data-sizes="auto" alt="2019 长安杯" class="lazyload">
+        
+      
+      <a href="/2025/08/23/2019-chang-an-bei/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          2019 长安杯
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        302.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        18:50
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">60</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+      
+    
+  </div>
+  
+    
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "SRC挖掘思路",
+          url: "http://example.com/2025/09/25/src-wa-jue-si-lu/",
+          excerpt: "",
+          description: "",
+          stripContent: "SRC挖掘思路任意文件下载可以在网站的下载文件的地方，更改其JS代码，将其下载文件的路径更改为服务器的敏感文件或者配置文件的路径 tips：更改路径中的文件后缀名的大小写，检查其对大小写是否敏感来判断是Windows还是Linux系统 1&amp;lt;a class=&#34;down&#34; href=&#34;/download/view/id/1.html&#34;&amp;gt;  更改为 1234Linux&amp;lt;a class=&#34;down&#34; href=&#34;../../../../../../../../etc/passwd&#34;&amp;g",
+          date: "Thu Sep 25 2025 21:57:11 GMT+0800",
+          updated: "Wed Oct 01 2025 09:07:39 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

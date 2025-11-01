@@ -1,0 +1,815 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    DLL劫持、COM劫持、Bypass UAC |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="DLL劫持、COM劫持、Bypass UACDLL劫持DLL劫持原理 研究目标：找到一个程序经常调用的、合法的DLL文件（比如 version.dll、dinput8.dll）。 制作恶意DLL：创建一个同名（例如也叫 version.dll）的恶意DLL文件。 放置陷阱：将这个恶意DLL文件放在一个比系统目录更优先被搜索的位置，最常见的就是程序的安装目录或当前工作目录。 诱骗执行：当用户运行这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DLL劫持、COM劫持、Bypass UAC">
+<meta property="og:url" content="http://example.com/2025/11/01/dll-jie-chi-com-jie-chi-bypass-uac/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="DLL劫持、COM劫持、Bypass UACDLL劫持DLL劫持原理 研究目标：找到一个程序经常调用的、合法的DLL文件（比如 version.dll、dinput8.dll）。 制作恶意DLL：创建一个同名（例如也叫 version.dll）的恶意DLL文件。 放置陷阱：将这个恶意DLL文件放在一个比系统目录更优先被搜索的位置，最常见的就是程序的安装目录或当前工作目录。 诱骗执行：当用户运行这个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-01T10:57:42.427Z">
+<meta property="article:modified_time" content="2025-11-01T11:22:41.664Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="DLL劫持、COM劫持、Bypass UAC">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">DLL劫持、COM劫持、Bypass UAC</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">60</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+        
+      
+      
+        
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-DLL劫持、COM劫持、Bypass UAC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-11-01T10:57:42.427Z" itemprop="datePublished">2025-11-01</time>
+    <time style="display: none;" id="post-update-time">2025-11-01</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="DLL劫持、COM劫持、Bypass-UAC"><a href="#DLL劫持、COM劫持、Bypass-UAC" class="headerlink" title="DLL劫持、COM劫持、Bypass UAC"></a>DLL劫持、COM劫持、Bypass UAC</h1><h2 id="DLL劫持"><a href="#DLL劫持" class="headerlink" title="DLL劫持"></a>DLL劫持</h2><h3 id="DLL劫持原理"><a href="#DLL劫持原理" class="headerlink" title="DLL劫持原理"></a>DLL劫持原理</h3><ol>
+<li><strong>研究目标</strong>：找到一个程序经常调用的、合法的DLL文件（比如 <code>version.dll</code>、<code>dinput8.dll</code>）。</li>
+<li><strong>制作恶意DLL</strong>：创建一个同名（例如也叫 <code>version.dll</code>）的恶意DLL文件。</li>
+<li><strong>放置陷阱</strong>：将这个恶意DLL文件放在一个比系统目录<strong>更优先被搜索的位置</strong>，最常见的就是<strong>程序的安装目录</strong>或<strong>当前工作目录</strong>。</li>
+<li><strong>诱骗执行</strong>：当用户运行这个程序时，程序会首先在自己的目录下寻找DLL，于是找到了恶意DLL并加载它，而不是去系统目录加载那个正确的、安全的DLL。</li>
+</ol>
+<h3 id="DLL寻找过程"><a href="#DLL寻找过程" class="headerlink" title="DLL寻找过程"></a>DLL寻找过程</h3><ol>
+<li>程序所在目录</li>
+<li>系统目录即SYSTEM32目录</li>
+<li>16位系统目录即SYSTEM目录</li>
+<li>Windows目录</li>
+<li>加载DLL时所在的当前目录</li>
+<li>PATH环境变量中列出的目录</li>
+</ol>
+<h2 id="COM劫持"><a href="#COM劫持" class="headerlink" title="COM劫持"></a>COM劫持</h2><h3 id="COM组件"><a href="#COM组件" class="headerlink" title="COM组件"></a>COM组件</h3><p><strong>COM组件</strong> 是一个遵循COM规范编写的、预编译好的<strong>二进制代码块</strong>（通常是一个 <code>.dll</code> 或 <code>.exe</code> 文件），它包含了一个或多个<strong>COM对象</strong>的实现，并通过<strong>接口</strong>向外提供服务。</p>
+<h3 id="COM组件的形态与创建"><a href="#COM组件的形态与创建" class="headerlink" title="COM组件的形态与创建"></a>COM组件的形态与创建</h3><h4 id="1-物理形态"><a href="#1-物理形态" class="headerlink" title="1. 物理形态"></a>1. 物理形态</h4><p>一个COM组件通常以两种形式存在：</p>
+<ul>
+<li><strong>动态链接库</strong>：这是最常见的形式。多个应用程序可以共享同一个DLL组件，节省资源。<ul>
+<li><strong>优点</strong>：共享、节省内存。</li>
+<li><strong>缺点</strong>：与调用者在同一进程，若组件崩溃可能拖垮整个进程。</li>
+</ul>
+</li>
+<li><strong>可执行文件</strong>：作为一个独立的进程运行。<ul>
+<li><strong>优点</strong>：进程隔离，稳定性高，一个组件崩溃不影响调用者。</li>
+<li><strong>缺点</strong>：进程间通信开销大，效率较低。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-身份标识：GUID"><a href="#2-身份标识：GUID" class="headerlink" title="2. 身份标识：GUID"></a>2. 身份标识：GUID</h4><p>在COM的世界里，每个组件、每个接口都有一个全球唯一的身份证，称为 <strong>GUID</strong>。</p>
+<ul>
+<li><strong>CLSID</strong>：<strong>类ID</strong>，用于唯一标识一个COM组件（类）。当你想创建一个组件时，你必须通过它的CLSID来告诉系统“我要哪个组件”。</li>
+<li><strong>IID</strong>：<strong>接口ID</strong>，用于唯一标识一个接口。当你想使用组件的某个功能时，你必须通过IID来查询“你是否支持这个接口”。</li>
+</ul>
+<p>系统通过<strong>注册表</strong> 来维护一个数据库，将CLSID映射到实际的DLL或EXE文件路径。这样，当客户端请求某个CLSID时，系统才知道该去加载哪个文件。</p>
+<h3 id="劫持原理"><a href="#劫持原理" class="headerlink" title="劫持原理"></a>劫持原理</h3><p>当进程寻找COM组件时，首先会寻找：</p>
+<ul>
+<li><p>HKCU\Software\Classes\CLSID</p>
+</li>
+<li><p>我们直接在CLSID下新建一个对象ID，就能够劫持某个进程或多个进程。</p>
+</li>
+<li><p>与DLL劫持原理相近，但是COM组件的劫持可以拓展很多东西，劫持的目标不一定是一个进程，劫持所需的文件不一定是一个DLL，它可以是一个.com文件、二进制PE文件、DLL文件，劫持的目标也可以是一个Windows API。</p>
+</li>
+</ul>
+<h3 id="CLSID"><a href="#CLSID" class="headerlink" title="CLSID"></a>CLSID</h3><p>全局唯一标识符</p>
+<p>CLSID是指Windows系统对于不同的应用程序，文件类型，OLE对象，特殊文件夹以及各种系统组件分配的一个唯一表示它的ID代码，用于对其身份的标识和与其他对象进行区分。</p>
+<ul>
+<li>按下Ctrl+R打开运行窗口，键入::{20D04FE0-3AEA-1069-A2D8-08002B30309D}即可打开“我的电脑</li>
+<li>::{645FF040-5081-101B-9F08-00AA002F954E}回收站</li>
+</ul>
+<h2 id="UAC-ByPass"><a href="#UAC-ByPass" class="headerlink" title="UAC ByPass"></a>UAC ByPass</h2><p>用户帐户控制(User Account Control，简写作UAC）是微软公司在其WindowsVista及更高版本操作系统中采用的一种控制机制。其原理是通知用户是否对应用程序使用硬盘驱动器和系统文件授权，以达到帮助阻止恶意程序（有时也称为“恶意软件”）损坏系统的效果。</p>
+<h3 id="UAC需要授权的动作包括"><a href="#UAC需要授权的动作包括" class="headerlink" title="UAC需要授权的动作包括"></a>UAC需要授权的动作包括</h3><ol>
+<li>配置Windows Update</li>
+<li>增加或删除用户账户</li>
+<li>改变用户的账户类型</li>
+<li>改变UAC设置</li>
+<li>安装ActiveX</li>
+<li>安装或移除程序</li>
+<li>安装设备驱动程序</li>
+<li>设置家长控制</li>
+<li>将文件移动或复制到Program Files或</li>
+<li>Windows目录</li>
+<li>查看其他用户文件夹</li>
+</ol>
+<h3 id="UAC-Bypass的常见技术原理与方式"><a href="#UAC-Bypass的常见技术原理与方式" class="headerlink" title="UAC Bypass的常见技术原理与方式"></a>UAC Bypass的常见技术原理与方式</h3><p>以下是几种典型且常见的UAC绕过技术原理：</p>
+<h4 id="1-基于白名单程序的自动提升（最经典）"><a href="#1-基于白名单程序的自动提升（最经典）" class="headerlink" title="1. 基于白名单程序的自动提升（最经典）"></a>1. 基于白名单程序的自动提升（最经典）</h4><p>这是最早被广泛利用的一类方法。</p>
+<p>具有<strong>autoElevate</strong>属性True的应用程序会在启动时自动提升权限，而这些应用程序往往都具备微软的签名，微软<br>认为它是可信的。故此，在该程序启动时，将会以管理员身份启动</p>
+<ul>
+<li><strong>原理</strong>：微软为了用户体验，将一些Windows自带的、被认为是绝对安全的程序（如<code>slui.exe</code>, <code>fodhelper.exe</code>, <code>eventvwr.msc</code>等）加入了“白名单”。当这些程序启动时，如果当前用户是管理员，操作系统会<strong>自动授予它们管理员权限，而不会触发UAC弹窗</strong>。</li>
+<li><strong>攻击手法</strong>：<ol>
+<li><strong>发现目标</strong>：攻击者找到一个这样的白名单程序（例如<code>fodhelper.exe</code>）。</li>
+<li><strong>劫持执行流</strong>：这个程序在运行过程中，会去加载一些DLL或读取一些注册表键值。攻击者发现这些位置是用户可写的（例如<code>HKCU\Software\Classes</code>下的某些键）。</li>
+<li><strong>放置陷阱</strong>：攻击者提前修改这些可写的注册表项，将其指向恶意的DLL或可执行文件。</li>
+<li><strong>触发执行</strong>：攻击者直接运行这个白名单程序（如<code>fodhelper.exe</code>）。系统自动将其提升为管理员权限，而该程序在运行过程中，会毫无防备地去加载被篡改的注册表项所指向的恶意负载。</li>
+<li><strong>结果</strong>：恶意负载作为高权限进程的子进程或加载的模块，成功以管理员身份运行，绕过了UAC提示。</li>
+</ol>
+</li>
+</ul>
+<h4 id="2-DLL劫持（与白名单结合）"><a href="#2-DLL劫持（与白名单结合）" class="headerlink" title="2. DLL劫持（与白名单结合）"></a>2. DLL劫持（与白名单结合）</h4><ul>
+<li><strong>原理</strong>：在白名单程序启动并自动提升权限后，它可能会尝试加载一些DLL。利用Windows的DLL搜索顺序漏洞，攻击者可以将一个恶意的DLL放在比合法系统DLL更优先被搜索的位置（如程序当前目录）。</li>
+<li><strong>攻击手法</strong>：与上述方法结合，当白名单程序启动后，它首先加载了恶意DLL，从而执行了攻击者的代码。</li>
+</ul>
+<h4 id="3-利用COM接口提升"><a href="#3-利用COM接口提升" class="headerlink" title="3. 利用COM接口提升"></a>3. 利用COM接口提升</h4><ul>
+<li><strong>原理</strong>：Windows中存在一些高权限的COM组件（例如<code>IARPUninstallStringLauncher</code>）。这些组件运行在提升的上下文中。COM组件通过注册表<code>HKCU\Software\Classes\CLSID</code>声明。</li>
+<li><strong>攻击手法</strong>：<ol>
+<li>攻击者发现某个高权限COM组件的注册表项是用户可写的。</li>
+<li>他们可以篡改该COM组件的<code>InProcServer</code>或<code>LocalServer</code>等键值，将其指向恶意的DLL或EXE。</li>
+<li>当有程序（甚至是普通权限程序）实例化这个COM组件时，系统会直接以管理员权限启动被篡改的恶意负载。</li>
+</ol>
+</li>
+</ul>
+<h4 id="4-文件-路径欺骗"><a href="#4-文件-路径欺骗" class="headerlink" title="4. 文件/路径欺骗"></a>4. 文件/路径欺骗</h4><ul>
+<li><strong>原理</strong>：利用Windows处理文件名和路径时的一些特性。<ul>
+<li><strong><code>.IFILE</code>操作</strong>：早期通过创建一个特殊名称的文件（如<code>test.exe .</code>），可以欺骗一些文件操作对话框以高权限运行。</li>
+<li><strong>磁盘空间不足</strong>：在某些老版本系统中，如果系统盘空间不足，一个名为<code>wsqmcons.exe</code>的文件会被自动以高权限运行来处理日志。攻击者可以伪造磁盘空间不足的情况并放置恶意文件。</li>
+<li><strong>DLL搜索顺序劫持</strong>：如前所述，利用程序加载DLL时的搜索顺序缺陷。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-基于服务的提升"><a href="#5-基于服务的提升" class="headerlink" title="5. 基于服务的提升"></a>5. 基于服务的提升</h4><ul>
+<li><strong>原理</strong>：有些服务在安装或配置时，其二进制路径指向用户可写的位置。攻击者可以替换该二进制文件，然后重启服务或等待系统重启，服务就会以SYSTEM权限运行恶意代码。虽然这更多是权限提升，但与UAC思想类似，都是滥用信任关系。</li>
+</ul>
+<h3 id="UAC-Bypass演示"><a href="#UAC-Bypass演示" class="headerlink" title="UAC Bypass演示"></a>UAC Bypass演示</h3><p>使用的程序：fodhelper.exe</p>
+<p>程序路径：C:\Windows\system32\fodhelper.exe</p>
+<p>注册表项（REG）：HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open\command</p>
+<p>使用以下语句可以实现打开fodhelper.exe时，弹出cmd并且已经具有管理员权限</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg add HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open\command /d C:\Windows\System32\cmd.exe /f</span><br><span class="line">reg add HKEY_CURRENT_USER\Software\Classes\ms-settings\shell\open\command /v</span><br><span class="line">DelegateExecute /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></tbody></table></figure>
+
+<p>/d：指定要存储的数据</p>
+<p>/f：强制覆盖</p>
+<p>/v：查找特定值</p>
+<p>/t：指定数据类型（REG_DWORD：32位数字）</p>
+<h3 id="UAC-ByPass寻找工具"><a href="#UAC-ByPass寻找工具" class="headerlink" title="UAC ByPass寻找工具"></a>UAC ByPass寻找工具</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strings.exe -s *.exe| findstr /i autoelevate</span><br><span class="line">sigcheck.exe -m C:\Windows\System32\cmd.exe</span><br></pre></td></tr></tbody></table></figure>
+
+<p>autoelevate：自动权限提升标志</p>
+<p>注意：最好将string.exe放入C:\Windows\System32</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/10.jpg" data-sizes="auto" alt="Windows API" class="lazyload">
+        
+      
+      <a href="/2025/10/25/windows-api/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Windows API
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        302.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        18:50
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">60</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+      
+    
+  </div>
+  
+    
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "DLL劫持、COM劫持、Bypass UAC",
+          url: "http://example.com/2025/11/01/dll-jie-chi-com-jie-chi-bypass-uac/",
+          excerpt: "",
+          description: "",
+          stripContent: "DLL劫持、COM劫持、Bypass UACDLL劫持DLL劫持原理 研究目标：找到一个程序经常调用的、合法的DLL文件（比如 version.dll、dinput8.dll）。 制作恶意DLL：创建一个同名（例如也叫 version.dll）的恶意DLL文件。 放置陷阱：将这个恶意DLL文件放在一个比系统目录更优先被搜索的位置，最常见的就是程序的安装目录或当前工作目录。 诱骗执行：当用户运行这个程序时，程序会首先在自己的目录下寻找DLL，于是找到了恶意DLL并加载它，而不是去系统目录加载那个正",
+          date: "Sat Nov 01 2025 18:57:42 GMT+0800",
+          updated: "Sat Nov 01 2025 19:22:41 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
