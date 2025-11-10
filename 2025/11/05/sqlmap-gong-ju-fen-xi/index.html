@@ -1,0 +1,941 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    SQLMap工具分析 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="SQLMap工具分析结构📁 目录（Folders）1. data&#x2F; - 数据文件目录 作用：存放各种静态数据文件，为检测过程提供支持。 包含内容： payloads（攻击载荷） 关键字字典（如 keywords.txt） 用户代理字符串（user-agents.txt） 错误消息模式库 等等    2. doc&#x2F; - 文档目录 作用：存放项目文档、使用手册、Wiki 内容等。 包含内容： 使用说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLMap工具分析">
+<meta property="og:url" content="http://example.com/2025/11/05/sqlmap-gong-ju-fen-xi/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="SQLMap工具分析结构📁 目录（Folders）1. data&#x2F; - 数据文件目录 作用：存放各种静态数据文件，为检测过程提供支持。 包含内容： payloads（攻击载荷） 关键字字典（如 keywords.txt） 用户代理字符串（user-agents.txt） 错误消息模式库 等等    2. doc&#x2F; - 文档目录 作用：存放项目文档、使用手册、Wiki 内容等。 包含内容： 使用说">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-05T14:15:53.941Z">
+<meta property="article:modified_time" content="2025-11-05T15:28:32.523Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="SQLMap工具分析">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">SQLMap工具分析</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">65</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+        
+      
+      
+        
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-SQLMap工具分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-11-05T14:15:53.941Z" itemprop="datePublished">2025-11-05</time>
+    <time style="display: none;" id="post-update-time">2025-11-05</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="SQLMap工具分析"><a href="#SQLMap工具分析" class="headerlink" title="SQLMap工具分析"></a>SQLMap工具分析</h1><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="📁-目录（Folders）"><a href="#📁-目录（Folders）" class="headerlink" title="📁 目录（Folders）"></a>📁 <strong>目录（Folders）</strong></h3><h4 id="1-data-数据文件目录"><a href="#1-data-数据文件目录" class="headerlink" title="1. data/ - 数据文件目录"></a>1. <strong><code>data/</code></strong> - 数据文件目录</h4><ul>
+<li><strong>作用</strong>：存放各种静态数据文件，为检测过程提供支持。</li>
+<li><strong>包含内容</strong>：<ul>
+<li>payloads（攻击载荷）</li>
+<li>关键字字典（如 <code>keywords.txt</code>）</li>
+<li>用户代理字符串（<code>user-agents.txt</code>）</li>
+<li>错误消息模式库</li>
+<li>等等</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-doc-文档目录"><a href="#2-doc-文档目录" class="headerlink" title="2. doc/ - 文档目录"></a>2. <strong><code>doc/</code></strong> - 文档目录</h4><ul>
+<li><strong>作用</strong>：存放项目文档、使用手册、Wiki 内容等。</li>
+<li><strong>包含内容</strong>：<ul>
+<li>使用说明</li>
+<li>技术文档</li>
+<li>翻译文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-extra-额外工具和脚本"><a href="#3-extra-额外工具和脚本" class="headerlink" title="3. extra/ - 额外工具和脚本"></a>3. <strong><code>extra/</code></strong> - 额外工具和脚本</h4><ul>
+<li><strong>作用</strong>：存放一些有用的附加工具，但不是核心功能。</li>
+<li><strong>包含内容</strong>：<ul>
+<li><code>sh.py</code> - 运行时命令行工具</li>
+<li><code>beep/</code> - 操作完成提示音</li>
+<li><code>dns/</code> - DNS 相关工具</li>
+<li><code>icmpsh/</code> - ICMP 隧道工具</li>
+<li><code>misc/</code> - 杂项工具</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-lib-核心库文件-★★★"><a href="#4-lib-核心库文件-★★★" class="headerlink" title="4. lib/ - 核心库文件 ★★★"></a>4. <strong><code>lib/</code></strong> - 核心库文件 ★★★</h4><ul>
+<li><strong>作用</strong>：<strong>SQLMap 的核心代码库</strong>，所有主要功能都在这里。</li>
+<li><strong>重要子目录</strong>：<ul>
+<li><code>core/</code> - 核心组件（配置、数据、异常、补丁等）</li>
+<li><code>controller/</code> - 主控制器</li>
+<li><code>parse/</code> - 解析器（命令行、目标等）</li>
+<li><code>request/</code> - HTTP 请求处理</li>
+<li><code>techniques/</code> - 各种注入技术实现</li>
+<li><code>utils/</code> - 工具函数</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-plugins-插件目录"><a href="#5-plugins-插件目录" class="headerlink" title="5. plugins/ - 插件目录"></a>5. <strong><code>plugins/</code></strong> - 插件目录</h4><ul>
+<li><strong>作用</strong>：存放数据库、语言等特定插件。</li>
+<li><strong>包含内容</strong>：<ul>
+<li><code>dbms/</code> - 各种数据库管理系统插件（MySQL, Oracle, MSSQL等）</li>
+<li><code>generic/</code> - 通用插件</li>
+<li><code>languages/</code> - 编程语言相关插件</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-tamper-混淆脚本目录-★"><a href="#6-tamper-混淆脚本目录-★" class="headerlink" title="6. tamper/ - 混淆脚本目录 ★"></a>6. <strong><code>tamper/</code></strong> - 混淆脚本目录 ★</h4><ul>
+<li><strong>作用</strong>：存放用于绕过 WAF/IDS 的混淆脚本。</li>
+<li><strong>重要性</strong>：这是 SQLMap 最强大的特性之一，可以自动修改 payload 以逃避检测。</li>
+<li><strong>示例</strong>：<code>base64encode.py</code>, <code>charencode.py</code>, <code>space2comment.py</code> 等</li>
+</ul>
+<h4 id="7-thirdparty-第三方库"><a href="#7-thirdparty-第三方库" class="headerlink" title="7. thirdparty/ - 第三方库"></a>7. <strong><code>thirdparty/</code></strong> - 第三方库</h4><ul>
+<li><strong>作用</strong>：存放 SQLMap 依赖的第三方 Python 库。</li>
+<li><strong>包含内容</strong>：<ul>
+<li><code>colorama/</code> - 跨平台彩色终端输出</li>
+<li><code>magic/</code> - 文件类型检测</li>
+<li><code>chardet/</code> - 字符编码检测</li>
+<li>等等</li>
+</ul>
+</li>
+</ul>
+<h3 id="📄-文件（Files）"><a href="#📄-文件（Files）" class="headerlink" title="📄 文件（Files）"></a>📄 <strong>文件（Files）</strong></h3><h4 id="8-gitattributes-Git-属性配置"><a href="#8-gitattributes-Git-属性配置" class="headerlink" title="8. .gitattributes - Git 属性配置"></a>8. <strong><code>.gitattributes</code></strong> - Git 属性配置</h4><ul>
+<li><strong>作用</strong>：定义 Git 版本控制的行为，如文件合并策略、diff 方式等。</li>
+</ul>
+<h4 id="9-gitignore-Git-忽略文件"><a href="#9-gitignore-Git-忽略文件" class="headerlink" title="9. .gitignore - Git 忽略文件"></a>9. <strong><code>.gitignore</code></strong> - Git 忽略文件</h4><ul>
+<li><strong>作用</strong>：指定哪些文件/文件夹不应该被提交到 Git 仓库。</li>
+<li><strong>通常忽略</strong>：临时文件、日志、缓存、系统文件等。</li>
+</ul>
+<h4 id="10-pylintrc-Python-代码检查配置"><a href="#10-pylintrc-Python-代码检查配置" class="headerlink" title="10. .pylintrc - Python 代码检查配置"></a>10. <strong><code>.pylintrc</code></strong> - Python 代码检查配置</h4><ul>
+<li><strong>作用</strong>：Pylint 工具的配置文件，用于保持代码质量和风格统一。</li>
+</ul>
+<h4 id="11-travis-yml-持续集成配置"><a href="#11-travis-yml-持续集成配置" class="headerlink" title="11. .travis.yml - 持续集成配置"></a>11. <strong><code>.travis.yml</code></strong> - 持续集成配置</h4><ul>
+<li><strong>作用</strong>：Travis CI 的配置文件，用于自动化测试和构建。</li>
+</ul>
+<h4 id="12-COMMITMENT-承诺文件"><a href="#12-COMMITMENT-承诺文件" class="headerlink" title="12. COMMITMENT - 承诺文件"></a>12. <strong><code>COMMITMENT</code></strong> - 承诺文件</h4><ul>
+<li><strong>作用</strong>：通常包含开发者的承诺或行为准则。</li>
+</ul>
+<h4 id="13-LICENSE-许可证文件"><a href="#13-LICENSE-许可证文件" class="headerlink" title="13. LICENSE - 许可证文件"></a>13. <strong><code>LICENSE</code></strong> - 许可证文件</h4><ul>
+<li><strong>作用</strong>：GNU 通用公共许可证 v2.0，定义软件的使用、修改和分发条款。</li>
+</ul>
+<h4 id="14-README-md-项目说明文件"><a href="#14-README-md-项目说明文件" class="headerlink" title="14. README.md - 项目说明文件"></a>14. <strong><code>README.md</code></strong> - 项目说明文件</h4><ul>
+<li><strong>作用</strong>：项目的主要说明文档，包含：<ul>
+<li>简介和特性</li>
+<li>安装说明</li>
+<li>基本使用方法</li>
+<li>截图和演示</li>
+</ul>
+</li>
+</ul>
+<h3 id="🎯-核心可执行文件"><a href="#🎯-核心可执行文件" class="headerlink" title="🎯 核心可执行文件"></a>🎯 <strong>核心可执行文件</strong></h3><h4 id="15-sqlmap-conf-主配置文件"><a href="#15-sqlmap-conf-主配置文件" class="headerlink" title="15. sqlmap.conf - 主配置文件"></a>15. <strong><code>sqlmap.conf</code></strong> - 主配置文件</h4><ul>
+<li><strong>作用</strong>：<strong>SQLMap 的默认配置</strong>文件，包含所有可配置选项。</li>
+<li><strong>重要配置项</strong>：<ul>
+<li>HTTP 请求设置</li>
+<li>注入检测参数</li>
+<li>性能优化选项</li>
+<li>输出格式设置</li>
+</ul>
+</li>
+</ul>
+<h4 id="16-sqlmap-py-主程序入口-★★★"><a href="#16-sqlmap-py-主程序入口-★★★" class="headerlink" title="16. sqlmap.py - 主程序入口 ★★★"></a>16. <strong><code>sqlmap.py</code></strong> - 主程序入口 ★★★</h4><ul>
+<li><p><strong>作用</strong>：<strong>SQLMap 的主要启动脚本</strong>，命令行工具的主入口。</p>
+</li>
+<li><p><strong>使用方法</strong>：</p>
+  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">"http://example.com/page.php?id=1"</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h4 id="17-sqlmapapi-py-RESTful-API-服务"><a href="#17-sqlmapapi-py-RESTful-API-服务" class="headerlink" title="17. sqlmapapi.py - RESTful API 服务"></a>17. <strong><code>sqlmapapi.py</code></strong> - RESTful API 服务</h4><ul>
+<li><p><strong>作用</strong>：<strong>提供 HTTP API 接口</strong>，允许通过 RESTful 调用使用 SQLMap。</p>
+</li>
+<li><p><strong>使用场景</strong>：</p>
+<ul>
+<li>集成到其他应用中</li>
+<li>远程控制 SQLMap</li>
+<li>自动化测试流程</li>
+</ul>
+</li>
+<li><p><strong>启动方式</strong>：</p>
+  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmapapi.py -s  <span class="comment"># 服务端</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="🏗️-架构总结"><a href="#🏗️-架构总结" class="headerlink" title="🏗️ 架构总结"></a>🏗️ <strong>架构总结</strong></h3><p>这个文件结构体现了 SQLMap 的模块化设计：</p>
+<ul>
+<li><strong><code>lib/</code></strong> - 核心引擎</li>
+<li><strong><code>plugins/</code></strong> - 数据库扩展支持</li>
+<li><strong><code>tamper/</code></strong> - 绕过检测能力</li>
+<li><strong><code>data/</code></strong> - 知识库和资源</li>
+<li><strong><code>sqlmap.py</code></strong> - 用户界面（CLI）</li>
+<li><strong><code>sqlmapapi.py</code></strong> - 程序接口（API）</li>
+</ul>
+<p>这种结构使得 SQLMap 功能强大且易于维护和扩展。</p>
+<h2 id="sqlmap-py分析"><a href="#sqlmap-py分析" class="headerlink" title="sqlmap.py分析"></a>sqlmap.py分析</h2><p>这是一个 <strong>SQLMap 主程序入口文件</strong>的完整代码分析。SQLMap 是一个开源的 SQL 注入自动化检测和利用工具。</p>
+<h2 id="代码结构概览"><a href="#代码结构概览" class="headerlink" title="代码结构概览"></a>代码结构概览</h2><h3 id="1-文件头与版权信息"><a href="#1-文件头与版权信息" class="headerlink" title="1. 文件头与版权信息"></a>1. <strong>文件头与版权信息</strong></h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Copyright (c) 2006-2021 sqlmap developers (http://sqlmap.org/)</span></span><br><span class="line"><span class="string">See the file 'LICENSE' for copying permission</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>指定 Python 解释器</li>
+<li>版权声明和许可证信息</li>
+</ul>
+<h3 id="2-模块导入与初始化"><a href="#2-模块导入与初始化" class="headerlink" title="2. 模块导入与初始化"></a>2. <strong>模块导入与初始化</strong></h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    sys.dont_write_bytecode = <span class="literal">True</span>  <span class="comment"># 禁止生成.pyc文件</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 首先检查版本兼容性</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">__import__</span>(<span class="string">"lib.utils.versioncheck"</span>)</span><br><span class="line">    <span class="keyword">except</span> ImportError:</span><br><span class="line">        sys.exit(<span class="string">"[!] wrong installation detected (missing modules)"</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>关键设计</strong>：</p>
+<ul>
+<li>优先进行版本检查，确保环境正确</li>
+<li>使用 <code>dont_write_bytecode</code> 提高性能和减少磁盘占用</li>
+</ul>
+<h3 id="3-导入核心模块"><a href="#3-导入核心模块" class="headerlink" title="3. 导入核心模块"></a>3. <strong>导入核心模块</strong></h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bdb, distutils, glob, inspect, json, logging, os, re, shutil, sys, tempfile, threading, time, traceback, warnings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 警告过滤配置</span></span><br><span class="line">warnings.filterwarnings(action=<span class="string">"ignore"</span>, message=<span class="string">"Python 2 is no longer supported"</span>)</span><br><span class="line"><span class="comment"># ... 更多警告过滤</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>安全特性</strong>：</p>
+<ul>
+<li>过滤不必要的警告信息</li>
+<li>特别处理 Python 2 过期的警告</li>
+</ul>
+<h3 id="4-导入-SQLMap-核心模块"><a href="#4-导入-SQLMap-核心模块" class="headerlink" title="4. 导入 SQLMap 核心模块"></a>4. <strong>导入 SQLMap 核心模块</strong></h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lib.core.data <span class="keyword">import</span> logger</span><br><span class="line"><span class="keyword">from</span> lib.core.common <span class="keyword">import</span> banner, checkIntegrity, checkPipedInput, createGithubIssue</span><br><span class="line"><span class="keyword">from</span> lib.core.data <span class="keyword">import</span> cmdLineOptions, conf, kb</span><br><span class="line"><span class="keyword">from</span> lib.core.option <span class="keyword">import</span> init, initOptions</span><br><span class="line"><span class="keyword">from</span> lib.core.patch <span class="keyword">import</span> dirtyPatches, resolveCrossReferences</span><br><span class="line"><span class="keyword">from</span> lib.parse.cmdline <span class="keyword">import</span> cmdLineParser</span><br><span class="line"><span class="keyword">from</span> lib.utils.crawler <span class="keyword">import</span> crawl</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>架构设计</strong>：</p>
+<ul>
+<li><code>lib.core.data</code>：全局数据存储（配置、知识库、命令行选项）</li>
+<li><code>lib.core.common</code>：通用工具函数</li>
+<li><code>lib.core.option</code>：选项初始化和管理</li>
+<li><code>lib.core.patch</code>： Monkey-patch 和交叉引用解析</li>
+</ul>
+<h3 id="5-modulePath-函数"><a href="#5-modulePath-函数" class="headerlink" title="5. modulePath() 函数"></a>5. <strong><code>modulePath()</code> 函数</strong></h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">modulePath</span>():</span><br><span class="line">    <span class="string">"""获取程序目录路径，即使被 py2exe 冻结也能正常工作"""</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        _ = sys.executable <span class="keyword">if</span> weAreFrozen() <span class="keyword">else</span> __file__</span><br><span class="line">    <span class="keyword">except</span> NameError:</span><br><span class="line">        _ = inspect.getsourcefile(modulePath)</span><br><span class="line">    <span class="keyword">return</span> getUnicode(os.path.dirname(os.path.realpath(_)), encoding=sys.getfilesystemencoding())</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>跨平台兼容性</strong>：</p>
+<ul>
+<li>处理普通运行和打包后运行两种情况</li>
+<li>统一 Unicode 编码处理</li>
+</ul>
+<h3 id="6-checkEnvironment-函数"><a href="#6-checkEnvironment-函数" class="headerlink" title="6. checkEnvironment() 函数"></a>6. <strong><code>checkEnvironment()</code> 函数</strong></h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">checkEnvironment</span>():</span><br><span class="line">    <span class="comment"># 检查非 ASCII 路径处理</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        os.path.isdir(modulePath())</span><br><span class="line">    <span class="keyword">except</span> UnicodeEncodeError:</span><br><span class="line">        errMsg = <span class="string">"your system does not properly handle non-ASCII paths."</span></span><br><span class="line">        logger.critical(errMsg)</span><br><span class="line">        <span class="keyword">raise</span> SystemExit</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 检查版本兼容性</span></span><br><span class="line">    <span class="keyword">if</span> distutils.version.LooseVersion(VERSION) &lt; distutils.version.LooseVersion(<span class="string">"1.0"</span>):</span><br><span class="line">        errMsg = <span class="string">"your runtime environment (e.g. PYTHONPATH) is broken"</span></span><br><span class="line">        logger.critical(errMsg)</span><br><span class="line">        <span class="keyword">raise</span> SystemExit</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>环境验证</strong>：</p>
+<ul>
+<li>路径编码兼容性检查</li>
+<li>版本冲突检测</li>
+</ul>
+<h3 id="7-main-函数-核心逻辑"><a href="#7-main-函数-核心逻辑" class="headerlink" title="7. main() 函数 - 核心逻辑"></a>7. <strong><code>main()</code> 函数 - 核心逻辑</strong></h3><h4 id="7-1-初始化和配置"><a href="#7-1-初始化和配置" class="headerlink" title="7.1 初始化和配置"></a>7.1 初始化和配置</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    dirtyPatches()           <span class="comment"># 应用 Monkey-patch</span></span><br><span class="line">    resolveCrossReferences() <span class="comment"># 解析交叉引用</span></span><br><span class="line">    checkEnvironment()       <span class="comment"># 环境检查</span></span><br><span class="line">    setPaths(modulePath())   <span class="comment"># 设置路径</span></span><br><span class="line">    banner()                 <span class="comment"># 显示横幅</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="7-2-命令行处理"><a href="#7-2-命令行处理" class="headerlink" title="7.2 命令行处理"></a>7.2 命令行处理</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解析命令行参数</span></span><br><span class="line">args = cmdLineParser()</span><br><span class="line">cmdLineOptions.update(args.__dict__ <span class="keyword">if</span> <span class="built_in">hasattr</span>(args, <span class="string">"__dict__"</span>) <span class="keyword">else</span> args)</span><br><span class="line">initOptions(cmdLineOptions)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查管道输入</span></span><br><span class="line"><span class="keyword">if</span> checkPipedInput():</span><br><span class="line">    conf.batch = <span class="literal">True</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="7-3-API-模式支持"><a href="#7-3-API-模式支持" class="headerlink" title="7.3 API 模式支持"></a>7.3 API 模式支持</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> conf.get(<span class="string">"api"</span>):</span><br><span class="line">    <span class="keyword">from</span> lib.utils.api <span class="keyword">import</span> StdDbOut, setRestAPILog</span><br><span class="line">    <span class="comment"># 重定向标准输出到 IPC 数据库</span></span><br><span class="line">    sys.stdout = StdDbOut(conf.taskid, messagetype=<span class="string">"stdout"</span>)</span><br><span class="line">    sys.stderr = StdDbOut(conf.taskid, messagetype=<span class="string">"stderr"</span>)</span><br><span class="line">    setRestAPILog()</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="7-4-功能分发逻辑"><a href="#7-4-功能分发逻辑" class="headerlink" title="7.4 功能分发逻辑"></a>7.4 功能分发逻辑</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> conf.updateAll:</span><br><span class="line">    <span class="keyword">if</span> conf.smokeTest:       <span class="comment"># 冒烟测试</span></span><br><span class="line">        <span class="keyword">from</span> lib.core.testing <span class="keyword">import</span> smokeTest</span><br><span class="line">        os._exitcode = <span class="number">1</span> - (smokeTest() <span class="keyword">or</span> <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> conf.vulnTest:      <span class="comment"># 漏洞测试</span></span><br><span class="line">        <span class="keyword">from</span> lib.core.testing <span class="keyword">import</span> vulnTest</span><br><span class="line">        os._exitcode = <span class="number">1</span> - (vulnTest() <span class="keyword">or</span> <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> conf.fuzzTest:      <span class="comment"># 模糊测试</span></span><br><span class="line">        <span class="keyword">from</span> lib.core.testing <span class="keyword">import</span> fuzzTest</span><br><span class="line">        fuzzTest()</span><br><span class="line">    <span class="keyword">else</span>:                    <span class="comment"># 主控制器</span></span><br><span class="line">        <span class="keyword">from</span> lib.controller.controller <span class="keyword">import</span> start</span><br><span class="line">        <span class="keyword">if</span> conf.profile:     <span class="comment"># 性能分析模式</span></span><br><span class="line">            <span class="keyword">from</span> lib.core.profiling <span class="keyword">import</span> profile</span><br><span class="line">            <span class="built_in">globals</span>()[<span class="string">"start"</span>] = start</span><br><span class="line">            profile()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            start()</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="7-5-爬虫模式支持"><a href="#7-5-爬虫模式支持" class="headerlink" title="7.5 爬虫模式支持"></a>7.5 爬虫模式支持</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> conf.crawlDepth <span class="keyword">and</span> conf.bulkFile:</span><br><span class="line">    targets = getFileItems(conf.bulkFile)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(targets)):</span><br><span class="line">        <span class="comment"># 对每个目标执行爬虫</span></span><br><span class="line">        crawl(target)</span><br><span class="line">        <span class="keyword">if</span> kb.targets:</span><br><span class="line">            start()</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="8-异常处理体系"><a href="#8-异常处理体系" class="headerlink" title="8. 异常处理体系"></a>8. <strong>异常处理体系</strong></h3><p>SQLMap 实现了精细的异常分类：</p>
+<p>python</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">except SqlmapUserQuitException:        # 用户主动退出</span><br><span class="line">except SqlmapSilentQuitException:      # 静默退出</span><br><span class="line">except SqlmapShellQuitException:       # Shell 模式退出</span><br><span class="line">except SqlmapBaseException as ex:      # 基础异常</span><br><span class="line">except KeyboardInterrupt:              # 键盘中断</span><br><span class="line">except EOFError:                       # EOF 错误</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="9-错误诊断和恢复"><a href="#9-错误诊断和恢复" class="headerlink" title="9. 错误诊断和恢复"></a>9. <strong>错误诊断和恢复</strong></h3><p>代码包含大量的特定错误模式识别：</p>
+<p>python</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 内存错误</span><br><span class="line">if any(_ in excMsg for _ in ("MemoryError", "Cannot allocate memory")):</span><br><span class="line">    errMsg = "memory exhaustion detected"</span><br><span class="line"></span><br><span class="line"># 磁盘空间错误  </span><br><span class="line">elif any(_ in excMsg for _ in ("No space left", "Disk quota exceeded")):</span><br><span class="line">    errMsg = "no space left on output device"</span><br><span class="line"></span><br><span class="line"># 权限错误</span><br><span class="line">elif all(_ in excMsg for _ in ("Access is denied", "subprocess", "metasploit")):</span><br><span class="line">    errMsg = "permission error occurred while running Metasploit"</span><br><span class="line"></span><br><span class="line"># 环境完整性检查</span><br><span class="line">elif valid is False:</span><br><span class="line">    errMsg = "code integrity check failed"</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="10-资源清理和退出处理"><a href="#10-资源清理和退出处理" class="headerlink" title="10. 资源清理和退出处理"></a>10. <strong>资源清理和退出处理</strong></h3><p>python</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">finally:</span><br><span class="line">    kb.threadContinue = False</span><br><span class="line">    </span><br><span class="line">    # 清理临时文件</span><br><span class="line">    if kb.get("tempDir"):</span><br><span class="line">        for prefix in (MKSTEMP_PREFIX.IPC, MKSTEMP_PREFIX.TESTING, ...):</span><br><span class="line">            for filepath in glob.glob(os.path.join(kb.tempDir, "%s*" % prefix)):</span><br><span class="line">                try:</span><br><span class="line">                    os.remove(filepath)</span><br><span class="line">                except OSError:</span><br><span class="line">                    pass</span><br><span class="line">    </span><br><span class="line">    # 线程最终化</span><br><span class="line">    _ = time.time()</span><br><span class="line">    while threading.activeCount() &gt; 1 and (time.time() - _) &gt; THREAD_FINALIZATION_TIMEOUT:</span><br><span class="line">        time.sleep(0.01)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="架构特点总结"><a href="#架构特点总结" class="headerlink" title="架构特点总结"></a>架构特点总结</h2><ol>
+<li><strong>模块化设计</strong>：清晰的模块职责分离</li>
+<li><strong>错误恢复</strong>：完善的异常处理和错误诊断</li>
+<li><strong>资源管理</strong>：自动化的资源清理机制</li>
+<li><strong>多模式支持</strong>：支持 CLI、API、测试等多种运行模式</li>
+<li><strong>跨平台兼容</strong>：处理不同操作系统的特性差异</li>
+<li><strong>安全考虑</strong>：代码完整性检查和安全警告处理</li>
+</ol>
+<p>这个入口文件体现了 SQLMap 作为一个成熟安全工具的专业性设计，具备良好的可维护性和用户体验。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/7.jpg" data-sizes="auto" alt="C++学习笔记" class="lazyload">
+          
+        
+        <a href="/2025/11/06/c-xue-xi-bi-ji/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            C++学习笔记
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/1.jpg" data-sizes="auto" alt="SQL注入防范" class="lazyload">
+        
+      
+      <a href="/2025/11/05/sql-zhu-ru-fang-fan/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          SQL注入防范
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        309.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        19:19
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">65</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+      
+    
+  </div>
+  
+    
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "SQLMap工具分析",
+          url: "http://example.com/2025/11/05/sqlmap-gong-ju-fen-xi/",
+          excerpt: "",
+          description: "",
+          stripContent: "SQLMap工具分析结构📁 目录（Folders）1. data/ - 数据文件目录 作用：存放各种静态数据文件，为检测过程提供支持。 包含内容： payloads（攻击载荷） 关键字字典（如 keywords.txt） 用户代理字符串（user-agents.txt） 错误消息模式库 等等    2. doc/ - 文档目录 作用：存放项目文档、使用手册、Wiki 内容等。 包含内容： 使用说明 技术文档 翻译文件    3. extra/ - 额外工具和脚本 作用：存放一些有用的附加工具，",
+          date: "Wed Nov 05 2025 22:15:53 GMT+0800",
+          updated: "Wed Nov 05 2025 23:28:32 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

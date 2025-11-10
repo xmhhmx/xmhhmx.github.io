@@ -226,7 +226,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">60</div>
+    <div class="sidebar-state-number">65</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -307,27 +307,27 @@
           
           
             <li>
+              <a href="/2025/11/10/sql-server-ti-quan/">SQL Server提权</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/07/struts2-ognl-dai-ma-zhi-xing-lou-dong/">Struts2 OGNL 代码执行漏洞</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/06/c-xue-xi-bi-ji/">C++学习笔记</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/05/sqlmap-gong-ju-fen-xi/">SQLMap工具分析</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/05/sql-zhu-ru-fang-fan/">SQL注入防范</a>
+            </li>
+          
+            <li>
               <a href="/2025/11/01/dll-jie-chi-com-jie-chi-bypass-uac/">DLL劫持、COM劫持、Bypass UAC</a>
-            </li>
-          
-            <li>
-              <a href="/2025/10/25/windows-api/">Windows API</a>
-            </li>
-          
-            <li>
-              <a href="/2025/09/25/src-wa-jue-si-lu/">SRC挖掘思路</a>
-            </li>
-          
-            <li>
-              <a href="/2025/08/23/2019-chang-an-bei/">2019 长安杯</a>
-            </li>
-          
-            <li>
-              <a href="/2025/08/21/sql-labs/">SQL-labs</a>
-            </li>
-          
-            <li>
-              <a href="/2025/08/21/ssti-labs/">SSTI-labs</a>
             </li>
           
         </ul>
@@ -374,14 +374,234 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2024/06/07/xiao-bai-tu-jie-wang-luo-xue-xi-bi-ji/" aria-label="小白图解网络学习笔记"></a>
+      <a class="post-link" href="/2024/07/29/samba-fu-wu-qi/" aria-label="Samba服务器"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/23.jpg" data-sizes="auto" alt="小白图解网络学习笔记" class="lazyload">
+          <img data-src="/covers/23.jpg" data-sizes="auto" alt="Samba服务器" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-07-29</span>
+        <span><span class="icon-pencil"></span>1.5k words</span>
+        <span><span class="icon-clock"></span>6 mins</span>
+      </div>
+      <h2 class="post-title">Samba服务器</h2>
+      <article class="post-article">
+        
+          Samba服务器
+Samba是一款在Linux/Unix系统上实现与windows系统进行文件共享的免费开源软件。广泛应用于Unix-like与Windows之间，提供文件共享和打印机共享服务，使得不同系统之间跨平台共享资源更加便捷.Samba服务由服务端及客户端程序构成，采用的是smb/cifs网络协议。samba有两个主要的进程smbd和nmbd。smbd进程提供了文件和打印服务，而nmbd则提供了NetBIOS名称服务和浏览支持，帮助SMB客户定位服务器，处理所有基于UDP的协议。
+
+Linux中配置samba服务器配置要求（1）samba服务器目录
+企业数据目录：/companydat
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/07/23/ci-pan-pei-e/" aria-label="磁盘配额"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/20.jpg" data-sizes="auto" alt="磁盘配额" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-07-23</span>
+        <span><span class="icon-pencil"></span>867 words</span>
+        <span><span class="icon-clock"></span>3 mins</span>
+      </div>
+      <h2 class="post-title">磁盘配额</h2>
+      <article class="post-article">
+        
+          磁盘配额quota 磁盘配额功能只在指定的文件系统（分区）内有效，未设置配额的文件系统不受限制。 
+quota 针对指定的用户账号、组账号进行限制，其他用户或组不受影响。 
+磁盘配额可以进行两方面的限制：磁盘容量、文件数量
+磁盘配额的限制方法分为软限制和硬限制两种
+软限制：在固定的宽限期（默认为 7 天）内允许暂时超过这个限制，但系统会给出警告信息
+硬限制：绝对禁止用户超过该限值。
+硬限制的配额值应大于相应的软限制值，否则软限制值将失效。
+检查是否安装了 quota 工具
+Linux 默认是安装了 quota 工具
+
+查看是否安装
+1[root@localhost ~]#rpm -qa | g
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/07/23/lvm-luo-ji-juan-guan-li/" aria-label="LVM逻辑卷管理"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/23.jpg" data-sizes="auto" alt="LVM逻辑卷管理" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-07-23</span>
+        <span><span class="icon-pencil"></span>1.7k words</span>
+        <span><span class="icon-clock"></span>6 mins</span>
+      </div>
+      <h2 class="post-title">LVM逻辑卷管理</h2>
+      <article class="post-article">
+        
+          LVM逻辑卷管理逻辑卷创建步骤
+假设我们使用sdb和sdc两个磁盘来做LVM逻辑卷。
+
+
+第一步：建立分区并将其修改为8e(Linux LVM 文件系统)  #fdisk /dev/sdb  命令(输入 m 获取帮助)：n   //创建分区  Select (default p): p			//创建主分区  分区号 (1-4，默认 1)：  回车  起始 扇区 (2048-4194303，默认为 2048)：回车  //将使用默认值 2048  Last 扇区, +扇区 or +size{K,M,G} (2048-4194303，默认为 4194303)：回车  //将使用默认值 419430
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/07/05/iptables-fang-huo-qiang/" aria-label="Iptables防火墙"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/5.jpg" data-sizes="auto" alt="Iptables防火墙" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-07-05</span>
+        <span><span class="icon-pencil"></span>1.5k words</span>
+        <span><span class="icon-clock"></span>5 mins</span>
+      </div>
+      <h2 class="post-title">Iptables防火墙</h2>
+      <article class="post-article">
+        
+          iptables防火墙四表五链
+默认的4个规则表
+raw表：确定是否对该数据包进行状态跟踪
+mangle表：为数据包设置标记
+nat表：修改数据包中的源、目标ip地址或端口
+filter表：确定是否放行该数据包（过滤）
+默认的5种规则链：
+INPUT:处理入站数据包
+OUTPUT:处理出站数据包
+FORWARD:处理转发数据包
+POSTROUTING:在进行路由选择后处理数据包
+PREROUTING:在进行路由选择前处理数据包
+
+其中input、output链主要用在“主机型防火墙”中，主要针对服务器本机进行保护；
+
+而FORWARD\POSTROUTING\PREROUTING多用在“网络型
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-left" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/06/17/upload-labs/" aria-label="Upload-labs"></a>
+    
+    
+    <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/covers/12.jpg" data-sizes="auto" alt="Upload-labs" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-06-17</span>
+        <span><span class="icon-pencil"></span>3.1k words</span>
+        <span><span class="icon-clock"></span>11 mins</span>
+      </div>
+      <h2 class="post-title">Upload-labs</h2>
+      <article class="post-article">
+        
+          Upload-labs使用工具：burpsuite中国蚁剑
+Pass-01 前端js绕过
+前端JS代码对上传文件合法性的验证
+
+
+先上传一个不合法php文件来测试
+
+
+
+
+该文件类型不允许上传
+
+
+
+burpsuite未抓到包，则证明上传的文件在前端就被拦截，还未到传给服务器的步骤
+
+
+
+
+他只允许图片（jpg、png）及动图（gif）文件上传，那么我们就将文件改为图片的后缀来上传，从而绕过前端的拦截
+
+
+
+能抓到包，证明绕过了前端验证
+
+
+
+然后将文件后缀名从jpg重新改回php上传，一句话木马就植入服务器了，这里看到打开图片连接，实际上是php文件
+
+
+
+可以用后门连接工具（蚁剑）来连接并
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2024/06/07/xiao-bai-tu-jie-wang-luo-xue-xi-bi-ji/" aria-label="小白图解网络学习笔记"></a>
+    
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/17.jpg" data-sizes="auto" alt="小白图解网络学习笔记" class="lazyload">
         
       
     </div>
@@ -407,191 +627,12 @@ HTTPHTTP报文格式
 </div>
       
     
-      <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/06/06/hui-bian-yu-yan/" aria-label="汇编语言"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/11.jpg" data-sizes="auto" alt="汇编语言" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-06-06</span>
-        <span><span class="icon-pencil"></span>3k words</span>
-        <span><span class="icon-clock"></span>11 mins</span>
-      </div>
-      <h2 class="post-title">汇编语言</h2>
-      <article class="post-article">
-        
-          汇编语言==学习路径==：[汇编语言](https://www.bilibili.com/video/BV1Rs411c7HG）
-==测试点练习路径==：汇编语言 - 王爽
-基础知识概念
-汇编语言是机器指令便于记忆的的书写格式
-
-组成
-汇编指令（机器码的助记符）
-伪指令（由编译器执行）
-其他符号（由编译器识别）：+-*÷ 由编译器转换为逻辑运算符（与或非）传给计算机执行
-
-基础知识
-存储单元的地址（地址信息）器件的选择，读或写命令（控制信息）读或写的数据（数据信息）
-
-==总线==：连接CPU与其他芯片的导线
-
-地址总线
-
-通过地址总线来指定存储单元
-一个cpu有N根地址总线，则可以说这个cp
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/06/06/vpn-ji-zhu/" aria-label="VPN技术"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/5.jpg" data-sizes="auto" alt="VPN技术" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-06-06</span>
-        <span><span class="icon-pencil"></span>1.1k words</span>
-        <span><span class="icon-clock"></span>4 mins</span>
-      </div>
-      <h2 class="post-title">VPN技术</h2>
-      <article class="post-article">
-        
-          VPN技术VPN是干啥的
-==官方解释==：
-​		VPN（Virtual Private Network，虚拟专用网络）技术是一种可以在公共网络上建立安全的、加密的连接，使用户可以通过网络访问私有网络资源的技术。VPN技术通过在用户和目标网络之间建立加密隧道来确保数据传输的安全性和私密性，避免了数据在互联网上传输时被非法获取或篡改的风险。​		VPN技术的主要作用包括：提供加密保护的网络连接、绕过地理位置限制、保护隐私和匿名性、保护数据传输的安全性。在实际应用中，VPN技术广泛应用于企业内部网络、远程办公、跨国公司的分支机构连接、绕过地域限制的访问等场景。
-==我的理解==：
-​		首先，先
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/05/29/sql-zhu-ru/" aria-label="SQL注入"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/17.jpg" data-sizes="auto" alt="SQL注入" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-05-29</span>
-        <span><span class="icon-pencil"></span>2.4k words</span>
-        <span><span class="icon-clock"></span>9 mins</span>
-      </div>
-      <h2 class="post-title">SQL注入</h2>
-      <article class="post-article">
-        
-          SQL注入漏洞描述​		Web 程序代码中对于用户提交的参数未做过滤就直接放到 SQL 语句中执行，导致参数中的特殊字符打破了 SQL 语句原有逻辑，黑客可以利用该漏洞执行任意 SQL 语句，如查询数据、下载数据、写入 webshell 、执行系统命令以及绕过登录限制等。
-测试方法​		在发现有可控参数的地方使用 sqlmap 进行 SQL 注入的检查或者利用， 也可以使用其他的 SQL 注入工具，简单点的可以手工测试，利用单引号、and 1=1 和 and 1=2 以及字符型注入进行判断！推荐使用 burpsuite 的 sqlmap 插件，这样可以很方便，鼠标右键就可以将数据包直接发送到 
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/05/29/feng-shen-tai-gao-xiao-ctf-lian-xi-misc-ru-men-ba-chang/" aria-label="封神台高校CTF练习（Misc入门靶场）"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="/covers/13.jpg" data-sizes="auto" alt="封神台高校CTF练习（Misc入门靶场）" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-05-29</span>
-        <span><span class="icon-pencil"></span>3.4k words</span>
-        <span><span class="icon-clock"></span>13 mins</span>
-      </div>
-      <h2 class="post-title">封神台高校CTF练习（Misc入门靶场）</h2>
-      <article class="post-article">
-        
-          封神台高校CTF练习（Misc入门靶场）
-封神台练习平台==用到的工具平台==Unicode加解密：https://www.toolhelper.cn/EncodeDecode/UnicodeChineseRC4加解密：在线RC4加密解密 (lddgo.net)MD5加解密：md5在线解密破解,md5解密加密 (cmd5.com)凯撒密码加解密：在线凯撒密码加密解密 (lddgo.net)核心价值观加解密平台：CTF在线工具-在线核心价值观编码|核心价值观编码算法|Core Values Encoder (hiencode.com)栅栏加解密平台：（栅栏密码在线加密解密 - 千千秀字 (qqx
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
-      <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
-    
-      <a class="post-link" href="/2024/05/20/kai-chuang-bo-ke/" aria-label="开创博客"></a>
-    
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/11.jpg" data-sizes="auto" alt="开创博客" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2024-05-20</span>
-        <span><span class="icon-pencil"></span>5 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title">开创博客</h2>
-      <article class="post-article">
-        
-          欢迎来到 xmhhmxblog！
-        
-      </article>
-    </div>
-  </div>
-</div>
-      
-    
   
 
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
   </nav>
 
 
@@ -622,10 +663,10 @@ HTTPHTTP报文格式
     
       <div>
         <span class="icon-brush"></span>
-        302.2k
+        309.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        18:50
+        19:19
       </div>
     
     
@@ -662,7 +703,7 @@ HTTPHTTP报文格式
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">60</div>
+    <div class="sidebar-state-number">65</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>

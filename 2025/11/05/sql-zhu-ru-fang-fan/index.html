@@ -1,0 +1,830 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    SQL注入防范 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="SQL注入防范强类型语言防数字型注入JAVA、C#等强类型语言几乎可以完全忽略数字型注入，程序在接收ID参数后，做了一次数据类型转换，如果ID参数接收的数据是字符串，那么转换时将会发生Exception 12&#x2F;&#x2F;接收ID参数并转换为int类型int id &#x3D; Integer.parseInt(request.getParameter(&quot;id&quot;));  但是像PHP、ASP这样的弱类型语言没有强制要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入防范">
+<meta property="og:url" content="http://example.com/2025/11/05/sql-zhu-ru-fang-fan/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="SQL注入防范强类型语言防数字型注入JAVA、C#等强类型语言几乎可以完全忽略数字型注入，程序在接收ID参数后，做了一次数据类型转换，如果ID参数接收的数据是字符串，那么转换时将会发生Exception 12&#x2F;&#x2F;接收ID参数并转换为int类型int id &#x3D; Integer.parseInt(request.getParameter(&quot;id&quot;));  但是像PHP、ASP这样的弱类型语言没有强制要">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-05T04:48:34.656Z">
+<meta property="article:modified_time" content="2025-11-05T15:17:31.392Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="SQL注入防范">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">SQL注入防范</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E8%8C%83"><span class="toc-text">SQL注入防范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E7%B1%BB%E5%9E%8B%E8%AF%AD%E8%A8%80%E9%98%B2%E6%95%B0%E5%AD%97%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">强类型语言防数字型注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89"><span class="toc-text">特殊字符转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E7%BC%96%E8%AF%91%E8%AF%AD%E5%8F%A5-%E5%8F%82%E6%95%B0%E5%8C%96%E6%9F%A5%E8%AF%A2"><span class="toc-text">预编译语句+参数化查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF"><span class="toc-text">框架技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">存储过程</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">65</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-SQL注入防范" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-11-05T04:48:34.656Z" itemprop="datePublished">2025-11-05</time>
+    <time style="display: none;" id="post-update-time">2025-11-05</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="SQL注入防范"><a href="#SQL注入防范" class="headerlink" title="SQL注入防范"></a>SQL注入防范</h1><h2 id="强类型语言防数字型注入"><a href="#强类型语言防数字型注入" class="headerlink" title="强类型语言防数字型注入"></a>强类型语言防数字型注入</h2><p>JAVA、C#等强类型语言几乎可以完全忽略数字型注入，程序在接收ID参数后，做了一次数据类型转换，如果ID参数接收的数据是字符串，那么转换时将会发生Exception</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接收ID参数并转换为int类型</span></span><br><span class="line"><span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> Integer.parseInt(request.getParameter(<span class="string">"id"</span>));</span><br></pre></td></tr></tbody></table></figure>
+
+<p>但是像PHP、ASP这样的弱类型语言没有强制要求数据类型，会根据参数自动推导出数据类型。这没有对id变量机型数据类型转换，如果出现字符串类型会直接带入数据库查询，从而导致SQL注入</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[<span class="string">'id'</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">"select * from news where id = <span class="subst">$id</span>;"</span>;</span><br><span class="line"><span class="variable">$news</span> = <span class="title function_ invoke__">exec</span>(<span class="variable">$sql</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>针对这个问题，也可以使用一些函数来进行数据类型判断，is_numeric()、ctype_digit()来对是否为数据进行判断</p>
+<h2 id="特殊字符转义"><a href="#特殊字符转义" class="headerlink" title="特殊字符转义"></a>特殊字符转义</h2><p>判断输入字符串中是否存在敏感字符，如果存在进行转义，MySQL使用<code>\</code>进行转义</p>
+<p>当出现单引号时，会变成<code>\'</code>，从而让单引号无法有效</p>
+<h2 id="预编译语句-参数化查询"><a href="#预编译语句-参数化查询" class="headerlink" title="预编译语句+参数化查询"></a>预编译语句+参数化查询</h2><blockquote>
+<p>预编译</p>
+<p><strong>预编译</strong> 指的是 SQL 语句的<strong>结构</strong>在数据库端被提前编译和优化，而<strong>参数值</strong>在运行时才传入。可以把这想象成一个 <strong>“填空题模板”</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 这是一个预编译的"模板"</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> ? <span class="keyword">AND</span> password <span class="operator">=</span> ?</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>传统 Statement vs PreparedStatement</strong></p>
+<p><strong>1. 传统 Statement（字符串拼接）</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> <span class="string">"admin"</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">"123456"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接拼接SQL字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">"SELECT * FROM users HERE username = '"</span> + username + <span class="string">"' AND password = '"</span> + password + <span class="string">"'"</span>;</span><br><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement();</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>执行过程</strong>：</p>
+<ol>
+<li>拼接完整SQL：<code>SELECT * FROM users WHERE username = 'admin' AND password = '123456'</code></li>
+<li>每次执行都要：<strong>语法分析 → 语义分析 → 优化 → 生成执行计划 → 执行</strong></li>
+<li><strong>重复劳动</strong>：即使结构相同，只是参数不同，也要重新编译</li>
+</ol>
+<p><strong>2. PreparedStatement（预编译）</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">"SELECT * FROM users WHERE username = ? AND password = ?"</span>;</span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> conn.prepareStatement(sql);  <span class="comment">// ⭐预编译发生在这里⭐</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 后续多次执行</span></span><br><span class="line">ps.setString(<span class="number">1</span>, <span class="string">"admin"</span>);</span><br><span class="line">ps.setString(<span class="number">2</span>, <span class="string">"123456"</span>);</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs1</span> <span class="operator">=</span> ps.executeQuery();</span><br><span class="line"></span><br><span class="line">ps.setString(<span class="number">1</span>, <span class="string">"user1"</span>);</span><br><span class="line">ps.setString(<span class="number">2</span>, <span class="string">"password1"</span>);</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs2</span> <span class="operator">=</span> ps.executeQuery();  <span class="comment">// 重用编译结果</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>执行过程</strong>：</p>
+<ol>
+<li><strong><code>prepareStatement()</code>时</strong>：数据库收到 <code>SELECT * FROM users WHERE username = ? AND password = ?</code><ul>
+<li>进行语法分析、语义检查、优化、生成执行计划</li>
+<li>将编译结果缓存起来</li>
+</ul>
+</li>
+<li><strong><code>executeQuery()</code>时</strong>：只需要传入参数值，直接使用缓存的执行计划</li>
+</ol>
+</blockquote>
+<p>JAVA、C#等语言都提供了预编译语句</p>
+<p>JAVA中提供了三个接口与数据库交互，分别是Statement、PreparedStatement、CallableStatement</p>
+<p>Statement用于执行静态SQL语句，并返回所生成结果的对象。PreparedStatement为Statement的子类，表示预编译SQL语句的对象。CallableStatement为PreparedStatement的子类，用于执行SQL存储过程</p>
+<p>安全代码</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> Integer.parseInt(request.getParameter(<span class="string">"id"</span>));</span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">"select id, username,password from users where id = ?"</span>;</span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="built_in">this</span>.conn.prepareStatement(sql);</span><br><span class="line">ps.setInt(<span class="number">1</span>,id);						<span class="comment">// 关键防护点</span></span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">res</span> <span class="operator">=</span> ps.executeQuery();</span><br><span class="line"><span class="type">Users</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Users</span>();</span><br><span class="line"><span class="keyword">if</span>(res.next()){</span><br><span class="line">	<span class="comment">//封装user对象属性</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><strong>使用参数化查询</strong>，用户输入的 <code>id</code> 被作为参数传递，而不是直接拼接到 SQL 中，即使攻击者传入 <code>1 OR 1=1</code>，也会在 <code>Integer.parseInt()</code> 处被拦截</li>
+<li>通过 <code>setInt()</code> 方法确保参数类型安全，数据库知道这是一个整数类型，不会当作 SQL 命令解析</li>
+</ul>
+<p><strong><u>总结：不要使用SQL动态拼接语句，如果使用拼接语句，即使使用PreparedStatement也没用</u></strong></p>
+<p>错误例子</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">id</span> <span class="operator">=</span> request.getParameter(<span class="string">"id"</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">"select id, username,password from users where id = "</span>+id;</span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">ps</span> <span class="operator">=</span> <span class="built_in">this</span>.conn.prepareStatement(sql);</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">res</span> <span class="operator">=</span> ps.executeQuery();</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="框架技术"><a href="#框架技术" class="headerlink" title="框架技术"></a>框架技术</h2><p>存在一种专门与数据库打交道的框架，称为<strong>持久化框架</strong>，有代表性的Hibernate、MyBatis、JORM等</p>
+<p>Hibernate是一个开放源代码的ORM（对象关系映射）框架。可以使程序员使用面向对象编程思维操作数据库</p>
+<p>Hibernate自定义一种HQL语言，是一种面向对象的数据查询语句</p>
+<p>**<u>但凡涉及到从数据库查询数据的情况，尽量避免出现字符串动态拼接</u>**，最好使用参数名称或者位置绑定的方式</p>
+<p>（1）代码位置绑定</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> Integer.parseInt(request.getParameter(<span class="string">"id"</span>));</span><br><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateSessionFactory.getSession();	<span class="comment">//获取 Hibernate 会话</span></span><br><span class="line"><span class="type">String</span> <span class="variable">hql</span> <span class="operator">=</span> <span class="string">"from Student stu where stu.studentNo = ?"</span>;</span><br><span class="line"><span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(hql);			<span class="comment">//创建 Hibernate Query 对象</span></span><br><span class="line">query.setParameter(<span class="number">0</span>,id);		<span class="comment">//封装参数,将 id 值设置到第一个参数位置（索引从0开始）</span></span><br><span class="line">List&lt;Student&gt; list = query.list();</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>Session 是 Hibernate 的核心接口，相当于 JDBC 的 Connection</li>
+<li><code>?</code>：参数占位符</li>
+</ul>
+<p>（2）使用参数名称</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> Integer.parseInt(request.getParameter(<span class="string">"id"</span>));</span><br><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateSessionFactory.getSession();		</span><br><span class="line"><span class="type">String</span> <span class="variable">hql</span> <span class="operator">=</span> <span class="string">"from Student stu where stu.studentNo = :id"</span>;</span><br><span class="line"><span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(hql);</span><br><span class="line">query.setParameter(<span class="string">"id"</span>,id);		<span class="comment">//封装参数</span></span><br><span class="line">List&lt;Student&gt; list = query.list();</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>各数据库的存储过程安全用法</p>
+<p><strong>1. MySQL</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> GetUserSafe(<span class="keyword">IN</span> userId <span class="type">INT</span>)</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="comment">-- 直接使用参数，安全</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> id <span class="operator">=</span> userId;</span><br><span class="line"><span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Java 调用</strong>：</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String <span class="keyword">sql</span> <span class="operator">=</span> "{call GetUserSafe(?)}";</span><br><span class="line">CallableStatement cs <span class="operator">=</span> conn.prepareCall(<span class="keyword">sql</span>);</span><br><span class="line">cs.setInt(<span class="number">1</span>, userId);  <span class="operator">/</span><span class="operator">/</span> 安全</span><br><span class="line">ResultSet rs <span class="operator">=</span> cs.executeQuery();</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><strong>2. Oracle</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> REPLACE <span class="keyword">PROCEDURE</span> GetEmployeeSafe(</span><br><span class="line">    p_emp_id <span class="keyword">IN</span> NUMBER</span><br><span class="line">) <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="comment">-- 使用绑定变量</span></span><br><span class="line">    <span class="keyword">FOR</span> emp_rec <span class="keyword">IN</span> (</span><br><span class="line">        <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees <span class="keyword">WHERE</span> employee_id <span class="operator">=</span> p_emp_id</span><br><span class="line">    ) LOOP</span><br><span class="line">        <span class="comment">-- 处理数据</span></span><br><span class="line">        DBMS_OUTPUT.PUT_LINE(emp_rec.first_name);</span><br><span class="line">    <span class="keyword">END</span> LOOP;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><strong>3. SQL Server</strong></p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> GetOrderDetailsSafe</span><br><span class="line">    <span class="variable">@OrderId</span> <span class="type">INT</span>,</span><br><span class="line">    <span class="variable">@CustomerId</span> <span class="type">INT</span> <span class="operator">=</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> OrderDetails </span><br><span class="line">    <span class="keyword">WHERE</span> OrderId <span class="operator">=</span> <span class="variable">@OrderId</span></span><br><span class="line">      <span class="keyword">AND</span> (<span class="variable">@CustomerId</span> <span class="keyword">IS</span> <span class="keyword">NULL</span> <span class="keyword">OR</span> CustomerId <span class="operator">=</span> <span class="variable">@CustomerId</span>);</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong><u>注意：依旧是不要出现动态拼接的sql语句</u></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/3.jpg" data-sizes="auto" alt="SQLMap工具分析" class="lazyload">
+          
+        
+        <a href="/2025/11/05/sqlmap-gong-ju-fen-xi/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            SQLMap工具分析
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/8.jpg" data-sizes="auto" alt="DLL劫持、COM劫持、Bypass UAC" class="lazyload">
+        
+      
+      <a href="/2025/11/01/dll-jie-chi-com-jie-chi-bypass-uac/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          DLL劫持、COM劫持、Bypass UAC
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2025
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        309.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        19:19
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E8%8C%83"><span class="toc-text">SQL注入防范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E7%B1%BB%E5%9E%8B%E8%AF%AD%E8%A8%80%E9%98%B2%E6%95%B0%E5%AD%97%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">强类型语言防数字型注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89"><span class="toc-text">特殊字符转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E7%BC%96%E8%AF%91%E8%AF%AD%E5%8F%A5-%E5%8F%82%E6%95%B0%E5%8C%96%E6%9F%A5%E8%AF%A2"><span class="toc-text">预编译语句+参数化查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%8A%80%E6%9C%AF"><span class="toc-text">框架技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">存储过程</span></a></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">65</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "SQL注入防范",
+          url: "http://example.com/2025/11/05/sql-zhu-ru-fang-fan/",
+          excerpt: "",
+          description: "",
+          stripContent: "SQL注入防范强类型语言防数字型注入JAVA、C#等强类型语言几乎可以完全忽略数字型注入，程序在接收ID参数后，做了一次数据类型转换，如果ID参数接收的数据是字符串，那么转换时将会发生Exception 12//接收ID参数并转换为int类型int id = Integer.parseInt(request.getParameter(&#34;id&#34;));  但是像PHP、ASP这样的弱类型语言没有强制要求数据类型，会根据参数自动推导出数据类型。这没有对id变量机型数据类型转换，如果出现字符串类型会直接",
+          date: "Wed Nov 05 2025 12:48:34 GMT+0800",
+          updated: "Wed Nov 05 2025 23:17:31 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

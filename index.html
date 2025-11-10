@@ -226,7 +226,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">60</div>
+    <div class="sidebar-state-number">65</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -307,27 +307,27 @@
           
           
             <li>
+              <a href="/2025/11/10/sql-server-ti-quan/">SQL Server提权</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/07/struts2-ognl-dai-ma-zhi-xing-lou-dong/">Struts2 OGNL 代码执行漏洞</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/06/c-xue-xi-bi-ji/">C++学习笔记</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/05/sqlmap-gong-ju-fen-xi/">SQLMap工具分析</a>
+            </li>
+          
+            <li>
+              <a href="/2025/11/05/sql-zhu-ru-fang-fan/">SQL注入防范</a>
+            </li>
+          
+            <li>
               <a href="/2025/11/01/dll-jie-chi-com-jie-chi-bypass-uac/">DLL劫持、COM劫持、Bypass UAC</a>
-            </li>
-          
-            <li>
-              <a href="/2025/10/25/windows-api/">Windows API</a>
-            </li>
-          
-            <li>
-              <a href="/2025/09/25/src-wa-jue-si-lu/">SRC挖掘思路</a>
-            </li>
-          
-            <li>
-              <a href="/2025/08/23/2019-chang-an-bei/">2019 长安杯</a>
-            </li>
-          
-            <li>
-              <a href="/2025/08/21/sql-labs/">SQL-labs</a>
-            </li>
-          
-            <li>
-              <a href="/2025/08/21/ssti-labs/">SSTI-labs</a>
             </li>
           
         </ul>
@@ -383,7 +383,7 @@
       
         
         
-          <img data-src="/covers/11.jpg" data-sizes="auto" alt="Web3 实习计划 - 2025 夏季" class="lazyload">
+          <img data-src="/covers/4.jpg" data-sizes="auto" alt="Web3 实习计划 - 2025 夏季" class="lazyload">
         
       
     </div>
@@ -415,36 +415,38 @@
       <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/11/01/dll-jie-chi-com-jie-chi-bypass-uac/" aria-label="DLL劫持、COM劫持、Bypass UAC"></a>
+      <a class="post-link" href="/2025/11/10/sql-server-ti-quan/" aria-label="SQL Server提权"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/14.jpg" data-sizes="auto" alt="DLL劫持、COM劫持、Bypass UAC" class="lazyload">
+          <img data-src="/covers/13.jpg" data-sizes="auto" alt="SQL Server提权" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-11-01</span>
-        <span><span class="icon-pencil"></span>2.2k words</span>
-        <span><span class="icon-clock"></span>7 mins</span>
+        <span><span class="icon-calendar"></span>2025-11-10</span>
+        <span><span class="icon-pencil"></span>2.9k words</span>
+        <span><span class="icon-clock"></span>11 mins</span>
       </div>
-      <h2 class="post-title">DLL劫持、COM劫持、Bypass UAC</h2>
+      <h2 class="post-title">SQL Server提权</h2>
       <article class="post-article">
         
-          DLL劫持、COM劫持、Bypass UACDLL劫持DLL劫持原理
-研究目标：找到一个程序经常调用的、合法的DLL文件（比如 version.dll、dinput8.dll）。
-制作恶意DLL：创建一个同名（例如也叫 version.dll）的恶意DLL文件。
-放置陷阱：将这个恶意DLL文件放在一个比系统目录更优先被搜索的位置，最常见的就是程序的安装目录或当前工作目录。
-诱骗执行：当用户运行这个程序时，程序会首先在自己的目录下寻找DLL，于是找到了恶意DLL并加载它，而不是去系统目录加载那个正确的、安全的DLL。
+          SQL Server提权SQL Server提权主要是依据一个特殊的存储过程“xp_cmdshell”，通过这个存储过程可以调用系统命令。
+前提条件
+在sysadmin权限下才能使用“xp_cmdshell”
 
-DLL寻找过程
-程序所在目录
-系统目录即SYSTEM32目录
-16位系统目录
+提权分类（1）注入点提权
+手工测试：
+1?id = 1; exec master.abo.cmdshell &#39;net user 1 1 /add&#39; --
+
+
+**exec**： SQL 关键字，是 EXECUTE 的缩写，用于执行一个存储过程。
+**master.dbo.xp_cmdshell**： 这是要执行的存储过程的完整路径。
+master： 这是 SQL Server 的系统数
         
       </article>
     </div>
@@ -455,33 +457,34 @@ DLL寻找过程
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/10/25/windows-api/" aria-label="Windows API"></a>
+      <a class="post-link" href="/2025/11/07/struts2-ognl-dai-ma-zhi-xing-lou-dong/" aria-label="Struts2 OGNL 代码执行漏洞"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/21.jpg" data-sizes="auto" alt="Windows API" class="lazyload">
+          <img data-src="/covers/16.jpg" data-sizes="auto" alt="Struts2 OGNL 代码执行漏洞" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-10-25</span>
-        <span><span class="icon-pencil"></span>780 words</span>
+        <span><span class="icon-calendar"></span>2025-11-07</span>
+        <span><span class="icon-pencil"></span>698 words</span>
         <span><span class="icon-clock"></span>3 mins</span>
       </div>
-      <h2 class="post-title">Windows API</h2>
+      <h2 class="post-title">Struts2 OGNL 代码执行漏洞</h2>
       <article class="post-article">
         
-          Windows API介绍Windows API（应用程序编程接口）是微软为Windows操作系统创建的一套核心编程接口。简单来说，它是一个巨大的函数、数据结构、常量和指令的集合，程序员可以使用这些“积木”来创建在Windows上运行的应用程序。
-Windows API大量存在于DLL动态链接库中，一个DLL文件可能存在上百个Windows API
-DLL文件主要集中于C:\Windows\System32目录中
-API形似这个，是一个弹窗
-1MessageBox(NULL, TEXT(&#34;hello c&#34;), TEXT(&#34;标题&#34;), MB_OK);
+          Struts2 OGNL 代码执行漏洞漏洞原理分析1. 正常 OGNL 表达式执行1http://host/struts2-blank/example/X.action?action:%25(3*4)
 
-Windows数据类型1. 整数类型这些是
+
+%25 是 URL 编码的 % 字符
+%(3*4) 实际是 #{3*4}（OGNL 表达式）
+Struts2 会执行这个表达式并返回结果 12
+
+2. 恶意代码执行12http://host/struts2-showcase/employee/save.action?redirect:%25{ (new+java.lang.ProcessBuilder(new+java.lang.Strin
         
       </article>
     </div>
@@ -492,32 +495,28 @@ Windows数据类型1. 整数类型这些是
       <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/09/25/src-wa-jue-si-lu/" aria-label="SRC挖掘思路"></a>
+      <a class="post-link" href="/2025/11/06/c-xue-xi-bi-ji/" aria-label="C++学习笔记"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/5.jpg" data-sizes="auto" alt="SRC挖掘思路" class="lazyload">
+          <img data-src="/covers/18.jpg" data-sizes="auto" alt="C++学习笔记" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-09-25</span>
-        <span><span class="icon-pencil"></span>985 words</span>
-        <span><span class="icon-clock"></span>4 mins</span>
+        <span><span class="icon-calendar"></span>2025-11-06</span>
+        <span><span class="icon-pencil"></span>622 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
       </div>
-      <h2 class="post-title">SRC挖掘思路</h2>
+      <h2 class="post-title">C++学习笔记</h2>
       <article class="post-article">
         
-          SRC挖掘思路任意文件下载可以在网站的下载文件的地方，更改其JS代码，将其下载文件的路径更改为服务器的敏感文件或者配置文件的路径
-tips：更改路径中的文件后缀名的大小写，检查其对大小写是否敏感来判断是Windows还是Linux系统
-1&amp;lt;a class=&#34;down&#34; href=&#34;/download/view/id/1.html&#34;&amp;gt;
-
-更改为
-1234Linux&amp;lt;a class=&#34;down&#34; href=&#34;../../../../../../../../etc/passwd&#34;&amp;gt;Windows&amp;lt;a class=&#34;down&#34; href=&#34;../../../../../.
+          C++学习笔记案例分析循环结构-水仙花数练习案例：水仙花数案例描述：水仙花数是指一个3位数，它的每个位上的数字的3次幕之和等于它本身例如：1^3+5^3+3^3=153请利用do..while语句，求出所有3位数中的水仙花数
+1234567891011121314151617181920#include&amp;lt;iostream&amp;gt;using namespace std;int main(){	int num = 100;	do	{		int a = 0;		//个位		int b = 0;		//十位		int c = 0;		//百位		a = num % 10;		b = num / 
         
       </article>
     </div>
@@ -528,50 +527,52 @@ tips：更改路径中的文件后缀名的大小写，检查其对大小写是�
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/08/23/2019-chang-an-bei/" aria-label="2019 长安杯"></a>
+      <a class="post-link" href="/2025/11/05/sqlmap-gong-ju-fen-xi/" aria-label="SQLMap工具分析"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/3.jpg" data-sizes="auto" alt="2019 长安杯" class="lazyload">
+          <img data-src="/covers/11.jpg" data-sizes="auto" alt="SQLMap工具分析" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-08-23</span>
-        <span><span class="icon-pencil"></span>2.4k words</span>
-        <span><span class="icon-clock"></span>10 mins</span>
+        <span><span class="icon-calendar"></span>2025-11-05</span>
+        <span><span class="icon-pencil"></span>2.1k words</span>
+        <span><span class="icon-clock"></span>8 mins</span>
       </div>
-      <h2 class="post-title">2019 长安杯</h2>
+      <h2 class="post-title">SQLMap工具分析</h2>
       <article class="post-article">
         
-          2019 长安杯
-原服务器存在多少硬盘分区
+          SQLMap工具分析结构📁 目录（Folders）1. data/ - 数据文件目录
+作用：存放各种静态数据文件，为检测过程提供支持。
+包含内容：
+payloads（攻击载荷）
+关键字字典（如 keywords.txt）
+用户代理字符串（user-agents.txt）
+错误消息模式库
+等等
 
 
 
-原服务器中硬盘分区其中含有一个LVM逻辑卷的分区，请找出该分区内开始的逻辑区块地址（LBA）。（答案格式： 扇区，Sector）
+2. doc/ - 文档目录
+作用：存放项目文档、使用手册、Wiki 内容等。
+包含内容：
+使用说明
+技术文档
+翻译文件
 
 
 
-该LVM逻辑卷分区内root逻辑卷的文件系统是什么？
-该LVM逻辑卷分区内root逻辑卷的物理大小是多少？（单位：byte）
-
-注意硬盘扇区的大小是512字节（byte） 35643392*512
-
-
-网站目录所在的主机路径为下列选项中的哪个？
-
-1docker inspect 53766d68636f
-
-
-
-网站日志的路径在哪？（格式：容器ID：路径）
-
-1234docker exec -it 16fc160
+3. extra/ - 额外工具和脚本
+作用：存放一些有用的附加工具，但不是核心功能。
+包含内容：
+sh.py - 运行时命令行工具
+beep/ - 操作完成提示音
+dn
         
       </article>
     </div>
@@ -582,27 +583,31 @@ tips：更改路径中的文件后缀名的大小写，检查其对大小写是�
       <div class="post-wrapper">
   <div class="post-wrap-right" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/08/21/sql-labs/" aria-label="SQL-labs"></a>
+      <a class="post-link" href="/2025/11/05/sql-zhu-ru-fang-fan/" aria-label="SQL注入防范"></a>
     
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/9.jpg" data-sizes="auto" alt="SQL-labs" class="lazyload">
+          <img data-src="/covers/7.jpg" data-sizes="auto" alt="SQL注入防范" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-08-21</span>
-        <span><span class="icon-pencil"></span>2 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
+        <span><span class="icon-calendar"></span>2025-11-05</span>
+        <span><span class="icon-pencil"></span>1.3k words</span>
+        <span><span class="icon-clock"></span>5 mins</span>
       </div>
-      <h2 class="post-title">SQL-labs</h2>
+      <h2 class="post-title">SQL注入防范</h2>
       <article class="post-article">
         
-          SQL-labs
+          SQL注入防范强类型语言防数字型注入JAVA、C#等强类型语言几乎可以完全忽略数字型注入，程序在接收ID参数后，做了一次数据类型转换，如果ID参数接收的数据是字符串，那么转换时将会发生Exception
+12//接收ID参数并转换为int类型int id = Integer.parseInt(request.getParameter(&#34;id&#34;));
+
+但是像PHP、ASP这样的弱类型语言没有强制要求数据类型，会根据参数自动推导出数据类型。这没有对id变量机型数据类型转换，如果出现字符串类型会直接带入数据库查询，从而导致SQL注入
+123$id = $_GET[&#39;id&#39;];$sql = &#34;sel
         
       </article>
     </div>
@@ -615,7 +620,7 @@ tips：更改路径中的文件后缀名的大小写，检查其对大小写是�
 
   <nav id="page-nav" data-aos="fade-up">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 
@@ -646,10 +651,10 @@ tips：更改路径中的文件后缀名的大小写，检查其对大小写是�
     
       <div>
         <span class="icon-brush"></span>
-        302.2k
+        309.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        18:50
+        19:19
       </div>
     
     
@@ -686,7 +691,7 @@ tips：更改路径中的文件后缀名的大小写，检查其对大小写是�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">60</div>
+    <div class="sidebar-state-number">65</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
