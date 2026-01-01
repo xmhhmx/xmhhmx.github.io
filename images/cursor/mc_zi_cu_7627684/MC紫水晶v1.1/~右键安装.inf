@@ -1,0 +1,143 @@
+; Install Script generate by MineCursor
+; Theme Info: 
+; - Theme ID: 70d113a2
+; - Theme Name: MC紫水晶
+; - Theme Anchor: hite404
+; - Theme Description: 紫水晶主题的鼠标指针！完整版
+; - Theme Base Size: 32
+; Projects: 
+; - 正常选择
+; - - Name: 正常选择
+; - - Hotspot: Position(x=2, y=6)
+; - - Size: (64, 64)
+; - 帮助选择
+; - - Name: 帮助
+; - - Hotspot: Position(x=2, y=6)
+; - - Size: (64, 64)
+; - 后台运行
+; - - Name: 后台运行
+; - - Hotspot: Position(x=2, y=6)
+; - - Size: (64, 64)
+; - - Animation Cursor
+; - 忙
+; - - Name: 忙
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - - Animation Cursor
+; - 精确选择
+; - - Name: None
+; - - External Name: 指南针
+; - - Hotspot: Position(x=16, y=14)
+; - - Size: (64, 64)
+; - 文本选择
+; - - Name: 文本选择
+; - - Hotspot: Position(x=17, y=15)
+; - - Size: (64, 64)
+; - 手写
+; - - Name: 手写
+; - - Hotspot: Position(x=6, y=28)
+; - - Size: (64, 64)
+; - 不可用
+; - - Name: 不可用
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - 链接选择
+; - - Name: 链接选择
+; - - Hotspot: Position(x=6, y=6)
+; - - Size: (64, 64)
+; - 沿对角线调整大小 2
+; - - Name: 沿对角线调整大小 2
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - 沿对角线调整大小 1
+; - - Name: 沿对角线调整大小 1
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - 候选
+; - - Name: 候选
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - 移动
+; - - Name: 移动
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - 水平调整大小
+; - - Name: 水平调整大小
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+; - 垂直调整大小
+; - - Name: 垂直调整大小
+; - - Hotspot: Position(x=16, y=16)
+; - - Size: (64, 64)
+
+[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Scheme.Cur, Scheme.Txt
+AddReg    = Scheme.Reg,Wreg
+
+
+[DestinationDirs]
+Scheme.Cur = 10,%CUR_DIR%
+Scheme.Txt = 10,%CUR_DIR%
+
+[Scheme.Reg]
+HKCU,"Control Panel\Cursors\Schemes","%SCHEME_NAME%",,"%10%\%CUR_DIR%\%pointer%,%10%\%CUR_DIR%\%help%,%10%\%CUR_DIR%\%work%,%10%\%CUR_DIR%\%busy%,%10%\%CUR_DIR%\%cross%,%10%\%CUR_DIR%\%text%,%10%\%CUR_DIR%\%hand%,%10%\%CUR_DIR%\%unavailable%,%10%\%CUR_DIR%\%vert%,%10%\%CUR_DIR%\%horz%,%10%\%CUR_DIR%\%dgn1%,%10%\%CUR_DIR%\%dgn2%,%10%\%CUR_DIR%\%move%,%10%\%CUR_DIR%\%alternate%,%10%\%CUR_DIR%\%link%,,"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Runonce\Setup\","",,"rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1"
+
+[Wreg]
+HKCU,"Control Panel\Cursors",,0x00020000,"%SCHEME_NAME%"
+HKCU,"Control Panel\Cursors",AppStarting,0x00020000,"%10%\%CUR_DIR%\%work%"
+HKCU,"Control Panel\Cursors",Arrow,0x00020000,"%10%\%CUR_DIR%\%pointer%"
+HKCU,"Control Panel\Cursors",Crosshair,0x00020000,"%10%\%CUR_DIR%\%Cross%"
+HKCU,"Control Panel\Cursors",Hand,0x00020000,"%10%\%CUR_DIR%\%link%"
+HKCU,"Control Panel\Cursors",Help,0x00020000,"%10%\%CUR_DIR%\%Help%"
+HKCU,"Control Panel\Cursors",IBeam,0x00020000,"%10%\%CUR_DIR%\%Text%"
+HKCU,"Control Panel\Cursors",NWPen,0x00020000,"%10%\%CUR_DIR%\%Hand%"
+HKCU,"Control Panel\Cursors",SizeAll,0x00020000,"%10%\%CUR_DIR%\%move%"
+HKCU,"Control Panel\Cursors",SizeNESW,0x00020000,"%10%\%CUR_DIR%\%Dgn2%"
+HKCU,"Control Panel\Cursors",SizeNS,0x00020000,"%10%\%CUR_DIR%\%Vert%"
+HKCU,"Control Panel\Cursors",SizeNWSE,0x00020000,"%10%\%CUR_DIR%\%Dgn1%"
+HKCU,"Control Panel\Cursors",SizeWE,0x00020000,"%10%\%CUR_DIR%\%Horz%"
+HKCU,"Control Panel\Cursors",UpArrow,0x00020000,"%10%\%CUR_DIR%\%alternate%"
+HKCU,"Control Panel\Cursors",Wait,0x00020000,"%10%\%CUR_DIR%\%busy%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Runonce\Setup\","",,"rundll32.exe shell32.dll,Control_RunDLL main.cpl @0,1"
+
+
+
+[Scheme.Cur]
+"正常选择.cur"     ; 正常选择
+"帮助选择.cur"     ; 帮助选择
+"后台运行.ani"     ; 后台运行
+"忙.ani"     ; 忙
+"精确选择.cur"     ; 精确选择
+"文本选择.cur"     ; 文本选择
+"手写.cur"     ; 手写
+"不可用.cur"     ; 不可用
+"链接选择.cur"     ; 链接选择
+"沿对角线调整大小 2.cur"     ; 沿对角线调整大小 2
+"沿对角线调整大小 1.cur"     ; 沿对角线调整大小 1
+"候选.cur"     ; 候选
+"移动.cur"     ; 移动
+"水平调整大小.cur"     ; 水平调整大小
+"垂直调整大小.cur"     ; 垂直调整大小
+
+[Strings]
+CUR_DIR = "Cursors\MC紫水晶"
+SCHEME_NAME = MC紫水晶
+pointer = "正常选择.cur"     ; 正常选择
+help = "帮助选择.cur"     ; 帮助选择
+work = "后台运行.ani"     ; 后台运行
+busy = "忙.ani"     ; 忙
+cross = "精确选择.cur"     ; 精确选择
+text = "文本选择.cur"     ; 文本选择
+hand = "手写.cur"     ; 手写
+unavailable = "不可用.cur"     ; 不可用
+link = "链接选择.cur"     ; 链接选择
+dgn2 = "沿对角线调整大小 2.cur"     ; 沿对角线调整大小 2
+dgn1 = "沿对角线调整大小 1.cur"     ; 沿对角线调整大小 1
+alternate = "候选.cur"     ; 候选
+move = "移动.cur"     ; 移动
+horz = "水平调整大小.cur"     ; 水平调整大小
+vert = "垂直调整大小.cur"     ; 垂直调整大小

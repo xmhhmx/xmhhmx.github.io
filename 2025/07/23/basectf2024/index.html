@@ -1,0 +1,868 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    BaseCTF2024 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="BaseCTF2024Web玩原神玩的1234567891011121314151617181920212223242526272829303132333435 &lt;?phphighlight_file(__FILE__);error_reporting(0);include &#39;flag.php&#39;;if (sizeof($_POST[&#39;len&#39;]) &#x3D;&#x3D; sizeof($array)) {">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BaseCTF2024">
+<meta property="og:url" content="http://example.com/2025/07/23/basectf2024/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="BaseCTF2024Web玩原神玩的1234567891011121314151617181920212223242526272829303132333435 &lt;?phphighlight_file(__FILE__);error_reporting(0);include &#39;flag.php&#39;;if (sizeof($_POST[&#39;len&#39;]) &#x3D;&#x3D; sizeof($array)) {">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6880c5b158cb8da5c8d0d542.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6880c9ab58cb8da5c8d0eacd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6880c9f958cb8da5c8d0ec29.png">
+<meta property="article:published_time" content="2025-07-23T10:27:22.689Z">
+<meta property="article:modified_time" content="2025-08-20T09:04:08.117Z">
+<meta property="article:author" content="mX1@0">
+<meta property="article:tag" content="BaseCTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6880c5b158cb8da5c8d0d542.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="BaseCTF2024">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">BaseCTF2024</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BaseCTF2024"><span class="toc-text">BaseCTF2024</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%A9%E5%8E%9F%E7%A5%9E%E7%8E%A9%E7%9A%84"><span class="toc-text">玩原神玩的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Back-to-the-future"><span class="toc-text">Back to the future</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-BaseCTF2024" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2025-07-23T10:27:22.689Z" itemprop="datePublished">2025-07-23</time>
+    <time style="display: none;" id="post-update-time">2025-08-20</time>
+  </span>
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/" data-aos="zoom-in">CTF</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="BaseCTF2024"><a href="#BaseCTF2024" class="headerlink" title="BaseCTF2024"></a>BaseCTF2024</h1><h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h4 id="玩原神玩的"><a href="#玩原神玩的" class="headerlink" title="玩原神玩的"></a>玩原神玩的</h4><figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">'flag.php'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">sizeof</span>(<span class="variable">$_POST</span>[<span class="string">'len'</span>]) == <span class="title function_ invoke__">sizeof</span>(<span class="variable">$array</span>)) {</span><br><span class="line">  <span class="title function_ invoke__">ys_open</span>(<span class="variable">$_GET</span>[<span class="string">'tip'</span>]);</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="keyword">die</span>(<span class="string">"错了！就你还想玩原神？❌❌❌"</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ys_open</span>(<span class="params"><span class="variable">$tip</span></span>) </span>{</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$tip</span> != <span class="string">"我要玩原神"</span>) {</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"我不管，我要玩原神！😭😭😭"</span>);</span><br><span class="line">  }</span><br><span class="line">  <span class="title function_ invoke__">dumpFlag</span>();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dumpFlag</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">'m'</span>]) || <span class="title function_ invoke__">sizeof</span>(<span class="variable">$_POST</span>[<span class="string">'m'</span>]) != <span class="number">2</span>) {</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"可恶的QQ人！😡😡😡"</span>);</span><br><span class="line">  }</span><br><span class="line">  <span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">'m'</span>][<span class="number">0</span>];</span><br><span class="line">  <span class="variable">$b</span> = <span class="variable">$_POST</span>[<span class="string">'m'</span>][<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$a</span>) || <span class="keyword">empty</span>(<span class="variable">$b</span>) || <span class="variable">$a</span> != <span class="string">"100%"</span> || <span class="variable">$b</span> != <span class="string">"love100%"</span> . <span class="title function_ invoke__">md5</span>(<span class="variable">$a</span>)) {</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"某站崩了？肯定是某忽悠干的！😡😡😡"</span>);</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">include</span> <span class="string">'flag.php'</span>;</span><br><span class="line">  <span class="variable">$flag</span>[] = <span class="keyword">array</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="variable">$ii</span> = <span class="number">0</span>;<span class="variable">$ii</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$array</span>);<span class="variable">$ii</span>++) {</span><br><span class="line">    <span class="variable">$flag</span>[<span class="variable">$ii</span>] = <span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">ord</span>(<span class="variable">$array</span>[<span class="variable">$ii</span>]) ^ <span class="variable">$ii</span>);</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$flag</span>);</span><br><span class="line">} </span><br></pre></td></tr></tbody></table></figure>
+
+<p>首先第一部分</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (sizeof($_POST['len']) == sizeof($array)) {</span><br><span class="line">  ys_open($_GET['tip']);</span><br><span class="line">} else {</span><br><span class="line">  die("错了！就你还想玩原神？❌❌❌");</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>需要POST传参len，并且长度需要是array数组的长度，所以这里决定向服务器传递一组连续的参数值，以<code>len[0]=1&amp;len[1]=1&amp;len[2]=1&amp;...</code>的结构向len数组传入值，使数组中的值数量增加，从而爆破array数组的长度，这里使用一个python脚本，来写一个密码本</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">""</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">"./1.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> file:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">        s = s + <span class="string">"len["</span> + <span class="built_in">str</span>(i) + <span class="string">"]=1&amp;"</span></span><br><span class="line">        file.write(s[:-<span class="number">1</span>] + <span class="string">"\n"</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>得到的密码本像这样</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">len[1]=1</span><br><span class="line">len[1]=1&amp;len[2]=1</span><br><span class="line">len[1]=1&amp;len[2]=1&amp;len[3]=1</span><br><span class="line">len[1]=1&amp;len[2]=1&amp;len[3]=1&amp;len[4]=1</span><br><span class="line">len[1]=1&amp;len[2]=1&amp;len[3]=1&amp;len[4]=1&amp;len[5]=1</span><br><span class="line">len[1]=1&amp;len[2]=1&amp;len[3]=1&amp;len[4]=1&amp;len[5]=1&amp;len[6]=1</span><br><span class="line">len[1]=1&amp;len[2]=1&amp;len[3]=1&amp;len[4]=1&amp;len[5]=1&amp;len[6]=1&amp;len[7]=1</span><br><span class="line">…………</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后使用burpsuite抓包，在POST参数处用上面的密码本进行爆破，为了验证是否通过，还需要在GET参数处传入<code>tip = 我要玩原神</code>，进行爆破。</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ys_open</span>(<span class="params"><span class="variable">$tip</span></span>) </span>{</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$tip</span> != <span class="string">"我要玩原神"</span>) {</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"我不管，我要玩原神！😭😭😭"</span>);</span><br><span class="line">  }</span><br><span class="line">  <span class="title function_ invoke__">dumpFlag</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>爆破得到的数据包都是一样的长度，所以需要逐一查看，看数据响应包中回显<code>我不管，我要玩原神</code>，则证明已经进入ys_open函数，这里爆破出来，len为45，也就是<code>len[0]=1&amp;len[1]=1&amp;len[2]=1&amp;...&amp;len[45]=1</code>。</p>
+<p>第二部分</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dumpFlag</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">'m'</span>]) || <span class="title function_ invoke__">sizeof</span>(<span class="variable">$_POST</span>[<span class="string">'m'</span>]) != <span class="number">2</span>) {</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"可恶的QQ人！😡😡😡"</span>);</span><br><span class="line">  }</span><br><span class="line">  <span class="variable">$a</span> = <span class="variable">$_POST</span>[<span class="string">'m'</span>][<span class="number">0</span>];</span><br><span class="line">  <span class="variable">$b</span> = <span class="variable">$_POST</span>[<span class="string">'m'</span>][<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$a</span>) || <span class="keyword">empty</span>(<span class="variable">$b</span>) || <span class="variable">$a</span> != <span class="string">"100%"</span> || <span class="variable">$b</span> != <span class="string">"love100%"</span> . <span class="title function_ invoke__">md5</span>(<span class="variable">$a</span>)) {</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"某站崩了？肯定是某忽悠干的！😡😡😡"</span>);</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">include</span> <span class="string">'flag.php'</span>;</span><br><span class="line">  <span class="variable">$flag</span>[] = <span class="keyword">array</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="variable">$ii</span> = <span class="number">0</span>;<span class="variable">$ii</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$array</span>);<span class="variable">$ii</span>++) {</span><br><span class="line">    <span class="variable">$flag</span>[<span class="variable">$ii</span>] = <span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">ord</span>(<span class="variable">$array</span>[<span class="variable">$ii</span>]) ^ <span class="variable">$ii</span>);</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$flag</span>);</span><br><span class="line">} </span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>['m'][0]</code>这里以这样的形式赋值，证明m是一个数组。题目有判断m是否存在以及长度是否为2。</p>
+<p>这里使用||（或运算）意味着需要都不满足才能不die，有一个满足就会die，a传入<code>100%</code>，b传入<code>love100%</code>再拼接一个a的md5值，但是需要注意这里的%需要先进行URL编码，不然会被浏览器解析不能绕过</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m[0]=100%25&amp;m[1]=love%255e2d121ec0059bcf0ebb8e6ecc0fb3c1</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第三部分</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$flag[] = array();</span><br><span class="line"> for ($ii = 0;$ii &lt; sizeof($array);$ii++) {</span><br><span class="line">   $flag[$ii] = md5(ord($array[$ii]) ^ $ii);</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输入m数组值后，返回一连串的md5的列表值，如下</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">["3295c76acbf4caaed33c36b1b5fc2cb1","26657d5ff9020d2abefe558796b99584",……]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这些数组是第三部分中，对flag数组的加密逻辑之后的结果</p>
+<p> <strong>加密逻辑分解</strong></p>
+<ul>
+<li><strong><code>ord($array[$ii])</code></strong><br>  获取数组 <code>$array</code> 中第 <code>$ii</code> 个字符的 <strong>ASCII 码值</strong>（如字符 <code>'A'</code> → <code>65</code>）。</li>
+<li><strong><code>^ $ii</code></strong><br>  对 ASCII 码进行 <strong>按位异或（XOR）</strong> 操作，异或的密钥是当前索引 <code>$ii</code>。</li>
+<li><strong><code>md5(...)</code></strong><br>  将 XOR 结果转换为 <strong>32 位 MD5 哈希值</strong>。</li>
+</ul>
+<p>这里写一个解密的脚本</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reverse_md5_hashes</span>(<span class="params">flags</span>):</span><br><span class="line">    array=[]</span><br><span class="line">    <span class="keyword">for</span> ii,flag <span class="keyword">in</span> <span class="built_in">enumerate</span>(flags):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">            <span class="keyword">if</span> hashlib.md5(<span class="built_in">str</span>(i).encode()).hexdigest()==flag:</span><br><span class="line">                array.append(<span class="built_in">chr</span>(i^ii))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(array)</span><br><span class="line">flags=[<span class="string">"3295c76acbf4caaed33c36b1b5fc2cb1"</span>,<span class="string">"26657d5ff9020d2abefe558796b99584"</span>,…………<span class="string">"]</span></span><br><span class="line"><span class="string">original_array=reverse_md5_hashes(flags)</span></span><br><span class="line"><span class="string">print(original_array)</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>对每个哈希值，暴力破解 <code>0-255</code> 的数字，找到MD5匹配的数字 <code>i</code>。</li>
+<li>用 <code>i ^ 当前索引 ii</code> 逆向计算原始字符的ASCII码</li>
+</ul>
+<p>最终就可以直接输出flag</p>
+<hr>
+<blockquote>
+<p>其中核心的代码如下：</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if hashlib.md5(str(i).encode()).hexdigest() == flag:</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><strong><code>str(i)</code></strong><ul>
+<li>将数字 <code>i</code> 转换为字符串（如 <code>65</code> → <code>"65"</code>）。</li>
+<li><em>为什么？</em> MD5 算法需要字节输入，而非直接的数字。</li>
+</ul>
+</li>
+<li><strong><code>.encode()</code></strong><ul>
+<li>将字符串编码为字节（默认 UTF-8）。</li>
+<li>例如：<code>"65"</code> → <code>b'65'</code>（字节形式）。</li>
+</ul>
+</li>
+<li><strong><code>hashlib.md5()</code></strong><ul>
+<li>调用 Python 的 MD5 哈希算法，生成哈希对象。</li>
+<li>输入：字节流（如 <code>b'65'</code>）。</li>
+</ul>
+</li>
+<li><strong><code>.hexdigest()</code></strong><ul>
+<li>将 MD5 哈希结果转换为 <strong>32 位十六进制字符串</strong>。</li>
+<li>例如：<code>b'65'</code> 的 MD5 → <code>"7fc56270e7a70fa81a5935b72eacbe29"</code>。</li>
+</ul>
+</li>
+<li><strong><code>== flag</code></strong><ul>
+<li>比较生成的哈希值与目标 <code>flag</code> 是否一致。</li>
+</ul>
+</li>
+</ol>
+<p><strong>完整执行流程示例</strong></p>
+<p>假设 <code>i = 65</code>，<code>flag = "7fc56270e7a70fa81a5935b72eacbe29"</code>：</p>
+<ol>
+<li><code>str(65)</code> → <code>"65"</code></li>
+<li><code>"65".encode()</code> → <code>b'65'</code></li>
+<li><code>hashlib.md5(b'65')</code> → 哈希对象</li>
+<li><code>.hexdigest()</code> → <code>"7fc56270e7a70fa81a5935b72eacbe29"</code></li>
+<li>比较 <code>"7fc56270..." == "7fc56270..."</code> → <code>True</code></li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p> 其中<code>enumerate()</code> 是 Python 的一个内置函数，用于在遍历序列（如列表、元组、字符串）时，<strong>同时获取元素的索引和值</strong>。它将一个可迭代对象转换为一个“枚举对象”，生成 <code>(索引, 值)</code> 的组合。</p>
+<p> <strong>基本语法</strong></p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enumerate</span>(iterable, start=<span class="number">0</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>**<code>iterable</code>**：要遍历的可迭代对象（如列表、字符串）。</li>
+<li>**<code>start</code>**（可选）：索引的起始值（默认为 0）。</li>
+</ul>
+<p> <strong>核心功能</strong></p>
+<p>假设有一个列表 <code>fruits = ['apple', 'banana', 'cherry']</code>：</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(fruits):</span><br><span class="line">    <span class="built_in">print</span>(index, value)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>输出</strong>：</p>
+<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> apple</span><br><span class="line"><span class="number">1</span> banana</span><br><span class="line"><span class="number">2</span> cherry</span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<hr>
+<h4 id="Back-to-the-future"><a href="#Back-to-the-future" class="headerlink" title="Back to the future"></a>Back to the future</h4><p>拿到页面，第一反应是进行目录扫描，然后就扫出了很多文件，那么应该就不是这种方式，但是发现存在很多git目录下的文件</p>
+<p><img src="https://pic1.imgdb.cn/item/6880c5b158cb8da5c8d0d542.png"></p>
+<p>那么这题可能考察的git泄露，使用工具githacker</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">githacker --url http://gz.imxbt.cn:20602/.git/ --output-folder ctf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>cmd打开生成的随机数的文件夹使用<code>git log</code>查看</p>
+<p><img src="https://pic1.imgdb.cn/item/6880c9ab58cb8da5c8d0eacd.png"></p>
+<p>可以看到有<code>add what</code>和<code>remove flag</code></p>
+<p>使用命令<code>git diff + 版本commit</code>，查看信息改动，获得flag</p>
+<p><img src="https://pic1.imgdb.cn/item/6880c9f958cb8da5c8d0ec29.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/BaseCTF/" rel="tag">BaseCTF</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/5.jpg" data-sizes="auto" alt="Solar应急响应月赛-7月WP" class="lazyload">
+          
+        
+        <a href="/2025/07/26/solar-ying-ji-xiang-ying-yue-sai-7-yue-wp/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Solar应急响应月赛-7月WP
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/19.jpg" data-sizes="auto" alt="正则表达式" class="lazyload">
+        
+      
+      <a href="/2025/07/18/zheng-ze-biao-da-shi/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          正则表达式
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2026
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        316.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        19:43
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class" >
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BaseCTF2024"><span class="toc-text">BaseCTF2024</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%A9%E5%8E%9F%E7%A5%9E%E7%8E%A9%E7%9A%84"><span class="toc-text">玩原神玩的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Back-to-the-future"><span class="toc-text">Back to the future</span></a></li></ol></li></ol></li></ol></li></ol>
+      
+  </div>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "BaseCTF2024",
+          url: "http://example.com/2025/07/23/basectf2024/",
+          excerpt: "",
+          description: "",
+          stripContent: "BaseCTF2024Web玩原神玩的1234567891011121314151617181920212223242526272829303132333435 &amp;lt;?phphighlight_file(__FILE__);error_reporting(0);include &#39;flag.php&#39;;if (sizeof($_POST[&#39;len&#39;]) == sizeof($array)) {  ys_open($_GET[&#39;tip&#39;]);} else {  die(&#34;错了！就你还想玩原神？❌❌",
+          date: "Wed Jul 23 2025 18:27:22 GMT+0800",
+          updated: "Wed Aug 20 2025 17:04:08 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
