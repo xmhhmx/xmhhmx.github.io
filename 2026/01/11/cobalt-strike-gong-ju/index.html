@@ -1,0 +1,995 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"复制成功","zh-CN":"复制成功","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"复制失败","zh-CN":"复制失败","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  
+  <title>
+    Cobalt Strike工具 |
+    
+    mX1@0_blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="Cobalt Strike工具介绍Cobalt Strike（简称CS）是一款GUI框架式渗透工具,集成了端口转发、服务扫描、自动化溢出、多模式端口监听、winexe 木马生成、Win DLL木马生成、Java 木马生成、Ofice宏病毒生成、木马捆绑、钓鱼攻击等功能。其中具体的钓鱼攻击手段包括 站点克隆、目标信息获取、Java执行、浏览器自动攻击等。 Cobalt Strike主要用于团队渗透测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cobalt Strike工具">
+<meta property="og:url" content="http://example.com/2026/01/11/cobalt-strike-gong-ju/index.html">
+<meta property="og:site_name" content="mX1@0_blog">
+<meta property="og:description" content="Cobalt Strike工具介绍Cobalt Strike（简称CS）是一款GUI框架式渗透工具,集成了端口转发、服务扫描、自动化溢出、多模式端口监听、winexe 木马生成、Win DLL木马生成、Java 木马生成、Ofice宏病毒生成、木马捆绑、钓鱼攻击等功能。其中具体的钓鱼攻击手段包括 站点克隆、目标信息获取、Java执行、浏览器自动攻击等。 Cobalt Strike主要用于团队渗透测">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-11%20165021.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-11%20174517.png">
+<meta property="article:published_time" content="2026-01-11T08:20:16.599Z">
+<meta property="article:modified_time" content="2026-01-12T13:02:29.857Z">
+<meta property="article:author" content="mX1@0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-11%20165021.png">
+  
+  
+  
+    <link rel="shortcut icon" href="/images/%E5%9B%BE1.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/">首页</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/archives">归类</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/about">关于</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/friend">友链</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+    
+  </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+        </picture>
+        
+          <img  fetchpriority="high" src="/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg" alt="Cobalt Strike工具">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Cobalt Strike工具</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="sidebar-left"  >
+          <aside id="sidebar">
+  
+  
+  
+  <div class="sidebar-wrapper wrap-sticky">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">74</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+        
+      
+      
+        
+        
+      
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-Cobalt Strike工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link" data-aos="zoom-in">
+    <time datetime="2026-01-11T08:20:16.599Z" itemprop="datePublished">2026-01-11</time>
+    <time style="display: none;" id="post-update-time">2026-01-12</time>
+  </span>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="Cobalt-Strike工具"><a href="#Cobalt-Strike工具" class="headerlink" title="Cobalt Strike工具"></a>Cobalt Strike工具</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Cobalt Strike（简称CS）是一款GUI框架式渗透工具,集成了端口转发、服务扫描、自动化溢出、多模式端口监听、winexe 木马生成、Win DLL木马生成、Java 木马生成、Ofice宏病毒生成、木马捆绑、钓鱼攻击等功能。其中具体的钓鱼攻击手段包括 站点克隆、目标信息获取、Java执行、浏览器自动攻击等。</p>
+<p>Cobalt Strike主要用于团队渗透测试，可以说是内网渗透中的团队渗透神器，Cobalt Strike能够<u>让多个渗透测试人员同时连接到团队服务器上，共享攻击资源</u>、目标信息和Session。众人拾柴火焰高，当发现一个内网控制点后，为了使渗透收益最大化，最好的办法就是跟团队共享资源，给其他成员提供同样的接人点，Cobalt Strike就很好地做到了这一点。因此Cobalt Strike作为一款协同APT工具，凭借其针对内网的渗透测试和作为APT的终端控制功能，变成众多APT组织的首选工具。</p>
+<p>Cobalt Strike 工具分为<strong>服务端</strong>和<strong>客户端</strong>，<strong>服务端</strong>一般运行在具有独立可访问<strong>公网IP</strong>的服务器上，方便与被测试目标主机进行连接。<strong>客户端</strong>则运行在渗透测试人员<strong>自己的主机上</strong>,通过连接服务端对目标主机进行测试。Cobalt Strike工具的服务端和客户端都依赖于<strong>Java环境</strong>，并且只能是<strong>JAVA8</strong></p>
+<p>Cobalt Strike 的官方下载地址网上找寻。</p>
+<p>这里我使用的是某安全团队二次开发的从GitHub下载的版本，链接如下，**<u>自行甄别是否有木马</u>**</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/k8gege/Aggressor/releases/tag/cs">https://github.com/k8gege/Aggressor/releases/tag/cs</a></p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>服务端：虚拟机win10</p>
+<p>客户端：主机win10</p>
+<p>当然，你可以尝试使用Linux作为服务端，本人使用kali未正确启动服务端，所以转而使用Windows作为服务端</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>在客户端和服务端均放入该工具包的文件</p>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>在服务端工具包的目录下，运行</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TeamServer.exe IP pass</span><br></pre></td></tr></tbody></table></figure>
+
+<p>IP为服务端的IP，pass为客户端连接服务端所需的密码</p>
+<p>如果是Linux就是运行对应的teamserver文件，记得给该文件添加可行性权限，可能还需要使用sudo来提升权限执行</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./teamserver</span><br><span class="line">sudo ./teamserver IP pass</span><br></pre></td></tr></tbody></table></figure>
+
+<p>只要出现<code>Team server is up on 0.0.0.0:4488</code>，就证明服务端已经启动，并且服务端开放的端口为4488</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>在客户端的工具包中运行TeamServer.exe</p>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-11%20165021.png" style="zoom:67%;">
+
+<p>重点是Host、Port和Password，Host是服务器的IP地址，Port是服务端开放的访问端口，Password是刚刚设置的连接密码，其余的不重要，User是以什么名称连接到这个团队服务器中</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><h3 id="Cobalt-Strike"><a href="#Cobalt-Strike" class="headerlink" title="Cobalt Strike"></a>Cobalt Strike</h3><p><strong>Cobalt Strike</strong> 选项下的功能模块及其含义如下所示</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能模块</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">New Connection</td>
+<td align="center">建立新的连接，允许连接多个服务器端</td>
+</tr>
+<tr>
+<td align="center">Preferences</td>
+<td align="center">偏好设置(界面、控制合样式设置等)</td>
+</tr>
+<tr>
+<td align="center">Visualization</td>
+<td align="center">窗口视图模式(结果输出模式)</td>
+</tr>
+<tr>
+<td align="center">Pivot Graph</td>
+<td align="center">透视图模式</td>
+</tr>
+<tr>
+<td align="center">Session Table</td>
+<td align="center">Session表模式</td>
+</tr>
+<tr>
+<td align="center">Target Table</td>
+<td align="center">目标表模式</td>
+</tr>
+<tr>
+<td align="center">VPN Interfaces</td>
+<td align="center">VPN 接入</td>
+</tr>
+<tr>
+<td align="center">Listeners</td>
+<td align="center">监听器（创建Listener)</td>
+</tr>
+<tr>
+<td align="center">Script Manager</td>
+<td align="center">脚本管理功能</td>
+</tr>
+</tbody></table>
+<h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><p><strong>View</strong> 各个功能模块的功能释义</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能模块</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Applications</td>
+<td align="center">显示目标机的应用信息</td>
+</tr>
+<tr>
+<td align="center">Credentials</td>
+<td align="center">凭证（所有通过Mimikat2 抓取的密码都存储在这里）</td>
+</tr>
+<tr>
+<td align="center">Downloads</td>
+<td align="center">下载文件</td>
+</tr>
+<tr>
+<td align="center">Event Log</td>
+<td align="center">事件日志，主机上线记录及团队交流记录</td>
+</tr>
+<tr>
+<td align="center">Keystrokes</td>
+<td align="center">键盘记录</td>
+</tr>
+<tr>
+<td align="center">Proxy Pivots</td>
+<td align="center">代理模块</td>
+</tr>
+<tr>
+<td align="center">Screenshots</td>
+<td align="center">查看目标机截图</td>
+</tr>
+<tr>
+<td align="center">Script Console</td>
+<td align="center">脚本控制台</td>
+</tr>
+<tr>
+<td align="center">Targets</td>
+<td align="center">显示目标主机</td>
+</tr>
+<tr>
+<td align="center">Web Log</td>
+<td align="center">Web 日志</td>
+</tr>
+</tbody></table>
+<h3 id="Attacks"><a href="#Attacks" class="headerlink" title="Attacks"></a>Attacks</h3><p>如下为<strong>Attacks</strong>各个功能模块的功能释义</p>
+<p>Packages：攻击包</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能模块</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">HTML Application</td>
+<td align="center">生成 HTA 木马</td>
+</tr>
+<tr>
+<td align="center">MS Office Macro</td>
+<td align="center">生成office 宏病毒文件</td>
+</tr>
+<tr>
+<td align="center">Payload Generator</td>
+<td align="center">生成各种语言版本的payload</td>
+</tr>
+<tr>
+<td align="center">USB/CD AutoPlay</td>
+<td align="center">生成自动播放执行的木马文件</td>
+</tr>
+<tr>
+<td align="center">Windows Dropper</td>
+<td align="center">捆绑器，对文档类进行捆绑</td>
+</tr>
+<tr>
+<td align="center">Windows Executable</td>
+<td align="center">生成 EXE 的 payload</td>
+</tr>
+<tr>
+<td align="center">Windows Executable(S)</td>
+<td align="center">生成无状态的 EXE 的payload</td>
+</tr>
+</tbody></table>
+<p>Web Drive-by：钓鱼攻击</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能模块</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Manage</td>
+<td align="center">对开启的 Web 服务进行管理</td>
+</tr>
+<tr>
+<td align="center">Clone site</td>
+<td align="center">克隆网站</td>
+</tr>
+<tr>
+<td align="center">Host File</td>
+<td align="center">提供 Web 以下载某文件</td>
+</tr>
+<tr>
+<td align="center">Scripted Web Delivery</td>
+<td align="center">提供Web 以下载 powershell</td>
+</tr>
+<tr>
+<td align="center">Signed Applet Attack</td>
+<td align="center">使用 Java 自签名的程序进行钓鱼</td>
+</tr>
+<tr>
+<td align="center">Smart Appplet Attack</td>
+<td align="center">自动检测 JAVA 版本进行测试</td>
+</tr>
+<tr>
+<td align="center">System Profiler</td>
+<td align="center">获取系统信息</td>
+</tr>
+</tbody></table>
+<p>Spear Phish：邮件钓鱼</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>控制一台目标主机的步骤：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">创建监听器 --&gt; 生成控制木马文件/命令 --&gt; 将木马文件上传到目标主机 --&gt; 目标主机执行木马文件/命令</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ol>
+<li>创建监听器</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/xmhhmx/PicGoCDN/img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-11%20174517.png" style="zoom: 50%;">
+
+<blockquote>
+<p><strong>监听器的作用</strong>：等待被植入恶意代码（payload）的目标主机回连，建立C2（命令与控制）通道。</p>
+<p>Name：任意取一个有意义的名字即可</p>
+<p>Payload：</p>
+<ul>
+<li><p>**Beacon HTTP **：通过HTTP通信</p>
+</li>
+<li><p><strong>Beacon DNS</strong>：通过DNS查询通信</p>
+</li>
+<li><p><strong>Beacon HTTPS</strong>：加密HTTPS通信</p>
+</li>
+<li><p><strong>Beacon SMB</strong>：通过命名管道（内网横向）</p>
+</li>
+<li><p><strong>Beacon TCP</strong>：原始TCP连接</p>
+</li>
+</ul>
+<p>Payload Options：</p>
+<ul>
+<li><p>HTTP Hosts：指定Beacon回连的<strong>域名或IP地址</strong></p>
+<ul>
+<li>单地址：<code>192.168.231.130</code></li>
+<li>多地址：<code>192.168.231.130, malware.example.com</code></li>
+<li>支持通配符：<code>*.example.com</code></li>
+</ul>
+</li>
+<li><p>Host Rotation Strategy：多个C2服务器时的轮询策略</p>
+<ul>
+<li><strong>选项</strong>：<ul>
+<li><strong>round-robin</strong>：循环使用（默认）</li>
+<li><strong>random</strong>：随机选择</li>
+<li><strong>failover</strong>：故障转移</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HTTP Host：<strong>Stage下载服务器地址</strong></p>
+<ul>
+<li><p><strong>Stager</strong>：小型初始载荷，用于下载完整的Beacon</p>
+</li>
+<li><p>通常与C2服务器相同，但可分离增加隐蔽性</p>
+</li>
+</ul>
+</li>
+<li><p>Profile：通信<strong>流量伪装模板</strong></p>
+<ul>
+<li><p><strong>作用</strong>：修改HTTP请求头、URI结构等，模仿合法流量</p>
+</li>
+<li><p><strong>自定义Profile</strong>：可导入Malleable C2配置文件</p>
+</li>
+</ul>
+</li>
+<li><p>HTTP Port：Beacon与TeamServer的<strong>通信端口</strong></p>
+<ul>
+<li><p><strong>80端口优势</strong>：</p>
+<ul>
+<li>通常是Web服务端口，不易被防火墙拦截</li>
+<li>可伪装成正常Web流量</li>
+</ul>
+</li>
+<li><p><strong>其他常用端口</strong>：443(HTTPS)、8080、8888</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>生成控制木马</li>
+</ol>
+<p>这里使用常见的exe木马</p>
+<p>Attacks -&gt; Packages -&gt; Windows Executable生成exe木马</p>
+<ol start="3">
+<li>将木马上传到目标主机，等目标主机运行exe木马文件，CS上就会有上线的主机</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+      
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/7.jpg" data-sizes="auto" alt="Vulnstack内网靶场" class="lazyload">
+          
+        
+        <a href="/2026/01/12/vulnstack-nei-wang-ba-chang/"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+          
+            Vulnstack内网靶场
+          
+        </h3>
+      </div>
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/12.jpg" data-sizes="auto" alt="系统提示词攻击" class="lazyload">
+        
+      
+      <a href="/2025/12/24/xi-tong-ti-shi-ci-gong-ji/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          系统提示词攻击
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2024-2026
+      
+      <span class="footer-info-sep "></span>
+      mX1@0
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        327.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        20:20
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="mX1@0" class="lazyload">
+  <div class="sidebar-author-name">mX1@0</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">74</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">69</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-twitter sidebar-social-icon">
+      <a href=https://x.com/0xMx1a0 itemprop="url" target="_blank" aria-label="twitter" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归类"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">归类</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+    
+  
+</div>
+
+      
+    
+  </div>
+  
+    
+    
+  
+</nav>
+
+    </div>
+    
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "mX1@0",
+          title: "Cobalt Strike工具",
+          url: "http://example.com/2026/01/11/cobalt-strike-gong-ju/",
+          excerpt: "",
+          description: "",
+          stripContent: "Cobalt Strike工具介绍Cobalt Strike（简称CS）是一款GUI框架式渗透工具,集成了端口转发、服务扫描、自动化溢出、多模式端口监听、winexe 木马生成、Win DLL木马生成、Java 木马生成、Ofice宏病毒生成、木马捆绑、钓鱼攻击等功能。其中具体的钓鱼攻击手段包括 站点克隆、目标信息获取、Java执行、浏览器自动攻击等。 Cobalt Strike主要用于团队渗透测试，可以说是内网渗透中的团队渗透神器，Cobalt Strike能够让多个渗透测试人员同时连接到团队",
+          date: "Sun Jan 11 2026 16:20:16 GMT+0800",
+          updated: "Mon Jan 12 2026 21:02:29 GMT+0800",
+          cover: "/images/%E7%8E%9B%E8%8E%8E%E6%8B%89%E8%92%82.jpg",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+  </html>
+
